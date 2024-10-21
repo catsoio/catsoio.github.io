@@ -1,0 +1,60 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html,
+body {
+   height: 100%;
+   width: 100%;
+   background-color: #000;
+   overflow: hidden;
+   font-family: Arial, sans-serif;
+}
+
+.container {
+   width: 100vw;
+   height: 100vh;
+   position: relative;
+   cursor: none;
+   overflow: hidden;
+}
+
+svg {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   object-fit: cover;
+}
+
+.dark-layer {
+   background: rgba(0, 0, 0, 0.95);
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   opacity: 0;
+   pointer-events: none;
+}
+
+.app-store-link {
+   position: absolute;
+   bottom: 20px; /* Adjust as needed */
+   left: 50%;
+   transform: translateX(-50%);
+   text-align: center;
+}
+
+.app-store-link a {
+   display: inline-block;
+}
+
+.app-store-link img {
+   width: 150px; /* Adjust size as needed */
+   max-width: 100%;
+   height: auto;
+}
