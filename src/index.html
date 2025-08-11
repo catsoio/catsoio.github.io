@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="sv" prefix="og: http://ogp.me/ns#">
+	<head>
+		<meta charset="utf-8" />
+		<title>Catso - AI-drivna appar & plattformar</title>
+		<base href="/" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Primary SEO -->
+		<meta
+			name="description"
+			content="Catso bygger och hostar AI-drivna webbappar och produkter - som VERA, Hemmafest och Poängjakten - på catso.io. Upptäck våra lösningar och börja direkt."
+		/>
+		<meta
+			name="robots"
+			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+		/>
+		<link rel="canonical" href="https://catso.io/" />
+		<meta http-equiv="Content-Language" content="sv-SE" />
+		<meta name="referrer" content="strict-origin-when-cross-origin" />
+
+		<!-- Icons & PWA basics -->
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="theme-color" content="#0b0f19" />
+		<meta name="color-scheme" content="light dark" />
+
+		<!-- Open Graph / Twitter -->
+		<meta property="og:title" content="Catso - AI-drivna appar & plattformar" />
+		<meta
+			property="og:description"
+			content="Catso hostar VERA, Hemmafest och Poängjakten på catso.io. Utforska våra produkter."
+		/>
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://catso.io/" />
+		<meta property="og:site_name" content="Catso" />
+		<meta
+			property="og:image"
+			content="https://catso.io/assets/og/catso-og.jpg"
+		/>
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Catso - AI-drivna appar" />
+		<meta property="og:locale" content="sv_SE" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta
+			name="twitter:title"
+			content="Catso - AI-drivna appar & plattformar"
+		/>
+		<meta
+			name="twitter:description"
+			content="Catso hostar VERA, Hemmafest och Poängjakten på catso.io. Utforska våra produkter."
+		/>
+		<meta
+			name="twitter:image"
+			content="https://catso.io/assets/og/catso-og.jpg"
+		/>
+
+		<!-- Structured Data (JSON-LD) -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Catso",
+				"url": "https://catso.io/",
+				"logo": "https://catso.io/assets/brand/logo.svg",
+				"sameAs": []
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "Catso",
+				"url": "https://catso.io/"
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "ItemList",
+				"name": "Catso-appar",
+				"itemListOrder": "http://schema.org/ItemListOrderAscending",
+				"itemListElement": [
+					{
+						"@type": "ListItem",
+						"position": 1,
+						"url": "https://catso.io/vera/",
+						"name": "VERA - Juridisk AI-assistent"
+					},
+					{
+						"@type": "ListItem",
+						"position": 2,
+						"url": "https://catso.io/hemmafest/",
+						"name": "Hemmafest"
+					},
+					{
+						"@type": "ListItem",
+						"position": 3,
+						"url": "https://catso.io/poangjakten/",
+						"name": "Poängjakten"
+					}
+				]
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"name": "VERA",
+				"applicationCategory": "BusinessApplication",
+				"operatingSystem": "Web",
+				"url": "https://catso.io/vera/"
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"name": "Hemmafest",
+				"applicationCategory": "LifestyleApplication",
+				"operatingSystem": "Web",
+				"url": "https://catso.io/hemmafest/"
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"name": "Poängjakten",
+				"applicationCategory": "GameApplication",
+				"operatingSystem": "Web",
+				"url": "https://catso.io/poangjakten/"
+			}
+		</script>
+
+		<!-- Fonts (optional) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Discovery hints -->
+		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+		<!--
+      SEO-noter:
+      • Varje underapp (t.ex. /vera/) bör ha egen <title>, description, OG/Twitter och canonical som pekar på sin URL.
+      • Om apparna ligger under egna byggstigar, sätt Angular base href: /vera/, /hemmafest/, /poangjakten/ i respektive index.html och kör SSR/pre-render om möjligt.
+      • Lägg en 1200×630 OG-bild på /assets/og/catso-og.jpg.
+      • Uppdatera /site.webmanifest, /sitemap.xml och /robots.txt för att inkludera underkatalogerna.
+    -->
+	</head>
+	<body>
+		<noscript
+			>Den här webbplatsen fungerar bäst med JavaScript aktiverat.</noscript
+		>
+
+		<!-- Crawlable, minimalistisk nav så att sökmotorer hittar underkatalogerna även utan JS -->
+		<nav aria-label="Primär" id="seo-nav">
+			<a href="/vera/">VERA</a>
+			<a href="/hemmafest/">Hemmafest</a>
+			<a href="/poangjakten/">Poängjakten</a>
+		</nav>
+
+		<app-root></app-root>
+	</body>
+</html>
