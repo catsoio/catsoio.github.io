@@ -24,12 +24,14 @@ export class AiPromptDemoComponent implements OnInit, OnDestroy {
 	listItems: any[] = []; // You might want to define a specific type for this
 
 	private animationInterval: any;
-	private prefersReducedMotion: boolean;
+	private prefersReducedMotion: boolean = false;
 
 	constructor() {
-		this.prefersReducedMotion = window.matchMedia(
-			'(prefers-reduced-motion: reduce)'
-		).matches;
+		if (window) {
+			this.prefersReducedMotion = window.matchMedia(
+				'(prefers-reduced-motion: reduce)'
+			).matches;
+		}
 	}
 
 	ngOnInit(): void {

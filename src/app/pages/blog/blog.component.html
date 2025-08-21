@@ -1,1 +1,511 @@
-<p>blog works!</p>
+<div class="body">
+	<div class="wrap">
+		<header class="hero">
+			<div class="kicker">Explainer</div>
+			<h1>Reinventing Computing: GPUs, AI, and the Coming Robotics Wave</h1>
+			<p class="sub">
+				A subject-by-subject summary of an in-depth interview covering the leap
+				from gaming GPUs to CUDA and AlexNet, today’s AI moment, Omniverse +
+				Cosmos world models, safety, energy limits, hardware bets, and what’s
+				next.
+			</p>
+			<div class="meta">
+				<span class="pill">Parallel vs Sequential</span>
+				<span class="pill">CUDA</span>
+				<span class="pill">AlexNet (2012)</span>
+				<span class="pill">World Models</span>
+				<span class="pill">Robotics</span>
+				<span class="pill">AI Safety</span>
+				<span class="pill">Energy</span>
+			</div>
+		</header>
+
+		<main>
+			<!-- Table of Contents -->
+			<nav class="toc">
+				<h3>On this page</h3>
+				<a href="#how-we-got-here">1. How we got here</a>
+				<a href="#why-gaming-first">2. Why gaming first</a>
+				<a href="#cuda">3. CUDA: opening the floodgates</a>
+				<a href="#alexnet">4. 2012 AlexNet inflection</a>
+				<a href="#the-long-decade">5. The long decade</a>
+				<a href="#core-beliefs">6. Core beliefs</a>
+				<a href="#now-what">7. From science → applications</a>
+				<a href="#physical-ai">8. Physical AI: Omniverse + Cosmos</a>
+				<a href="#safety">9. AI safety spectrum</a>
+				<a href="#limits">10. Energy & physical limits</a>
+				<a href="#hardware-bets">11. Hardware bets & specialization</a>
+				<a href="#pushing-fab">12. Pushing what fabs can make</a>
+				<a href="#bets-next">13. Bets being made now</a>
+				<a href="#advice">14. How to prepare</a>
+				<a href="#products">15. Products that embody the shift</a>
+				<a href="#impact">16. Theme & impact</a>
+				<a href="#glossary">Glossary</a>
+				<a href="#timeline">Timeline</a>
+				<a href="#takeaways">TL;DR</a>
+			</nav>
+
+			<div>
+				<!-- 1 -->
+				<section id="how-we-got-here" class="block">
+					<h2>1) How we got here: Parallel vs. Sequential</h2>
+					<p class="lead">
+						In early 90s computing, ~10% of a program’s code did ~99% of the
+						heavy lifting—and much of that heavy work could run in parallel.
+						CPUs excel at sequential tasks; GPUs unlock massive parallelism.
+					</p>
+					<div class="callouts">
+						<div class="call">
+							<strong>Observation</strong> The “perfect” computer blends fast
+							sequential <em>and</em> parallel processing.
+						</div>
+						<div class="call">
+							<strong>Mission</strong> Build computers that solve problems
+							normal CPUs can’t—NVIDIA’s founding thesis.
+						</div>
+						<div class="call">
+							<strong>Analogy</strong> CPU = one paintball at a time; GPU = a
+							wall of synchronized paintballs.
+						</div>
+					</div>
+					<div class="quote">
+						“We set out to build a company to solve computer problems that
+						normal computers can’t.”
+					</div>
+				</section>
+
+				<!-- 2 -->
+				<section id="why-gaming-first" class="block">
+					<h2>2) Why gaming first?</h2>
+					<p class="lead">
+						3D graphics are inherently parallel. Video games offered a beloved
+						app, a giant market, and a tech-market flywheel to fund deep
+						R&amp;D.
+					</p>
+					<div class="hl ok">
+						<strong>Highlight:</strong> Gaming’s scale created the budget to
+						push the GPU architecture forward—benefiting far more than games.
+					</div>
+					<div class="quote">“It was all because of video games.”</div>
+				</section>
+
+				<!-- 3 -->
+				<section id="cuda" class="block">
+					<h2>3) CUDA: Opening the floodgates to general acceleration</h2>
+					<p class="lead">
+						Researchers were “tricking” GPUs by posing problems as graphics.
+						CUDA (C/C++ style programming on GPUs) made general-purpose
+						acceleration accessible.
+					</p>
+					<div class="grid">
+						<div>
+							<div class="badge">Origins</div>
+							<p>
+								Inspired by medical imaging, physics for dynamic worlds, and
+								researchers repurposing GPUs. Equal parts aspiration and
+								desperation.
+							</p>
+							<div class="hl">
+								<strong>Why it worked:</strong> GPUs for gaming → highest-volume
+								parallel processors → a platform worth learning.
+							</div>
+						</div>
+						<div>
+							<div class="badge">Effect</div>
+							<p>
+								Gave scientists &amp; engineers direct access to parallel
+								computing—fueling breakthroughs across vision, simulation, and
+								ML.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- 4 -->
+				<section id="alexnet" class="block">
+					<h2>4) 2012: AlexNet &amp; the deep learning inflection</h2>
+					<p class="lead">
+						AlexNet crushed an image recognition benchmark using massive data +
+						NVIDIA GPUs. It signaled a shift from instructing computers to
+						<em>training</em> them.
+					</p>
+					<div class="hl ok">
+						<strong>Breakthrough question:</strong> “If it can do this, how far
+						can it go?” → Re-engineer the entire stack for deep learning (e.g.,
+						DGX systems).
+					</div>
+					<div class="quote">
+						“If deep learning can scale, it could reshape the computer industry
+						altogether.”
+					</div>
+				</section>
+
+				<!-- 5 -->
+				<section id="the-long-decade" class="block">
+					<h2>5) The long decade: betting before it’s obvious</h2>
+					<p class="lead">
+						2012 → mainstream AI took ~8–10 years. Staying the course required
+						first-principles reasoning and belief—plus tens of billions invested
+						ahead of demand.
+					</p>
+					<div class="hl warn">
+						<strong>Reality:</strong> Long stretches without external “proof.”
+						The core beliefs didn’t change, so the commitment didn’t either.
+					</div>
+					<div class="quote">“If you don’t build it, they can’t come.”</div>
+				</section>
+
+				<!-- 6 -->
+				<section id="core-beliefs" class="block">
+					<h2>6) Core beliefs that guided the journey</h2>
+					<div class="cards">
+						<div class="card">
+							<h4>Accelerated Computing</h4>
+							<p>
+								Pair general-purpose + parallel processors to outpace CPU-only
+								systems.
+							</p>
+						</div>
+						<div class="card">
+							<h4>Scaling Laws</h4>
+							<p>
+								Larger models + more data → more nuanced capabilities across
+								modalities.
+							</p>
+						</div>
+						<div class="card">
+							<h4>Modality Translation</h4>
+							<p>
+								Text↔image↔video↔protein↔actions—learned mappings unlock new
+								tools (and robots).
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- 7 -->
+				<section id="now-what" class="block">
+					<h2>7) Now what? From AI science → application science</h2>
+					<p class="lead">
+						The next decade emphasizes applying AI to digital biology, climate,
+						logistics, education, media, and more.
+					</p>
+					<div class="callouts">
+						<div class="call">
+							<strong>Shift</strong> From breakthroughs in core models →
+							breakthroughs in domain applications.
+						</div>
+						<div class="call">
+							<strong>Opportunity</strong> Every field asks: “How do we use AI
+							to do our job better?”
+						</div>
+						<div class="call">
+							<strong>Outcome</strong> Superhuman tools around us—humans stay
+							empowered.
+						</div>
+					</div>
+				</section>
+
+				<!-- 8 -->
+				<section id="physical-ai" class="block">
+					<h2>8) Physical AI &amp; robotics: Omniverse + Cosmos</h2>
+					<p class="lead">
+						Training robots in richly simulated, physically grounded worlds
+						accelerates learning safely and cheaply.
+					</p>
+					<div class="grid">
+						<div>
+							<div class="badge">World Model (Cosmos)</div>
+							<p>
+								Encodes physical “common sense”: gravity, friction, object
+								permanence, causality—like a “language model for the world.”
+							</p>
+							<div class="hl ok">
+								<strong>Grounding:</strong> Omniverse physics simulation
+								provides truth constraints, reducing “hallucinations” for
+								physical tasks.
+							</div>
+						</div>
+						<div>
+							<div class="badge">Why it matters</div>
+							<p>
+								Robots can practice millions of scenarios—routes, lighting,
+								occlusions—then transfer skills to the real world.
+							</p>
+						</div>
+					</div>
+					<div class="quote">
+						“Everything that moves will be robotic someday—and soon.”
+					</div>
+				</section>
+
+				<!-- 9 -->
+				<section id="safety" class="block">
+					<h2>9) AI safety: a spectrum of concerns</h2>
+					<div class="cards">
+						<div class="card">
+							<h4>Content Risks</h4>
+							<p>Bias, toxicity, hallucinations, fakes, impersonation.</p>
+						</div>
+						<div class="card">
+							<h4>Performance Risks</h4>
+							<p>
+								Systems that “intend” to help but fail in perception/decision
+								(e.g., self-driving edge cases).
+							</p>
+						</div>
+						<div class="card">
+							<h4>System Risks</h4>
+							<p>
+								Hardware or infrastructure failures → mitigated via redundancy
+								&amp; layered oversight, like aviation.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- 10 -->
+				<section id="limits" class="block">
+					<h2>10) Physical limits: Energy is king</h2>
+					<p class="lead">
+						All computing is bounded by the energy to flip and move bits. The
+						path forward is relentless efficiency.
+					</p>
+					<div class="hl ok">
+						<strong>Claim in interview:</strong> From 2016’s DGX-1 to a “baby”
+						successor, efficiency improved by orders of magnitude while boosting
+						performance.
+					</div>
+					<div class="kv">
+						<span class="mono">Goal:</span
+						><span>More intelligence per joule</span>
+					</div>
+				</section>
+
+				<!-- 11 -->
+				<section id="hardware-bets" class="block">
+					<h2>11) Hardware bets: generality vs. specialization</h2>
+					<p class="lead">
+						Burning one architecture into silicon risks brittleness. Betting on
+						research diversity favors flexible, programmable accelerators.
+					</p>
+					<div class="hl">
+						<strong>Reasoning:</strong> Transformers won’t be the last word. New
+						attention tricks (flash, hierarchical, etc.) keep evolving → keep
+						hardware adaptable.
+					</div>
+				</section>
+
+				<!-- 12 -->
+				<section id="pushing-fab" class="block">
+					<h2>12) Pushing what fabs can build</h2>
+					<p class="lead">
+						Even if partners (e.g., TSMC) manufacture the chips, you need deep
+						internal expertise—semiconductor physics, cooling, aerodynamics—to
+						co-discover limits.
+					</p>
+					<div class="quote">
+						“We assume we need the deep expertise our partners have—so we hire
+						it.”
+					</div>
+				</section>
+
+				<!-- 13 -->
+				<section id="bets-next" class="block">
+					<h2>13) Bets being made now</h2>
+					<div class="cards">
+						<div class="card">
+							<h4>Omniverse × Cosmos</h4>
+							<p>
+								Generative multiverse for physically plausible futures—training
+								robots &amp; physical systems at scale.
+							</p>
+						</div>
+						<div class="card">
+							<h4>Humanoid Tooling</h4>
+							<p>
+								Demonstration, training, and evaluation pipelines for
+								general-purpose robots.
+							</p>
+						</div>
+						<div class="card">
+							<h4>Digital Biology</h4>
+							<p>
+								“Language of molecules &amp; cells” → towards human digital
+								twins and faster drug discovery.
+							</p>
+						</div>
+						<div class="card">
+							<h4>Climate &amp; Weather</h4>
+							<p>
+								Higher-resolution forecasts (down to ~km scales) to inform local
+								decisions.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- 14 -->
+				<section id="advice" class="block">
+					<h2>14) How to prepare (for everyone, not just engineers)</h2>
+					<div class="callouts">
+						<div class="call">
+							<strong>Get an AI tutor</strong> Use it to learn, write, analyze,
+							reason—lower the barrier to any domain.
+						</div>
+						<div class="call">
+							<strong>Prompting ≈ Asking great questions</strong> It’s a skill;
+							practice context, constraints, and examples.
+						</div>
+						<div class="call">
+							<strong>Universal reframing</strong> “How can I use AI to do my
+							job better?”—law, medicine, chemistry, design, anything.
+						</div>
+					</div>
+					<div class="quote">
+						“We’ll become superhuman—not because we are, but because we’re
+						surrounded by super AIs.”
+					</div>
+				</section>
+
+				<!-- 15 -->
+				<section id="products" class="block">
+					<h2>15) Products that embody the shift</h2>
+					<div class="grid">
+						<div class="card">
+							<h4>RTX 50-Series (GeForce)</h4>
+							<p>
+								AI-powered graphics: render a fraction of pixels at ultra
+								quality, let AI predict the rest.
+							</p>
+							<div class="hl ok">
+								<strong>Idea:</strong> Focus compute on ~500k “perfect” pixels,
+								upres to ~8M with AI → higher quality &amp; speed.
+							</div>
+						</div>
+						<div class="card">
+							<h4>Mini “DGX”-style desktop accelerator</h4>
+							<p>
+								From $250k lab gear (2016) to a few-thousand-dollar personal AI
+								supercomputer for students &amp; engineers.
+							</p>
+							<div class="hl">
+								<strong>Theme:</strong> Accessibility—AI development at your
+								desk.
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- 16 -->
+				<section id="impact" class="block">
+					<h2>16) Theme &amp; desired impact</h2>
+					<p class="lead">
+						Use consequential technology to make extraordinary, pervasive
+						impact—available to giants and solo researchers alike, across
+						profitable and unprofitable domains.
+					</p>
+					<div class="quote">“They made an extraordinary impact.”</div>
+				</section>
+
+				<!-- Glossary -->
+				<section id="glossary" class="block">
+					<h2>Glossary (quick refs)</h2>
+					<div class="grid">
+						<div class="card">
+							<h4>GPU</h4>
+							<p>
+								Graphics Processing Unit: thousands of small cores for parallel
+								work.
+							</p>
+						</div>
+						<div class="card">
+							<h4>CUDA</h4>
+							<p>Programming platform to run general code on NVIDIA GPUs.</p>
+						</div>
+						<div class="card">
+							<h4>AlexNet</h4>
+							<p>2012 neural net that sparked modern deep learning momentum.</p>
+						</div>
+						<div class="card">
+							<h4>World Model</h4>
+							<p>
+								Model that captures physical regularities for planning/robotics.
+							</p>
+						</div>
+						<div class="card">
+							<h4>Omniverse</h4>
+							<p>Physically-based simulation &amp; collaboration platform.</p>
+						</div>
+						<div class="card">
+							<h4>Cosmos</h4>
+							<p>
+								“World language model” used with Omniverse to generate grounded
+								futures.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Timeline -->
+				<section id="timeline" class="block">
+					<h2>Timeline of key moments</h2>
+					<div class="timeline">
+						<div class="t">
+							<strong>Early 1990s</strong> — Parallel-vs-sequential insight →
+							found NVIDIA.
+						</div>
+						<div class="t">
+							<strong>2000s</strong> — Researchers stretch GPUs beyond graphics
+							→ CUDA launched.
+						</div>
+						<div class="t">
+							<strong>2012</strong> — AlexNet + GPUs crush vision benchmarks →
+							deep learning inflection.
+						</div>
+						<div class="t">
+							<strong>2016</strong> — DGX-1 shipped to AI labs; personal “baby
+							DGX” concept later emerges.
+						</div>
+						<div class="t">
+							<strong>Now → Next</strong> — Omniverse × Cosmos, humanoids,
+							digital biology, km-scale climate.
+						</div>
+					</div>
+				</section>
+
+				<!-- TL;DR -->
+				<section id="takeaways" class="block">
+					<h2>TL;DR — 5 takeaways</h2>
+					<ol>
+						<li>
+							<strong>Accelerated computing</strong> (CPU + GPU) is the new
+							baseline.
+						</li>
+						<li>
+							<strong>CUDA</strong> democratized parallel compute → unlocked
+							deep learning.
+						</li>
+						<li>
+							<strong>World models + simulation</strong> will catalyze a
+							robotics boom.
+						</li>
+						<li>
+							<strong>Safety</strong> needs content, performance, and
+							system-level defenses.
+						</li>
+						<li>
+							<strong>Energy efficiency</strong> is the limiting factor—optimize
+							for joules.
+						</li>
+					</ol>
+				</section>
+			</div>
+		</main>
+
+		<footer class="site">
+			Built from an interview transcript. Structure &amp; highlights by your
+			friendly editor.
+		</footer>
+	</div>
+</div>

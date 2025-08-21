@@ -1,9 +1,12 @@
 import { Routes } from '@angular/router';
 import { RouteSEO } from './seo/seo.types';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
+	{ path: '', component: AppComponent },
+
 	{
-		path: '',
+		path: 'home',
 		loadComponent: () =>
 			import('./pages/home/home.component').then((m) => m.HomeComponent),
 		data: {
@@ -257,5 +260,5 @@ export const routes: Routes = [
 			} as RouteSEO,
 		},
 	},
-	{ path: '**', redirectTo: '' },
+	{ path: '**', redirectTo: 'home' },
 ];

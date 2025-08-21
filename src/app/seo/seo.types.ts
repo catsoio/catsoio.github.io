@@ -19,7 +19,7 @@ export interface RouteSEO {
 		description?: string;
 		image?: string; // relative or absolute
 	};
-	/** JSON‑LD object for structured data */
+	/** JSON-LD object for structured data */
 	jsonLd?: any;
 }
 

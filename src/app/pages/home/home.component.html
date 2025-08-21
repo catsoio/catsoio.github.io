@@ -1,1 +1,1197 @@
-<p>home works!</p>
+<div class="min-h-screen bg-white text-black">
+	<!-- Sticky Nav -->
+	<div
+		class="sticky top-0 z-50 w-full border-b border-black/10 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60"
+	>
+		<nav
+			class="relative mx-auto flex max-w-7xl items-center justify-center px-4 py-6 md:px-6"
+		>
+			<!-- Left: Logo -->
+			<div class="absolute left-4 md:left-6 flex items-center gap-3">
+				<div class="flex h-9 w-9 items-center justify-center">
+					<img
+						src="/assets/imgs/catso-logo-blackwhite.png"
+						class="h-9 w-10"
+						alt=""
+					/>
+				</div>
+				<span class="text-lg font-semibold tracking-tight">Catso</span>
+			</div>
+
+			<!-- Center: Tabs -->
+			<div class="hidden md:flex items-center gap-6">
+				<a class="text-sm text-black/70 hover:text-black" href="#ai"
+					>AI</a
+				>
+				<a class="text-sm text-black/70 hover:text-black" href="#robots"
+					>Robotik</a
+				>
+				<a class="text-sm text-black/70 hover:text-black" href="#partners"
+					>Partners</a
+				>
+				<a class="text-sm text-black/70 hover:text-black" href="#agents"
+					>Agenter</a
+				>
+				<a class="text-sm text-black/70 hover:text-black" href="#invest"
+					>Investera</a
+				>
+			</div>
+
+			<!-- Right: Buttons -->
+			<div class="absolute right-4 md:right-6 flex items-center gap-3">
+				<button
+					class="hidden md:inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none shadow-sm bg-transparent text-black hover:bg-black/5 focus:ring-black ring-offset-white h-11 px-5 text-base"
+				>
+					Logga in
+					<i-lucide
+						[img]="ArrowRight"
+						class="h-4 w-4 fill-black/90 text-black/90 ml-2"
+					></i-lucide>
+				</button>
+				<button
+					class="inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none shadow-sm bg-black text-white hover:bg-black/90 focus:ring-black ring-offset-white h-11 px-5 text-base"
+				>
+					Prata med en expert
+				</button>
+			</div>
+		</nav>
+	</div>
+
+	<!-- Hero -->
+	<header class="relative overflow-hidden">
+		<div class="pointer-events-none absolute inset-0">
+			<div
+				class="absolute -top-40 left-1/2 h-80 w-[80rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(0,0,0,0.07),transparent_60%)]"
+			></div>
+		</div>
+		<div class="mx-auto max-w-7xl px-4 py-16 md:py-24 md:px-6">
+			<div class="mx-auto max-w-3xl text-center">
+				<span
+					class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70"
+				>
+					<i-lucide [img]="Zap" class="h-3.5 w-3.5"></i-lucide> New: Catso
+					Robotics
+				</span>
+				<h1 class="mt-4 text-4xl font-semibold tracking-tight md:text-6xl">
+					Sveriges Största
+					<br />
+					<span
+						class="bg-gradient-to-r from-black to-black/60 bg-clip-text text-transparent"
+					>
+						AI och Robotik-leverantör.
+					</span>
+				</h1>
+
+				<p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-black/60">
+					Virtuella och fysiska AI-agenter. För alla brancher.
+				</p>
+				<div
+					class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+				>
+					<button
+						class="gap-2 inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none shadow-sm bg-black text-white hover:bg-black/90 focus:ring-black ring-offset-white h-12 px-6 text-base"
+					>
+						Prata med en expert
+
+						<i-lucide
+							[img]="ArrowRight"
+							class="h-4 w-4 fill-white/90 text-white/90"
+						></i-lucide>
+					</button>
+				</div>
+			</div>
+
+			<div class="mt-12 md:mt-16">
+				<!-- MacWindow -->
+				<div class="relative" appInView>
+					<div class="rounded-3xl">
+						<!-- Content area with subtle grid -->
+						<div class="relative aspect-[16/9] overflow-hidden">
+							<!-- Inner card -->
+							<div
+								class="absolute inset-6 rounded-2xl border border-black/10 bg-white/80 backdrop-blur-sm shadow-lg"
+								appInView
+							>
+								<!-- Tabs bar -->
+								<div
+									class="flex items-center justify-between border-b border-black/10 px-4 py-2"
+								>
+									<div class="flex gap-1.5">
+										<span class="h-3 w-3 rounded-full bg-[#FF5F57]"></span>
+										<span class="h-3 w-3 rounded-full bg-[#FEBB2E]"></span>
+										<span class="h-3 w-3 rounded-full bg-[#28C840]"></span>
+									</div>
+
+									<!-- Tablist -->
+									<div
+										class="flex items-center gap-2"
+										role="tablist"
+										aria-label="Feature tabs"
+									>
+										<button
+											#tabBtn
+											*ngFor="let t of tabs; let i = index"
+											type="button"
+											role="tab"
+											[id]="'tab-' + t.id"
+											[attr.aria-selected]="active === i"
+											[attr.aria-controls]="'panel-' + t.id"
+											(click)="select(i)"
+											(keydown)="onKeydown($event, i)"
+											class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-black/10"
+											[ngClass]="{
+												'border-black': active === i,
+											}"
+										>
+											<i-lucide [img]="t.icon" class="h-3.5 w-3.5"></i-lucide>
+											{{ t.label }}
+										</button>
+									</div>
+								</div>
+
+								<!-- Panels -->
+								<div class="relative h-full w-full p-8 pb-20">
+									<!-- Panel: Capture -->
+									<div
+										role="tabpanel"
+										[id]="'panel-' + tabs[0].id"
+										[attr.aria-labelledby]="'tab-' + tabs[0].id"
+										[hidden]="active !== 0"
+										class="relative h-full isolate"
+									>
+										<!-- dekorativ futuristisk bakgrundsglow -->
+										<div class="pointer-events-none absolute inset-0 -z-10">
+											<div
+												class="absolute -top-16 -right-10 h-72 w-72 rounded-full bg-gradient-to-br"
+											></div>
+											<div
+												class="absolute bottom-0 left-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-gradient-to-tr from-cyan-500/20 to-indigo-500/20 blur-3xl"
+											></div>
+										</div>
+
+										<div class="grid grid-cols-12 gap-6 h-full">
+											<!-- Left: cards grid -->
+											<div class="col-span-12 lg:col-span-8">
+												<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+													<button
+														type="button"
+														*ngFor="let card of cards; trackBy: trackById"
+														(click)="selectCard(card)"
+														[attr.aria-pressed]="
+															selectedCard?.id === card.id ? 'true' : 'false'
+														"
+														class="group rounded-2xl border border-black/10 bg-white/70 backdrop-blur-xl p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 ring-offset-2 ring-offset-white"
+														[ngClass]="{
+															'ring-2 ring-indigo-500 shadow-indigo-500/10':
+																selectedCard?.id === card.id
+														}"
+													>
+														<div class="flex items-start gap-4">
+															<div
+																class="rounded-xl p-3 ring-1 ring-black/5 bg-gradient-to-br from-indigo-500/10 via-fuchsia-500/10 to-cyan-500/10 transition-transform duration-300 group-hover:scale-105"
+															>
+																<i-lucide
+																	[img]="icons[card.icon]"
+																	class="h-6 w-6 opacity-80"
+																></i-lucide>
+															</div>
+															<div class="min-w-0">
+																<h3
+																	class="text-base font-semibold tracking-tight text-black"
+																>
+																	{{ card.title }}
+																</h3>
+																<p
+																	class="mt-1.5 text-sm text-black/60 leading-relaxed"
+																>
+																	{{ card.desc }}
+																</p>
+															</div>
+														</div>
+													</button>
+												</div>
+											</div>
+
+											<!-- Right: detail panel -->
+											<div class="col-span-12 lg:col-span-4">
+												<ng-container
+													*ngIf="selectedCard as s; else placeholderList"
+												>
+													<div
+														class="lg:sticky lg:top-0 rounded-2xl border border-black/10 bg-white/75 backdrop-blur-xl p-6 shadow-sm"
+														style="max-height: calc(100vh - 6rem)"
+													>
+														<div class="flex items-start gap-3">
+															<div>
+																<h3
+																	class="text-base font-semibold text-black tracking-tight"
+																>
+																	{{ s.title }}
+																</h3>
+																<p class="mt-1 text-sm text-black/60">
+																	{{ s.desc }}
+																</p>
+															</div>
+														</div>
+
+														<div
+															class="mt-6 border-t border-black/10 pt-6 grid grid-cols-1 gap-2 overflow-y-auto pr-2"
+															style="max-height: calc(100% - 4.5rem)"
+														>
+															<span
+																*ngFor="let line of s.details"
+																class="inline-flex items-center gap-2 w-fit rounded-full border border-black/10 bg-white/80 backdrop-blur px-3 py-1.5 text-xs font-medium text-black/70 shadow-sm"
+															>
+																<i-lucide
+																	[img]="check"
+																	class="h-3.5 w-3.5"
+																></i-lucide>
+																{{ line }}
+															</span>
+														</div>
+													</div>
+												</ng-container>
+
+												<!-- Initial placeholder -->
+												<ng-template #placeholderList>
+													<div
+														class="h-full min-h-64 rounded-2xl border border-black/10 bg-white/70 backdrop-blur-xl p-6 shadow-sm flex flex-col justify-center space-y-3"
+													>
+														<div
+															*ngFor="let i of [1, 2, 3, 4, 5]"
+															class="h-10 rounded-xl bg-gradient-to-r from-black/[0.04] via-black/[0.06] to-black/[0.04] animate-pulse"
+														></div>
+													</div>
+												</ng-template>
+											</div>
+										</div>
+
+										<!-- Floating AI tag -->
+										<div class="absolute right-6 bottom-6">
+											<div
+												class="flex items-center gap-2 rounded-full border border-white/30 bg-white/70 backdrop-blur-xl px-3.5 py-1.5 text-xs text-black shadow-sm ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-lg hover:shadow-indigo-500/20"
+											>
+												<i-lucide
+													[img]="Sparkles"
+													class="h-3.5 w-3.5"
+												></i-lucide>
+												<span class="font-medium">AI redact</span>
+												<span
+													class="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-500 shadow-[0_0_12px] shadow-indigo-500/50"
+												></span>
+											</div>
+										</div>
+									</div>
+
+									<!-- Panel: Annotate -->
+									<div
+										role="tabpanel"
+										[id]="'panel-' + tabs[1].id"
+										[attr.aria-labelledby]="'tab-' + tabs[1].id"
+										[hidden]="active !== 1"
+										class="h-full"
+									>
+										<div class="grid h-full grid-cols-12 gap-6">
+											<div class="col-span-9 rounded-2xl bg-black/[0.04]"></div>
+											<div class="col-span-3 space-y-3">
+												<div class="h-10 rounded-xl bg-black/[0.06]"></div>
+												<div class="h-10 rounded-xl bg-black/[0.06]"></div>
+												<div class="h-10 rounded-xl bg-black/[0.06]"></div>
+											</div>
+										</div>
+
+										<div
+											class="absolute left-10 top-10"
+											appInView
+											[appInViewDelay]="300"
+										>
+											<div
+												class="flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs text-black shadow-sm"
+											>
+												<i-lucide
+													[img]="Scissors"
+													class="h-3.5 w-3.5"
+												></i-lucide>
+												Trim
+											</div>
+										</div>
+									</div>
+
+									<!-- Panel: Share -->
+									<div
+										role="tabpanel"
+										[id]="'panel-' + tabs[2].id"
+										[attr.aria-labelledby]="'tab-' + tabs[2].id"
+										[hidden]="active !== 2"
+										class="relative h-full"
+									>
+										<!-- Background orbs for a subtle futuristic glow -->
+										<div
+											class="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full blur-3xl"
+										></div>
+										<div
+											class="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full blur-3xl"
+										></div>
+
+										<div class="grid h-full grid-cols-12 gap-6">
+											<!-- Left: Hero panel (visual / concept) -->
+											<div
+												class="col-span-7 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#904485] via-[#0f172a] to-[#1a3756] ring-1 ring-white/10"
+											>
+												<!-- Subtle grid pattern -->
+												<div
+													class="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px]"
+												></div>
+
+												<!-- Starfield specks -->
+												<div
+													class="absolute inset-0 opacity-50 [background-image:radial-gradient(1px_1px_at_20%_30%,rgba(255,255,255,0.4),transparent),radial-gradient(1px_1px_at_60%_70%,rgba(255,255,255,0.25),transparent),radial-gradient(1px_1px_at_80%_40%,rgba(255,255,255,0.3),transparent)]"
+												></div>
+
+												<div
+													class="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8"
+												>
+													<!-- Headline -->
+													<div class="space-y-3">
+														<div
+															class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80 backdrop-blur"
+														>
+															<i-lucide
+																[img]="Sparkles"
+																class="h-3.5 w-3.5"
+															></i-lucide>
+															Vision • Robotik / Physical AI
+														</div>
+														<h3
+															class="text-2xl font-semibold tracking-tight text-white sm:text-3xl"
+														>
+															Träna i sim. Flytta till verkligheten.
+															<span
+																class="bg-gradient-to-r from-white via-sky-200 to-emerald-200 bg-clip-text text-transparent"
+																>Orkestrera flottan.</span
+															>
+														</h3>
+														<p
+															class="max-w-xl text-sm leading-relaxed text-white/70"
+														>
+															Vi bygger en
+															<span class="text-white"
+																>Sim-to-Real-pipeline</span
+															>
+															för lager och industri: från NVIDIA Isaac Sim och
+															digitala tvillingar till säkra utrullningar i
+															produktion – med övervakning, fjärruppdateringar
+															och flotta-intelligens.
+														</p>
+													</div>
+
+													<!-- CTA buttons -->
+													<div class="mt-4 flex flex-wrap items-center gap-3">
+														<a
+															href="#kontakt"
+															class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition hover:shadow-md"
+														>
+															<i-lucide
+																[img]="Rocket"
+																class="h-4 w-4"
+															></i-lucide>
+															Boka intro
+														</a>
+														<a
+															href="#invest"
+															class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
+														>
+															<i-lucide
+																[img]="PiggyBank"
+																class="h-4 w-4"
+															></i-lucide>
+															Investera
+															<i-lucide
+																[img]="ArrowRight"
+																class="h-4 w-4"
+															></i-lucide>
+														</a>
+														<span class="text-xs text-white/50"
+															>Öppen R&D • Strategiska investerare
+															välkomna</span
+														>
+													</div>
+
+													<!-- Capability chips -->
+													<div class="mt-6 flex flex-wrap gap-2">
+														<span
+															class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-wider text-white/70"
+															>Isaac Sim</span
+														>
+														<span
+															class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-wider text-white/70"
+															>Digital Tvilling</span
+														>
+														<span
+															class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-wider text-white/70"
+															>Sim→Real</span
+														>
+														<span
+															class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-wider text-white/70"
+															>Fleet Orchestration</span
+														>
+														<span
+															class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-wider text-white/70"
+															>Observability</span
+														>
+														<span
+															class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-wider text-white/70"
+															>Safety Layer</span
+														>
+													</div>
+												</div>
+
+												<!-- Vision disclaimer -->
+												<div
+													class="pointer-events-none absolute bottom-4 right-4 text-[10px] uppercase tracking-wider text-white/50"
+												>
+													Futuristisk vision • Kommer senare
+												</div>
+											</div>
+
+											<!-- Right: Roadmap & Investor callouts -->
+											<div class="col-span-5 space-y-4">
+												<!-- Vision / Roadmap card -->
+												<div
+													class="h-44 rounded-xl border border-black/10 bg-white/60 p-4 shadow-sm backdrop-blur"
+												>
+													<div class="mb-2 flex items-center justify-between">
+														<div
+															class="flex items-center gap-2 text-xs text-black/80"
+														>
+															<i-lucide
+																[img]="Route"
+																class="h-4 w-4"
+															></i-lucide>
+															<span>Roadmap (vision)</span>
+														</div>
+														<span
+															class="rounded-full bg-black/5 px-2 py-0.5 text-[10px] text-black/60"
+															>Beta/Kommer</span
+														>
+													</div>
+													<ul
+														class="list-inside space-y-1 text-sm text-black/80"
+													>
+														<li class="flex items-start gap-2">
+															<i-lucide
+																[img]="Check"
+																class="mt-0.5 h-4 w-4 text-emerald-600"
+															></i-lucide
+															><span
+																>Digital tvillingar för lager/industri</span
+															>
+														</li>
+														<li class="flex items-start gap-2">
+															<i-lucide
+																[img]="Check"
+																class="mt-0.5 h-4 w-4 text-emerald-600"
+															></i-lucide
+															><span>Sim→Real-träning via Isaac Sim</span>
+														</li>
+														<li class="flex items-start gap-2">
+															<i-lucide
+																[img]="Check"
+																class="mt-0.5 h-4 w-4 text-emerald-600"
+															></i-lucide
+															><span
+																>Flotta: orkestrering, OTA-uppdateringar</span
+															>
+														</li>
+														<li class="flex items-start gap-2">
+															<i-lucide
+																[img]="Check"
+																class="mt-0.5 h-4 w-4 text-emerald-600"
+															></i-lucide
+															><span
+																>Observability & säkerhet (EU AI-Act-redo)</span
+															>
+														</li>
+													</ul>
+												</div>
+
+												<!-- Investor CTA card -->
+												<div
+													class="h-44 overflow-hidden rounded-xl border border-black/10 bg-gradient-to-br from-emerald-50 to-sky-50 p-4 shadow-sm"
+												>
+													<div
+														class="mb-2 flex items-center gap-2 text-xs text-black/80"
+													>
+														<i-lucide
+															[img]="Handshake"
+															class="h-4 w-4"
+														></i-lucide>
+														<span>Investera i Physical AI för industrin</span>
+													</div>
+													<p class="mb-3 text-sm text-black/70">
+														Vi söker partners som vill accelerera robotik i
+														Norden: lager, 3PL, tillverkning. Strategiska
+														biljetter & smart kapital.
+													</p>
+													<div class="flex flex-wrap items-center gap-3">
+														<a
+															href="#deck"
+															class="inline-flex items-center gap-2 rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white shadow-sm transition hover:shadow-md"
+														>
+															<i-lucide
+																[img]="FileText"
+																class="h-3.5 w-3.5"
+															></i-lucide>
+															Investor Deck
+														</a>
+														<a
+															href="#call"
+															class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-medium text-black shadow-sm transition hover:bg-black/5"
+														>
+															<i-lucide
+																[img]="Calendar"
+																class="h-3.5 w-3.5"
+															></i-lucide>
+															Boka samtal
+														</a>
+														<span class="text-[10px] text-black/50"
+															>Seed/Pre-seed • Kontakt:
+															founders&#64;exempel.io</span
+														>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Panels -->
+							</div>
+							<!-- /Inner card -->
+						</div>
+						<!-- /Content area -->
+					</div>
+				</div>
+			</div>
+
+			<!-- Logo Cloud -->
+			<div
+				class="mt-14 grid grid-cols-2 gap-6 md:grid-cols-6 items-center text-black/40"
+			>
+				<div
+					*ngFor="let name of logos"
+					class="flex items-center justify-center rounded-2xl border border-black/10 bg-white py-4 px-3 text-sm font-semibold tracking-wide shadow-sm"
+				>
+					{{ name }}
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Features -->
+	<section id="features" class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-7xl px-4 py-16 md:px-6">
+			<div class="mx-auto max-w-3xl text-center">
+				<span
+					class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70 mb-3"
+				>
+					<i-lucide [img]="Sparkles" class="h-3.5 w-3.5"></i-lucide>
+					<span class="tracking-wide">Packed with thoughtful details</span>
+				</span>
+				<h2
+					class="text-3xl md:text-5xl font-semibold tracking-tight text-black"
+				>
+					Everything you need to move fast
+				</h2>
+				<p class="mt-4 text-black/60 text-lg leading-relaxed">
+					Trim, annotate, redact, and share without juggling apps. Catso focuses
+					on speed and clarity, so you can keep shipping.
+				</p>
+			</div>
+
+			<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+				<!-- Feature cards -->
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-6 shadow-sm h-full"
+				>
+					<div class="flex items-start gap-4">
+						<div class="rounded-2xl bg-black/[0.03] p-3">
+							<i-lucide [img]="Monitor" class="h-6 w-6"></i-lucide>
+						</div>
+						<div>
+							<h3 class="text-lg font-semibold text-black">
+								Pixel-perfect capture
+							</h3>
+							<p class="mt-2 text-sm text-black/60 leading-relaxed">
+								Flexible area, window, and fullscreen capture with precise
+								snapping and magnifier.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-6 shadow-sm h-full"
+				>
+					<div class="flex items-start gap-4">
+						<div class="rounded-2xl bg-black/[0.03] p-3">
+							<i-lucide [img]="Layers" class="h-6 w-6"></i-lucide>
+						</div>
+						<div>
+							<h3 class="text-lg font-semibold text-black">Smart annotate</h3>
+							<p class="mt-2 text-sm text-black/60 leading-relaxed">
+								Arrows, boxes, blur, numbers, and callouts that auto-align and
+								look great by default.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-6 shadow-sm h-full"
+				>
+					<div class="flex items-start gap-4">
+						<div class="rounded-2xl bg-black/[0.03] p-3">
+							<i-lucide [img]="Wand2" class="h-6 w-6"></i-lucide>
+						</div>
+						<div>
+							<h3 class="text-lg font-semibold text-black">AI assist</h3>
+							<p class="mt-2 text-sm text-black/60 leading-relaxed">
+								Auto-redact sensitive data and generate captions with a single
+								click.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-6 shadow-sm h-full"
+				>
+					<div class="flex items-start gap-4">
+						<div class="rounded-2xl bg-black/[0.03] p-3">
+							<i-lucide [img]="Scissors" class="h-6 w-6"></i-lucide>
+						</div>
+						<div>
+							<h3 class="text-lg font-semibold text-black">
+								Trim &amp; stitch
+							</h3>
+							<p class="mt-2 text-sm text-black/60 leading-relaxed">
+								Trim recordings, stitch screenshots, and export crisp GIFs or
+								MP4s.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-6 shadow-sm h-full"
+				>
+					<div class="flex items-start gap-4">
+						<div class="rounded-2xl bg-black/[0.03] p-3">
+							<i-lucide [img]="Cloud" class="h-6 w-6"></i-lucide>
+						</div>
+						<div>
+							<h3 class="text-lg font-semibold text-black">Instant share</h3>
+							<p class="mt-2 text-sm text-black/60 leading-relaxed">
+								Copy a link the moment you finish. Set expiration and password
+								in one place.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-6 shadow-sm h-full"
+				>
+					<div class="flex items-start gap-4">
+						<div class="rounded-2xl bg-black/[0.03] p-3">
+							<i-lucide [img]="Shield" class="h-6 w-6"></i-lucide>
+						</div>
+						<div>
+							<h3 class="text-lg font-semibold text-black">
+								Private by design
+							</h3>
+							<p class="mt-2 text-sm text-black/60 leading-relaxed">
+								Local processing with granular controls for uploads and
+								metadata.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Showcase -->
+	<section id="showcase" class="border-t border-black/10 bg-white">
+		<div
+			class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-6"
+		>
+			<div>
+				<div class="mx-auto max-w-3xl text-left">
+					<span
+						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70 mb-3"
+					>
+						<i-lucide [img]="Sparkles" class="h-3.5 w-3.5"></i-lucide>
+						<span class="tracking-wide">Designed for makers</span>
+					</span>
+					<h2
+						class="text-3xl md:text-5xl font-semibold tracking-tight text-black"
+					>
+						From idea to share in seconds
+					</h2>
+					<p class="mt-4 text-black/60 text-lg leading-relaxed">
+						Open with a hotkey, capture the moment, add context, and share a
+						link—without breaking your flow.
+					</p>
+				</div>
+				<div class="mt-8 flex flex-wrap gap-3">
+					<span
+						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70"
+					>
+						<i-lucide [img]="Zap" class="h-3.5 w-3.5"></i-lucide> Global
+						shortcuts
+					</span>
+					<span
+						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70"
+					>
+						<i-lucide [img]="Share2" class="h-3.5 w-3.5"></i-lucide> One-click
+						links
+					</span>
+					<span
+						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70"
+					>
+						<i-lucide [img]="Sparkles" class="h-3.5 w-3.5"></i-lucide> Crisp
+						exports
+					</span>
+				</div>
+				<div class="mt-8">
+					<button
+						class="gap-2 inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none shadow-sm bg-transparent text-black hover:bg-black/5 focus:ring-black ring-offset-white h-11 px-5 text-base"
+					>
+						Explore all features
+					</button>
+				</div>
+			</div>
+			<div>
+				<!-- MacWindow again -->
+				<div class="relative" appInView>
+					<div class="rounded-3xl border border-black/10 bg-white shadow-xl">
+						<div
+							class="flex items-center gap-2 border-b border-black/10 px-4 py-3"
+						>
+							<div class="flex gap-1.5">
+								<span class="h-3 w-3 rounded-full bg-[#FF5F57]"></span>
+								<span class="h-3 w-3 rounded-full bg-[#FEBB2E]"></span>
+								<span class="h-3 w-3 rounded-full bg-[#28C840]"></span>
+							</div>
+							<div class="mx-auto text-sm font-medium text-black/60">
+								capture-demo.png
+							</div>
+						</div>
+						<div
+							class="relative aspect-[16/9] overflow-hidden rounded-b-3xl bg-gradient-to-br from-white to-black/[0.02]"
+						>
+							<svg
+								class="absolute inset-0 h-full w-full opacity-[0.35]"
+								aria-hidden
+							>
+								<defs>
+									<pattern
+										id="grid2"
+										width="32"
+										height="32"
+										patternUnits="userSpaceOnUse"
+									>
+										<path
+											d="M 32 0 L 0 0 0 32"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="0.5"
+										></path>
+									</pattern>
+								</defs>
+								<rect width="100%" height="100%" fill="url(#grid2)"></rect>
+							</svg>
+
+							<div
+								class="absolute inset-6 rounded-2xl border border-black/10 bg-white/80 backdrop-blur-sm shadow-lg"
+								appInView
+							>
+								<div
+									class="flex items-center justify-between border-b border-black/10 px-4 py-2"
+								>
+									<div class="flex items-center gap-2 text-sm text-black/60">
+										<i-lucide [img]="Camera" class="h-4 w-4"></i-lucide>
+										Screenshot 2025-08-11 at 09.41
+									</div>
+									<div class="flex items-center gap-2 text-black/50">
+										<span
+											class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70"
+										>
+											<i-lucide [img]="Wand2" class="h-3.5 w-3.5"></i-lucide>
+											Auto-enhance
+										</span>
+										<span
+											class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70"
+										>
+											<i-lucide [img]="Scissors" class="h-3.5 w-3.5"></i-lucide>
+											Trim
+										</span>
+										<span
+											class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70"
+										>
+											<i-lucide [img]="Share2" class="h-3.5 w-3.5"></i-lucide>
+											Quick Share
+										</span>
+									</div>
+								</div>
+								<div class="relative h-full w-full p-8">
+									<div class="grid h-full grid-cols-12 gap-6">
+										<div class="col-span-8 rounded-2xl bg-black/[0.04]"></div>
+										<div class="col-span-4 space-y-4">
+											<div
+												*ngFor="let i of [1, 2, 3, 4, 5]"
+												class="h-10 rounded-xl bg-black/[0.04]"
+											></div>
+										</div>
+									</div>
+
+									<div
+										class="absolute left-10 top-10"
+										appInView
+										[appInViewDelay]="400"
+									>
+										<div
+											class="rounded-xl border border-black/10 bg-white px-3 py-2 text-xs text-black shadow-sm"
+										>
+											Drag to capture area
+										</div>
+									</div>
+									<div
+										class="absolute right-12 bottom-12"
+										appInView
+										[appInViewDelay]="650"
+									>
+										<div
+											class="flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs text-black shadow-sm"
+										>
+											<i-lucide [img]="Sparkles" class="h-3.5 w-3.5"></i-lucide>
+											AI redact
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing -->
+	<section id="pricing" class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-7xl px-4 py-16 md:px-6">
+			<div class="mx-auto max-w-3xl text-center">
+				<span
+					class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70 mb-3"
+				>
+					<i-lucide [img]="Sparkles" class="h-3.5 w-3.5"></i-lucide>
+					<span class="tracking-wide">Simple pricing</span>
+				</span>
+				<h2
+					class="text-3xl md:text-5xl font-semibold tracking-tight text-black"
+				>
+					Start free, upgrade anytime
+				</h2>
+				<p class="mt-4 text-black/60 text-lg leading-relaxed">
+					No credit card required. Save 20% with yearly billing.
+				</p>
+			</div>
+
+			<div class="mt-8 flex items-center justify-center gap-3">
+				<span class="text-sm" [ngClass]="{ 'text-black/50': !yearly }"
+					>Monthly</span
+				>
+				<button
+					(click)="yearly = !yearly"
+					class="relative h-6 w-11 rounded-full border border-black/10 bg-black/10 transition"
+					aria-label="Toggle yearly pricing"
+				>
+					<span
+						class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition"
+						[ngStyle]="{ left: yearly ? '22px' : '2px' }"
+					>
+					</span>
+				</button>
+				<span
+					class="text-sm"
+					[ngClass]="{ 'text-black/80 font-medium': yearly }"
+					>Yearly (save 20%)</span
+				>
+			</div>
+
+			<div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+				<!-- Free -->
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-8 shadow-sm h-full"
+				>
+					<h3 class="text-xl font-semibold text-black">Free</h3>
+					<div class="mt-4 flex items-end gap-1">
+						<div class="text-4xl font-semibold tracking-tight">
+							${{ price.free }}
+						</div>
+						<div class="pb-1 text-black/50">/forever</div>
+					</div>
+					<ul class="mt-6 space-y-3">
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide
+								[img]="check"
+								class="mt-0.5 h-5 w-5 shrink-0"
+							></i-lucide>
+							<span>Area, window, fullscreen</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide
+								[img]="check"
+								class="mt-0.5 h-5 w-5 shrink-0"
+							></i-lucide>
+							<span>Basic annotations</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide
+								[img]="check"
+								class="mt-0.5 h-5 w-5 shrink-0"
+							></i-lucide>
+							<span>Local saves</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide
+								[img]="check"
+								class="mt-0.5 h-5 w-5 shrink-0"
+							></i-lucide>
+							<span>Watermark on GIFs</span>
+						</li>
+					</ul>
+					<button
+						class="mt-8 w-full inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm bg-black text-white hover:bg-black/90 focus:ring-black ring-offset-white h-11 px-5 text-base"
+					>
+						Choose Free
+					</button>
+				</div>
+
+				<!-- Pro (highlight) -->
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-8 shadow-sm h-full ring-2 ring-black"
+				>
+					<div
+						class="mb-4 inline-flex items-center gap-2 rounded-full bg-black text-white px-3 py-1 text-xs"
+					>
+						<i-lucide [img]="Star" class="h-3.5 w-3.5"></i-lucide> Popular
+					</div>
+					<h3 class="text-xl font-semibold text-black">Pro</h3>
+					<div class="mt-4 flex items-end gap-1">
+						<div class="text-4xl font-semibold tracking-tight">
+							{{ price.pro }}
+						</div>
+						<div class="pb-1 text-black/50">/month</div>
+					</div>
+					<ul class="mt-6 space-y-3">
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>All capture modes</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>Advanced annotate tools</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>AI redact & caption</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>Instant share links</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>Custom branding</span>
+						</li>
+					</ul>
+					<button
+						class="mt-8 w-full inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm bg-black text-white hover:bg-black/90 focus:ring-black ring-offset-white h-11 px-5 text-base"
+					>
+						Choose Pro
+					</button>
+				</div>
+
+				<!-- Teams -->
+				<div
+					class="rounded-3xl border border-black/10 bg-white p-8 shadow-sm h-full"
+				>
+					<h3 class="text-xl font-semibold text-black">Teams</h3>
+					<div class="mt-4 flex items-end gap-1">
+						<div class="text-4xl font-semibold tracking-tight">
+							{{ price.teams }}
+						</div>
+						<div class="pb-1 text-black/50">/user/mo</div>
+					</div>
+					<ul class="mt-6 space-y-3">
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>Everything in Pro</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>Team workspaces</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>SSO & roles</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>Usage analytics</span>
+						</li>
+						<li class="flex items-start gap-3 text-sm text-black/80">
+							<i-lucide [img]="check" class="mt-0.5 h-5 w-5 shrink-0"></i-lucide
+							><span>Priority support</span>
+						</li>
+					</ul>
+					<button
+						class="mt-8 w-full inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm bg-black text-white hover:bg-black/90 focus:ring-black ring-offset-white h-11 px-5 text-base"
+					>
+						Choose Teams
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonial -->
+	<section class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-5xl px-4 py-16 md:px-6">
+			<div
+				class="p-8 md:p-10 rounded-3xl border border-black/10 bg-white shadow-sm"
+			>
+				<div
+					class="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left"
+				>
+					<div
+						class="flex h-16 w-16 items-center justify-center rounded-full bg-black/5 text-lg font-semibold"
+					>
+						AK
+					</div>
+					<div class="flex-1">
+						<div
+							class="flex items-center justify-center gap-1 md:justify-start"
+						>
+							<ng-container *ngFor="let _ of [1, 2, 3, 4, 5]">
+								<i-lucide
+									[img]="Star"
+									class="h-4 w-4 fill-black text-black"
+								></i-lucide>
+							</ng-container>
+						</div>
+						<p class="mt-3 text-lg leading-relaxed text-black/80">
+							“Catso shaved minutes off every bug report and release note. The
+							polish is incredible, and sharing links is instant.”
+						</p>
+						<p class="mt-2 text-sm text-black/60">
+							Alex Kim, Product Designer at Nova
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-6xl px-4 py-16 md:px-6">
+			<div
+				class="relative overflow-hidden rounded-3xl border border-black/10 bg-gradient-to-br from-white to-black/[0.03] p-10 shadow-sm"
+			>
+				<div
+					class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-[radial-gradient(closest-side,rgba(0,0,0,0.08),transparent_60%)]"
+				></div>
+				<div
+					class="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-[radial-gradient(closest-side,rgba(0,0,0,0.08),transparent_60%)]"
+				></div>
+				<div
+					class="relative flex flex-col items-center justify-between gap-6 md:flex-row"
+				>
+					<div>
+						<h3
+							class="text-2xl font-semibold tracking-tight text-black md:text-3xl"
+						>
+							Ready to get started?
+						</h3>
+						<p class="mt-2 text-black/60">
+							Download Catso and ship clearer communication today.
+						</p>
+					</div>
+					<div class="flex gap-3">
+						<button
+							class="inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm bg-black text-white hover:bg-black/90 focus:ring-black ring-offset-white h-12 px-6 text-base"
+						>
+							Download
+						</button>
+						<button
+							class="inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm bg-white text-black border border-black/10 hover:bg-black/5 focus:ring-black ring-offset-white h-12 px-6 text-base"
+						>
+							Compare plans
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-7xl px-4 py-10 md:px-6">
+			<div class="grid grid-cols-1 gap-10 md:grid-cols-4">
+				<div class="md:col-span-2">
+					<div class="flex items-center gap-3">
+						<div
+							class="flex h-9 w-9 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm"
+						>
+							<i-lucide [img]="Camera" class="h-5 w-5"></i-lucide>
+						</div>
+						<span class="text-lg font-semibold tracking-tight">Catso</span>
+					</div>
+					<p class="mt-4 max-w-md text-sm text-black/60">
+						A fast, friendly toolkit for screenshots and screen recordings on
+						macOS.
+					</p>
+				</div>
+				<div>
+					<h4 class="text-sm font-semibold text-black">Product</h4>
+					<ul class="mt-3 space-y-2 text-sm text-black/60">
+						<li><a href="#features" class="hover:text-black">Features</a></li>
+						<li><a href="#pricing" class="hover:text-black">Pricing</a></li>
+						<li><a href="#faq" class="hover:text-black">FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-sm font-semibold text-black">Company</h4>
+					<ul class="mt-3 space-y-2 text-sm text-black/60">
+						<li><a href="#" class="hover:text-black">Blog</a></li>
+						<li><a href="#" class="hover:text-black">Careers</a></li>
+						<li><a href="#" class="hover:text-black">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+			<div
+				class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-black/10 pt-6 text-sm text-black/60 md:flex-row"
+			>
+				<p>© {{ currentYear }} Catso, Inc.</p>
+				<div class="flex items-center gap-4">
+					<a href="#" class="hover:text-black">Terms</a>
+					<a href="#" class="hover:text-black">Privacy</a>
+					<a href="#" class="hover:text-black">Status</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>

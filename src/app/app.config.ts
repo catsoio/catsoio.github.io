@@ -37,7 +37,7 @@ export const appConfig: ApplicationConfig = {
 				siteName: 'Catso',
 				origin: 'https://catso.io',
 				defaultDescription:
-					'Developer‑first PaaS to build, extend, and ship apps faster.',
+					'Developer-first PaaS to build, extend, and ship apps faster.',
 				defaultImage: '/assets/og/catso-og.png',
 				locale: 'en_US', // or 'sv_SE' if your primary audience is Swedish
 			} as DefaultSeo,
