@@ -1,0 +1,174 @@
+<header
+	class="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-black/55 bg-black/40"
+	role="navigation"
+>
+	<div class="mx-auto max-w-7xl px-6">
+		<div class="flex items-center justify-between py-4">
+			<!-- Logo + text -->
+			<a
+				href="#home"
+				class="flex items-center gap-3"
+				aria-label="VERA-01 home"
+				(click)="scrollTo('home', $event)"
+			>
+				<img
+					src="assets/imgs/vera01logo.png"
+					alt=""
+					aria-hidden="true"
+					class="h-10 w-10"
+				/>
+				<span class="flex flex-col leading-tight">
+					<span
+						class="text-xl font-semibold tracking-wider2 bg-gradient-to-r from-veraGold to-veraBronze text-transparent bg-clip-text"
+					>
+						VERA-01
+					</span>
+					<span
+						class="text-[10px] sm:text-xs uppercase text-white/60 tracking-widest"
+					>
+						catso agent
+					</span>
+				</span>
+			</a>
+
+			<!-- Desktop nav -->
+			<nav class="hidden md:flex items-center gap-8 text-sm">
+				<a
+					href="#home"
+					(click)="scrollTo('home', $event)"
+					[ngClass]="linkClasses('home')"
+					>Hem</a
+				>
+				<a
+					href="#security"
+					(click)="scrollTo('security', $event)"
+					[ngClass]="linkClasses('security')"
+					>Säkerhet</a
+				>
+				<a
+					href="#how"
+					(click)="scrollTo('how', $event)"
+					[ngClass]="linkClasses('how')"
+					>Så tänker VERA-01</a
+				>
+
+				<a
+					href="#expertis"
+					(click)="scrollTo('expertis', $event)"
+					[ngClass]="linkClasses('expertis')"
+					>Expertområden</a
+				>
+				<a
+					href="#faq"
+					(click)="scrollTo('faq', $event)"
+					[ngClass]="linkClasses('faq')"
+					>FAQ</a
+				>
+				<a
+					href="#contact"
+					(click)="scrollTo('contact', $event)"
+					[ngClass]="linkClasses('contact')"
+					>Kontakt</a
+				>
+			</nav>
+
+			<div class="flex items-center gap-3">
+				<a
+					href="#contact"
+					(click)="scrollTo('contact', $event)"
+					class="sm:inline px-4 py-2 text-sm font-medium bg-gradient-to-r from-veraGold to-veraBronze text-black rounded-full transition-transform duration-200 hover:translate-y-0.5 hover:opacity-95"
+					>Begär demo</a
+				>
+
+				<!-- Mobil: hamburger -->
+				<button
+					type="button"
+					class="md:hidden inline-flex items-center justify-center rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-veraGold/60"
+					(click)="toggleMenu()"
+					aria-controls="mobile-menu"
+					[attr.aria-expanded]="menuOpen"
+				>
+					<span class="sr-only">Öppna huvudmeny</span>
+					<!-- Ikon: tre streck -->
+					<svg
+						*ngIf="!menuOpen"
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-6 w-6"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="1.5"
+							d="M4 6h16M4 12h16M4 18h16"
+						/>
+					</svg>
+					<!-- Ikon: kryss -->
+					<svg
+						*ngIf="menuOpen"
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-6 w-6"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="1.5"
+							d="M6 18L18 6M6 6l12 12"
+						/>
+					</svg>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Mobilmeny -->
+	<div id="mobile-menu" class="md:hidden" [class.hidden]="!menuOpen">
+		<div class="mx-auto max-w-7xl px-6 pb-4">
+			<div
+				class="flex flex-col gap-2 rounded-2xl bg-black/70 p-4 ring-1 ring-white/10"
+			>
+				<a
+					href="#home"
+					(click)="scrollTo('home', $event)"
+					[ngClass]="mobileLinkClasses('home')"
+					>Hem</a
+				>
+				<a
+					href="#how"
+					(click)="scrollTo('how', $event)"
+					[ngClass]="mobileLinkClasses('how')"
+					>Så tänker VERA-01</a
+				>
+				<a
+					href="#security"
+					(click)="scrollTo('security', $event)"
+					[ngClass]="mobileLinkClasses('security')"
+					>Säkerhet</a
+				>
+				<a
+					href="#expertis"
+					(click)="scrollTo('expertis', $event)"
+					[ngClass]="mobileLinkClasses('expertis')"
+					>Expertområden</a
+				>
+				<a
+					href="#faq"
+					(click)="scrollTo('faq', $event)"
+					[ngClass]="mobileLinkClasses('faq')"
+					>FAQ</a
+				>
+				<a
+					href="#contact"
+					(click)="scrollTo('contact', $event)"
+					[ngClass]="mobileLinkClasses('contact')"
+					>Kontakt</a
+				>
+			</div>
+		</div>
+	</div>
+</header>

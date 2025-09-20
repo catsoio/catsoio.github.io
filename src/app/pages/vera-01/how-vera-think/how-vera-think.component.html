@@ -1,0 +1,296 @@
+<!--
+  VERA-01 – Kedja av resonemang (landing section)
+  - Ren HTML + Tailwind-klasser
+  - Anpassad för catso.io färger (veraGold, veraBronze, coal, ink)
+  - Sticky svarskort till vänster, skrollande resonemangs-tidslinje till höger
+  - Minimal JS för highlight av aktivt steg och "kopiera svar"-knapp
+-->
+<section id="how" class="relative bg-grey text-white py-24">
+	<div class="absolute inset-0 pointer-events-none">
+		<!-- diskret textur / vignette för djup -->
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50"
+		></div>
+		<div
+			class="absolute -top-24 -left-24 size-96 rounded-full bg-veraGold/10 blur-3xl"
+		></div>
+	</div>
+
+	<div class="relative max-w-7xl mx-auto px-6">
+		<!-- Header -->
+		<header class="mb-12">
+			<h2 class="mt-3 text-3xl md:text-5xl font-semibold leading-tight mb-20">
+				Så tänker
+				<span
+					class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-veraGold to-veraBronze"
+					>VERA-01.</span
+				>
+			</h2>
+		</header>
+
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+			<!-- Vänster: Sticky svar -->
+
+			<!-- Höger: Tidslinje för resonemang -->
+			<div class="lg:col-span-7 relative">
+				<div class="mb-2 flex items-center justify-start">
+					<div class="text-xs uppercase tracking-wider text-white/50 pr-10">
+						Resonemang
+					</div>
+				</div>
+
+				<div
+					class="pointer-events-none absolute right-3 top-0 bottom-0 hidden w-px bg-gradient-to-b from-veraGold/70 via-veraBronze/50 to-transparent sm:block"
+				></div>
+
+				<ol class="space-y-6">
+					<li class="relative pr-10 cot-step" data-step="1">
+						<span
+							class="absolute right-0 mt-1.5 inline-flex size-6 items-center justify-center rounded-full bg-black/40 ring-1 ring-white/20"
+						>
+							<span class="size-2 rounded-full bg-veraGold/80"></span>
+						</span>
+						<div
+							class="rounded-xl border border-white/10 bg-black/20 p-5 transition-all duration-300"
+						>
+							<h4 class="font-semibold">1) Fastställ tillämpliga regler</h4>
+							<div data-collapsible class="mt-2">
+								<div
+									class="collapsible-body relative max-h-20 overflow-hidden transition-[max-height] duration-300 text-white/80"
+								>
+									<div
+										class="collapsible-fade pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/40 via-black/10 to-transparent"
+									></div>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<li class="relative pr-10 cot-step" data-step="2">
+						<span
+							class="absolute right-0 mt-1.5 inline-flex size-6 items-center justify-center rounded-full bg-black/40 ring-1 ring-white/20"
+						>
+							<span class="size-2 rounded-full bg-veraGold/80"></span>
+						</span>
+						<div
+							class="rounded-xl border border-white/10 bg-black/20 p-5 transition-all duration-300"
+						>
+							<h4 class="font-semibold">2) Sätt upp tidslinje</h4>
+						</div>
+					</li>
+
+					<li class="relative pr-10 cot-step" data-step="3">
+						<span
+							class="absolute right-0 mt-1.5 inline-flex size-6 items-center justify-center rounded-full bg-black/40 ring-1 ring-white/20"
+						>
+							<span class="size-2 rounded-full bg-veraGold/80"></span>
+						</span>
+						<div
+							class="rounded-xl border border-white/10 bg-black/20 p-5 transition-all duration-300"
+						>
+							<h4 class="font-semibold">3) Pröva om rättelse skett i tid</h4>
+						</div>
+					</li>
+
+					<li class="relative pr-10 cot-step" data-step="4">
+						<span
+							class="absolute right-0 mt-1.5 inline-flex size-6 items-center justify-center rounded-full bg-black/40 ring-1 ring-white/20"
+						>
+							<span class="size-2 rounded-full bg-veraGold/80"></span>
+						</span>
+						<div
+							class="rounded-xl border border-white/10 bg-black/20 p-5 transition-all duration-300"
+						>
+							<h4 class="font-semibold">4) Kontrollera formkrav</h4>
+						</div>
+					</li>
+
+					<li class="relative pr-10 cot-step" data-step="5">
+						<span
+							class="absolute right-0 mt-1.5 inline-flex size-6 items-center justify-center rounded-full bg-black/40 ring-1 ring-white/20"
+						>
+							<span class="size-2 rounded-full bg-veraGold/80"></span>
+						</span>
+						<div
+							class="rounded-xl border border-white/10 bg-black/20 p-5 transition-all duration-300"
+						>
+							<h4 class="font-semibold">5) Slutsats & konsekvens</h4>
+						</div>
+					</li>
+				</ol>
+			</div>
+			<aside class="lg:col-span-5">
+				<div class="lg:sticky top-8">
+					<div
+						class="rounded-2xl border border-veraBronze/40 bg-coal/60 shadow-2xl overflow-hidden"
+					>
+						<div
+							class="border-b border-white/10 px-6 py-4 flex items-center justify-between"
+						>
+							<div class="inline-flex items-center gap-2">
+								<span
+									class="inline-flex size-7 items-center justify-center rounded-full bg-veraGold/15 ring-1 ring-veraGold/30"
+								>
+									<!-- check icon -->
+									<svg
+										viewBox="0 0 24 24"
+										class="size-4 text-veraGold"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path d="M20 6L9 17l-5-5" />
+									</svg>
+								</span>
+								<span class="text-sm uppercase tracking-wide text-white/70"
+									>VERA-01 — Svar</span
+								>
+							</div>
+						</div>
+
+						<div class="px-6 py-6 space-y-6">
+							<div class="space-y-2">
+								<p class="text-xs uppercase tracking-wider text-white/20">
+									Slutsats
+								</p>
+								<h3
+									class="text-2xl md:text-3xl font-semibold leading-snug text-white/80"
+								>
+									Uppsägningen kan
+									<span class="text-veraGold">inte</span> fullföljas.
+								</h3>
+							</div>
+
+							<!-- Snabbscannat: 3 bullets -->
+							<ul class="grid grid-cols-1 gap-2 text-white/85">
+								<li class="flex items-start gap-3">
+									<span class="mt-1 size-1.5 rounded-full bg-veraGold"></span
+									><span
+										>Betalning 22/4 skedde <em>inom</em> 3‑veckorsfristen
+										(t.o.m. 24/4).</span
+									>
+								</li>
+								<li class="flex items-start gap-3">
+									<span class="mt-1 size-1.5 rounded-full bg-veraGold"></span
+									><span
+										>Formkrav uppfyllda: delgiven underrättelse 3/4 och
+										socialnämnden underrättad.</span
+									>
+								</li>
+								<li class="flex items-start gap-3">
+									<span class="mt-1 size-1.5 rounded-full bg-veraGold"></span
+									><span>Förverkandegrunden faller → hyresrätten består.</span>
+								</li>
+							</ul>
+
+							<!-- Fällbar motivering med fade -->
+							<div data-collapsible class="relative">
+								<p class="text-xs uppercase tracking-wider text-white/50 mb-2">
+									Motivering (detalj)
+								</p>
+								<div
+									class="collapsible-body relative max-h-28 overflow-hidden transition-[max-height] duration-300"
+								>
+									<div class="space-y-3 text-white/90">
+										<p>
+											<span class="font-medium">Skäl:</span> Hyresgästen
+											betalade den 22 april. Den särskilda underrättelsen
+											delgavs 3 april, vilket ger en rättelsefrist på tre veckor
+											— t.o.m. 24 april. Betalning skedde <em>inom</em> fristen,
+											varför hyresrätten återvinns och förverkandet inte kan
+											läggas till grund för avflyttning.
+										</p>
+										<ul class="list-disc list-inside text-white/80">
+											<li>
+												Förverkande vid &gt; 1 veckas dröjsmål efter förfallodag
+												(<span class="font-medium">12:42 1 p. JB</span>).
+											</li>
+											<li>
+												Återvinning om betalning sker inom 3 veckor från
+												delgivning och socialnämnden underrättats (<span
+													class="font-medium"
+													>12:44 JB</span
+												>).
+											</li>
+										</ul>
+										<p class="text-white/60 text-sm">
+											Nyckeldatum: Förfallodag 1/4 · Underrättelse delgiven 3/4
+											· Rättelsefrist t.o.m. 24/4 · Betalning 22/4.
+										</p>
+									</div>
+									<div
+										class="collapsible-fade pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-coal/80 via-coal/40 to-transparent"
+									></div>
+								</div>
+								<button
+									type="button"
+									class="collapsible-toggle mt-3 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/30 px-3 py-1.5 text-sm text-white/80 hover:bg-black/40"
+								>
+									Visa mer
+								</button>
+							</div>
+
+							<div class="flex flex-wrap items-center gap-3 pt-1">
+								<button
+									id="copy-answer"
+									class="inline-flex items-center gap-2 rounded-xl bg-veraGold px-4 py-2 font-medium text-ink hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-veraGold/60"
+								>
+									<svg
+										viewBox="0 0 24 24"
+										class="size-4"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<rect
+											x="9"
+											y="9"
+											width="13"
+											height="13"
+											rx="2"
+											ry="2"
+										></rect>
+										<path
+											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+										/>
+									</svg>
+									Kopiera svar
+								</button>
+								<span id="copy-feedback" class="text-sm text-white/60 hidden"
+									>Kopierat ✔</span
+								>
+							</div>
+
+							<div class="border-t border-white/10 pt-4">
+								<h4 class="text-sm font-semibold tracking-wide text-white/80">
+									Paragrafreferenser
+								</h4>
+								<div class="mt-2 flex flex-wrap gap-2">
+									<span
+										class="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-sm"
+										>12 kap. 42 § 1 p. JB</span
+									>
+									<span
+										class="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-sm"
+										>12 kap. 44 § JB</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<p class="mt-4 text-xs text-white/50">
+						Exemplet visar VERA-01:s metodik.
+					</p>
+				</div>
+			</aside>
+		</div>
+	</div>
+
+	<!-- Seed-klasser för Tailwind (för purge-säkerhet vid dynamiska states) -->
+	<div class="hidden ring-2 ring-veraGold opacity-100 translate-y-0"></div>
+</section>

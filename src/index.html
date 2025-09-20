@@ -19,6 +19,13 @@
 		<meta http-equiv="Content-Language" content="sv-SE" />
 		<meta name="referrer" content="strict-origin-when-cross-origin" />
 
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+			rel="stylesheet"
+		/>
+
 		<!-- Icons & PWA basics -->
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -162,4 +169,124 @@
 
 		<app-root></app-root>
 	</body>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			// Konstanter för element och text
+			const fileContentEl = document.getElementById('file-content');
+			const veraAnswerEl = document.getElementById('vera-answer-text');
+			const originalFileHTML = fileContentEl.innerHTML;
+
+			// Definiera texten som ska skrivas ut, uppdelad för att hantera styling
+			const textParts = [
+				{
+					text: 'Svar (utdrag): ',
+					className: 'text-yellow-400',
+				},
+				{
+					text: 'Formellt ja',
+					className: 'text-white/90 font-medium',
+				},
+				{ text: ' fr.o.m. ' },
+				{ text: '9 april 2025', className: 'text-white/90' },
+				{ text: ' enligt ' },
+				{
+					text: '12 kap. 42 § 1 p. JB',
+					className: 'text-yellow-400',
+				},
+				{
+					text: ' (förverkande vid betalningsdröjsmål som varar mer än en vecka efter förfallodagen). ',
+				},
+				{
+					text: 'Men',
+					className: 'text-white/90 font-medium',
+				},
+				{
+					text: ' uppsägningen får ingen verkan eftersom hyresgästen ',
+				},
+				{ text: 'återvinner', className: 'text-white/90' },
+				{ text: ' hyresrätten enligt ' },
+				{
+					text: '12 kap. 44 § JB',
+					className: 'text-yellow-400',
+				},
+				{ text: ': delgivning skedde ' },
+				{ text: '3 april', className: 'text-white/90' },
+				{ text: ' ⇒ treveckorsfristen löper t.o.m. ' },
+				{ text: '24 april', className: 'text-white/90' },
+				{ text: '; betalning den ' },
+				{ text: '22 april', className: 'text-white/90' },
+				{ text: ' skedde i tid. Hyresgästen har därmed fortsatt ' },
+				{
+					text: 'rätt till förlängning',
+					className: 'text-white/90',
+				},
+				{ text: ' och kan inte skiljas från lägenheten enligt ' },
+				{
+					text: '12 kap. 46 § JB',
+					className: 'text-yellow-400',
+				},
+				{ text: '.' },
+			];
+
+			// Funktion för att starta hela animationen
+			function startAnimation() {
+				// 1. Starta filuppladdningsanimationen
+				simulateFileUpload();
+
+				// 2. Starta skrivmaskinsanimationen efter att filen "laddats upp"
+				setTimeout(() => {
+					typewriter(veraAnswerEl, textParts);
+				}, 2200); // Lite längre än progress-animationen (2s)
+			}
+
+			// Funktion för filuppladdningen
+			function simulateFileUpload() {
+				// Byt ut innehållet mot en progressbar
+				fileContentEl.innerHTML = `
+                <div class="w-full">
+                    <p class="text-sm font-medium text-white/70 mb-1">Analyserar dokument...</p>
+                    <div class="w-full bg-white/10 rounded-full h-1.5">
+                        <div class="bg-gradient-to-r from-yellow-400 to-amber-600 h-1.5 rounded-full animate-progress"></div>
+                    </div>
+                </div>
+            `;
+
+				// Återställ till originalinnehållet efter animationen
+				setTimeout(() => {
+					fileContentEl.innerHTML = originalFileHTML;
+				}, 2000); // Samma tid som CSS-animationen
+			}
+
+			// Funktion för skrivmaskinseffekten
+			async function typewriter(targetEl, parts) {
+				targetEl.innerHTML = ''; // Rensa elementet
+				const cursor = document.createElement('span');
+				cursor.textContent = '▋';
+				cursor.className = 'cursor-blink ml-1 text-yellow-400';
+				targetEl.appendChild(cursor);
+
+				for (const part of parts) {
+					const span = document.createElement('span');
+					if (part.className) {
+						// Tailwind klasser kan innehålla specialtecken, så vi använder setAttribute
+						span.setAttribute('class', part.className);
+					}
+					// Infoga det nya span-elementet före markören
+					targetEl.insertBefore(span, cursor);
+
+					for (const char of part.text) {
+						span.textContent += char;
+						// Vänta en kort stund mellan varje tecken
+						await new Promise((resolve) => setTimeout(resolve, 20));
+					}
+				}
+
+				// Ta bort markören när allt är klart
+				cursor.remove();
+			}
+
+			// Kör animationen när sidan har laddats
+			startAnimation();
+		});
+	</script>
 </html>

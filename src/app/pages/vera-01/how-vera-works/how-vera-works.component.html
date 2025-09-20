@@ -1,0 +1,372 @@
+<section class="bg-gray-900 py-24 sm:py-32">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+			@for (s of stats; track s.label) {
+			<div class="mx-auto flex max-w-xs flex-col gap-y-3">
+				<dt
+					class="text-base text-gray-400 flex items-center justify-center gap-2"
+				>
+					<span class="leading-snug">{{ s.label }}</span>
+					@if (s.footnote) {
+					<button
+						type="button"
+						class="text-gray-500 hover:text-gray-300 focus:outline-none"
+						[attr.title]="s.footnote"
+						aria-label="Visa mätmetod"
+					>
+						<!-- Info-ikon -->
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-4 w-4"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							stroke-width="1.5"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M11.25 11.25v5.25m0-8.25h.008v.008H11.25V8.25zM21 12a9 9 0 11-18 0 9 
+                           9 0 0118 0z"
+							/>
+						</svg>
+					</button>
+					}
+				</dt>
+
+				<dd
+					class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl"
+				>
+					{{ s.value }}
+				</dd>
+
+				@if (s.sublabel) {
+				<dd class="text-xs text-gray-500 leading-relaxed">
+					{{ s.sublabel }}
+				</dd>
+				}
+			</div>
+			}
+		</dl>
+	</div>
+</section>
+
+<section id="security" class="py-20">
+	<div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-start">
+		<div>
+			<h2 class="text-2xl sm:text-3xl font-semibold">Security & compliance</h2>
+			<div
+				class="mt-4 h-[1px] w-24 bg-gradient-to-r from-veraGold to-veraBronze"
+			></div>
+			<ul class="mt-6 space-y-3 text-sm text-white/80">
+				<li class="flex gap-3">
+					<span class="mt-1.5 inline-block h-1.5 w-1.5 bg-veraBronze"></span>
+					Data isolation: customer data never used for training.
+				</li>
+				<li class="flex gap-3">
+					<span class="mt-1.5 inline-block h-1.5 w-1.5 bg-veraBronze"></span>
+					Region-locked processing with audit logging.
+				</li>
+				<li class="flex gap-3">
+					<span class="mt-1.5 inline-block h-1.5 w-1.5 bg-veraBronze"></span>
+					Configurable redaction and PII scrubbing.
+				</li>
+				<li class="flex gap-3">
+					<span class="mt-1.5 inline-block h-1.5 w-1.5 bg-veraBronze"></span>
+					Role-based access with SSO (SAML/OIDC).
+				</li>
+			</ul>
+		</div>
+		<div class="grid sm:grid-cols-2 gap-6">
+			<div class="p-6 bg-white/5 rounded-2xl">
+				<p class="text-sm text-white/60">Latency (p95)</p>
+				<p class="mt-2 text-3xl font-semibold">&lt; 1.2s</p>
+			</div>
+			<div class="p-6 bg-white/5 rounded-2xl">
+				<p class="text-sm text-white/60">Citation coverage</p>
+				<p class="mt-2 text-3xl font-semibold">&gt; 99%</p>
+			</div>
+			<div class="p-6 bg-white/5 rounded-2xl">
+				<p class="text-sm text-white/60">Deployment</p>
+				<p class="mt-2 text-3xl font-semibold">On-prem / VPC</p>
+			</div>
+			<div class="p-6 bg-white/5 rounded-2xl">
+				<p class="text-sm text-white/60">Support</p>
+				<p class="mt-2 text-3xl font-semibold">SWE / ENG</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="relative isolate bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
+	<div
+		aria-hidden="true"
+		class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl"
+	></div>
+	<div class="mx-auto max-w-4xl text-center">
+		<h2 class="text-base/7 font-semibold text-indigo-400">Pricing</h2>
+		<p
+			class="mt-2 text-5xl font-semibold tracking-tight text-balance text-white sm:text-6xl"
+		>
+			Choose the right plan for you
+		</p>
+	</div>
+	<p
+		class="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-gray-400 sm:text-xl/8"
+	>
+		Choose an affordable plan that’s packed with the best features for engaging
+		your audience, creating customer loyalty, and driving sales.
+	</p>
+	<div
+		class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2"
+	>
+		<div
+			class="rounded-3xl rounded-t-3xl bg-white/2.5 p-8 ring-1 ring-white/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-tr-none lg:rounded-bl-3xl"
+		>
+			<h3 id="tier-hobby" class="text-base/7 font-semibold text-indigo-400">
+				Hobby
+			</h3>
+			<p class="mt-4 flex items-baseline gap-x-2">
+				<span class="text-5xl font-semibold tracking-tight text-white"
+					>$29</span
+				>
+				<span class="text-base text-gray-400">/month</span>
+			</p>
+			<p class="mt-6 text-base/7 text-gray-300">
+				The perfect plan if you&#039;re just getting started with our product.
+			</p>
+			<ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-300 sm:mt-10">
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					25 products
+				</li>
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					Up to 10,000 subscribers
+				</li>
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					Advanced analytics
+				</li>
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					24-hour support response time
+				</li>
+			</ul>
+			<a
+				href="#"
+				aria-describedby="tier-hobby"
+				class="mt-8 block rounded-md bg-white/10 px-3.5 py-2.5 text-center text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/75 sm:mt-10"
+				>Get started today</a
+			>
+		</div>
+		<div
+			class="relative rounded-3xl bg-gray-800 p-8 ring-1 ring-white/10 sm:p-10"
+		>
+			<h3
+				id="tier-enterprise"
+				class="text-base/7 font-semibold text-indigo-400"
+			>
+				Enterprise
+			</h3>
+			<p class="mt-4 flex items-baseline gap-x-2">
+				<span class="text-5xl font-semibold tracking-tight text-white"
+					>$99</span
+				>
+				<span class="text-base text-gray-400">/month</span>
+			</p>
+			<p class="mt-6 text-base/7 text-gray-300">
+				Dedicated support and infrastructure for your company.
+			</p>
+			<ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-300 sm:mt-10">
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					Unlimited products
+				</li>
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					Unlimited subscribers
+				</li>
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					Advanced analytics
+				</li>
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					Dedicated support representative
+				</li>
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					Marketing automations
+				</li>
+				<li class="flex gap-x-3">
+					<svg
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						data-slot="icon"
+						aria-hidden="true"
+						class="h-6 w-5 flex-none text-indigo-400"
+					>
+						<path
+							d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+							clip-rule="evenodd"
+							fill-rule="evenodd"
+						/>
+					</svg>
+					Custom integrations
+				</li>
+			</ul>
+			<a
+				href="#"
+				aria-describedby="tier-enterprise"
+				class="mt-8 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 sm:mt-10"
+				>Get started today</a
+			>
+		</div>
+	</div>
+</div>
+
+<!-- Security / Compliance -->
+<section id="security" class="py-16 lg:py-24">
+	<div class="mx-auto max-w-7xl px-6">
+		<h2 class="text-2xl sm:text-3xl font-semibold">
+			Säkerhet &amp; efterlevnad
+		</h2>
+		<ul class="mt-6 space-y-4 text-white/80">
+			<li class="flex items-start gap-3">
+				<span
+					class="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-veraGold"
+				></span>
+				Databehandling enligt GDPR.
+			</li>
+			<li class="flex items-start gap-3">
+				<span
+					class="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-veraGold"
+				></span>
+				Isolerade miljöer per byrå. Åtkomstkontroller och revisionsloggar.
+			</li>
+			<li class="flex items-start gap-3">
+				<span
+					class="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-veraGold"
+				></span>
+				Inga träningsdata från klientärenden utan uttryckligt medgivande.
+			</li>
+		</ul>
+
+		<div class="mt-10 bg-white/[0.03] rounded-2xl p-6">
+			<h3 class="font-semibold">Integrationer</h3>
+			<p class="mt-2 text-white/70">
+				Anslut till dokumenthantering, ärendesystem och identitetsleverantörer
+				(SSO). Exportera till era mallar.
+			</p>
+		</div>
+	</div>
+</section>

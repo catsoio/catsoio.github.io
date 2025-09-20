@@ -106,12 +106,12 @@ export const routes: Routes = [
 		},
 	},
 	{
-		path: 'vera',
+		path: 'vera-01',
 		loadComponent: () =>
-			import('./pages/vera/vera.component').then((m) => m.VeraComponent),
+			import('./pages/vera-01/vera-01.component').then((m) => m.Vera01Component),
 		data: {
 			seo: {
-				title: 'Vera — AI Legal Assistant for Swedish Law Firms',
+				title: 'VERA-01 — AI Legal Assistant for Swedish Law Firms',
 				description:
 					'Vera helps lawyers draft, review, and search across case materials with private AI. Built for Swedish legal workflows, secure by design.',
 				og: { type: 'product', image: '/assets/og/vera-1200x630.png' },
@@ -125,7 +125,7 @@ export const routes: Routes = [
 					name: 'Vera',
 					applicationCategory: 'BusinessApplication',
 					operatingSystem: 'Web',
-					url: 'https://catso.io/vera',
+					url: 'https://catso.io/VERA-01',
 					offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
 				},
 			} as RouteSEO,
