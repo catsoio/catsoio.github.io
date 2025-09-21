@@ -37,7 +37,6 @@ import {
 	PiggyBank,
 	Rocket,
 } from 'lucide-angular';
-import { InViewDirective } from './in-view.directive';
 
 type Card = {
 	id: string;
@@ -50,7 +49,7 @@ type Card = {
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [CommonModule, InViewDirective, LucideAngularModule],
+	imports: [CommonModule, LucideAngularModule],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

@@ -249,18 +249,5 @@ export const routes: Routes = [
 			} as RouteSEO,
 		},
 	},
-	{
-		path: 'dashboard',
-		loadComponent: () =>
-			import('./pages/dashboard/dashboard.component').then(
-				(m) => m.DashboardComponent
-			),
-		data: {
-			seo: {
-				title: 'Dashboard — Catso',
-				robots: 'noindex,nofollow',
-			} as RouteSEO,
-		},
-	},
 	{ path: '**', redirectTo: 'home' },
 ];
