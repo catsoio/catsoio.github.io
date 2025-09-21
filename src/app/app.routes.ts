@@ -116,10 +116,10 @@ export const routes: Routes = [
 				title: 'VERA-01 | AI-agent för svenska advokatbyråer',
 				description:
 					'Er lokala AI-drivna juristexpert. - Konstruerad och Tränad på svensk lag.',
-				og: { type: 'product', image: '/assets/og/vera01banner.png' },
+				og: { type: 'product', image: '/assets/imgs/vera01banner.png' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/og/vera01banner.png',
+					image: '/assets/imgs/vera01banner.png',
 				},
 				jsonLd: {
 					'@context': 'https://schema.org',
