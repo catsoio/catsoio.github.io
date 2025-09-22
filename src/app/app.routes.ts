@@ -105,10 +105,10 @@ export const routes: Routes = [
 			seo: {
 				title: 'VERA-01 | AI-agent för svenska advokatbyråer',
 				description: 'Er lokala AI-drivna juristexpert. - Konstruerad och Tränad på svensk lag.',
-				og: { type: 'product', image: '/assets/imgs/vera01banner2.png' },
+				og: { type: 'product', image: '/assets/imgs/vera01banner3d.png' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/imgs/vera01banner2.png',
+					image: '/assets/imgs/vera01banner3d.png',
 				},
 				jsonLd: {
 					'@context': 'https://schema.org',
