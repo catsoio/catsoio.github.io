@@ -1,1 +1,0 @@
-import{Qa as o,Ra as a,Y as n,Za as c,eb as s}from"./chunk-GFN7JIB2.js";var i=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-contact"]],standalone:!0,features:[s],decls:2,vars:0,template:function(t,m){t&1&&(o(0,"p"),c(1,"contact works!"),a())}})};export{i as ContactComponent};
