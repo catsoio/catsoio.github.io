@@ -22,6 +22,6 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
 	.join('')}
 </urlset>`;
 
-await writeFile('./dist/catsoio.github.io/browser/sitemap.xml', xml);
+await writeFile('../dist/catsoio.github.io/browser/sitemap.xml', xml);
 
 console.log('✔ sitemap.xml written');
