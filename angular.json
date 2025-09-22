@@ -61,7 +61,7 @@
 				"prerender": {
 					"builder": "@angular-devkit/build-angular:prerender",
 					"options": {
-						"routes": ["/", "/vera-01"]
+						"routes": ["/home", "/vera-01"]
 					},
 					"configurations": {
 						"production": {
