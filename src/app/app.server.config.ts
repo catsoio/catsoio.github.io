@@ -7,16 +7,17 @@ import {
 import { provideRouter, TitleStrategy, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { Title, Meta, provideClientHydration } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
+import { provideServerRendering } from '@angular/platform-server';
 
 import { DEFAULT_SEO } from './seo/defaults.token';
 import { SeoTitleStrategy } from './seo/seo-title.strategy';
 // import { SeoService } from './seo/seo.service';
 import { DefaultSeo } from './seo/seo.types';
 
-export const appConfig: ApplicationConfig = {
+export const appServerConfig: ApplicationConfig = {
 	providers: [
-		provideClientHydration(), // browser only
+		provideServerRendering(), // <-- important on server
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(
 			routes,
@@ -42,10 +43,10 @@ export const appConfig: ApplicationConfig = {
 		// {
 		// 	provide: APP_INITIALIZER,
 		// 	multi: true,
-		// 	useFactory: () => {
-		// 		const seo = inject(SeoService);
-		// 		return () => seo.init();
-		// 	},
+		// 	// useFactory: () => {
+		// 	// 	const seo = inject(SeoService);
+		// 	// 	return () => seo.init();
+		// 	// },
 		// },
 	],
 };
