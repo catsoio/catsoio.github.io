@@ -7,7 +7,7 @@ import {
 import { provideRouter, TitleStrategy, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { Title, Meta } from '@angular/platform-browser';
+import { Title, Meta, provideClientHydration } from '@angular/platform-browser';
 import { DEFAULT_SEO } from './seo/defaults.token';
 import { SeoTitleStrategy } from './seo/seo-title.strategy';
 import { SeoService } from './seo/seo.service';
@@ -15,6 +15,7 @@ import { DefaultSeo } from './seo/seo.types';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
+		provideClientHydration(),
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(
 			routes,
