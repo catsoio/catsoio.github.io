@@ -29,14 +29,14 @@ jobs:
       - run: node tools/generate-sitemap.mjs
 
       # Optional but recommended if you’ll use catso.io
-      - run: echo catso.io > dist/catsoio/browser/CNAME
+      - run: echo catso.io > dist/catsoio.github.io/browser/CNAME
 
       # Optional: avoid Jekyll processing
-      - run: touch dist/catsoio/browser/.nojekyll
+      - run: touch dist/catsoio.github.io/browser/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/catsoio/browser
+          path: dist/catsoio.github.io/browser
 
   deploy:
     needs: build
