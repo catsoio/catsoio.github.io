@@ -87,17 +87,17 @@ export const routes: Routes = [
 			} as RouteSEO,
 		},
 	},
-	{
-		path: 'blog/:slug',
-		loadComponent: () => import('./pages/blog/post/post.component').then((m) => m.PostComponent),
-		data: {
-			// Placeholder; see section 11 for dynamic SEO based on post content
-			seo: {
-				title: 'Article — Catso',
-				robots: 'index,follow',
-			} as RouteSEO,
-		},
-	},
+	// {
+	// 	path: 'blog/:slug',
+	// 	loadComponent: () => import('./pages/blog/post/post.component').then((m) => m.PostComponent),
+	// 	data: {
+	// 		// Placeholder; see section 11 for dynamic SEO based on post content
+	// 		seo: {
+	// 			title: 'Article — Catso',
+	// 			robots: 'index,follow',
+	// 		} as RouteSEO,
+	// 	},
+	// },
 	{
 		path: 'vera-01',
 		loadComponent: () => import('./pages/vera-01/vera-01.component').then((m) => m.Vera01Component),
