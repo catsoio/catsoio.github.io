@@ -17,10 +17,9 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"outputPath": "dist/catso.io/browser",
+						"outputPath": "dist/catso.io",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
-						"server": "src/main.server.ts",
 						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "scss",
