@@ -24,7 +24,7 @@ jobs:
           node-version: 20
           cache: npm
 
-      - run: npm ci
+      - run: npm install
       # Kör build -> postbuild kör sitemap åt dig
       - run: npm run build
 
