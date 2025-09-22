@@ -4,15 +4,10 @@ import {
 	inject,
 	provideZoneChangeDetection,
 } from '@angular/core';
-import {
-	provideRouter,
-	TitleStrategy,
-	withInMemoryScrolling,
-} from '@angular/router';
-
+import { provideRouter, TitleStrategy, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { provideClientHydration, Title, Meta } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { DEFAULT_SEO } from './seo/defaults.token';
 import { SeoTitleStrategy } from './seo/seo-title.strategy';
 import { SeoService } from './seo/seo.service';
@@ -28,19 +23,19 @@ export const appConfig: ApplicationConfig = {
 				anchorScrolling: 'enabled',
 			})
 		),
-		provideHttpClient(),
-		provideClientHydration(),
+		// Välj EN http-client-registrering
+		provideHttpClient(withFetch()),
+
 		Title,
 		Meta,
 		{
 			provide: DEFAULT_SEO,
 			useValue: {
-				siteName: 'Catso',
+				siteName: 'catso',
 				origin: 'https://catso.io',
-				defaultDescription:
-					'Developer-first PaaS to build, extend, and ship apps faster.',
+				defaultDescription: 'Getting blessed.',
 				defaultImage: '/assets/og/catso-og.png',
-				locale: 'en_US', // or 'sv_SE' if your primary audience is Swedish
+				locale: 'sv_SE',
 			} as DefaultSeo,
 		},
 		{ provide: TitleStrategy, useClass: SeoTitleStrategy },
@@ -52,6 +47,5 @@ export const appConfig: ApplicationConfig = {
 				return () => seo.init();
 			},
 		},
-		provideHttpClient(withFetch()),
 	],
 };

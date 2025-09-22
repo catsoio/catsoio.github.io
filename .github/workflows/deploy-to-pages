@@ -10,7 +10,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -24,14 +24,15 @@ jobs:
           node-version: 20
           cache: npm
 
-      - run: npm install
+      - run: npm ci
+      # Kör build -> postbuild kör sitemap åt dig
       - run: npm run build
-      - run: node tools/generate-sitemap.mjs
 
-      # Optional but recommended if you’ll use catso.io
+      # SPA-fallback: 404.html = index.html
+      - run: cp dist/catso.io/browser/index.html dist/catso.io/browser/404.html
+
+      # Custom domain & no Jekyll
       - run: echo catso.io > dist/catso.io/browser/CNAME
-
-      # Optional: avoid Jekyll processing
       - run: touch dist/catso.io/browser/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
