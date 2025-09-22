@@ -4,18 +4,8 @@ const origin = 'https://catso.io';
 const now = new Date().toISOString();
 
 const routes = [
-	'/',
-	'/features',
-	'/pricing',
-	'/docs',
-	'/blog',
-	'/vera',
-	'/about',
-	'/contact',
-	'/careers',
-	'/privacy',
-	'/terms',
-	// add more crawlable routes here
+	'/home',
+	'/vera-01',
 ];
 
 const urlXml = (loc, lastmod, priority = '0.8', changefreq = 'weekly') => `
@@ -32,6 +22,6 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
 	.join('')}
 </urlset>`;
 
-await writeFile('dist/catsoio/browser/sitemap.xml', xml);
+await writeFile('./dist/catso.io/browser/sitemap.xml', xml);
 
 console.log('✔ sitemap.xml written');
