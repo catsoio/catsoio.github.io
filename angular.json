@@ -98,7 +98,13 @@
 					}
 				},
 
-				"deploy": { "builder": "angular-cli-ghpages:deploy" }
+				"deploy": {
+					"builder": "angular-cli-ghpages:deploy",
+					"options": {
+						"dir": "dist/catso.io/browser",
+						"cname": "catso.io"
+					}
+				}
 			}
 		}
 	}
