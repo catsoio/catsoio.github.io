@@ -13,7 +13,6 @@ import {
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, Title, Meta } from '@angular/platform-browser';
-import { provideServerRendering } from '@angular/platform-server';
 import { DEFAULT_SEO } from './seo/defaults.token';
 import { SeoTitleStrategy } from './seo/seo-title.strategy';
 import { SeoService } from './seo/seo.service';
@@ -31,7 +30,6 @@ export const appConfig: ApplicationConfig = {
 		),
 		provideHttpClient(),
 		provideClientHydration(),
-		provideServerRendering(),
 		Title,
 		Meta,
 		{

@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"catsoio": {
+		"catso.io": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"outputPath": "dist/catsoio",
+						"outputPath": "dist/catso.io",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
 						"polyfills": ["zone.js"],
@@ -27,29 +27,23 @@
 							{
 								"glob": "**/*",
 								"input": "public"
-							},
-							{ "glob": "**/*", "input": "src/assets", "output": "assets" }
+							}
 						],
 						"styles": ["src/styles.scss"],
-						"scripts": [],
-						"server": "src/main.server.ts",
-						"prerender": true,
-						"ssr": {
-							"entry": "server.ts"
-						}
+						"scripts": []
 					},
 					"configurations": {
 						"production": {
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "5MB",
+									"maximumWarning": "3MB",
 									"maximumError": "10MB"
 								},
 								{
 									"type": "anyComponentStyle",
-									"maximumWarning": "20kB",
-									"maximumError": "40kB"
+									"maximumWarning": "200kB",
+									"maximumError": "400kB"
 								}
 							],
 							"outputHashing": "all"
@@ -66,10 +60,10 @@
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "catsoio:build:production"
+							"buildTarget": "catso.io:build:production"
 						},
 						"development": {
-							"buildTarget": "catsoio:build:development"
+							"buildTarget": "catso.io:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
@@ -87,8 +81,7 @@
 							{
 								"glob": "**/*",
 								"input": "public"
-							},
-							{ "glob": "**/*", "input": "src/assets", "output": "assets" }
+							}
 						],
 						"styles": ["src/styles.scss"],
 						"scripts": []
