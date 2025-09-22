@@ -1,6 +1,6 @@
 import { writeFile } from 'node:fs/promises';
 
-const origin = 'https://catso.io';
+const origin = 'https://catso.io'; 
 const now = new Date().toISOString();
 
 const routes = [
