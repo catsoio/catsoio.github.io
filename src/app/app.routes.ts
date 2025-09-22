@@ -7,17 +7,16 @@ export const routes: Routes = [
 
 	{
 		path: 'home',
-		loadComponent: () =>
-			import('./pages/home/home.component').then((m) => m.HomeComponent),
+		loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
 		data: {
 			seo: {
 				title: 'Catso — Developer-first PaaS',
 				description:
 					'Ship SaaS faster with a Turborepo-powered PaaS. NestJS backends, Angular frontends, SSR, CI/CD, and observability built in.',
-				og: { type: 'website', image: '/assets/og/catso-home-1200x630.png' },
+				og: { type: 'website', image: '/assets/imgs/ogcatso.png' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/og/catso-home-1200x630.png',
+					image: '/assets/imgs/ogcatso.png',
 				},
 				jsonLd: {
 					'@context': 'https://schema.org',
@@ -31,9 +30,7 @@ export const routes: Routes = [
 	{
 		path: 'pricing',
 		loadComponent: () =>
-			import('./pages/pricing/pricing.component').then(
-				(m) => m.PricingComponent
-			),
+			import('./pages/pricing/pricing.component').then((m) => m.PricingComponent),
 		data: {
 			seo: {
 				title: 'Pricing — Catso',
@@ -55,8 +52,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'docs',
-		loadComponent: () =>
-			import('./pages/docs/docs.component').then((m) => m.DocsComponent),
+		loadComponent: () => import('./pages/docs/docs.component').then((m) => m.DocsComponent),
 		data: {
 			seo: {
 				title: 'Docs — Catso',
@@ -78,13 +74,11 @@ export const routes: Routes = [
 	},
 	{
 		path: 'blog',
-		loadComponent: () =>
-			import('./pages/blog/blog.component').then((m) => m.BlogComponent),
+		loadComponent: () => import('./pages/blog/blog.component').then((m) => m.BlogComponent),
 		data: {
 			seo: {
 				title: 'Blog — Catso',
-				description:
-					'Engineering notes, platform updates, and guides for modern SaaS teams.',
+				description: 'Engineering notes, platform updates, and guides for modern SaaS teams.',
 				og: { type: 'website', image: '/assets/og/catso-blog-1200x630.png' },
 				twitter: {
 					card: 'summary_large_image',
@@ -95,8 +89,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'blog/:slug',
-		loadComponent: () =>
-			import('./pages/blog/post/post.component').then((m) => m.PostComponent),
+		loadComponent: () => import('./pages/blog/post/post.component').then((m) => m.PostComponent),
 		data: {
 			// Placeholder; see section 11 for dynamic SEO based on post content
 			seo: {
@@ -107,19 +100,15 @@ export const routes: Routes = [
 	},
 	{
 		path: 'vera-01',
-		loadComponent: () =>
-			import('./pages/vera-01/vera-01.component').then(
-				(m) => m.Vera01Component
-			),
+		loadComponent: () => import('./pages/vera-01/vera-01.component').then((m) => m.Vera01Component),
 		data: {
 			seo: {
 				title: 'VERA-01 | AI-agent för svenska advokatbyråer',
-				description:
-					'Er lokala AI-drivna juristexpert. - Konstruerad och Tränad på svensk lag.',
-				og: { type: 'product', image: '/assets/imgs/vera01banner.png' },
+				description: 'Er lokala AI-drivna juristexpert. - Konstruerad och Tränad på svensk lag.',
+				og: { type: 'product', image: '/assets/imgs/vera01banner2.png' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/imgs/vera01banner.png',
+					image: '/assets/imgs/vera01banner2.png',
 				},
 				jsonLd: {
 					'@context': 'https://schema.org',
@@ -135,8 +124,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'about',
-		loadComponent: () =>
-			import('./pages/about/about.component').then((m) => m.AboutComponent),
+		loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
 		data: {
 			seo: {
 				title: 'About — Catso',
@@ -153,14 +141,11 @@ export const routes: Routes = [
 	{
 		path: 'contact',
 		loadComponent: () =>
-			import('./pages/contact/contact.component').then(
-				(m) => m.ContactComponent
-			),
+			import('./pages/contact/contact.component').then((m) => m.ContactComponent),
 		data: {
 			seo: {
 				title: 'Contact — Catso',
-				description:
-					'Talk to our team about Catso, enterprise options, and Vera for legal teams.',
+				description: 'Talk to our team about Catso, enterprise options, and Vera for legal teams.',
 				og: { type: 'website', image: '/assets/og/catso-contact-1200x630.png' },
 				twitter: {
 					card: 'summary_large_image',
@@ -172,9 +157,7 @@ export const routes: Routes = [
 	{
 		path: 'careers',
 		loadComponent: () =>
-			import('./pages/careers/careers.component').then(
-				(m) => m.CareersComponent
-			),
+			import('./pages/careers/careers.component').then((m) => m.CareersComponent),
 		data: {
 			seo: {
 				title: 'Careers — Catso',
@@ -190,9 +173,7 @@ export const routes: Routes = [
 	{
 		path: 'privacy',
 		loadComponent: () =>
-			import('./pages/legal/privacy/privacy.component').then(
-				(m) => m.PrivacyComponent
-			),
+			import('./pages/legal/privacy/privacy.component').then((m) => m.PrivacyComponent),
 		data: {
 			seo: {
 				title: 'Privacy Policy — Catso',
@@ -209,9 +190,7 @@ export const routes: Routes = [
 	{
 		path: 'terms',
 		loadComponent: () =>
-			import('./pages/legal/terms/terms.component').then(
-				(m) => m.TermsComponent
-			),
+			import('./pages/legal/terms/terms.component').then((m) => m.TermsComponent),
 		data: {
 			seo: {
 				title: 'Terms of Service — Catso',
@@ -228,10 +207,7 @@ export const routes: Routes = [
 	// Auth / app areas (noindex)
 	{
 		path: 'login',
-		loadComponent: () =>
-			import('./pages/auth/login/login.component').then(
-				(m) => m.LoginComponent
-			),
+		loadComponent: () => import('./pages/auth/login/login.component').then((m) => m.LoginComponent),
 		data: {
 			seo: { title: 'Login — Catso', robots: 'noindex,follow' } as RouteSEO,
 		},
@@ -239,9 +215,7 @@ export const routes: Routes = [
 	{
 		path: 'signup',
 		loadComponent: () =>
-			import('./pages/auth/signup/signup.component').then(
-				(m) => m.SignupComponent
-			),
+			import('./pages/auth/signup/signup.component').then((m) => m.SignupComponent),
 		data: {
 			seo: {
 				title: 'Create your account — Catso',
