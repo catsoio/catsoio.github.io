@@ -1,8 +1,7 @@
-name: Deploy Angular SSG to GitHub Pages
-
+name: Deploy to GitHub Pages
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +10,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -23,20 +22,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: Install deps
-        run: npm ci
+      - run: npm ci
+      # Kör build -> postbuild kör sitemap åt dig
+      - run: npm run build
 
-      # Build *prerendered* site (this runs browser+server and prerender)
-      - name: Build (prerender)
-        run: npx ng run catso.io:prerender:production
+      # SPA-fallback: 404.html = index.html
+      - run: cp dist/catso.io/browser/index.html dist/catso.io/browser/404.html
 
-      - name: Add SPA fallback (optional)
-        run: cp dist/catso.io/browser/index.html dist/catso.io/browser/404.html
+      # Custom domain & no Jekyll
+      - run: echo catso.io > dist/catso.io/browser/CNAME
+      - run: touch dist/catso.io/browser/.nojekyll
 
-      # Upload built site directory as Pages artifact
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/catso.io/browser
 
@@ -47,6 +46,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
