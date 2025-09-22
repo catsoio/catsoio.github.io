@@ -29,16 +29,16 @@ jobs:
 
       # Build *prerendered* site (this runs browser+server and prerender)
       - name: Build (prerender)
-        run: npx ng run catso.io:prerender:production
+        run: npx ng run catsoio.github.io:prerender:production
 
       - name: Add SPA fallback (optional)
-        run: cp dist/catso.io/browser/index.html dist/catso.io/browser/404.html
+        run: cp dist/catsoio.github.io/browser/index.html dist/catsoio.github.io/browser/404.html
 
       # Upload built site directory as Pages artifact
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: dist/catso.io/browser
+          path: dist/catsoio.github.io/browser
 
   deploy:
     needs: build
