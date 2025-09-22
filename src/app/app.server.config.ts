@@ -12,7 +12,7 @@ import { provideServerRendering } from '@angular/platform-server';
 
 import { DEFAULT_SEO } from './seo/defaults.token';
 import { SeoTitleStrategy } from './seo/seo-title.strategy';
-// import { SeoService } from './seo/seo.service';
+import { SeoService } from './seo/seo.service';
 import { DefaultSeo } from './seo/seo.types';
 
 export const appServerConfig: ApplicationConfig = {
@@ -40,13 +40,13 @@ export const appServerConfig: ApplicationConfig = {
 			} as DefaultSeo,
 		},
 		{ provide: TitleStrategy, useClass: SeoTitleStrategy },
-		// {
-		// 	provide: APP_INITIALIZER,
-		// 	multi: true,
-		// 	// useFactory: () => {
-		// 	// 	const seo = inject(SeoService);
-		// 	// 	return () => seo.init();
-		// 	// },
-		// },
+		{
+			provide: APP_INITIALIZER,
+			multi: true,
+			useFactory: () => {
+				const seo = inject(SeoService);
+				return () => seo.init();
+			},
+		},
 	],
 };
