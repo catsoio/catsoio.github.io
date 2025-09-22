@@ -1,1 +1,0 @@
-import{Ta as o,Ua as i,Z as n,ab as p,hb as a}from"./chunk-D7XENZGG.js";var s=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-signup"]],standalone:!0,features:[a],decls:2,vars:0,template:function(e,r){e&1&&(o(0,"p"),p(1,"signup works!"),i())}})};export{s as SignupComponent};

@@ -1,0 +1,1 @@
+import{Ha as t,cb as i,db as o,nb as p}from"./chunk-AKXGCRT3.js";var c=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=t({type:n,selectors:[["app-pricing"]],decls:2,vars:0,template:function(e,a){e&1&&(i(0,"p"),p(1,"pricing works!"),o())},encapsulation:2})};export{c as PricingComponent};

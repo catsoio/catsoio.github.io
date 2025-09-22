@@ -1,1 +1,0 @@
-import{Ta as i,Ua as o,Z as n,ab as a,hb as r}from"./chunk-D7XENZGG.js";var p=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-pricing"]],standalone:!0,features:[r],decls:2,vars:0,template:function(e,s){e&1&&(i(0,"p"),a(1,"pricing works!"),o())}})};export{p as PricingComponent};

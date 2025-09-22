@@ -1,0 +1,1 @@
+import{Ha as n,cb as o,db as r,nb as a}from"./chunk-AKXGCRT3.js";var s=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-careers"]],decls:2,vars:0,template:function(e,c){e&1&&(o(0,"p"),a(1,"careers works!"),r())},encapsulation:2})};export{s as CareersComponent};

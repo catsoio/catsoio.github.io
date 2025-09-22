@@ -1,0 +1,1 @@
+import{Ha as o,cb as n,db as a,nb as p}from"./chunk-AKXGCRT3.js";var m=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=o({type:e,selectors:[["app-about"]],decls:2,vars:0,template:function(t,i){t&1&&(n(0,"p"),p(1,"about works!"),a())},encapsulation:2})};export{m as AboutComponent};

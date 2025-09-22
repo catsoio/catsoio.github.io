@@ -1,0 +1,1 @@
+import{Ha as n,cb as o,db as m,nb as s}from"./chunk-AKXGCRT3.js";var p=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-terms"]],decls:2,vars:0,template:function(e,a){e&1&&(o(0,"p"),s(1,"terms works!"),m())},encapsulation:2})};export{p as TermsComponent};
