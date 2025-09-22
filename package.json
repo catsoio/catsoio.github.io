@@ -2,13 +2,14 @@
 	"name": "catsoio.github.io",
 	"version": "0.0.0",
 	"scripts": {
-		"ng": "ng",
 		"start": "ng serve",
+		"dev:ssr": "ng serve",
 		"build": "ng build",
 		"postbuild": "node tools/generate-sitemap.mjs",
+		"start:ssr": "node dist/catsoio/server/server.mjs",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
-		"serve:ssr:catsoio.github.io": "node dist/catsoio.github.io/server/server.mjs"
+		"ng": "ng"
 	},
 	"prettier": {
 		"printWidth": 100,
@@ -24,6 +25,7 @@
 	},
 	"private": true,
 	"dependencies": {
+		"@angular-devkit/build-angular": "^20.3.2",
 		"@angular/common": "^20.3.0",
 		"@angular/compiler": "^20.3.0",
 		"@angular/core": "^20.3.0",

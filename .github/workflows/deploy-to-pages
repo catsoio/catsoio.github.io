@@ -10,7 +10,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -24,20 +24,19 @@ jobs:
           node-version: 20
           cache: npm
 
-      - run: npm ci
-      # Kör build -> postbuild kör sitemap åt dig
+      - run: npm install
       - run: npm run build
+      - run: node tools/generate-sitemap.mjs
 
-      # SPA-fallback: 404.html = index.html
-      - run: cp dist/catsoio.github.io/browser/index.html dist/catsoio.github.io/browser/404.html
+      # Optional but recommended if you’ll use catso.io
+      - run: echo catso.io > dist/catsoio/browser/CNAME
 
-      # Custom domain & no Jekyll
-      - run: echo catsoio.github.io > dist/catsoio.github.io/browser/CNAME
-      - run: touch dist/catsoio.github.io/browser/.nojekyll
+      # Optional: avoid Jekyll processing
+      - run: touch dist/catsoio/browser/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/catsoio.github.io/browser
+          path: dist/catsoio/browser
 
   deploy:
     needs: build
