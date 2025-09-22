@@ -1,0 +1,1 @@
+import{Qa as n,Ra as a,Y as o,Za as s,eb as i}from"./chunk-GFN7JIB2.js";var p=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-about"]],standalone:!0,features:[i],decls:2,vars:0,template:function(e,r){e&1&&(n(0,"p"),s(1,"about works!"),a())}})};export{p as AboutComponent};
