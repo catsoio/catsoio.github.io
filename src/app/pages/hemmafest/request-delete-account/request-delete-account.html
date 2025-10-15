@@ -1,0 +1,135 @@
+<article class="mx-auto max-w-3xl px-4 py-10 text-gray-900 dark:text-gray-100">
+	<header class="mb-8">
+		<h1 class="text-3xl font-bold tracking-tight">Begär radering av konto</h1>
+		<p class="mt-2 text-gray-600 dark:text-gray-300">
+			Fyll i formuläret nedan så skickar vi din begäran till vårt team. Radering är permanent.
+		</p>
+	</header>
+
+	<form class="grid gap-5" [formGroup]="form" (ngSubmit)="submit()">
+		<div>
+			<label for="email" class="mb-2 block text-sm font-medium">E-postadress *</label>
+			<input
+				id="email"
+				type="email"
+				formControlName="email"
+				autocomplete="email"
+				placeholder="du@example.com"
+				class="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 shadow-sm outline-none focus:ring-2 focus:ring-black dark:border-gray-700 dark:bg-gray-900"
+			/>
+			<p
+				class="mt-1 text-xs text-red-600"
+				*ngIf="form.controls.email.touched && form.controls.email.invalid"
+			>
+				Ange en giltig e-postadress.
+			</p>
+		</div>
+
+		<div>
+			<label for="userId" class="mb-2 block text-sm font-medium">Användar-ID (valfritt)</label>
+			<input
+				id="userId"
+				type="text"
+				formControlName="userId"
+				placeholder="t.ex. intern id eller festkod"
+				class="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 shadow-sm outline-none focus:ring-2 focus:ring-black dark:border-gray-700 dark:bg-gray-900"
+			/>
+		</div>
+
+		<div>
+			<label for="reason" class="mb-2 block text-sm font-medium">Orsak (valfritt)</label>
+			<textarea
+				id="reason"
+				rows="4"
+				formControlName="reason"
+				placeholder="Hjälp oss förstå – vi använder inte denna information för marknadsföring."
+				class="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 shadow-sm outline-none focus:ring-2 focus:ring-black dark:border-gray-700 dark:bg-gray-900"
+			></textarea>
+			<p class="mt-1 text-xs text-gray-500">Max 600 tecken.</p>
+		</div>
+
+		<div class="flex items-start gap-3">
+			<input
+				id="consent"
+				type="checkbox"
+				formControlName="consent"
+				class="mt-1 h-5 w-5 rounded border-gray-300"
+			/>
+			<label for="consent" class="text-sm">
+				Jag förstår att raderingen av mitt konto är <strong>permanent</strong> och att data inte kan
+				återställas.
+			</label>
+		</div>
+		<p
+			class="text-xs text-red-600"
+			*ngIf="form.controls.consent.touched && form.controls.consent.invalid"
+		>
+			Du måste bekräfta för att gå vidare.
+		</p>
+
+		<div class="flex flex-wrap items-center gap-3">
+			<button
+				type="submit"
+				[disabled]="form.invalid || state === 'submitting'"
+				class="inline-flex items-center gap-2 rounded-2xl bg-black px-6 py-3 font-semibold text-white shadow transition enabled:hover:opacity-90 disabled:opacity-50 dark:bg-white dark:text-black"
+			>
+				<svg
+					*ngIf="state === 'submitting'"
+					class="h-4 w-4 animate-spin"
+					viewBox="0 0 24 24"
+					aria-hidden="true"
+				>
+					<circle
+						cx="12"
+						cy="12"
+						r="10"
+						stroke="currentColor"
+						stroke-width="4"
+						fill="none"
+						opacity=".25"
+					></circle>
+					<path
+						d="M22 12a10 10 0 0 1-10 10"
+						stroke="currentColor"
+						stroke-width="4"
+						fill="none"
+					></path>
+				</svg>
+				Skicka begäran
+			</button>
+
+			<a routerLink="/hemmafest/policy" class="text-sm underline">Integritetspolicy</a>
+			<a routerLink="/hemmafest/terms" class="text-sm underline">Villkor</a>
+		</div>
+
+		<!-- Error -->
+		<div
+			*ngIf="state === 'error'"
+			class="rounded-2xl border border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-700 dark:bg-red-900/30 dark:text-red-200"
+		>
+			{{ errorMsg }}
+		</div>
+
+		<!-- Success -->
+		<div
+			*ngIf="state === 'success'"
+			class="rounded-2xl border border-emerald-300 bg-emerald-50 p-4 text-emerald-900 dark:border-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-100"
+		>
+			<p class="font-semibold">Begäran mottagen ✅</p>
+			<p class="mt-1 text-sm">
+				Referens:
+				<code class="rounded bg-emerald-100 px-1 py-0.5 text-xs dark:bg-emerald-800">{{
+					response?.id
+				}}</code
+				>. Vi kontaktar dig via e-post när din begäran har hanterats.
+			</p>
+		</div>
+	</form>
+
+	<footer class="mt-10 text-xs text-gray-500">
+		<p>
+			Behöver du hjälp? Mejla
+			<a class="underline" href="mailto:hemmafest@catso.io">hemmafest@catso.io</a>.
+		</p>
+	</footer>
+</article>

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DemoBookingService, DemoRequest } from '../../../demo-booking.service';
+import { DemoBookingService, DemoRequest } from '../../../services/vera01/demo-booking.service';
 
 @Component({
 	selector: 'app-book-a-demo',

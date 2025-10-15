@@ -142,6 +142,14 @@ export const routes: Routes = [
 		data: { seo: HEMMAFEST_SEO },
 	},
 	{
+		path: 'hemmafest/request-delete-account',
+		loadComponent: () =>
+			import('./pages/hemmafest/request-delete-account/request-delete-account').then(
+				(m) => m.RequestDeleteAccount
+			),
+		data: { seo: HEMMAFEST_SEO },
+	},
+	{
 		path: 'about',
 		loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
 		data: {
