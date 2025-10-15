@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { RouteSEO } from './seo/seo.types';
 import { AppComponent } from './app.component';
+import { HEMMAFEST_SEO } from './seo/seo.consts';
 
 export const routes: Routes = [
 	{ path: '', component: AppComponent },
@@ -126,39 +127,19 @@ export const routes: Routes = [
 		path: 'hemmafest',
 		loadComponent: () =>
 			import('./pages/hemmafest/hemmafest.component').then((m) => m.HemmafestComponent),
-		data: {
-			seo: {
-				title: 'Hemmafest! | Joina eller skapa egna fester!',
-				description:
-					'Hitta och skapa fester snabbt och enkelt! Ange festnamn, datum, och voilà! Din fest är synlig för alla i närheten Perfekt för spontana träffar och festpalnering',
-				og: { type: 'product', image: '/assets/imgs/hemmafestbanner.png' },
-				twitter: {
-					card: 'summary_large_image',
-					image: '/assets/imgs/hemmafestbanner.png',
-				},
-				jsonLd: {
-					'@context': 'https://schema.org',
-					'@type': 'SoftwareApplication',
-					name: 'Vera',
-					applicationCategory: 'BusinessApplication',
-					operatingSystem: 'Web',
-					url: 'https://catso.io/hemmafest',
-					offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
-				},
-			} as RouteSEO,
-		},
-		children: [
-			{
-				path: 'policy',
-				loadComponent: () =>
-					import('./pages/hemmafest/policy/policy.component').then((m) => m.PolicyComponent),
-			},
-			{
-				path: 'terms',
-				loadComponent: () =>
-					import('./pages/hemmafest/terms/terms.component').then((m) => m.TermsComponent),
-			},
-		],
+		data: { seo: HEMMAFEST_SEO },
+	},
+	{
+		path: 'hemmafest/policy',
+		loadComponent: () =>
+			import('./pages/hemmafest/policy/policy.component').then((m) => m.PolicyComponent),
+		data: { seo: HEMMAFEST_SEO },
+	},
+	{
+		path: 'hemmafest/terms',
+		loadComponent: () =>
+			import('./pages/hemmafest/terms/terms.component').then((m) => m.TermsComponent),
+		data: { seo: HEMMAFEST_SEO },
 	},
 	{
 		path: 'about',
