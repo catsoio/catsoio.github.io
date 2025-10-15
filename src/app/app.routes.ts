@@ -130,7 +130,7 @@ export const routes: Routes = [
 		data: { seo: HEMMAFEST_SEO },
 	},
 	{
-		path: 'hemmafest/policy',
+		path: 'hemmafest/privacy',
 		loadComponent: () =>
 			import('./pages/hemmafest/policy/policy.component').then((m) => m.PolicyComponent),
 		data: { seo: HEMMAFEST_SEO },
