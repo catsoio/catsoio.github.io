@@ -1,0 +1,154 @@
+<article class="mx-auto max-w-6xl px-4 py-12 text-gray-900 dark:text-gray-100">
+	<!-- HERO -->
+	<header class="grid items-center gap-10 md:grid-cols-2">
+		<div>
+			<h1 class="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">Hemmafest!</h1>
+			<p class="mt-3 text-lg text-gray-600 dark:text-gray-300">
+				Hitta och skapa fester på sekunder. Synligt för folk i närheten – perfekt för spontana
+				träffar.
+			</p>
+
+			<div class="mt-6 flex flex-wrap items-center gap-3">
+				<a
+					[href]="appStoreUrl"
+					target="_blank"
+					rel="noopener"
+					class="inline-flex items-center gap-2 rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 dark:bg-white dark:text-black"
+					aria-label="Hämta Hemmafest på App Store"
+				>
+					<!-- Apple glyph -->
+					<svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true">
+						<path
+							d="M16.365 1.43c0 1.14-.46 2.19-1.2 2.98-.76.82-1.99 1.47-3.2 1.38-.13-1.1.38-2.27 1.14-3.05.77-.82 2.07-1.41 3.26-1.31zm4.07 16.37c-.76 1.54-1.67 3.05-3 3.07-1.32.02-1.74-.88-3.24-.88-1.5 0-1.96.86-3.27.9-1.34.03-2.35-1.65-3.12-3.18-1.7-3.31-1.88-7.2-.83-9.24.9-1.77 2.45-2.89 4.15-2.92 1.3-.03 2.53.91 3.24.91.7 0 2.25-1.12 3.8-1 .65.03 2.49.26 3.67 2.03-3.2 1.74-2.69 6.27.6 7.31-.33.9-.73 1.76-1.03 2.0z"
+							fill="currentColor"
+						/>
+					</svg>
+					Hämta på App Store
+				</a>
+
+				<a
+					routerLink="policy"
+					class="rounded-2xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium shadow hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900"
+				>
+					Integritet
+				</a>
+				<a
+					routerLink="terms"
+					class="rounded-2xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium shadow hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900"
+				>
+					Villkor
+				</a>
+			</div>
+
+			<p class="mt-3 text-xs text-gray-500">Ingen spårning. Inga annonser. 18+.</p>
+		</div>
+
+		<div>
+			<img
+				src="/assets/imgs/hemmafestbanner.png"
+				alt="Skärmbild från Hemmafest!"
+				class="w-full rounded-3xl shadow-xl ring-1 ring-black/5"
+				loading="eager"
+				decoding="async"
+			/>
+		</div>
+	</header>
+
+	<!-- FEATURES -->
+	<section class="mt-16">
+		<h2 class="text-2xl font-bold">Varför Hemmafest?</h2>
+		<div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			<article
+				*ngFor="let f of features"
+				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
+			>
+				<div class="text-2xl" aria-hidden="true">{{ f.icon }}</div>
+				<h3 class="mt-2 text-lg font-semibold">{{ f.title }}</h3>
+				<p class="mt-1 text-gray-600 dark:text-gray-300">{{ f.body }}</p>
+			</article>
+		</div>
+	</section>
+
+	<!-- HOW IT WORKS -->
+	<section class="mt-16">
+		<h2 class="text-2xl font-bold">Så funkar det</h2>
+		<ol class="mt-6 grid gap-6 md:grid-cols-3">
+			<li
+				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+			>
+				<div
+					class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 font-bold dark:bg-gray-800"
+				>
+					1
+				</div>
+				<h3 class="mt-3 font-semibold">Ladda ner appen</h3>
+				<p class="mt-1 text-gray-600 dark:text-gray-300">Installera från App Store.</p>
+			</li>
+			<li
+				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+			>
+				<div
+					class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 font-bold dark:bg-gray-800"
+				>
+					2
+				</div>
+				<h3 class="mt-3 font-semibold">Skapa eller joina</h3>
+				<p class="mt-1 text-gray-600 dark:text-gray-300">
+					Starta en fest eller gå med i en i närheten.
+				</p>
+			</li>
+			<li
+				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+			>
+				<div
+					class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 font-bold dark:bg-gray-800"
+				>
+					3
+				</div>
+				<h3 class="mt-3 font-semibold">Ha kul & visa hänsyn</h3>
+				<p class="mt-1 text-gray-600 dark:text-gray-300">
+					Följ lokala regler och respekt för grannar.
+				</p>
+			</li>
+		</ol>
+
+		<div class="mt-8">
+			<a
+				[href]="appStoreUrl"
+				target="_blank"
+				rel="noopener"
+				class="inline-flex items-center rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 dark:bg-white dark:text-black"
+			>
+				Hämta Hemmafest!
+			</a>
+		</div>
+	</section>
+
+	<!-- FAQ -->
+	<section class="mt-16">
+		<h2 class="text-2xl font-bold">Vanliga frågor</h2>
+		<div class="mt-6 grid gap-4">
+			<details
+				*ngFor="let f of faqs"
+				class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+			>
+				<summary class="cursor-pointer list-none font-semibold">
+					{{ f.q }}
+				</summary>
+				<p class="mt-2 text-gray-600 dark:text-gray-300">
+					{{ f.a }}
+				</p>
+			</details>
+		</div>
+	</section>
+
+	<!-- FOOTER -->
+	<footer class="mt-16 border-t border-gray-200 pt-8 text-sm text-gray-500 dark:border-gray-800">
+		<div class="flex flex-wrap items-center gap-4">
+			<a [href]="appStoreUrl" target="_blank" rel="noopener" class="underline">App Store</a>
+			<a routerLink="policy" class="underline">Integritetspolicy</a>
+			<a routerLink="terms" class="underline">Villkor</a>
+		</div>
+		<p class="mt-3 text-xs">© Hemmafest!. Ingen spårning. Inga annonser.</p>
+	</footer>
+</article>

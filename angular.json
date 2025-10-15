@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"catsoio.github.io": {
+		"catsoio": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"outputPath": "dist/catsoio.github.io",
+						"outputPath": "dist/catsoio",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
 						"polyfills": ["zone.js"],
@@ -33,20 +33,23 @@
 						"styles": ["src/styles.scss"],
 						"scripts": [],
 						"server": "src/main.server.ts",
-						"prerender": true
+						"prerender": true,
+						"ssr": {
+							"entry": "server.ts"
+						}
 					},
 					"configurations": {
 						"production": {
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "5MB",
-									"maximumError": "10MB"
+									"maximumWarning": "15MB",
+									"maximumError": "30MB"
 								},
 								{
 									"type": "anyComponentStyle",
-									"maximumWarning": "20kB",
-									"maximumError": "40kB"
+									"maximumWarning": "320kB",
+									"maximumError": "340kB"
 								}
 							],
 							"outputHashing": "all"
@@ -63,10 +66,10 @@
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "catsoio.github.io:build:production"
+							"buildTarget": "catsoio:build:production"
 						},
 						"development": {
-							"buildTarget": "catsoio.github.io:build:development"
+							"buildTarget": "catsoio:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
