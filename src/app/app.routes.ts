@@ -11,7 +11,7 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
 		data: {
 			seo: {
-				title: 'Catso - AI and Robotics infrastructure',
+				title: 'Catso - AI and Robotics Infrastructure',
 				description:
 					'Ship SaaS faster with a Turborepo-powered PaaS. NestJS backends, Angular frontends, SSR, CI/CD, and observability built in.',
 				og: { type: 'website', image: '/assets/imgs/ogcatso.png' },
