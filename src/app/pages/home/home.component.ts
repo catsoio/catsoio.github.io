@@ -1,147 +1,145 @@
 import { CommonModule } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
+	Inject,
+	NgZone,
+	OnDestroy,
+	OnInit,
+	PLATFORM_ID,
 	QueryList,
 	ViewChildren,
 } from '@angular/core';
-import {
-	LucideAngularModule,
-	Camera,
-	Zap,
-	Sparkles,
-	Shield,
-	Monitor,
-	Layers,
-	ChevronRight,
-	Star,
-	Play,
-	ArrowRight,
-	Wand2,
-	Scissors,
-	Share2,
-	Cloud,
-	Check,
-	ArrowDown,
-	Phone,
-	Contact,
-	User,
-	BrainCircuit,
-	Drill,
-	icons,
-	Handshake,
-	Calendar,
-	Route,
-	FileText,
-	PiggyBank,
-	Rocket,
-} from 'lucide-angular';
+import { isPlatformBrowser } from '@angular/common';
 
 type Card = {
 	id: string;
 	title: string;
 	desc: string;
-	icon: keyof typeof icons;
+	icon: string;
 	details: string[];
+};
+
+type NavLink = {
+	label: string;
+	href: string;
+};
+
+type Stat = {
+	value: string;
+	label: string;
+};
+
+type Feature = {
+	title: string;
+	desc: string;
+};
+
+type RobotCapability = {
+	title: string;
+	desc: string;
+};
+
+type RoadmapItem = {
+	phase: string;
+	title: string;
+	items: string[];
+	status: 'done' | 'active' | 'upcoming';
+};
+
+type Testimonial = {
+	initials: string;
+	quote: string;
+	name: string;
+	role: string;
+	stars: number;
+};
+
+type FAQ = {
+	q: string;
+	a: string;
 };
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [CommonModule, LucideAngularModule],
+	imports: [CommonModule],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
-	yearly = true;
+export class HomeComponent implements OnInit, OnDestroy {
+	currentYear = new Date().getFullYear();
+	mobileMenuOpen = false;
+	showScrollIndicator = true;
 
-	logos = ['Acme', 'Nova', 'Placid', 'Helix', 'Nimbus', 'Atlas'];
+	constructor(
+		private cdr: ChangeDetectorRef,
+		private zone: NgZone,
+		@Inject(PLATFORM_ID) private platformId: Object
+	) {}
 
-	faqs = [
-		{
-			q: 'Does CaptureKit work on Windows?',
-			a: 'Today we focus on macOS for the best native experience. Windows is on our roadmap—join the waitlist to get notified.',
-		},
-		{
-			q: 'Is there a free trial?',
-			a: 'Yes. Start free, then upgrade anytime. You can cancel with a click.',
-		},
-		{
-			q: 'Where are my files stored?',
-			a: 'By default, everything is local. If you enable cloud upload, links are private by default and you control retention.',
-		},
-		{
-			q: 'Do you offer team discounts?',
-			a: 'Yes—volume discounts start at 10 seats. Contact us for details.',
-		},
-	];
+	private scrollHandler = () => {
+		const show = window.scrollY <= 50;
+		if (show !== this.showScrollIndicator) {
+			this.zone.run(() => {
+				this.showScrollIndicator = show;
+				this.cdr.markForCheck();
+			});
+		}
+	};
 
-	get price() {
-		return {
-			free: '0',
-			pro: this.yearly ? '$8' : '$10',
-			teams: this.yearly ? '$12' : '$15',
-		};
+	ngOnInit() {
+		if (isPlatformBrowser(this.platformId)) {
+			window.addEventListener('scroll', this.scrollHandler, { passive: true });
+		}
 	}
 
-	currentYear = new Date().getFullYear();
+	ngOnDestroy() {
+		if (isPlatformBrowser(this.platformId)) {
+			window.removeEventListener('scroll', this.scrollHandler);
+		}
+	}
 
-	icons = icons;
-	readonly Camera = Camera;
-	readonly Zap = Zap;
-	readonly Sparkles = Sparkles;
-	readonly Shield = Shield;
-	readonly Monitor = Monitor;
-	readonly Layers = Layers;
-	readonly ChevronRight = ChevronRight;
-	readonly Star = Star;
-	readonly Phone = Phone;
-	readonly Contact = Contact;
-	readonly Play = Play;
-	readonly ArrowRight = ArrowRight;
-	readonly Wand2 = Wand2;
-	readonly Scissors = Scissors;
-	readonly Share2 = Share2;
-	readonly Cloud = Cloud;
-	readonly check = Check;
-	readonly arrow = ArrowDown;
-	readonly User = User;
-	readonly BrainCircuit = BrainCircuit;
-	readonly drill = Drill;
-	readonly Route = Route;
-	readonly Check = Check;
-	readonly Handshake = Handshake;
-	readonly Calendar = Calendar;
-	readonly FileText = FileText;
-	readonly PiggyBank = PiggyBank;
-	readonly Rocket = Rocket;
+	navLinks: NavLink[] = [
+		{ label: 'AI-agenter', href: '#agents' },
+		{ label: 'Robotik', href: '#robotics' },
+		{ label: 'Kontakt', href: '#contact' },
+	];
+
+	scrollTo(event: Event, fragment: string) {
+		event.preventDefault();
+		this.mobileMenuOpen = false;
+		const id = fragment.replace('#', '');
+		const el = document.getElementById(id);
+		if (el) {
+			el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	}
+
+	stats: Stat[] = [
+		{ value: '50+', label: 'AI-agenter i drift' },
+		{ value: '99.9%', label: 'Drifttid' },
+		{ value: '<200ms', label: 'Svarstid lokalt' },
+		{ value: '100%', label: 'Svensk data i Sverige' },
+	];
+
+	logos = ['LKAB', 'Boliden', 'Volvo', 'SSAB', 'Scania', 'Ericsson'];
 
 	tabs = [
 		{
-			id: 'AI-agents',
+			id: 'ai-agents',
 			label: 'AI-agenter',
-			filename: 'agent.ai',
-			icon: this.BrainCircuit,
 		},
 		{
-			id: 'annotate',
-			label: 'Annotate',
-			filename: 'annotate-demo.png',
-			icon: this.Wand2,
-		},
-		{
-			id: 'robots',
+			id: 'robotics',
 			label: 'Robotik',
-			filename: 'share-demo.png',
-			icon: this.Share2,
 		},
 		{
-			id: 'robots',
-			label: 'Robotik',
-			filename: 'share-demo.png',
-			icon: this.drill,
+			id: 'digital-twin',
+			label: 'Digital tvilling',
 		},
 	];
 
@@ -183,16 +181,73 @@ export class HomeComponent {
 		queueMicrotask(() => this.tabBtns.get(this.active)?.nativeElement?.focus());
 	}
 
+	features: Feature[] = [
+		{
+			title: 'Virtuella AI-agenter',
+			desc: 'Skräddarsydda agenter för juridik, vård, handel och industri — tränade på svensk data med full spårbarhet.',
+		},
+		{
+			title: 'Fysisk AI & robotik',
+			desc: 'Från digital tvilling till verklighet. Sim-to-Real-pipeline med NVIDIA Isaac Sim för lager och produktion.',
+		},
+		{
+			title: 'Säkerhet & compliance',
+			desc: 'GDPR-säkrad drift. On-prem eller svensk molnregion. Full loggning och spårbarhet i varje steg.',
+		},
+		{
+			title: 'Lokal inferens',
+			desc: 'Kör LLM:er lokalt utan molnberoende. Låg latens, hög säkerhet, alltid tillgänglig.',
+		},
+		{
+			title: 'Integration & API',
+			desc: 'Sömlös koppling till era befintliga system — ERP, CRM, journal, ärendehantering och mer.',
+		},
+		{
+			title: 'Flerspråksstöd',
+			desc: 'Svenska som förstaspråk med stöd för engelska och fler språk vid behov.',
+		},
+	];
+
+	robotCapabilities: RobotCapability[] = [
+		{
+			title: 'Digital tvilling',
+			desc: 'Bygg en exakt digital kopia av er anläggning. Testa och optimera innan ni rullar ut i verkligheten.',
+		},
+		{
+			title: 'Sim-to-Real',
+			desc: 'Träna robotar i simulering och överför direkt till fysisk hårdvara med minimalt gap.',
+		},
+		{
+			title: 'Fleet orchestration',
+			desc: 'Orkestrera hundratals autonoma enheter i realtid — AMR, robotarmar, humanoids.',
+		},
+		{
+			title: 'Safety layer',
+			desc: 'EU AI-Act-redo säkerhetslager med kontinuerlig övervakning och automatiska nödstopp.',
+		},
+	];
+
+	robotChips = [
+		'NVIDIA Isaac Sim',
+		'Omniverse',
+		'Digital tvilling',
+		'Sim→Real',
+		'Fleet intelligence',
+		'OTA-uppdateringar',
+		'Sensor simulation',
+		'Safety layer',
+	];
+
 	cards: Card[] = [
 		{
 			id: 'public',
 			title: 'Offentlig sektor',
-			desc: 'AI-agenter som effektiviserar e-tjänster, handläggning och kommunikation - med full efterlevnad.',
+			desc: 'AI-agenter som effektiviserar e-tjänster, handläggning och kommunikation — med full efterlevnad.',
 			icon: 'Building',
 			details: [
 				'Automatiserad handläggning & e-tjänster',
 				'GDPR- & offentlighetsanpassade arbetsflöden',
-				'Integration med diarieföring/ärendehantering',
+				'Integration med diariesystem',
 				'Språkstöd svenska/engelska',
 				'Säker drift: on-prem eller svensk molnregion',
 			],
@@ -203,34 +258,34 @@ export class HomeComponent {
 			desc: 'Säkra, spårbara arbetsflöden för granskning, research och dokumentproduktion.',
 			icon: 'Scale',
 			details: [
-				'Dokumentanalys & due diligence med källhänvisningar',
+				'Dokumentanalys & due diligence',
 				'Mallgenerering & aktbilagor',
-				'Sekretess-/etik-kontroller och full loggning',
+				'Sekretess-/etik-kontroller',
 				'Rättsdatabas-sök med citat & referenser',
-				'Klientportal & tidsregistrering (integrationsklar)',
+				'Klientportal & tidsregistrering',
 			],
 		},
 		{
 			id: 'healthcare',
 			title: 'Hälso- & sjukvård',
-			desc: 'Beslutsstöd nära vårdflöden - designat för PDL och högsta säkerhet.',
+			desc: 'Beslutsstöd nära vårdflöden — designat för PDL och högsta säkerhet.',
 			icon: 'Stethoscope',
 			details: [
-				'Journal-sammanfattningar & triage-stöd',
+				'Journal-sammanfattningar & triage',
 				'ICD-/KVÅ-förslag (assisterat)',
 				'Säkra diktat-/OCR-flöden',
 				'HL7/FHIR-integrationer',
-				'Drift i enlighet med patientdatalagen',
+				'Drift enligt patientdatalagen',
 			],
 		},
 		{
 			id: 'manufacturing',
 			title: 'Industri & tillverkning',
-			desc: 'Operativ co-pilot för produktion, kvalitet och säkerhet - direkt i linans system.',
+			desc: 'Operativ co-pilot för produktion, kvalitet och säkerhet — direkt i linans system.',
 			icon: 'Factory',
 			details: [
 				'SOP-assistans & felsökning',
-				'Prediktivt underhåll (datakopplingar)',
+				'Prediktivt underhåll',
 				'Ritnings-/CAD-OCR till åtgärdslistor',
 				'EHS/ISO-efterlevnadsguider',
 				'Skiftöverlämning & kunskapsgraf',
@@ -242,22 +297,22 @@ export class HomeComponent {
 			desc: 'Personliga upplevelser och smart kundtjänst som lyfter konvertering och NPS.',
 			icon: 'ShoppingCart',
 			details: [
-				'Produkttexter & översättningar i skala',
-				'Kundtjänst-agent med orderstatus/returer',
+				'Produkttexter & översättningar',
+				'Kundtjänst-agent med orderstatus',
 				'Prishistorik & kampanjsammanfattning',
 				'PIM/ERP/CRM-integrationer',
-				'Rådgivning i realtid online',
+				'Rådgivning i realtid',
 			],
 		},
 		{
 			id: 'realestate',
 			title: 'Fastighet & bygg',
-			desc: 'Från anbud och AMA till besiktning - styrt av spårbarhet och standarder.',
+			desc: 'Från anbud och AMA till besiktning — styrt av spårbarhet och standarder.',
 			icon: 'House',
 			details: [
 				'Anbuds- & AF-utkast',
-				'Ritnings-/AMA-tolkning till checklistor',
-				'ÄTA-/ändringshantering med spårbarhet',
+				'Ritnings-/AMA-tolkning',
+				'ÄTA-/ändringshantering',
 				'Besiktningsprotokoll via foto/OCR',
 				'Byggdagbok & arbetsmiljöstöd',
 			],
@@ -271,4 +326,97 @@ export class HomeComponent {
 	}
 
 	trackById = (_: number, item: Card) => item.id;
+
+	roadmap: RoadmapItem[] = [
+		{
+			phase: 'Fas 1',
+			title: 'Virtuella agenter',
+			items: ['VERA-01 för advokatbyråer', 'Lokala LLM-pipelines', 'API & integrationsramverk'],
+			status: 'done',
+		},
+		{
+			phase: 'Fas 2',
+			title: 'Branschexpansion',
+			items: [
+				'Agenter för vård, offentlig sektor & handel',
+				'Multi-agent orkestrering',
+				'Enterprise-grade säkerhet',
+			],
+			status: 'active',
+		},
+		{
+			phase: 'Fas 3',
+			title: 'Fysisk AI & robotik',
+			items: [
+				'Digital tvilling-pipeline',
+				'Sim-to-Real med NVIDIA Isaac',
+				'Fleet orchestration för lager & industri',
+			],
+			status: 'upcoming',
+		},
+	];
+
+	testimonials: Testimonial[] = [
+		{
+			initials: 'JL',
+			quote:
+				'Catso har helt förändrat hur vi hanterar juridiska dokument. Från timmar till minuter.',
+			name: 'Johan Lindström',
+			role: 'Delägare, Advokatbyrån Lindström & Co',
+			stars: 5,
+		},
+		{
+			initials: 'AE',
+			quote:
+				'Säkerheten och spårbarheten är i en helt annan liga. Vi kan äntligen lita på AI i vården.',
+			name: 'Anna Eriksson',
+			role: 'IT-chef, Region Norrbotten',
+			stars: 5,
+		},
+		{
+			initials: 'MN',
+			quote:
+				'Robotik-visionen med digital tvilling är exakt vad svensk industri behöver för nästa steg.',
+			name: 'Marcus Nilsson',
+			role: 'CTO, Nordic Logistics AB',
+			stars: 5,
+		},
+	];
+
+	faqs: FAQ[] = [
+		{
+			q: 'Vad är Catso?',
+			a: 'Catso bygger virtuella och fysiska AI-agenter för svenska företag och myndigheter. Vi levererar allt från juridiska AI-assistenter till robotik-pipelines med digitala tvillingar.',
+		},
+		{
+			q: 'Hur skiljer sig Catso från ChatGPT eller andra AI-tjänster?',
+			a: 'Catso kör lokalt hos er med modeller tränade på svensk data. Ingen data lämnar er miljö. Vi erbjuder spårbarhet, källhänvisningar och branschspecifika moduler — inte en generell chattbot.',
+		},
+		{
+			q: 'Vad är VERA-01?',
+			a: 'VERA-01 är en av våra AI-agenter, specifikt byggd för svenska advokatbyråer. Den analyserar ärenden, genererar dokument och hänvisar till svenska rättskällor. Den är ett exempel på vad Catso kan bygga för just er bransch.',
+		},
+		{
+			q: 'Hur fungerar robotik-delen?',
+			a: 'Vi bygger en Sim-to-Real-pipeline med NVIDIA Isaac Sim och Omniverse. Det innebär att vi skapar digitala tvillingar av era anläggningar, tränar robot-AI i simulering och rullar sedan ut i verkligheten med full säkerhet.',
+		},
+		{
+			q: 'Lämnar vår data Sverige?',
+			a: 'Nej. All drift sker lokalt hos er eller i svensk molnregion. Vi använder inga externa molntjänster som skickar data utanför Sverige.',
+		},
+		{
+			q: 'Kan vi boka en demo?',
+			a: 'Absolut. Fyll i kontaktformuläret eller mejla oss direkt så bokar vi en tid som passar er.',
+		},
+	];
+
+	expandedFaq: number | null = null;
+
+	toggleFaq(index: number) {
+		this.expandedFaq = this.expandedFaq === index ? null : index;
+	}
+
+	toggleMobileMenu() {
+		this.mobileMenuOpen = !this.mobileMenuOpen;
+	}
 }
