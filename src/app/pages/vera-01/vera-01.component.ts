@@ -32,7 +32,7 @@ import { ExpertAreasComponent } from './expert-areas/expert-areas.component';
 		HeroComponent,
 		TopBannerComponent,
 		NavComponent,
-		TrustedByComponent,
+		// TrustedByComponent,
 		FaqComponent,
 		ModellWorkspacesComponent,
 		CommonModule,

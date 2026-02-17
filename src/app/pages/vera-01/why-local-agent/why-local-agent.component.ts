@@ -1,52 +1,52 @@
 import { Component } from '@angular/core';
 
 interface Feature {
-   title: string;
-   description: string;
-   imageUrl: string;
+	title: string;
+	subtitle: string;
+	description: string;
+	imageUrl: string;
+	detail: string;
+	tags: string[];
 }
 
 @Component({
-   selector: 'app-why-local-agent',
-   standalone: true,
-   imports: [],
-   templateUrl: './why-local-agent.component.html',
-   styleUrl: './why-local-agent.component.scss',
+	selector: 'app-why-local-agent',
+	standalone: true,
+	imports: [],
+	templateUrl: './why-local-agent.component.html',
+	styleUrl: './why-local-agent.component.scss',
 })
 export class WhyLocalAgentComponent {
-   public features: Feature[] = [
-      {
-         title: 'GDPR-säkrad',
-         imageUrl: 'assets/imgs/gdpr.png',
-         description: 'All data stannar hos er. Inga externa molntjänster.',
-      },
-      {
-         title: 'Spårbar juridik',
-         imageUrl: 'assets/imgs/books.jpg',
+	activeFeature: Feature | null = null;
 
-         description: 'Källhänvisningar till svenska rättskällor (lagrum, praxis, kapitel/paragrafer).',
-      },
-      {
-         title: 'Djupare insikter',
-         imageUrl: 'assets/imgs/riskdetect.png',
+	open(feature: Feature): void {
+		this.activeFeature = feature;
+	}
 
-         description: 'Flaggar avvikelser, otydliga klausuler och dolda risker innan de blir dyra problem.',
-      },
-      {
-         title: 'Mer debiterbar tid',
-         imageUrl: 'assets/imgs/timeismoney.jpg',
+	close(): void {
+		this.activeFeature = null;
+	}
 
-         description: 'Automatisera repetitiva arbetet: lägg mer tid på kvalificerad rådgivning.',
-      },
-      {
-         title: 'Alltid tillgänglig',
-         imageUrl: 'assets/imgs/nocloud.png',
-         description: 'Fungerar även utan internet. Låg latens och noll molnberoenden.',
-      },
-      {
-         imageUrl: 'assets/imgs/fast.jpg',
-         title: 'Från timmar till minuter',
-         description: 'Få en omedelbar överblick och en komplett sammanfattning på rekordtid.',
-      },
-   ];
+	public features: Feature[] = [
+		{
+			title: 'Total sekretess',
+			subtitle: 'Er data lämnar aldrig byrån.',
+			imageUrl: 'assets/imgs/gdpr.png',
+			tags: ['VRGA 2.2', 'GDPR', 'Kap. 5c'],
+			description:
+				'Tystnadsplikt, GDPR och tredjelandsöverföring — löst genom en enda arkitektur: lokal drift. Ingen molnleverantör, ingen träning på er data, ingen risk.',
+			detail:
+				'Advokatsamfundets vägledning (2025) kräver att klientinformation inte får användas för träning eller utdata till andra, att personuppgifter inte överförs till tredje land utan skyddsåtgärder, och att advokaten granskar leverantörens sekretessvillkor. VERA-01 eliminerar samtliga risker genom att köras helt lokalt — ingen data lämnar er infrastruktur, inga promptar skickas till externa API:er, och modellen tränas aldrig på ert material.',
+		},
+		{
+			title: 'Juridisk precision',
+			subtitle: 'Varje svar grundat i rättskällor.',
+			imageUrl: 'assets/imgs/books.jpg',
+			tags: ['VRGA 2.1.2', 'VRGA 2.5'],
+			description:
+				'Källhänvisningar till lagrum, praxis och förarbeten. Riskflaggning av oklara klausuler. Från timmar till minuter — utan att tumma på metoden.',
+			detail:
+				'Advokatens råd ska vara grundade på erforderliga undersökningar av gällande rätt, och rådgivningsansvaret gäller fullt ut oavsett om rådet baseras på GenAI. VERA-01 refererar alltid till specifika lagrum, rättsfall och förarbeten så att advokaten kan verifiera varje slutsats. Systemet flaggar otydliga formuleringar och dolda risker — och gör det på minuter istället för timmar.',
+		},
+	];
 }
