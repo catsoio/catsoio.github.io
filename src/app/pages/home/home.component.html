@@ -1,6 +1,424 @@
-<section class="hero-container">
-	<div class="hero-text">
-		<h1>catso AI</h1>
-		<p>AI and Robotics Infrastructure</p>
+<div class="min-h-screen bg-white text-black">
+	<!-- ═══════════════════ NAV ═══════════════════ -->
+	<div
+		class="fixed top-0 left-0 right-0 z-50 w-full border-b border-white/10 bg-black/20 backdrop-blur supports-[backdrop-filter]:bg-black/10"
+	>
+		<nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
+			<!-- Left: Logo -->
+			<div class="flex items-center gap-3 shrink-0">
+				<img src="/assets/imgs/catso-logo-blackwhite.png" class="h-10 w-10 invert" alt="Catso" />
+				<span class="text-lg font-semibold tracking-tight hidden sm:inline text-white">Catso</span>
+			</div>
+
+			<!-- Center: Links -->
+			<div class="hidden lg:flex items-center gap-6">
+				<a
+					*ngFor="let link of navLinks"
+					[href]="link.href"
+					(click)="scrollTo($event, link.href)"
+					class="text-sm text-white/70 hover:text-white transition-colors cursor-pointer"
+				>
+					{{ link.label }}
+				</a>
+			</div>
+
+			<!-- Right: CTA + hamburger -->
+			<div class="flex items-center gap-2 shrink-0">
+				<a
+					href="#contact"
+					(click)="scrollTo($event, '#contact')"
+					class="hidden sm:inline-flex items-center justify-center rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-11 px-5 text-sm font-medium transition-colors"
+				>
+					Prata med oss
+				</a>
+				<button
+					(click)="toggleMobileMenu()"
+					class="lg:hidden inline-flex items-center justify-center h-11 w-11 rounded-2xl border border-white/20 hover:bg-white/10 transition-colors text-white"
+					[attr.aria-expanded]="mobileMenuOpen"
+					aria-label="Öppna meny"
+				>
+					<svg
+						*ngIf="!mobileMenuOpen"
+						class="h-5 w-5"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M4 6h16M4 12h16M4 18h16" />
+					</svg>
+					<svg
+						*ngIf="mobileMenuOpen"
+						class="h-5 w-5"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M18 6 6 18M6 6l12 12" />
+					</svg>
+				</button>
+			</div>
+		</nav>
+
+		<!-- Mobile menu -->
+		<div
+			*ngIf="mobileMenuOpen"
+			class="lg:hidden border-t border-white/10 bg-black/80 backdrop-blur px-4 py-3 space-y-1"
+		>
+			<a
+				*ngFor="let link of navLinks"
+				[href]="link.href"
+				(click)="scrollTo($event, link.href)"
+				class="block rounded-xl px-4 py-3 text-sm font-medium text-white/70 hover:bg-white/10 transition-colors"
+			>
+				{{ link.label }}
+			</a>
+			<a
+				href="#contact"
+				(click)="scrollTo($event, '#contact')"
+				class="block px-4 py-3 text-sm font-medium text-black bg-white text-center rounded-2xl mt-2"
+			>
+				Prata med oss
+			</a>
+		</div>
 	</div>
-</section>
+
+	<!-- ═══════════════════ HERO ═══════════════════ -->
+	<header class="relative min-h-[90vh] flex items-center overflow-hidden">
+		<!-- Background image -->
+		<img
+			src="/assets/imgs/catso-hero-background.avif"
+			alt=""
+			class="absolute inset-0 h-full w-full object-cover"
+		/>
+		<!-- Dark overlay -->
+		<div class="absolute inset-0 bg-black/60"></div>
+
+		<div class="relative mx-auto max-w-7xl px-4 py-20 md:px-6 w-full">
+			<div class="max-w-3xl">
+				<h1
+					class="text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1]"
+				>
+					Sveriges främsta
+					<div style="height: 10px"></div>
+					<span class="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+						AI och robotik-leverantör.
+					</span>
+				</h1>
+
+				<p class="mt-6 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl">
+					Virtuella och fysiska AI-agenter — från digitala tvillingar och robot-flottor till
+					intelligent automatisering. För alla branscher.
+				</p>
+
+				<div class="mt-10 flex flex-col gap-3 sm:flex-row">
+					<a
+						href="#contact"
+						(click)="scrollTo($event, '#contact')"
+						class="inline-flex items-center justify-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-12 px-6 text-base font-medium transition-colors"
+					>
+						Prata med en expert
+					</a>
+					<a
+						href="#agents"
+						(click)="scrollTo($event, '#agents')"
+						class="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/10 text-white hover:bg-white/20 backdrop-blur h-12 px-6 text-base font-medium transition-colors"
+					>
+						Se våra AI-agenter
+					</a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Scroll indicator -->
+	<button
+		(click)="scrollTo($event, '#robotics')"
+		class="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-1 cursor-pointer transition-opacity duration-500"
+		[class.opacity-0]="!showScrollIndicator"
+		[class.pointer-events-none]="!showScrollIndicator"
+	>
+		<span class="text-white/40 text-xs tracking-widest uppercase">Scrolla</span>
+		<svg
+			class="h-6 w-6 text-white/50 animate-bounce"
+			fill="none"
+			viewBox="0 0 24 24"
+			stroke="currentColor"
+			stroke-width="2"
+		>
+			<path d="M19 14l-7 7m0 0l-7-7" />
+		</svg>
+	</button>
+
+	<!-- ═══════════════════ ROBOTIK DEEP DIVE ═══════════════════ -->
+	<section
+		id="robotics"
+		class="border-t border-black/10 bg-black text-white min-h-[80vh] flex items-center"
+	>
+		<div class="mx-auto max-w-7xl px-4 py-20 md:px-6 w-full">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<!-- Left: Content -->
+				<div>
+					<span
+						class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/60 mb-4"
+					>
+						Physical AI
+					</span>
+					<h2 class="text-3xl font-semibold tracking-tight md:text-5xl">
+						Robotik för
+						<span
+							class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent"
+						>
+							svensk industri.
+						</span>
+					</h2>
+					<p class="mt-5 text-white/50 text-lg leading-relaxed">
+						Vi bygger AI-hjärnan som styr autonoma robotflottor i lager, gruvor och
+						produktionsanläggningar. Från simulering till driftsatt verklighet — utan att riskera en
+						enda produktionstimme.
+					</p>
+					<p class="mt-4 text-white/40 text-base leading-relaxed">
+						Genom digitala tvillingar kan ni testa och optimera hela er anläggning virtuellt innan
+						en enda robot rör sig på golvet. Resultatet: snabbare utrullning, lägre risk och mätbar
+						ROI från dag ett.
+					</p>
+
+					<div class="mt-8 space-y-4">
+						<div class="flex items-start gap-3">
+							<span class="text-sm text-white/70">
+								Bygg en exakt digital kopia av er anläggning
+							</span>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="text-sm text-white/70">
+								Träna och validera robot-AI i simulering innan driftsättning
+							</span>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="text-sm text-white/70">
+								Orkestrera hundratals enheter i realtid med centrala uppdateringar
+							</span>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="text-sm text-white/70">
+								Kontinuerlig övervakning och säkerhet i enlighet med EU AI Act
+							</span>
+						</div>
+					</div>
+
+					<div class="mt-8 flex flex-wrap gap-3">
+						<a
+							href="#contact"
+							(click)="scrollTo($event, '#contact')"
+							class="inline-flex items-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-12 px-6 text-sm font-medium transition-colors"
+						>
+							Boka intro
+						</a>
+						<a
+							href="#contact"
+							(click)="scrollTo($event, '#contact')"
+							class="inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-white/5 text-white/90 hover:bg-white/10 h-12 px-6 text-sm font-medium transition-colors backdrop-blur"
+						>
+							Bli partner
+						</a>
+					</div>
+				</div>
+
+				<!-- Right: Visual -->
+				<div class="relative aspect-square max-w-lg mx-auto w-full overflow-hidden rounded-3xl">
+					<video
+						src="/assets/imgs/inudstriAIVideo.mp4"
+						autoplay
+						loop
+						muted
+						playsinline
+						class="absolute inset-0 h-full w-full object-cover"
+					></video>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════ AI-AGENTER DEEP DIVE ═══════════════════ -->
+	<section
+		id="agents"
+		class="border-t border-black/10 bg-50 text-black min-h-[80vh] flex items-center"
+	>
+		<div class="mx-auto max-w-7xl px-4 py-20 md:px-6 w-full">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<!-- Left: Visual -->
+				<div
+					class="relative aspect-square max-w-lg mx-auto w-full overflow-hidden rounded-3xl order-2 lg:order-1"
+				>
+					<img
+						src="/assets/imgs/catsoaiagent.png"
+						alt="AI-agent som analyserar dokument"
+						class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-105"
+					/>
+				</div>
+
+				<!-- Right: Content -->
+				<div class="order-1 lg:order-2">
+					<span
+						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/60 mb-4"
+					>
+						Virtual AI
+					</span>
+					<h2 class="text-3xl font-semibold tracking-tight md:text-5xl">
+						AI-agenter för
+						<span class="bg-gradient-to-r from-black to-black/50 bg-clip-text text-transparent">
+							varje bransch.
+						</span>
+					</h2>
+					<p class="mt-5 text-black/50 text-lg leading-relaxed">
+						Vi bygger skräddarsydda AI-agenter som förstår er bransch, ert språk och era regler.
+						Agenter som inte bara svarar — utan resonerar, hänvisar till källor och levererar
+						spårbara resultat.
+					</p>
+					<p class="mt-4 text-black/40 text-base leading-relaxed">
+						Allt körs lokalt hos er. Ingen data lämnar er miljö. Ni behåller full kontroll — vi
+						levererar intelligensen.
+					</p>
+
+					<div class="mt-8 space-y-4">
+						<div class="flex items-start gap-3">
+							<span class="text-sm text-black/70">
+								Tränade på svensk data med branschspecifika modeller
+							</span>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="text-sm text-black/70">
+								Spårbara svar med källhänvisningar i varje steg
+							</span>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="text-sm text-black/70">
+								Lokal drift utan molnberoende — GDPR-säkrad från grunden
+							</span>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="text-sm text-black/70">
+								Sömlös integration med era befintliga system och arbetsflöden
+							</span>
+						</div>
+					</div>
+
+					<div class="mt-8 flex flex-wrap gap-3">
+						<a
+							href="#contact"
+							(click)="scrollTo($event, '#contact')"
+							class="inline-flex items-center gap-2 rounded-2xl bg-black text-white hover:bg-black/90 shadow-sm h-12 px-6 text-sm font-medium transition-colors"
+						>
+							Boka intro
+						</a>
+						<a
+							href="#contact"
+							(click)="scrollTo($event, '#contact')"
+							class="inline-flex items-center gap-2 rounded-2xl border border-black/10 bg-white text-black hover:bg-black/5 h-12 px-6 text-sm font-medium transition-colors"
+						>
+							Se användningsfall
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════ CTA ═══════════════════ -->
+	<section id="contact" class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-5xl px-4 py-20 md:px-6">
+			<div class="relative overflow-hidden rounded-3xl bg-black p-10 md:p-16 text-center">
+				<!-- Glows -->
+				<div class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl"></div>
+				<div
+					class="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl"
+				></div>
+
+				<div class="relative">
+					<h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+						Redo att bygga er AI-framtid?
+					</h2>
+					<p class="mt-4 text-white/50 text-lg leading-relaxed max-w-xl mx-auto">
+						Oavsett om ni vill automatisera juridik, optimera lager med robotar eller bygga er egen
+						AI-agent — vi hjälper er hela vägen.
+					</p>
+					<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+						<a
+							href="mailto:hello@catso.io"
+							class="inline-flex items-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-12 px-6 text-base font-medium transition-colors"
+						>
+							hello&#64;catso.io
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════ FOOTER ═══════════════════ -->
+	<footer class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-7xl px-4 py-10 md:px-6">
+			<div class="grid grid-cols-1 gap-10 md:grid-cols-4">
+				<div class="md:col-span-2">
+					<div class="flex items-center gap-3">
+						<img src="/assets/imgs/catso-logo-blackwhite.png" class="h-8 w-9" alt="Catso" />
+						<span class="text-lg font-semibold tracking-tight">Catso</span>
+					</div>
+					<p class="mt-4 max-w-md text-sm text-black/50">
+						Sveriges främsta AI och robotik-leverantör. Virtuella och fysiska AI-agenter för alla
+						branscher.
+					</p>
+				</div>
+				<div>
+					<h4 class="text-sm font-semibold text-black">Plattform</h4>
+					<ul class="mt-3 space-y-2 text-sm text-black/50">
+						<li>
+							<a
+								href="#agents"
+								(click)="scrollTo($event, '#agents')"
+								class="hover:text-black transition-colors"
+								>AI-agenter</a
+							>
+						</li>
+						<li>
+							<a
+								href="#robotics"
+								(click)="scrollTo($event, '#robotics')"
+								class="hover:text-black transition-colors"
+								>Robotik</a
+							>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-sm font-semibold text-black">Företag</h4>
+					<ul class="mt-3 space-y-2 text-sm text-black/50">
+						<li>
+							<a
+								href="#contact"
+								(click)="scrollTo($event, '#contact')"
+								class="hover:text-black transition-colors"
+								>Kontakt</a
+							>
+						</li>
+						<li>
+							<a href="mailto:hello@catso.io" class="hover:text-black transition-colors"
+								>hello&#64;catso.io</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div
+				class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-black/10 pt-6 text-sm text-black/40 md:flex-row"
+			>
+				<p>© {{ currentYear }} Catso AB. Alla rättigheter förbehållna.</p>
+				<div class="flex items-center gap-4">
+					<a href="#" class="hover:text-black transition-colors">Villkor</a>
+					<a href="#" class="hover:text-black transition-colors">Integritetspolicy</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
