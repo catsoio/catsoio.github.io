@@ -41,31 +41,31 @@ export class ExpertAreasComponent implements OnInit {
    expertomraden: Expertomrade[] = [
       {
          key: 'dokumentutkast',
-         title: 'VERA-01 Dokumentutkast',
+         title: 'Dokumentutkast',
          short: 'Skapar och hanterar juridiska dokument. Exportera som PDF, Word eller valfritt format.',
          category: 'Process & Tvist',
       },
       {
          key: 'arandeanalys',
-         title: 'VERA-01 Ärendeanalys',
+         title: 'Ärendeanalys',
          short: 'Analyserar ärendet mot lag och praxis; sammanfattar slutsats, risker, nästa steg.',
          category: 'Process & Tvist',
       },
       {
          key: 'lagfragor',
-         title: 'VERA-01 Lagfrågor',
+         title: 'Lagfrågor',
          short: 'Förklarar lagrum, visar tillämpning i ditt scenario, anger källor.',
          category: 'Kärnflöden',
       },
       {
          key: 'avtalsgransk',
-         title: 'VERA-01 Avtalsgranskning',
+         title: 'Avtalsgranskning',
          short: 'Identifierar risker och oklarheter; granskar klausuler; föreslår konkreta ändringar och förhandlingspunkter.',
          category: 'Process & Tvist',
       },
       {
          key: 'handelseforlopp',
-         title: 'VERA-01 Händelseförlopp',
+         title: 'Händelseförlopp',
          short: 'Bryter ner händelser i en tydlig tidslinje; markerar oklarheter, luckor, bevispunkter.',
          category: 'Kärnflöden',
       },
