@@ -44,47 +44,67 @@ export class HeroComponent implements AfterViewInit {
 		{ text: '\n\n' },
 		{ text: 'Tillämplig rätt: ', className: 'text-white/90 font-semibold' },
 		{
-			text: 'Avtalslagens första kapitel reglerar bildandet av avtal genom anbud och accept. Enligt ',
+			text: 'Avtalsbildning regleras i ',
 		},
 		{ text: '1 kap. 1 § AvtL', className: 'text-veraGold' },
 		{
-			text: ' är ett anbud bindande för den som avgett det, och ett svar som överensstämmer med anbudet är bindande för den som svarar. Fullmaktsreglerna återfinns i ',
+			text: ', enligt vilken anbud och därmed överensstämmande accept är bindande för respektive part. Ställningsfullmakt regleras i ',
 		},
-		{ text: '2 kap. 10 § AvtL', className: 'text-veraGold' },
+		{ text: '2 kap. 10 § 2 st. AvtL', className: 'text-veraGold' },
 		{
-			text: ', där första stycket stadgar att den som ger fullmakt binder huvudmannen för rättshandlingar som fullmäktigen utför inom fullmaktens gränser, och andra stycket fastslår att en anställd med en viss ställning anses ha fullmakt att handla inom de befogenheter som följer av den ställningen. Om en tvist uppstår om huruvida fullmakten överskridits, regleras bevisbördan i ',
+			text: ', som stadgar att den som intar en ställning varigenom hen enligt lag eller sedvänja har behörighet att handla på annans vägnar, binder huvudmannen genom rättshandlingar inom denna behörighet. Avgörande distinktion är den mellan ',
 		},
-		{ text: '2 kap. 25 § AvtL', className: 'text-veraGold' },
+		{ text: 'behörighet', className: 'text-white/90 font-semibold' },
 		{
-			text: ', där den som uppträder som fullmäktig för annan ansvarar för att kunna styrka att fullmakten föreligger och att handlingen är inom dess räckvidd.',
+			text: ' (vad fullmäktigen kan göra med bindande verkan mot tredje man) och ',
 		},
+		{ text: 'befogenhet', className: 'text-white/90 font-semibold' },
+		{
+			text: ' (de interna instruktioner huvudmannen meddelat fullmäktigen). Vid ställningsfullmakt är huvudmannen bunden även om befogenheten överskrids, förutsatt att tredje man var i god tro avseende befogenhetsöverskridandet, se ',
+		},
+		{ text: '2 kap. 11 § 2 st. AvtL', className: 'text-veraGold' },
+		{ text: '.' },
 		{ text: '\n\n' },
 		{ text: 'Bedömning: ', className: 'text-white/90 font-semibold' },
 		{
-			text: 'Avtalsbildningens första rekvisit, anbud, är uppfyllt eftersom Maria tydligt erbjöd Carl en elcykel för 34 000 kr, vilket motsvarar ett bindande anbud enligt ',
+			text: 'Avtalsbildningen är ostridig — Maria lämnade ett anbud om 34 000 kr som Carl accepterade, varför avtal träffats enligt ',
 		},
 		{ text: '1 kap. 1 § AvtL', className: 'text-veraGold' },
 		{
-			text: '. Det andra rekvisitet, accept, är också uppfyllt då Carl utan avvikelser accepterade erbjudandet. Fullmaktskravet är tillfredsställt eftersom Maria är anställd i försäljningsavdelningen och har en normal befogenhet att ingå försäljningsavtal för företagets räkning; detta utgör en implikativ fullmakt enligt ',
+			text: '. Den centrala frågan är fullmakten. Maria har en ',
 		},
-		{ text: '2 kap. 10 § AvtL', className: 'text-veraGold' },
+		{ text: 'ställningsfullmakt', className: 'text-white/90 font-semibold' },
 		{
-			text: '. Vidare har Maria handlat inom de befogenheter som följer av hennes anställning – det finns ingen information om att CykelPro AB har satt en maximal rabatt eller på annat sätt begränsat hennes förhandlingsutrymme – och hon har därför inte överskridit fullmaktens gränser. Enligt ',
+			text: ' enligt ',
 		},
-		{ text: '2 kap. 25 § AvtL', className: 'text-veraGold' },
-		{ text: ' ligger bevisbördan för att visa att Maria saknade befogenhet på CykelPro AB.' },
+		{ text: '2 kap. 10 § 2 st. AvtL', className: 'text-veraGold' },
+		{
+			text: '. Hon sköter butiksförsäljningen självständigt, vilket innebär att hon intar en ställning som enligt sedvänja medför behörighet att ingå försäljningsavtal och förhandla pris. Att sälja en cykel till 34 000 kr faller inom denna ',
+		},
+		{ text: 'behörighet', className: 'text-white/90 font-semibold' },
+		{
+			text: '. Även om Jonas internt avsett en snävare ',
+		},
+		{ text: 'befogenhet', className: 'text-white/90 font-semibold' },
+		{
+			text: ' (t.ex. en maximal rabattnivå), har sådana begränsningar inte kommunicerats till Carl och är därför inte verksamma mot honom. Carl hade vidare fog att uppfatta priset som rimligt — kampanjerbjudandet på märke X låg på samma nivå (34 000 kr) — och borde inte ha insett ett eventuellt befogenhetsöverskridande. Carl är därmed i ',
+		},
+		{ text: 'god tro', className: 'text-white/90 font-semibold' },
+		{
+			text: ' enligt ',
+		},
+		{ text: '2 kap. 11 § 2 st. AvtL', className: 'text-veraGold' },
+		{ text: '.' },
 		{ text: '\n\n' },
 		{ text: 'Slutsats: ', className: 'text-white/90 font-semibold' },
 		{ text: 'CykelPro AB är ' },
 		{ text: 'bundet av avtalet', className: 'text-white/90 font-semibold' },
 		{
-			text: ' med Carl eftersom alla nödvändiga rekvisit – anbud, accept, fullmakt och handlande inom fullmaktens gränser – är uppfyllda enligt ',
+			text: '. Maria handlade inom sin behörighet som ställningsfullmäktig enligt ',
 		},
-		{ text: '1 kap. 1 § AvtL', className: 'text-veraGold' },
-		{ text: ' och ' },
-		{ text: '2 kap. 10 § AvtL', className: 'text-veraGold' },
+		{ text: '2 kap. 10 § 2 st. AvtL', className: 'text-veraGold' },
 		{
-			text: '. Företaget kan endast ogiltigförklara avtalet om det kan bevisa att Maria överskred sin befogenhet, vilket för närvarande saknas.',
+			text: ', och Carl var i god tro. Jonas kan inte ogiltigförklara avtalet gentemot Carl, men CykelPro AB kan ha ett internt anspråk mot Maria om hon överskridit sina interna instruktioner.',
 		},
 	];
 
