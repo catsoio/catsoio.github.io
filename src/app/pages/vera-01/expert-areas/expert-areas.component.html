@@ -183,41 +183,113 @@
 				</button>
 			</div>
 
-			<form class="mt-5 grid gap-3" (ngSubmit)="onSubmit()">
-				<input
-					type="text"
-					name="name"
-					autocomplete="name"
-					placeholder="Ditt namn"
-					[(ngModel)]="contact.name"
-					required
-					class="rounded-md bg-white/5 px-3.5 py-2 text-sm text-white placeholder:text-zinc-500 ring-1 ring-inset ring-white/10 focus:outline-none focus:ring-2 focus:ring-veraGold"
-				/>
-				<input
-					type="email"
-					name="email"
-					autocomplete="email"
-					placeholder="E‑post"
-					[(ngModel)]="contact.email"
-					required
-					class="rounded-md bg-white/5 px-3.5 py-2 text-sm text-white placeholder:text-zinc-500 ring-1 ring-inset ring-white/10 focus:outline-none focus:ring-2 focus:ring-veraGold"
-				/>
-				<input
-					type="text"
-					name="org"
-					autocomplete="organization"
-					placeholder="Byrå"
-					[(ngModel)]="contact.org"
-					class="rounded-md bg-white/5 px-3.5 py-2 text-sm text-white placeholder:text-zinc-500 ring-1 ring-inset ring-white/10 focus:outline-none focus:ring-2 focus:ring-veraGold"
-				/>
+			<form class="mt-5 grid gap-3" (ngSubmit)="onSubmit()" #demoForm="ngForm" novalidate>
+				<div>
+					<input
+						type="text"
+						name="name"
+						autocomplete="name"
+						placeholder="Ditt namn"
+						[(ngModel)]="contact.name"
+						required
+						minlength="2"
+						#nameField="ngModel"
+						class="w-full rounded-md bg-white/5 px-3.5 py-2 text-sm text-white placeholder:text-zinc-500 ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-veraGold"
+						[class.ring-white/10]="nameField.valid || nameField.pristine"
+						[class.ring-red-500]="nameField.invalid && nameField.touched"
+					/>
+					@if (nameField.invalid && nameField.touched) {
+						<p class="mt-1 text-xs text-red-400">
+							@if (nameField.errors?.['required']) {
+								Namn krävs.
+							} @else if (nameField.errors?.['minlength']) {
+								Minst 2 tecken.
+							}
+						</p>
+					}
+				</div>
+				<div>
+					<input
+						type="email"
+						name="email"
+						autocomplete="email"
+						placeholder="E‑post"
+						[(ngModel)]="contact.email"
+						required
+						email
+						#emailField="ngModel"
+						class="w-full rounded-md bg-white/5 px-3.5 py-2 text-sm text-white placeholder:text-zinc-500 ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-veraGold"
+						[class.ring-white/10]="emailField.valid || emailField.pristine"
+						[class.ring-red-500]="emailField.invalid && emailField.touched"
+					/>
+					@if (emailField.invalid && emailField.touched) {
+						<p class="mt-1 text-xs text-red-400">
+							@if (emailField.errors?.['required']) {
+								E‑post krävs.
+							} @else if (emailField.errors?.['email']) {
+								Ogiltig e‑postadress.
+							}
+						</p>
+					}
+				</div>
+				<div>
+					<input
+						type="text"
+						name="org"
+						autocomplete="organization"
+						placeholder="Byrå"
+						[(ngModel)]="contact.org"
+						#orgField="ngModel"
+						class="w-full rounded-md bg-white/5 px-3.5 py-2 text-sm text-white placeholder:text-zinc-500 ring-1 ring-inset ring-white/10 focus:outline-none focus:ring-2 focus:ring-veraGold"
+					/>
+				</div>
 				<button
 					type="submit"
-					[disabled]="selectedCount() === 0"
+					[disabled]="selectedCount() === 0 || demoForm.invalid"
 					class="mt-1 rounded-md bg-veraGold px-6 py-2.5 text-sm font-semibold text-black shadow-sm hover:opacity-90 disabled:bg-zinc-700 disabled:text-zinc-300"
 				>
-					Skicka ({{ selectedCount() }})
+					Skicka ({{ selectedCount() }} valda moduler)
 				</button>
 			</form>
+		</div>
+	</div>
+}
+
+<!-- Bekräftelse-popup -->
+@if (showConfirmation()) {
+	<div class="fixed inset-0 z-50 flex items-end justify-center sm:items-center">
+		<div class="absolute inset-0 bg-black/60" (click)="closeConfirmation()"></div>
+		<div
+			class="relative z-10 w-full max-w-md rounded-2xl border border-white/10 bg-zinc-950 p-8 shadow-xl text-center"
+		>
+			<div
+				class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-veraGold/15"
+			>
+				<svg class="h-6 w-6 text-veraGold" viewBox="0 0 20 20" fill="currentColor">
+					<path
+						fill-rule="evenodd"
+						d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</div>
+			<h3 class="text-lg font-semibold text-white">Tack för din förfrågan!</h3>
+			<p class="mt-2 text-sm text-zinc-400">Vi har tagit emot din demo‑begäran för:</p>
+			<ul class="mt-3 space-y-1">
+				@for (title of confirmationTitles(); track title) {
+					<li class="text-sm font-medium text-veraGold">{{ title }}</li>
+				}
+			</ul>
+			<p class="mt-4 text-sm text-zinc-400">
+				En bekräftelse skickas till din e‑post. Vi återkommer inom kort.
+			</p>
+			<button
+				type="button"
+				(click)="closeConfirmation()"
+				class="mt-6 rounded-md bg-veraGold px-6 py-2.5 text-sm font-semibold text-black shadow-sm hover:opacity-90"
+			>
+				Stäng
+			</button>
 		</div>
 	</div>
 }

@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DemoBookingService, DemoRequest } from '../../../services/vera01/demo-booking.service';
+import {
+	ContactUsRequest,
+	DemoBookingService,
+} from '../../../services/vera01/demo-booking.service';
 
 @Component({
 	selector: 'app-book-a-demo',
@@ -43,15 +46,19 @@ export class BookADemoComponent {
 		}
 
 		this.loading.set(true);
-		const payload: DemoRequest = {
+
+		const today = new Date();
+
+		const payload: ContactUsRequest = {
 			name: this.form.value.name!,
 			email: this.form.value.email!,
-			firm: this.form.value.firm!,
+			byra: this.form.value.firm!,
 			message: this.form.value.message ?? '',
+			date: today.toString(),
 		};
 
 		try {
-			await this.api.createDemoRequest(payload);
+			await this.api.contactUsRequest(payload);
 			this.success.set('Tack! Vi hör av oss med förslag på tid.');
 			this.form.reset();
 		} catch (e: any) {
