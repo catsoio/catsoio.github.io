@@ -1,0 +1,215 @@
+/* --- GRUNDINSTÄLLNINGAR FÖR PIPS --- */
+.animated-pip {
+	/* Skapar "pipsen" (streckad linje) */
+	stroke-dasharray: 15 20;
+	/* Linjerna rör sig jämnt framåt i evighet när opacity är aktiv */
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	/* Premium glow effekt */
+	filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
+}
+
+/* --- DEN TAJMADE SEKVENSLOOPN (Total tid: 9 sekunder) --- */
+
+/* Fas 1: Input (Synlig mellan 0% - 30% av tiden) */
+.flow-phase-1 {
+	animation-name: flow-forward, opacity-phase-1;
+	animation-duration: 3s, 9s;
+}
+
+/* Fas 2: Källor (Synlig mellan 30% - 60% av tiden) */
+.flow-phase-2 {
+	animation-name: flow-forward, opacity-phase-2;
+	animation-duration: 3s, 9s;
+}
+
+/* Fas 3: Output (Synlig mellan 60% - 85% av tiden) */
+.flow-phase-3 {
+	animation-name: flow-forward, opacity-phase-3;
+	animation-duration: 3s, 9s;
+}
+
+/* Drivkraften bakom pipsens rörelse längs med SVG-banan */
+@keyframes flow-forward {
+	from {
+		stroke-dashoffset: 70;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+/* Opacitets-tajming för Fas 1 (Input) */
+@keyframes opacity-phase-1 {
+	0%,
+	5% {
+		opacity: 0;
+	}
+	10%,
+	25% {
+		opacity: 1;
+	}
+	30%,
+	100% {
+		opacity: 0;
+	}
+}
+
+/* Opacitets-tajming för Fas 2 (Källor) */
+@keyframes opacity-phase-2 {
+	0%,
+	25% {
+		opacity: 0;
+	}
+	30%,
+	55% {
+		opacity: 1;
+	}
+	60%,
+	100% {
+		opacity: 0;
+	}
+}
+
+/* Opacitets-tajming för Fas 3 (Output) */
+@keyframes opacity-phase-3 {
+	0%,
+	55% {
+		opacity: 0;
+	}
+	60%,
+	80% {
+		opacity: 1;
+	}
+	85%,
+	100% {
+		opacity: 0;
+	}
+}
+
+/* --- UI ANIMATIONER FÖR ATT MATCHA SEKVENSERNA --- */
+
+/* Får hela kärnan i mitten att lysa starkare under Fas 2 (när den processar källor) */
+.core-glow {
+	animation: core-processing 9s infinite ease-in-out;
+}
+@keyframes core-processing {
+	0%,
+	25% {
+		box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+	}
+	35%,
+	55% {
+		box-shadow: 0 0 60px rgba(212, 175, 55, 0.4);
+		border-color: rgba(212, 175, 55, 0.6);
+		transform: scale(1.02);
+	}
+	65%,
+	100% {
+		box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+	}
+}
+
+/* Liten konstant puls på inre loggan */
+.scale-pulse {
+	animation: pulse-size 4s ease-in-out infinite alternate;
+}
+@keyframes pulse-size {
+	0% {
+		transform: scale(0.95);
+		opacity: 0.8;
+	}
+	100% {
+		transform: scale(1.05);
+		opacity: 1;
+		filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+	}
+}
+
+/* Källorna "vaknar" och lyser upp när de anropas i Fas 2 */
+.source-fade {
+	animation: source-wake 9s infinite;
+}
+@keyframes source-wake {
+	0%,
+	25% {
+		opacity: 0.6;
+		transform: translateX(5px);
+	}
+	35%,
+	55% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+	65%,
+	100% {
+		opacity: 0.6;
+		transform: translateX(5px);
+	}
+}
+
+/* Output-rutan i botten "poppar" upp när pipsen når fram i Fas 3/4 */
+.output-activate {
+	animation: output-pop 9s infinite;
+}
+@keyframes output-pop {
+	0%,
+	75% {
+		opacity: 0.4;
+		transform: translateY(10px);
+		filter: grayscale(0.8);
+	}
+	80%,
+	95% {
+		opacity: 1;
+		transform: translateY(0);
+		filter: grayscale(0);
+		box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+		border-color: rgba(212, 175, 55, 0.5);
+	}
+	100% {
+		opacity: 0.4;
+		transform: translateY(10px);
+		filter: grayscale(0.8);
+	}
+}
+/* --- TIMELINE TAGS SEKVENSER --- */
+/* Tag 1 poppar in vid 62% av loopen */
+.tag-anim-1 { animation: pop-tag-1 9s infinite; }
+@keyframes pop-tag-1 {
+    0%, 60%  { opacity: 0; transform: translateX(-10px); }
+    62%, 95% { opacity: 1; transform: translateX(0); }
+    100%     { opacity: 0; transform: translateX(-10px); }
+}
+
+/* Tag 2 poppar in strax efter vid 66% */
+.tag-anim-2 { animation: pop-tag-2 9s infinite; }
+@keyframes pop-tag-2 {
+    0%, 64%  { opacity: 0; transform: translateX(-10px); }
+    66%, 95% { opacity: 1; transform: translateX(0); }
+    100%     { opacity: 0; transform: translateX(-10px); }
+}
+
+/* Tag 3 poppar in vid 70% */
+.tag-anim-3 { animation: pop-tag-3 9s infinite; }
+@keyframes pop-tag-3 {
+    0%, 68%  { opacity: 0; transform: translateX(-10px); }
+    70%, 95% { opacity: 1; transform: translateX(0); }
+    100%     { opacity: 0; transform: translateX(-10px); }
+}
+
+/* Tag 4 poppar in vid 74% */
+.tag-anim-4 { animation: pop-tag-4 9s infinite; }
+@keyframes pop-tag-4 {
+    0%, 72%  { opacity: 0; transform: translateX(-10px); }
+    74%, 95% { opacity: 1; transform: translateX(0); }
+    100%     { opacity: 0; transform: translateX(-10px); }
+}
+
+/* Slutdokumentet poppar upp i slutet av pipen vid 80% */
+.final-doc-anim { animation: pop-doc 9s infinite; }
+@keyframes pop-doc {
+    0%, 78%  { opacity: 0; transform: translateX(-50%) translateY(15px) scale(0.95); }
+    81%, 95% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+    100%     { opacity: 0; transform: translateX(-50%) translateY(15px) scale(0.95); }
+}

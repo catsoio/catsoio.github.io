@@ -9,11 +9,12 @@ import {
 	Renderer2,
 	ViewChild,
 } from '@angular/core';
+import { VeraHeroFlow } from './vera-hero-flow/vera-hero-flow';
 
 @Component({
 	selector: 'app-hero',
 	standalone: true,
-	imports: [],
+	imports: [VeraHeroFlow],
 	templateUrl: './hero.component.html',
 	styleUrl: './hero.component.scss',
 })
