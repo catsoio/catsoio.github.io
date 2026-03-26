@@ -1,35 +1,25 @@
 /* --- GRUNDINSTÄLLNINGAR FÖR PIPS --- */
 .animated-pip {
-	/* Skapar "pipsen" (streckad linje) */
 	stroke-dasharray: 15 20;
-	/* Linjerna rör sig jämnt framåt i evighet när opacity är aktiv */
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
-	/* Premium glow effekt */
 	filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
 }
 
 /* --- DEN TAJMADE SEKVENSLOOPN (Total tid: 9 sekunder) --- */
-
-/* Fas 1: Input (Synlig mellan 0% - 30% av tiden) */
 .flow-phase-1 {
 	animation-name: flow-forward, opacity-phase-1;
 	animation-duration: 3s, 9s;
 }
-
-/* Fas 2: Källor (Synlig mellan 30% - 60% av tiden) */
 .flow-phase-2 {
 	animation-name: flow-forward, opacity-phase-2;
 	animation-duration: 3s, 9s;
 }
-
-/* Fas 3: Output (Synlig mellan 60% - 85% av tiden) */
 .flow-phase-3 {
 	animation-name: flow-forward, opacity-phase-3;
 	animation-duration: 3s, 9s;
 }
 
-/* Drivkraften bakom pipsens rörelse längs med SVG-banan */
 @keyframes flow-forward {
 	from {
 		stroke-dashoffset: 70;
@@ -39,7 +29,6 @@
 	}
 }
 
-/* Opacitets-tajming för Fas 1 (Input) */
 @keyframes opacity-phase-1 {
 	0%,
 	5% {
@@ -55,7 +44,6 @@
 	}
 }
 
-/* Opacitets-tajming för Fas 2 (Källor) */
 @keyframes opacity-phase-2 {
 	0%,
 	25% {
@@ -71,7 +59,6 @@
 	}
 }
 
-/* Opacitets-tajming för Fas 3 (Output) */
 @keyframes opacity-phase-3 {
 	0%,
 	55% {
@@ -89,7 +76,31 @@
 
 /* --- UI ANIMATIONER FÖR ATT MATCHA SEKVENSERNA --- */
 
-/* Får hela kärnan i mitten att lysa starkare under Fas 2 (när den processar källor) */
+/* Input-rutan lyser upp (Fas 1) */
+.input-pulse {
+	animation: input-wake 9s infinite ease-in-out;
+}
+@keyframes input-wake {
+	0%,
+	5% {
+		border-color: rgba(255, 255, 255, 0.05);
+		box-shadow: 0 0 0px rgba(212, 175, 55, 0);
+	}
+	10%,
+	25% {
+		border-color: rgba(212, 175, 55, 0.4);
+		box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+		transform: translateX(-50%) scale(1.02);
+	}
+	30%,
+	100% {
+		border-color: rgba(255, 255, 255, 0.05);
+		box-shadow: 0 0 0px rgba(212, 175, 55, 0);
+		transform: translateX(-50%) scale(1);
+	}
+}
+
+/* Kärnan processar källor (Fas 2) */
 .core-glow {
 	animation: core-processing 9s infinite ease-in-out;
 }
@@ -97,20 +108,21 @@
 	0%,
 	25% {
 		box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+		border-color: rgba(212, 175, 55, 0.3);
 	}
 	35%,
 	55% {
 		box-shadow: 0 0 60px rgba(212, 175, 55, 0.4);
-		border-color: rgba(212, 175, 55, 0.6);
-		transform: scale(1.02);
+		border-color: rgba(212, 175, 55, 0.8);
+		transform: translateX(-50%) scale(1.03);
 	}
 	65%,
 	100% {
 		box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+		border-color: rgba(212, 175, 55, 0.3);
 	}
 }
 
-/* Liten konstant puls på inre loggan */
 .scale-pulse {
 	animation: pulse-size 4s ease-in-out infinite alternate;
 }
@@ -126,90 +138,209 @@
 	}
 }
 
-/* Källorna "vaknar" och lyser upp när de anropas i Fas 2 */
+/* Hela källblocket vaknar till liv (Fas 2) */
 .source-fade {
 	animation: source-wake 9s infinite;
 }
 @keyframes source-wake {
 	0%,
 	25% {
-		opacity: 0.6;
+		opacity: 0.5;
 		transform: translateX(5px);
+		filter: grayscale(0.8);
+		border-color: rgba(255, 255, 255, 0.05);
 	}
 	35%,
 	55% {
 		opacity: 1;
 		transform: translateX(0px);
+		filter: grayscale(0);
+		border-color: rgba(212, 175, 55, 0.4);
+		box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
 	}
 	65%,
 	100% {
-		opacity: 0.6;
+		opacity: 0.5;
 		transform: translateX(5px);
+		filter: grayscale(0.8);
+		border-color: rgba(255, 255, 255, 0.05);
 	}
 }
 
-/* Output-rutan i botten "poppar" upp när pipsen når fram i Fas 3/4 */
-.output-activate {
-	animation: output-pop 9s infinite;
+/* --- OUTPUT (CHAT) ANIMATIONER --- */
+
+/* "VERA tänker..." visas kort i början av Fas 3 */
+.typing-cursor-anim {
+	animation: typing-reveal 9s infinite;
 }
-@keyframes output-pop {
+@keyframes typing-reveal {
 	0%,
-	75% {
-		opacity: 0.4;
-		transform: translateY(10px);
-		filter: grayscale(0.8);
+	55% {
+		opacity: 0;
+		transform: translate(-50%, 10px);
 	}
-	80%,
+	58%,
+	65% {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+	68%,
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -10px);
+		pointer-events: none;
+	}
+}
+.typing-dot {
+	animation: dot-bounce 1s infinite ease-in-out;
+}
+@keyframes dot-bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+		opacity: 0.5;
+	}
+	50% {
+		transform: translateY(-3px);
+		opacity: 1;
+	}
+}
+
+/* Chattrutan poppar fram i slutet av loopen */
+.final-chat-anim {
+	animation: chat-reveal 9s infinite;
+}
+@keyframes chat-reveal {
+	0%,
+	65% {
+		opacity: 0;
+		transform: translate(-50%, 15px);
+	}
+	70%,
 	95% {
 		opacity: 1;
-		transform: translateY(0);
-		filter: grayscale(0);
-		box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
-		border-color: rgba(212, 175, 55, 0.5);
+		transform: translate(-50%, 0);
 	}
 	100% {
-		opacity: 0.4;
-		transform: translateY(10px);
-		filter: grayscale(0.8);
+		opacity: 0;
+		transform: translate(-50%, 15px);
 	}
 }
-/* --- TIMELINE TAGS SEKVENSER --- */
-/* Tag 1 poppar in vid 62% av loopen */
-.tag-anim-1 { animation: pop-tag-1 9s infinite; }
-@keyframes pop-tag-1 {
-    0%, 60%  { opacity: 0; transform: translateX(-10px); }
-    62%, 95% { opacity: 1; transform: translateX(0); }
-    100%     { opacity: 0; transform: translateX(-10px); }
+
+/* Text som streamas fram */
+.typewriter-text {
+	animation: text-fade-in 9s infinite;
+}
+@keyframes text-fade-in {
+	0%,
+	72% {
+		opacity: 0;
+	}
+	78%,
+	95% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+/* ... Behåll koden fram till @keyframes opacity-phase-2 ... */
+
+/* Fas 3: Pipen syns exakt när laddningsindikatorn är uppe */
+@keyframes opacity-phase-3 {
+	0%,
+	55% {
+		opacity: 0;
+	}
+	58%,
+	68% {
+		opacity: 1;
+	} /* Lyser medan VERA "tänker" */
+	70%,
+	100% {
+		opacity: 0;
+	}
 }
 
-/* Tag 2 poppar in strax efter vid 66% */
-.tag-anim-2 { animation: pop-tag-2 9s infinite; }
-@keyframes pop-tag-2 {
-    0%, 64%  { opacity: 0; transform: translateX(-10px); }
-    66%, 95% { opacity: 1; transform: translateX(0); }
-    100%     { opacity: 0; transform: translateX(-10px); }
+/* Vänster sida (Analysmoduler) pulserar samtidigt som källorna (Höger) */
+.process-fade {
+	animation: source-wake 9s infinite;
 }
 
-/* Tag 3 poppar in vid 70% */
-.tag-anim-3 { animation: pop-tag-3 9s infinite; }
-@keyframes pop-tag-3 {
-    0%, 68%  { opacity: 0; transform: translateX(-10px); }
-    70%, 95% { opacity: 1; transform: translateX(0); }
-    100%     { opacity: 0; transform: translateX(-10px); }
+/* --- OUTPUT (CHAT) ANIMATIONER --- */
+
+/* "VERA tänker..." - Ligger uppe under hela Fas 3-pipen */
+.typing-cursor-anim {
+	animation: typing-reveal 9s infinite;
+}
+@keyframes typing-reveal {
+	0%,
+	55% {
+		opacity: 0;
+		transform: translate(-50%, 10px);
+	}
+	58%,
+	68% {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	} /* Matchar pipe-fas 3 */
+	69%,
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -10px);
+		pointer-events: none;
+	}
+}
+.typing-dot {
+	animation: dot-bounce 1s infinite ease-in-out;
+}
+@keyframes dot-bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+		opacity: 0.5;
+	}
+	50% {
+		transform: translateY(-3px);
+		opacity: 1;
+	}
 }
 
-/* Tag 4 poppar in vid 74% */
-.tag-anim-4 { animation: pop-tag-4 9s infinite; }
-@keyframes pop-tag-4 {
-    0%, 72%  { opacity: 0; transform: translateX(-10px); }
-    74%, 95% { opacity: 1; transform: translateX(0); }
-    100%     { opacity: 0; transform: translateX(-10px); }
+/* Chattrutan poppar fram exakt när laddningsindikatorn försvinner */
+.final-chat-anim {
+	animation: chat-reveal 9s infinite;
+}
+@keyframes chat-reveal {
+	0%,
+	68% {
+		opacity: 0;
+		transform: translate(-50%, 15px);
+	}
+	70%,
+	95% {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	} /* Poppar in vid 70% */
+	100% {
+		opacity: 0;
+		transform: translate(-50%, 15px);
+	}
 }
 
-/* Slutdokumentet poppar upp i slutet av pipen vid 80% */
-.final-doc-anim { animation: pop-doc 9s infinite; }
-@keyframes pop-doc {
-    0%, 78%  { opacity: 0; transform: translateX(-50%) translateY(15px) scale(0.95); }
-    81%, 95% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-    100%     { opacity: 0; transform: translateX(-50%) translateY(15px) scale(0.95); }
+/* Text som streamas fram strax efter rutan visas */
+.typewriter-text {
+	animation: text-fade-in 9s infinite;
+}
+@keyframes text-fade-in {
+	0%,
+	72% {
+		opacity: 0;
+	}
+	75%,
+	95% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }
