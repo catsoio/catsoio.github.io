@@ -100,28 +100,50 @@ export const routes: Routes = [
 	// 	},
 	// },
 	{
+		// Föräldra-routen har nu INGEN komponent. Den agerar bara "mapp" för URL:en.
 		path: 'vera-01',
-		loadComponent: () => import('./pages/vera-01/vera-01.component').then((m) => m.Vera01Component),
-		data: {
-			seo: {
-				title: 'VERA-01 | AI-agent för svenska advokatbyråer',
-				description: 'Er lokala AI-drivna juristexpert. - Konstruerad och Tränad på svensk lag.',
-				og: { type: 'product', image: '/assets/imgs/vera01banner3d.png' },
-				twitter: {
-					card: 'summary_large_image',
-					image: '/assets/imgs/vera01banner3d.png',
+		children: [
+			{
+				// Landningssidan ligger nu på den tomma pathen (dvs /vera-01)
+				path: '',
+				loadComponent: () =>
+					import('./pages/vera-01/vera-01.component').then((m) => m.Vera01Component),
+				data: {
+					seo: {
+						title: 'VERA-01 | AI-agent för svenska advokatbyråer',
+						description:
+							'Er lokala AI-drivna juristexpert. - Konstruerad och Tränad på svensk lag.',
+						og: { type: 'product', image: '/assets/imgs/vera01banner3d.png' },
+						twitter: {
+							card: 'summary_large_image',
+							image: '/assets/imgs/vera01banner3d.png',
+						},
+						jsonLd: {
+							'@context': 'https://schema.org',
+							'@type': 'SoftwareApplication',
+							name: 'Vera',
+							applicationCategory: 'BusinessApplication',
+							operatingSystem: 'Web',
+							url: 'https://catso.io/vera-01',
+							offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
+						},
+					} as RouteSEO,
 				},
-				jsonLd: {
-					'@context': 'https://schema.org',
-					'@type': 'SoftwareApplication',
-					name: 'Vera',
-					applicationCategory: 'BusinessApplication',
-					operatingSystem: 'Web',
-					url: 'https://catso.io/vera-01',
-					offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
+			},
+			{
+				// Manualen ligger på /vera-01/instruktioner
+				path: 'instruktioner',
+				loadComponent: () =>
+					import('./pages/vera-01/vera-get-started/vera-get-started').then((m) => m.VeraGetStarted),
+				data: {
+					seo: {
+						title: 'Kom igång | VERA-01',
+						description:
+							'Lär dig hur du använder VERA-01 och dess olika moduler för juridiskt arbete.',
+					},
 				},
-			} as RouteSEO,
-		},
+			},
+		],
 	},
 	{
 		path: 'hemmafest',
