@@ -1,10 +1,4 @@
-import {
-	Component,
-	computed,
-	EventEmitter,
-	Output,
-	signal,
-} from '@angular/core';
+import { Component, computed, EventEmitter, Output, signal } from '@angular/core';
 import { BookADemoComponent } from './book-a-demo/book-a-demo.component';
 import { FooterComponent } from './footer/footer.component';
 import { HowVeraThinkComponent } from './how-vera-think/how-vera-think.component';
@@ -17,9 +11,9 @@ import { TrustedByComponent } from './trusted-by/trusted-by.component';
 import { FaqComponent } from './faq/faq.component';
 import { ModellWorkspacesComponent } from './modell-workspaces/modell-workspaces.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpertAreasComponent } from './expert-areas/expert-areas.component';
-
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
 	selector: 'app-vera-01',
@@ -37,7 +31,12 @@ import { ExpertAreasComponent } from './expert-areas/expert-areas.component';
 		ModellWorkspacesComponent,
 		CommonModule,
 		FormsModule,
+		RouterOutlet,
+		CommonModule,
+		ReactiveFormsModule,
+		RouterLink,
 	],
+
 	templateUrl: './vera-01.component.html',
 	styleUrl: './vera-01.component.scss',
 })
