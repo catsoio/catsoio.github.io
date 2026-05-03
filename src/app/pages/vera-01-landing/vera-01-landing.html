@@ -127,59 +127,33 @@
 			}
 		</div>
 	</nav>
-	<section id="home" class="relative pt-32 lg:pt-40 pb-20 lg:pb-32 overflow-hidden">
-		<video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-			<source
-				src="https://videos.pexels.com/video-files/7898696/7898696-hd_1920_1080_30fps.mp4"
-				type="video/mp4"
+	<app-vera01hero></app-vera01hero>
+
+	<section class="relative py-20 lg:py-32 border-t border-slate-800/50 overflow-hidden">
+		<!-- Bakgrundsbild med Overlay -->
+		<div class="absolute inset-0 z-0">
+			<img
+				src="assets/imgs/gdpr.png"
+				alt="Bakgrund"
+				class="w-full h-full object-cover opacity-70"
 			/>
-		</video>
+			<!-- Gradient för att säkerställa att texten är läsbar -->
+			<div
+				class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"
+			></div>
+		</div>
 
-		<div class="absolute inset-0 bg-slate-950/70 z-10"></div>
-		<div
-			class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-veraGold/10 rounded-full blur-3xl z-10"
-		></div>
-		<div class="absolute top-32 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl z-10"></div>
-
-		<div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-8">
-			<div class="max-w-4xl">
-				<h1 class="font-serif text-4xl sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight mb-6">
-					En <span class="text-veraBronze">lokal</span> AI-agent för <br />
-					<span class="text-slate-400">advokatbyråer.</span>
-				</h1>
-
-				<p class="text-lg lg:text-xl text-slate-400 max-w-2xl leading-relaxed mb-10">
-					Eliminerar alla kritiska risker med molnbaserad AI.
-				</p>
-
-				<div class="flex flex-col sm:flex-row gap-3">
-					<a
-						href="#demo"
-						(click)="scrollTo('demo', $event)"
-						class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-veraGold hover:bg-veraBronze text-slate-950 font-semibold transition-all shadow-xl shadow-veraGold/20 hover:shadow-veraGold/40"
-					>
-						Boka demo
-						<span aria-hidden="true">→</span>
-					</a>
-					<a
-						href="#workflows"
-						(click)="scrollTo('workflows', $event)"
-						class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-slate-100 font-medium transition-all"
-					>
-						Se arbetsflöden
-					</a>
-				</div>
-
-				<div
-					class="mt-10 sm:mt-16 grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 sm:gap-4"
-				>
+		<div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+			<div class="max-w-2xl">
+				<!-- Tags -->
+				<div class="flex flex-wrap items-center gap-3 mb-8">
 					@for (tag of tags; track tag) {
 					<p
-						class="inline-flex items-center justify-center sm:justify-start gap-2 rounded-full bg-white/5 px-3 py-2 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-medium text-veraGold ring-1 ring-veraGold/20 whitespace-nowrap"
+						class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-1.5 text-sm font-medium text-veraGold ring-1 ring-veraGold/20 backdrop-blur-sm"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							class="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0"
+							class="h-4 w-4 shrink-0"
 							fill="none"
 							viewBox="0 0 24 24"
 							stroke="currentColor"
@@ -195,134 +169,19 @@
 					</p>
 					}
 				</div>
-			</div>
-		</div>
-	</section>
 
-	<section class="relative py-20 lg:py-32 border-t border-slate-800/50">
-		<div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col gap-20 lg:gap-32">
-			<!-- Del 1: Bild vänster, text höger -->
-			<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-				<div
-					class="group relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-900"
-				>
-					<img
-						src="assets/imgs/gdpr.png"
-						alt="Total sekretess"
-						class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-					/>
-					<div
-						class="absolute inset-0 rounded-2xl border border-veraGold/0 transition-colors duration-300 group-hover:border-veraGold/20"
-					></div>
-				</div>
-				<div>
-					<h2 class="font-serif text-3xl lg:text-5xl tracking-tight mb-6 leading-tight">
-						Total sekretess
-					</h2>
-					<p class="text-lg text-slate-400 leading-relaxed">
-						VERA-01 körs lokalt och kräver inga externa anslutningar. Varje fråga, dokument och
-						analys stannar hos er.
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ============ SECURITY USP ============ -->
-	<section
-		id="security"
-		class="relative py-20 lg:py-32 border-t border-slate-800/50 overflow-hidden"
-	>
-		<div class="absolute inset-0 bg-gradient-to-b from-slate-950 to-slate-900/40"></div>
-		<div
-			class="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-veraGold/5 rounded-full blur-3xl"
-		></div>
-
-		<div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-			<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-				<div>
-					<h2 class="font-serif text-3xl lg:text-5xl tracking-tight mb-6 leading-tight">
-						Varför <span class="text-veraBronze">lokal</span> AI-agent?
-					</h2>
-					<p class="text-lg text-slate-400 leading-relaxed mb-8">
-						Sveriges Advokatsamfund har identifierat kritiska risker med molnbaserad AI.
-						<span class="text-veraBronze">VERA-01 eliminerar dem.</span>
-					</p>
-
-					<div class="space-y-4">
-						<div class="flex gap-4">
-							<div
-								class="w-10 h-10 rounded-lg bg-veraGold/10 border border-veraGold/20 flex items-center justify-center flex-shrink-0"
-							>
-								<span class="text-veraBronze">🛡️</span>
-							</div>
-							<div>
-								<h3 class="font-medium text-slate-100 mb-1">Inga molnmodeller</h3>
-								<p class="text-sm text-slate-400 leading-relaxed">
-									All inferens sker lokalt. Inga externa modeller i kedjan.
-								</p>
-							</div>
-						</div>
-						<div class="flex gap-4">
-							<div
-								class="w-10 h-10 rounded-lg bg-veraGold/10 border border-veraGold/20 flex items-center justify-center flex-shrink-0"
-							>
-								<span class="text-veraBronze">🔒</span>
-							</div>
-							<div>
-								<h3 class="font-medium text-slate-100 mb-1">Ingen träning på byråns data</h3>
-								<p class="text-sm text-slate-400 leading-relaxed">
-									Dokumenten används aldrig för att träna någon annans modell.
-								</p>
-							</div>
-						</div>
-						<div class="flex gap-4">
-							<div
-								class="w-10 h-10 rounded-lg bg-veraGold/10 border border-veraGold/20 flex items-center justify-center flex-shrink-0"
-							>
-								<span class="text-veraBronze">📜</span>
-							</div>
-							<div>
-								<h3 class="font-medium text-slate-100 mb-1">Spårbarhet och granskningslogg</h3>
-								<p class="text-sm text-slate-400 leading-relaxed">
-									Uppladdat, genererat, av vem, när. Fullständig logg per ärende.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="relative">
-					<div
-						class="absolute -inset-4 bg-gradient-to-br from-veraGold/10 via-transparent to-transparent rounded-2xl blur-2xl"
-					></div>
-					<div
-						class="relative bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-2xl p-8"
+				<!-- Textinnehåll -->
+				<h2 class="font-serif text-4xl lg:text-6xl tracking-tight mb-6 leading-tight text-white">
+					Total sekretess
+				</h2>
+				<p class="text-lg lg:text-xl text-slate-300 leading-relaxed">
+					Advokatsamfundets vägledning (2025) kräver att klientinformation inte får användas för
+					träning eller utdata till andra, att personuppgifter inte överförs till tredje land utan
+					skyddsåtgärder, och att advokaten granskar leverantörens sekretessvillkor.
+					<span class="text-white font-medium block mt-4 text-2xl"
+						>Vi eliminerar samtliga risker genom att köra modellen lokalt hos er.</span
 					>
-						<div class="space-y-4">
-							<div class="flex items-center justify-between py-3 border-b border-slate-800">
-								<span class="text-slate-300">VRGA 2.2 — Sekretess</span>
-								<span class="text-veraBronze text-sm font-medium">✓ Uppfylld</span>
-							</div>
-							<div class="flex items-center justify-between py-3 border-b border-slate-800">
-								<span class="text-slate-300">VRGA 2.5 — Tystnadsplikt</span>
-								<span class="text-veraBronze text-sm font-medium">✓ Uppfylld</span>
-							</div>
-							<div class="flex items-center justify-between py-3 border-b border-slate-800">
-								<span class="text-slate-300">GDPR Art. 32 — Säkerhet</span>
-								<span class="text-veraBronze text-sm font-medium">✓ Uppfylld</span>
-							</div>
-							<div class="flex items-center justify-between py-3 border-b border-slate-800">
-								<span class="text-slate-300">GDPR Kap. 5 — Tredjeland</span>
-								<span class="text-veraBronze text-sm font-medium">✓ Ej tillämpligt</span>
-							</div>
-							<div class="flex items-center justify-between py-3">
-								<span class="text-slate-300">ISO 27001-arkitektur</span>
-								<span class="text-veraBronze text-sm font-medium">✓ Stödjer</span>
-							</div>
-						</div>
-					</div>
-				</div>
+				</p>
 			</div>
 		</div>
 	</section>
@@ -483,158 +342,151 @@
 		</div>
 	</section>
 
-	<!-- ============ WORKFLOWS ============ -->
-	<section id="workflows" class="relative py-20 lg:py-32 border-t border-slate-800/50">
+	<section id="workflows" class="py-20 lg:py-32 border-t border-slate-800/50">
 		<div class="max-w-7xl mx-auto px-6 lg:px-8">
-			<div class="max-w-3xl mb-16">
-				<p class="text-xs font-semibold tracking-widest text-veraBronze uppercase mb-4">
-					Arbetsflöden
-				</p>
-				<h2 class="font-serif text-3xl lg:text-5xl tracking-tight mb-6 leading-tight">
-					Moment som tar timmar. <span class="text-slate-500">Varje vecka.</span>
+			<div class="text-center mb-16">
+				<h2 class="font-serif text-3xl lg:text-5xl tracking-tight mb-6">
+					Effektivitet i <span class="text-veraBronze italic">varje</span> led
 				</h2>
-				<p class="text-lg text-slate-400 leading-relaxed">
-					Välj ett arbetsflöde — se exakt vad VERA-01 producerar.
+				<p class="text-lg text-slate-400 max-w-2xl mx-auto">
+					VERA-01 automatiserar de tunga momenten så att du kan fokusera på juridiken.
 				</p>
 			</div>
 
-			<div class="grid lg:grid-cols-12 gap-6 lg:gap-10">
-				<div class="lg:col-span-5 space-y-2">
-					@for (wf of workflows; track wf.id) {
-					<button
-						(click)="setActiveWorkflow(wf.id)"
-						class="w-full text-left p-4 lg:p-5 rounded-xl border transition-all group"
-						[class.bg-slate-800]="activeWorkflowId() === wf.id"
-						[class.border-veraGold]="activeWorkflowId() === wf.id"
-						[class.shadow-lg]="activeWorkflowId() === wf.id"
-						[class.shadow-veraGold-10]="activeWorkflowId() === wf.id"
-						[class.bg-slate-900-30]="activeWorkflowId() !== wf.id"
-						[class.border-slate-800]="activeWorkflowId() !== wf.id"
-						[class.hover:border-slate-700]="activeWorkflowId() !== wf.id"
-						[class.hover:bg-slate-900-60]="activeWorkflowId() !== wf.id"
-					>
-						<div class="flex items-start gap-4">
-							<div class="flex-1 min-w-0">
-								<div class="flex items-center gap-2 mb-1">
-									<h3 class="font-medium text-slate-100">{{ wf.title }}</h3>
-									@if (activeWorkflowId() === wf.id) {
-									<span class="text-veraBronze">→</span>
-									}
-								</div>
-								<p class="text-sm text-slate-400 leading-relaxed">{{ wf.shortDescription }}</p>
-							</div>
+			<div class="grid md:grid-cols-3 gap-6">
+				@for (wf of workflows; track wf.id) {
+				<div
+					class="flex flex-col bg-slate-900/40 border border-slate-800 rounded-2xl p-8 hover:border-veraGold/30 transition-colors"
+				>
+					<!-- Header -->
+					<div class="mb-6">
+						<h3 class="text-xl font-serif text-slate-100 mb-3">{{ wf.title }}</h3>
+						<p class="text-sm text-slate-400 leading-relaxed">{{ wf.shortDescription }}</p>
+					</div>
+
+					<!-- Detaljer -->
+					<ul class="space-y-3 mb-8 flex-1">
+						@for (detail of wf.details; track detail) {
+						<li class="flex items-start gap-3 text-sm text-slate-300">
+							<span class="text-veraBronze mt-1 text-xs">●</span>
+							<span>{{ detail }}</span>
+						</li>
+						}
+					</ul>
+
+					<!-- Tidsskillnad -->
+					<div class="flex items-center justify-between pt-4 border-t border-slate-800">
+						<div>
+							<div class="text-[10px] text-slate-500 uppercase font-bold">Manuellt</div>
+							<div class="text-sm text-slate-400">{{ wf.timeBefore }}</div>
 						</div>
-					</button>
-					}
-				</div>
-
-				<div class="lg:col-span-7">
-					<div
-						class="sticky top-24 bg-gradient-to-br from-slate-900/80 to-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-2xl p-6 lg:p-8"
-					>
-						<h3 class="font-serif text-2xl lg:text-3xl tracking-tight mb-4">
-							{{ activeWorkflow().title }}
-						</h3>
-
-						<p class="text-slate-300 leading-relaxed mb-8">
-							{{ activeWorkflow().shortDescription }}
-						</p>
-
-						<div class="space-y-2 mb-8">
-							@for (detail of activeWorkflow().details; track detail) {
-							<div class="flex items-start gap-3 text-sm text-slate-300">
-								<span class="text-veraBronze mt-0.5">—</span>
-								<span>{{ detail }}</span>
+						<div class="text-right">
+							<div class="text-[10px] text-veraBronze uppercase font-bold text-right">
+								Med VERA-01
 							</div>
-							}
-						</div>
-
-						<div class="grid sm:grid-cols-2 gap-3 mb-6">
-							<div class="bg-slate-800/40 rounded-lg p-4 border border-slate-800">
-								<div class="text-xs text-slate-500 mb-1">Input</div>
-								<div class="text-sm text-slate-200">{{ activeWorkflow().exampleInput }}</div>
-							</div>
-							<div class="bg-veraGold/5 rounded-lg p-4 border border-veraGold/20">
-								<div class="text-xs text-veraBronze mb-1">Output</div>
-								<div class="text-sm text-slate-200">{{ activeWorkflow().exampleOutput }}</div>
-							</div>
-						</div>
-
-						<div class="flex items-center justify-between pt-6 border-t border-slate-800">
-							<div class="flex items-center gap-3">
-								<div>
-									<div class="text-xs text-slate-500">Manuellt</div>
-									<div class="text-lg text-slate-400 line-through">
-										{{ activeWorkflow().timeBefore }}
-									</div>
-								</div>
-								<span class="text-veraBronze text-xl">→</span>
-								<div>
-									<div class="text-xs text-veraBronze">Med VERA-01</div>
-									<div class="text-lg text-slate-100 font-semibold">
-										{{ activeWorkflow().timeAfter }}
-									</div>
-								</div>
-							</div>
-							<a
-								href="#demo"
-								(click)="scrollTo('demo', $event)"
-								class="text-sm font-medium text-veraBronze hover:text-amber-300 transition-colors"
-							>
-								Boka demo →
-							</a>
+							<div class="text-sm text-slate-100 font-bold">{{ wf.timeAfter }}</div>
 						</div>
 					</div>
 				</div>
+				}
 			</div>
 		</div>
 	</section>
-
 	<!-- ============ TIME SAVINGS ============ -->
-	<section id="savings" class="relative py-20 lg:py-32 border-t border-slate-800/50">
+	<!-- ============ VERA VS CHATGPT ============ -->
+	<section id="ai-comparison" class="py-20 lg:py-32 bg-slate-950 border-t border-slate-800/50">
 		<div class="max-w-7xl mx-auto px-6 lg:px-8">
-			<div class="max-w-3xl mb-16">
+			<div class="text-center max-w-3xl mx-auto mb-16">
 				<p class="text-xs font-semibold tracking-widest text-veraBronze uppercase mb-4">
-					Tidsåtgång
+					Säkerhet & Arkitektur
 				</p>
-				<h2 class="font-serif text-3xl lg:text-5xl tracking-tight mb-6 leading-tight">
-					Bättre kvalitet. <span class="text-veraBronze">Bråkdelen av tiden.</span>
+				<h2 class="font-serif text-3xl lg:text-5xl tracking-tight mb-6">
+					Varför inte bara använda ChatGPT?
 				</h2>
-				<p class="text-lg text-slate-400 leading-relaxed">
-					~80 sparade timmar per jurist per månad.
+				<p class="text-lg text-slate-400">
+					Publika AI-modeller är fantastiska, men de är inte byggda för advokatbyråers strikta krav
+					på sekretess, källkritik och svensk rättspraxis.
 				</p>
 			</div>
 
-			<div class="bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden">
+			<div
+				class="max-w-5xl mx-auto bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl"
+			>
 				<div class="overflow-x-auto">
-					<table class="w-full">
+					<table class="w-full text-sm lg:text-base">
 						<thead>
-							<tr class="border-b border-slate-800 text-xs uppercase tracking-wider text-slate-500">
-								<th class="text-left p-5 font-medium">Uppgift</th>
-								<th class="text-left p-5 font-medium">Manuellt</th>
-								<th class="text-left p-5 font-medium">Med VERA-01</th>
-								<th class="text-left p-5 font-medium">Sparad tid</th>
+							<tr class="border-b border-slate-800 bg-slate-900/80">
+								<th class="text-left p-6 font-medium text-slate-300 w-1/3">Krav & Egenskap</th>
+								<th class="text-left p-6 font-medium text-slate-500 w-1/3">
+									Generell AI <span class="text-xs font-normal block mt-1">(t.ex. ChatGPT)</span>
+								</th>
+								<th
+									class="text-left p-6 font-bold text-veraBronze w-1/3 border-l border-slate-800/50 bg-veraBronze/5"
+								>
+									VERA-01
+								</th>
 							</tr>
 						</thead>
 						<tbody>
-							@for (row of timeSavings; track row.task) {
+							@for (feature of aiComparison; track feature.title) {
 							<tr
-								class="border-b border-slate-800 last:border-0 hover:bg-slate-900/40 transition-colors"
+								class="border-b border-slate-800 last:border-0 hover:bg-slate-800/20 transition-colors"
 							>
-								<td class="p-5 text-slate-200">{{ row.task }}</td>
-								<td class="p-5 text-slate-500 line-through">{{ row.before }}</td>
-								<td class="p-5 text-slate-100 font-medium">{{ row.after }}</td>
-								<td class="p-5 text-veraBronze font-semibold">{{ row.saved }}</td>
+								<!-- Egenskap -->
+								<td class="p-6 text-slate-200 font-medium">
+									{{ feature.title }}
+									<span class="block text-xs text-slate-500 mt-1 font-normal"
+										>{{ feature.description }}</span
+									>
+								</td>
+
+								<!-- ChatGPT (Röd/Varnande) -->
+								<td class="p-6 text-slate-400">
+									<div class="flex items-start gap-3">
+										<svg
+											class="w-5 h-5 text-red-500/70 shrink-0 mt-0.5"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M6 18L18 6M6 6l12 12"
+											/>
+										</svg>
+										<span>{{ feature.chatgpt }}</span>
+									</div>
+								</td>
+
+								<!-- VERA-01 (Guld/Grön) -->
+								<td
+									class="p-6 text-slate-100 font-medium border-l border-slate-800/50 bg-veraBronze/5"
+								>
+									<div class="flex items-start gap-3">
+										<svg
+											class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M5 13l4 4L19 7"
+											/>
+										</svg>
+										<span>{{ feature.vera }}</span>
+									</div>
+								</td>
 							</tr>
 							}
 						</tbody>
 					</table>
 				</div>
 			</div>
-
-			<p class="mt-8 text-center text-sm text-slate-500">
-				Har er byrå andra arbetsflöden? VERA-01 anpassas efter era behov.
-			</p>
 		</div>
 	</section>
 

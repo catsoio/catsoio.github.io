@@ -1,6 +1,7 @@
 // vera-landing.component.ts
 import { Component, signal, computed, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Vera01hero } from '../../vera01hero/vera01hero';
 
 interface Workflow {
 	id: string;
@@ -26,14 +27,14 @@ interface FaqItem {
 
 @Component({
 	selector: 'app-vera-01-landing',
-	imports: [CommonModule],
+	imports: [CommonModule, Vera01hero],
 	templateUrl: './vera-01-landing.html',
 	styleUrl: './vera-01-landing.scss',
 })
 export class VeraLandingComponent {
-	tags: string[] = ['Sammanfattar', 'Angriper', 'Överkalgar', 'Analyserar'];
+	tags: string[] = ['VRGA 2.2 — Sekretess', 'GDPR Art. 32 — Säkerhet'];
 
-	activeWorkflowId = signal<string>('beslut-overklagande');
+	activeWorkflowId = signal<string | null>('beslut-overklagande');
 	openFaqIndex = signal<number | null>(null);
 	scrolled = signal(false);
 	mobileMenuOpen = signal(false);
@@ -41,124 +42,79 @@ export class VeraLandingComponent {
 	activeWorkflow = computed(() => this.workflows.find((w) => w.id === this.activeWorkflowId())!);
 	workflows: Workflow[] = [
 		{
-			id: 'fup-analys',
-			title: 'Förundersökningsprotokoll',
-			shortDescription:
-				'Bryter ner stora FUP på hundratals sidor till strukturerad processöversikt.',
+			id: 'analys',
+			title: 'Utredningsanalys',
+			shortDescription: 'Från tusentals sidor råmaterial till fullständig överblick.',
 			details: [
-				'Sammanfattar varje förhör med sidhänvisning',
-				'Bygger kronologisk tidslinje ur hela akten',
-				'Flaggar motsägelser mellan förhörspersoner',
-				'Identifierar luckor i utredningen',
+				'Kronologisk tidslinje och händelseförlopp',
+				'Identifiering av motsägelser i förhör',
+				'Sidhänvisningar direkt in i akten',
 			],
-			exampleInput: 'FUP, 430 sidor',
-			exampleOutput: 'Förhörssammanfattningar, tidslinje, motsägelserapport',
-			timeBefore: '8–12 h',
-			timeAfter: '30 min',
-		},
-		{
-			id: 'forhor-motsagelser',
-			title: 'Förhörsanalys',
-			shortDescription: 'Jämför förhörsutskrifter mot varandra och mot dokumentbevisning.',
-			details: [
-				'Korsrefererar vittnesmål sinsemellan',
-				'Hittar interna motsägelser i partsutsagor',
-				'Kontrollerar uppgifter mot kontoutdrag, journaler och övrig bevisning',
-				'Rapport med exakta sidhänvisningar',
-			],
-			exampleInput: 'Sju förhörsutskrifter, kontoutdrag, lönespecifikationer',
-			exampleOutput: 'Motsägelserapport med citat och sidreferenser',
-			timeBefore: '4–6 h',
-			timeAfter: '20 min',
-		},
-		{
-			id: 'beslut-overklagande',
-			title: 'Beslut till överklagande',
-			shortDescription: 'Myndighetsbeslut blir strukturerat processutkast med källhänvisningar.',
-			details: [
-				'Sammanfattning anpassad för ombud',
-				'Identifierar angreppspunkter och svaga led i myndighetens resonemang',
-				'Bevismatris och kompletteringsbehov',
-				'Utkast med yrkanden, grunder och utveckling av talan',
-			],
-			exampleInput: 'Myndighetsbeslut, 134 sidor',
-			exampleOutput: 'Överklagandeutkast, sammanfattning, bevismatris',
-			timeBefore: '6–8 h',
+			exampleInput: 'FUP / Ärendeakt (500+ sidor)',
+			exampleOutput: 'Analysrapport & Tidslinje',
+			timeBefore: '10–12 h',
 			timeAfter: '45 min',
 		},
 		{
-			id: 'bevismatris',
-			title: 'Bevismatris',
-			shortDescription: 'Korsrefererar dokument mot motpartens påståenden.',
+			id: 'process',
+			title: 'Processföring',
+			shortDescription: 'Strukturera din talan och bemöt motpartens argument.',
 			details: [
-				'Varje påstående kopplat till tillhörande bevisning',
-				'Identifierar saknad bevisning',
-				'Föreslår motbevisning ur befintligt material',
-				'Prioriterar efter processuell betydelse',
+				'Bevismatriser med kompletteringsbehov',
+				'Utkast till överklaganden och inlagor',
+				'Huvudförhandlings-PM med frågelista',
 			],
-			exampleInput: 'Ärendeakt med kontoutdrag, lönespecifikationer, inlagor',
-			exampleOutput: 'Bevismatris med kompletteringslista',
-			timeBefore: '5 h',
-			timeAfter: '30 min',
-		},
-		{
-			id: 'forhandling',
-			title: 'Förhandlingsförberedelse',
-			shortDescription: 'Bygger frågor, motargument och pläderingsutkast ur ärendeakten.',
-			details: [
-				'Frågor till motpart och vittnen baserade på aktmaterialet',
-				'Sannolika motangrepp och förslag på bemötande',
-				'Strategisk argumentationsordning',
-				'Pläderingsutkast',
-			],
-			exampleInput: 'Ärendeakt och processhistorik',
-			exampleOutput: 'Huvudförhandlings-PM',
+			exampleInput: 'Dom/Beslut & Bevisning',
+			exampleOutput: 'Processutkast & Bevismatris',
 			timeBefore: '8 h',
 			timeAfter: '1 h',
 		},
 		{
-			id: 'klientbrev',
-			title: 'Klientbrev',
-			shortDescription: 'Översätter domskäl och beslut till begriplig svenska.',
+			id: 'administration',
+			title: 'Klient & Granskning',
+			shortDescription: 'Automatisera det tidskrävande efterarbetet.',
 			details: [
-				'Förenklar utan att förvanska det juridiska innehållet',
-				'Förklarar nästa steg och tidsfrister',
-				'Lyfter fram klientens handlingsalternativ',
-				'Anpassas efter byråns tonalitet',
+				'Klientbrev på begriplig svenska',
+				'Automatisk anonymisering (GDPR)',
+				'Sammanfattningar för snabb brief',
 			],
-			exampleInput: 'Tingsrättsdom, 40 sidor',
-			exampleOutput: 'Klientbrev på en A4',
-			timeBefore: '1 h 30 min',
-			timeAfter: '5 min',
-		},
-		{
-			id: 'redaction',
-			title: 'Anonymisering',
-			shortDescription: 'Maskerar personuppgifter inför extern delning eller publicering.',
-			details: [
-				'Identifierar och maskerar personnummer, namn och adresser',
-				'Ersätter med initialer eller pseudonymer',
-				'Bevarar dokumentets struktur och argumentation',
-				'Ändringslogg för granskning',
-			],
-			exampleInput: 'Originalhandling med personuppgifter',
-			exampleOutput: 'Anonymiserad version med ändringslogg',
-			timeBefore: '2 h',
-			timeAfter: '3 min',
+			exampleInput: 'Juridiska dokument / Domar',
+			exampleOutput: 'Klientbrev & Maskerad kopia',
+			timeBefore: '3 h',
+			timeAfter: '10 min',
 		},
 	];
 
-	timeSavings = [
-		{ task: 'Analysera FUP på ~500 sidor', before: '8–12 h', after: '10 min', saved: '~10 h' },
-		{ task: 'Motsägelseanalys av förhör', before: '4–6 h', after: '10 min', saved: '~5 h' },
-		{ task: 'Överklagande från myndighetsbeslut', before: '6–8 h', after: '10 min', saved: '~6 h' },
-		{ task: 'Bevismatris ur ärendeakt', before: '5 h', after: '10 min', saved: '~4 h 30 min' },
-		{ task: 'Förhandlings-PM inför huvudförhandling', before: '8 h', after: '30 min', saved: '~7 h' },
+	aiComparison = [
 		{
-			task: 'Klientbrev från komplext domskäl',
-			before: '1 h 30 min',
-			after: '5 min',
-			saved: '~1 h 25 min',
+			title: 'Datasekretess & GDPR',
+			description: 'Var processas och lagras egentligen informationen?',
+			chatgpt: 'Datan skickas ofta till servrar utanför EU (USA).',
+			vera: '100% GDPR-säker. Svenska servrar eller helt offline hos er.',
+		},
+		{
+			title: 'Modellträning & Klientdata',
+			description: 'Används er inmatade data för att göra AI:n smartare?',
+			chatgpt: 'Stor risk att känslig data används som träningsdata.',
+			vera: 'Stängd miljö (Zero Data Retention). Er data tränar aldrig modellen.',
+		},
+		{
+			title: 'Juridisk precision',
+			description: 'Förståelse för lagrum och domstolars praxis.',
+			chatgpt: 'Generell modell. Hög risk för hallucinerade (ofta amerikanska) lagrum.',
+			vera: 'Specialtränad för svensk rättspraxis och juridiskt metodarbete.',
+		},
+		{
+			title: 'Kapacitet (Kontextfönster)',
+			description: 'Förmågan att läsa in stora FUP:ar och akter på en gång.',
+			chatgpt: 'Tappar tråden eller kraschar vid hundratals sidor.',
+			vera: 'Skräddarsydd för massiv dokumenthantering. Klarar tusentals sidor i en inläsning.',
+		},
+		{
+			title: 'Källhänvisningar',
+			description: 'Kan du lita på att AI:ns påståenden stämmer?',
+			chatgpt: 'Hittar ofta på sidnummer som inte existerar.',
+			vera: 'Genererar exakta, klickbara sidhänvisningar direkt in i originalakten.',
 		},
 	];
 
@@ -209,5 +165,8 @@ export class VeraLandingComponent {
 		event.preventDefault();
 		this.mobileMenuOpen.set(false);
 		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+	toggleWorkflow(id: string) {
+		this.activeWorkflowId.update((current) => (current === id ? null : id));
 	}
 }
