@@ -7,6 +7,8 @@ interface Workflow {
 	id: string;
 	title: string;
 	shortDescription: string;
+	iconPath: string;
+	savingsPercent: number;
 	details: string[];
 	exampleInput: string;
 	exampleOutput: string;
@@ -45,6 +47,8 @@ export class VeraLandingComponent {
 			id: 'analys',
 			title: 'Utredningsanalys',
 			shortDescription: 'Från tusentals sidor råmaterial till fullständig överblick.',
+			iconPath: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z', // 🆕
+			savingsPercent: 15, // 🆕 — hur stor andel av manuell tid VERA tar (lägre = mer besparing)
 			details: [
 				'Kronologisk tidslinje och händelseförlopp',
 				'Identifiering av motsägelser i förhör',
@@ -59,6 +63,8 @@ export class VeraLandingComponent {
 			id: 'process',
 			title: 'Processföring',
 			shortDescription: 'Strukturera din talan och bemöt motpartens argument.',
+			iconPath: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z', // 🆕
+			savingsPercent: 15, // 🆕 — hur stor andel av manuell tid VERA tar (lägre = mer besparing)
 			details: [
 				'Bevismatriser med kompletteringsbehov',
 				'Utkast till överklaganden och inlagor',
@@ -73,6 +79,8 @@ export class VeraLandingComponent {
 			id: 'administration',
 			title: 'Klient & Granskning',
 			shortDescription: 'Automatisera det tidskrävande efterarbetet.',
+			iconPath: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z', // 🆕
+			savingsPercent: 15, // 🆕 — hur stor andel av manuell tid VERA tar (lägre = mer besparing)
 			details: [
 				'Klientbrev på begriplig svenska',
 				'Automatisk anonymisering (GDPR)',
