@@ -88,6 +88,21 @@ export const routes: Routes = [
 			} as RouteSEO,
 		},
 	},
+	{
+		path: 'veratest',
+		loadComponent: () => import('./pages/vera-01-landing/vera-01-landing').then((m) => m.VeraLandingComponent),
+		data: {
+			seo: {
+				title: 'Blog — Catso',
+				description: 'Engineering notes, platform updates, and guides for modern SaaS teams.',
+				og: { type: 'website', image: '/assets/og/catso-blog-1200x630.png' },
+				twitter: {
+					card: 'summary_large_image',
+					image: '/assets/og/catso-blog-1200x630.png',
+				},
+			} as RouteSEO,
+		},
+	},
 	// {
 	// 	path: 'blog/:slug',
 	// 	loadComponent: () => import('./pages/blog/post/post.component').then((m) => m.PostComponent),

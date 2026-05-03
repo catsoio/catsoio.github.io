@@ -1,6 +1,28 @@
 /* ═══════════════════════════════════════
    HERO – VERA-01 Chat Interface
    ═══════════════════════════════════════ */
+/* vera-landing.component.css */
+:host {
+	display: block;
+	font-family:
+		'Inter',
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		system-ui,
+		sans-serif;
+}
+
+:host ::ng-deep .font-serif {
+	font-family: 'Cormorant Garamond', 'Playfair Display', 'Georgia', serif;
+	font-weight: 500;
+	letter-spacing: -0.02em;
+}
+
+/* Smooth scrolling */
+:host {
+	scroll-behavior: smooth;
+}
 
 /* ── ambient glow behind chat window ── */
 .chat-glow {

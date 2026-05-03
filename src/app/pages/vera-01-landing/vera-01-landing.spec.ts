@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VeraHeroFlow } from './vera-hero-flow';
+import { Vera01Landing } from './vera-01-landing';
 
-describe('VeraHeroFlow', () => {
-  let component: VeraHeroFlow;
-  let fixture: ComponentFixture<VeraHeroFlow>;
+describe('Vera01Landing', () => {
+  let component: Vera01Landing;
+  let fixture: ComponentFixture<Vera01Landing>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VeraHeroFlow]
+      imports: [Vera01Landing]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VeraHeroFlow);
+    fixture = TestBed.createComponent(Vera01Landing);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
