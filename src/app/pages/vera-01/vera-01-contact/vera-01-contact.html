@@ -6,34 +6,59 @@
 
 	<div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
 		<p class="text-xs font-semibold tracking-widest text-veraBronze uppercase mb-4">
-			Pilot Q3 2026
+			Bli inte utkonkurrerad.
 		</p>
-		<h2 class="font-serif text-3xl lg:text-6xl tracking-tight mb-6 leading-tight">
-			Testa på ett <span class="text-veraBronze">skarpt ärende</span>.
+		<h2 class="text-3xl lg:text-6xl tracking-tight mb-6 leading-tight">
+			Testa på ett <span class="text-veraBronze">riktigt ärende</span>.
 		</h2>
 		<p class="text-lg lg:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl mx-auto">
-			Begränsat antal pilotbyråer. Installation i testmiljö, anonymiserat ärende, sammanfattning och
-			utkast på under fem minuter — lokalt.
+			Vi bokar demo löpande och erbjuder en kostnadsfri testperiod.
+			Anmäl er byrå nedan.
 		</p>
 
 		<div
 			class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-2xl p-6 lg:p-10 max-w-xl mx-auto text-left"
 		>
-			<form class="space-y-4" (submit)="$event.preventDefault()">
+			@if (submitSuccess) {
+			<div class="flex flex-col items-center justify-center py-10 gap-4 text-center">
+				<div
+					class="w-12 h-12 rounded-full bg-veraGold/10 border border-veraGold/30 flex items-center justify-center"
+				>
+					<svg
+						class="w-5 h-5 text-veraGold"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+					</svg>
+				</div>
+				<p class="text-slate-100 font-medium">Tack! Vi hör av oss inom 24 timmar.</p>
+				<p class="text-sm text-slate-500">
+					Vi ser fram emot att visa vad VERA-01 kan göra för er byrå.
+				</p>
+			</div>
+			} @else {
+			<form class="space-y-4" (ngSubmit)="submit()">
 				<div class="grid sm:grid-cols-2 gap-4">
 					<div>
 						<label class="block text-xs font-medium text-slate-400 mb-2">Namn</label>
 						<input
+							[(ngModel)]="form.name"
+							name="name"
 							type="text"
-							class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-veraGold transition-colors"
+							class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-veraGold/50 transition-colors"
 							placeholder="Anna Andersson"
 						/>
 					</div>
 					<div>
 						<label class="block text-xs font-medium text-slate-400 mb-2">Byrå</label>
 						<input
+							[(ngModel)]="form.byra"
+							name="byra"
 							type="text"
-							class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-veraGold transition-colors"
+							class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-veraGold/50 transition-colors"
 							placeholder="Advokatfirman Exempel"
 						/>
 					</div>
@@ -41,30 +66,43 @@
 				<div>
 					<label class="block text-xs font-medium text-slate-400 mb-2">E-post</label>
 					<input
+						[(ngModel)]="form.email"
+						name="email"
 						type="email"
-						class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-veraGold transition-colors"
+						class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-veraGold/50 transition-colors"
 						placeholder="anna@exempel.se"
 					/>
 				</div>
 				<div>
-					<label class="block text-xs font-medium text-slate-400 mb-2"
-						>Vad ska testas? <span class="text-slate-600">(valfritt)</span></label
-					>
+					<label class="block text-xs font-medium text-slate-400 mb-2">
+						Vad ska testas? <span class="text-slate-600">(valfritt)</span>
+					</label>
 					<textarea
+						[(ngModel)]="form.message"
+						name="message"
 						rows="3"
-						class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-veraGold transition-colors resize-none"
+						class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-veraGold/50 transition-colors resize-none"
 						placeholder="T.ex. migrationsöverklagande, FUP-sammanfattning..."
 					></textarea>
 				</div>
+
+				@if (submitError) {
+				<p class="text-xs text-red-400 text-center">
+					Något gick fel. Försök igen eller kontakta oss direkt.
+				</p>
+				}
+
 				<button
 					type="submit"
-					class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-veraGold hover:bg-veraBronze text-slate-950 font-semibold transition-all shadow-xl shadow-veraGold/20 hover:shadow-veraGold/40"
+					[disabled]="submitting || !form.name || !form.email || !form.byra"
+					class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-veraGold hover:bg-veraBronze text-slate-950 font-semibold transition-all shadow-xl shadow-veraGold/20 hover:shadow-veraGold/40 disabled:opacity-40 disabled:cursor-not-allowed"
 				>
-					Boka demo
-					<span aria-hidden="true">→</span>
+					{{ submitting ? 'Skickar...' : 'Boka demo' }} @if (!submitting) {
+					<span aria-hidden="true">→</span> }
 				</button>
-				<p class="text-xs text-slate-500 text-center pt-2">Svar inom 24 timmar.</p>
+				<p class="text-xs text-slate-500 text-center pt-2">Svar inom 24 timmar. Ingen bindning.</p>
 			</form>
+			}
 		</div>
 	</div>
 </section>
