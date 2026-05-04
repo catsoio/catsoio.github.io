@@ -39,7 +39,7 @@
 		>
 			<!-- ChatGPT Card (left side — sets height) -->
 			<div
-				class="relative bg-slate-900/40 border border-slate-800 rounded-3xl p-8 lg:p-12 overflow-hidden backdrop-blur-sm will-change-[clip-path]"
+				class="relative bg-red-950/10 border border-red-900/20 rounded-3xl p-8 lg:p-12 overflow-hidden backdrop-blur-sm shadow-inner will-change-[clip-path]"
 				[style.clip-path]="'inset(0 ' + (100 - sliderPos) + '% 0 0)'"
 			>
 				<div class="mb-8 flex items-center justify-between relative z-20">
@@ -93,7 +93,27 @@
 							</div>
 							<div class="gsap-content mt-1 lg:mt-4 opacity-0 translateY-10">
 								<h4 class="text-slate-100 font-bold text-sm mb-1">{{ step.title }}</h4>
-								<p class="text-xs text-slate-500 leading-relaxed">{{ step.desc }}</p>
+
+								<p
+									class="text-xs text-slate-500 leading-relaxed flex items-center gap-1.5 lg:justify-center"
+								>
+									@if (step.id === 'cg-1') { } @if (step.fileIconPath) {
+									<svg
+										class="w-3.5 h-3.5 text-red-500 shrink-0"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											[attr.d]="step.fileIconPath"
+										/>
+									</svg>
+									}
+									<span>{{ step.desc }}</span>
+								</p>
 							</div>
 						</div>
 						}
@@ -112,7 +132,7 @@
 
 				<div class="mb-8 flex items-center justify-between relative z-20">
 					<h3 class="text-xl font-serif text-slate-100">
-						VERA-01 <span class="text-emerald-500/60 text-sm italic">The Legal Way</span>
+						VERA-01 <span class="text-emerald-500/60 text-sm italic">(Lokalt)</span>
 					</h3>
 					<div
 						class="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2 whitespace-nowrap"
@@ -125,7 +145,7 @@
 								d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
 							/>
 						</svg>
-						<span class="hidden sm:inline">Advokatsekretessen förblir intakt — hela vägen</span>
+						<span class="hidden sm:inline">Advokatsekretessen förblir intakt</span>
 						<span class="sm:hidden">Sekretessen intakt</span>
 					</div>
 				</div>
@@ -161,7 +181,27 @@
 							</div>
 							<div class="gsap-content mt-1 lg:mt-4 opacity-0 translateY-10">
 								<h4 class="text-slate-100 font-bold text-sm mb-1">{{ step.title }}</h4>
-								<p class="text-xs text-slate-500 leading-relaxed">{{ step.desc }}</p>
+
+								<p
+									class="text-xs text-slate-500 leading-relaxed flex items-center gap-1.5 lg:justify-center"
+								>
+									@if (step.id === 'cg-1') { } @if (step.fileIconPath) {
+									<svg
+										class="w-3.5 h-3.5 text-red-500 shrink-0"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											[attr.d]="step.fileIconPath"
+										/>
+									</svg>
+									}
+									<span>{{ step.desc }}</span>
+								</p>
 							</div>
 						</div>
 						}
