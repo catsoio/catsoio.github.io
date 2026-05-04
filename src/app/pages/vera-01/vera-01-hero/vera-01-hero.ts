@@ -1,8 +1,14 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	Inject,
+	PLATFORM_ID,
+	ViewChild,
+} from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 
 @Component({
 	selector: 'app-vera-01-hero',
@@ -10,8 +16,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	templateUrl: './vera-01-hero.html',
 	styleUrl: './vera-01-hero.scss',
 })
-export class Vera01Hero {
-	activeView: 'chatgpt' | 'vera' = 'chatgpt';
+export class Vera01Hero implements AfterViewInit {
+	@ViewChild('comparisonContainer', { static: false })
+	comparisonContainer!: ElementRef<HTMLDivElement>;
+
+	sliderPos = 50;
+	isDragging = false;
 
 	chatGptJourney = [
 		{
@@ -88,68 +98,73 @@ export class Vera01Hero {
 		}
 	}
 
-	ngOnInit(): void {}
-
 	ngAfterViewInit(): void {
 		if (isPlatformBrowser(this.platformId)) {
 			this.initAnimations();
 		}
+
+		// Vänta lite tills resten av GSAP-animationerna (headers etc) är klara
+		setTimeout(() => {
+			this.introSwipe();
+		}, 3000);
 	}
 
-	private animateCard(view: 'chatgpt' | 'vera'): void {
-		const isCg = view === 'chatgpt';
-		const lineH = isCg ? '#line-cg-h' : '#line-vera-h';
-		const lineV = isCg ? '#line-cg-v' : '#line-vera-v';
-		const stepClass = isCg ? '.cg-step' : '.vera-step';
-		const bannerSelector = isCg ? '.gsap-warning' : '.gsap-success';
+	introSwipe() {
+		const tl = gsap.timeline({
+			defaults: { ease: 'power2.inOut' },
+		});
 
-		// Reset
-		gsap.set(`${stepClass} .gsap-node`, { opacity: 0, scale: 0.5 });
-		gsap.set(`${stepClass} .gsap-content`, { opacity: 0, y: 20 });
-		gsap.set(lineH, { scaleX: 0 });
-		gsap.set(lineV, { scaleY: 0 });
-		gsap.set(bannerSelector, { opacity: 0, y: 10 });
-
-		const tl = gsap.timeline({ delay: 0.15 });
-		const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
-
-		if (isDesktop) {
-			tl.to(lineH, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' })
-				.to(
-					`${stepClass} .gsap-node`,
-					{ opacity: 1, scale: 1, stagger: 0.15, ease: 'back.out(1.7)' },
-					'-=0.9'
-				)
-				.to(
-					`${stepClass} .gsap-content`,
-					{ opacity: 1, y: 0, stagger: 0.15, ease: 'power2.out' },
-					'-=0.7'
-				);
-		} else {
-			tl.to(lineV, { scaleY: 1, duration: 1.5, ease: 'none' })
-				.to(
-					`${stepClass} .gsap-node`,
-					{ opacity: 1, scale: 1, stagger: 0.3, ease: 'back.out(1.7)' },
-					'-=1.3'
-				)
-				.to(
-					`${stepClass} .gsap-content`,
-					{ opacity: 1, y: 0, stagger: 0.3, ease: 'power2.out' },
-					'-=1.1'
-				);
-		}
-
-		tl.to(bannerSelector, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3');
+		tl.to(this, {
+			sliderPos: 85, // Svep åt höger (visa ChatGPT)
+			duration: 0.8,
+			onUpdate: () => {}, // Triggar change detection i vissa miljöer
+		}).to(this, {
+			sliderPos: 0, // Svep hela vägen till vänster (visa VERA)
+			duration: 1.0,
+		});
 	}
 
-	scrollTo(id: string, event: Event): void {
-		event.preventDefault();
-		const el = document.getElementById(id);
-		if (el) el.scrollIntoView({ behavior: 'smooth' });
+	/* ── Slider interaction ── */
+
+	onHandleDown(e: PointerEvent): void {
+		e.preventDefault();
+		e.stopPropagation();
+		this.isDragging = true;
+		(e.target as HTMLElement).closest('[style*="touch-action"]')?.setPointerCapture(e.pointerId);
 	}
+
+	onHandleMove(event: PointerEvent) {
+		if (!this.isDragging) return;
+
+		const rect = this.comparisonContainer.nativeElement.getBoundingClientRect();
+		const x = event.clientX - rect.left;
+
+		// Beräkna procent och tvinga den mellan exakt 0 och 100
+		let pos = (x / rect.width) * 100;
+		pos = Math.max(0, Math.min(100, pos));
+
+		this.sliderPos = pos;
+	}
+
+	onHandleUp(e: PointerEvent): void {
+		this.isDragging = false;
+	}
+
+	onContainerClick(e: PointerEvent): void {
+		if (this.isDragging) return;
+		this.updateSliderPos(e);
+	}
+
+	private updateSliderPos(e: PointerEvent): void {
+		if (!this.comparisonContainer) return;
+		const rect = this.comparisonContainer.nativeElement.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		this.sliderPos = Math.max(5, Math.min(95, (x / rect.width) * 100));
+	}
+
+	/* ── GSAP ── */
 
 	private initAnimations(): void {
-		// Header — animates on load (hero is first thing visible)
 		gsap.to('.gsap-header', {
 			opacity: 1,
 			y: 0,
@@ -158,37 +173,57 @@ export class Vera01Hero {
 			ease: 'power3.out',
 		});
 
-		// Toggle
-		gsap.to('.gsap-toggle', {
+		gsap.to('.gsap-comparison', {
 			opacity: 1,
 			duration: 0.6,
 			delay: 0.8,
 			ease: 'power2.out',
 		});
 
-		// Animate initial card after toggle appears
-		setTimeout(() => this.animateCard(this.activeView), 1000);
+		setTimeout(() => this.animateBothCards(), 1000);
+	}
 
-		// Re-animate on toggle — use a getter pattern via MutationObserver or simpler: patch the setter
-		const originalView = this.activeView;
-		let lastView = originalView;
+	private animateBothCards(): void {
+		const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
 
-		// Poll-free approach: override the property
-		const self = this;
-		const descriptor = {
-			get(): 'chatgpt' | 'vera' {
-				return lastView;
-			},
-			set(val: 'chatgpt' | 'vera') {
-				if (val !== lastView) {
-					lastView = val;
-					// Kort delay så Angular hinner rendera
-					setTimeout(() => self.animateCard(val), 50);
-				}
-			},
-		};
-		Object.defineProperty(this, 'activeView', descriptor);
-		// Trigger initial value through setter
-		this.activeView = originalView;
+		for (const prefix of ['cg', 'vera']) {
+			const stepClass = `.${prefix}-step`;
+			const lineH = `#line-${prefix}-h`;
+			const lineV = `#line-${prefix}-v`;
+
+			const tl = gsap.timeline();
+
+			if (isDesktop) {
+				tl.to(lineH, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' })
+					.to(
+						`${stepClass} .gsap-node`,
+						{ opacity: 1, scale: 1, stagger: 0.15, ease: 'back.out(1.7)' },
+						'-=0.9'
+					)
+					.to(
+						`${stepClass} .gsap-content`,
+						{ opacity: 1, y: 0, stagger: 0.15, ease: 'power2.out' },
+						'-=0.7'
+					);
+			} else {
+				tl.to(lineV, { scaleY: 1, duration: 1.5, ease: 'none' })
+					.to(
+						`${stepClass} .gsap-node`,
+						{ opacity: 1, scale: 1, stagger: 0.3, ease: 'back.out(1.7)' },
+						'-=1.3'
+					)
+					.to(
+						`${stepClass} .gsap-content`,
+						{ opacity: 1, y: 0, stagger: 0.3, ease: 'power2.out' },
+						'-=1.1'
+					);
+			}
+		}
+	}
+
+	scrollTo(id: string, event: Event): void {
+		event.preventDefault();
+		const el = document.getElementById(id);
+		if (el) el.scrollIntoView({ behavior: 'smooth' });
 	}
 }
