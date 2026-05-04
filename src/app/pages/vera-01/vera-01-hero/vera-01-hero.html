@@ -21,7 +21,7 @@
 	<div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
 		<div class="text-center mb-14 gsap-header">
 			<h1
-				class="  text-4xl sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight mb-6 text-slate-100"
+				class="text-4xl sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight mb-6 text-slate-100"
 			>
 				En <span class="text-veraBronze">lokal</span> AI-agent för <br />
 				<span class="text-slate-400">advokatbyråer.</span>
@@ -43,7 +43,7 @@
 				[style.clip-path]="'inset(0 ' + (100 - sliderPos) + '% 0 0)'"
 			>
 				<div class="mb-8 flex items-center justify-between relative z-20">
-					<h3 class="text-xl   text-slate-100">
+					<h3 class="text-xl text-slate-100">
 						Generell AI <span class="text-slate-600 text-sm">(ChatGPT m.fl.)</span>
 					</h3>
 					<div
@@ -131,8 +131,9 @@
 				></div>
 
 				<div class="mb-8 flex items-center justify-between relative z-20">
-					<h3 class="text-xl   text-slate-100">
-						VERA-01 <span class="text-emerald-500/60 text-sm italic">(Lokalt)</span>
+					<h3 class="text-xl text-slate-100">
+						VERA-01 <br />
+						<span class="text-emerald-500/60 text-sm italic">(Lokalt)</span>
 					</h3>
 					<div
 						class="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2 whitespace-nowrap"
@@ -275,12 +276,14 @@
 		<div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
 			<a
 				href="#workflows"
+				(click)="ui.scrollTo('workflows', $event)"
 				class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-slate-100 font-medium transition-all"
 			>
 				Se arbetsflöden
 			</a>
 			<a
 				href="#demo"
+				(click)="ui.scrollTo('demo', $event)"
 				class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md bg-veraGold hover:bg-veraBronze text-slate-950 font-semibold transition-all shadow-xl shadow-veraGold/20 hover:shadow-veraGold/40"
 			>
 				Boka demo
