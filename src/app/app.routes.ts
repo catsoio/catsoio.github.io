@@ -106,11 +106,10 @@ export const routes: Routes = [
 			{
 				// Landningssidan ligger nu på den tomma pathen (dvs /vera-01)
 				path: '',
-				loadComponent: () =>
-					import('./pages/vera-01/vera-01.component').then((m) => m.Vera01Component),
+				loadComponent: () => import('./pages/vera-01/vera-01').then((m) => m.Vera01),
 				data: {
 					seo: {
-						title: 'VERA-01 | AI-agent för svenska advokatbyråer',
+						title: 'VERA-01 | Lokal AI-agent för advokatbyråer',
 						description:
 							'Er lokala AI-drivna juristexpert. - Konstruerad och Tränad på svensk lag.',
 						og: { type: 'product', image: '/assets/imgs/vera01banner3d.png' },
@@ -128,19 +127,6 @@ export const routes: Routes = [
 							offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
 						},
 					} as RouteSEO,
-				},
-			},
-			{
-				// Manualen ligger på /vera-01/instruktioner
-				path: 'instruktioner',
-				loadComponent: () =>
-					import('./pages/vera-01/vera-get-started/vera-get-started').then((m) => m.VeraGetStarted),
-				data: {
-					seo: {
-						title: 'Kom igång | VERA-01',
-						description:
-							'Lär dig hur du använder VERA-01 och dess olika moduler för juridiskt arbete.',
-					},
 				},
 			},
 		],

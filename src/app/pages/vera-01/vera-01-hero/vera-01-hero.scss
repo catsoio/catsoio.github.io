@@ -1,0 +1,26 @@
+/* Gör input range helt osynlig men klickbar över hela containern */
+input[type='range'] {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 50px;
+	height: 400px; /* Samma som containerns höjd */
+	cursor: ew-resize;
+}
+
+/* Chrome/Safari */
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+/* Smidig animering för filter vid förändring */
+.transition-all {
+	transition-property: all;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 300ms;
+}

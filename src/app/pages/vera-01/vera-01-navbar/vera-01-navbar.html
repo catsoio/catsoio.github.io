@@ -1,0 +1,126 @@
+<nav
+	class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+	[class.bg-slate-950]="ui.scrolled()"
+	[class.backdrop-blur-xl]="ui.scrolled()"
+	[class.border-b]="ui.scrolled()"
+	[class.border-slate-800]="ui.scrolled()"
+	[class.bg-transparent]="!ui.scrolled()"
+>
+	<div class="max-w-7xl mx-auto px-6 lg:px-8">
+		<div class="flex items-center justify-between h-16 lg:h-20">
+			<a href="#home" (click)="ui.scrollTo('home', $event)" class="flex items-center gap-2 group">
+				<img
+					src="assets/imgs/vera01logo.png"
+					alt="VERA-01"
+					class="w-8 h-8 rounded-md flex-shrink-0"
+				/>
+				<span class="  text-xl tracking-tight">VERA-01</span>
+			</a>
+			<div class="hidden lg:flex items-center gap-8 text-sm text-slate-300">
+				<a
+					href="#workflows"
+					(click)="ui.scrollTo('workflows', $event)"
+					class="hover:text-veraBronze transition-colors"
+					>Arbetsflöden</a
+				>
+				<a
+					href="#playbooks"
+					(click)="ui.scrollTo('playbooks', $event)"
+					class="hover:text-veraBronze transition-colors"
+					>Rättsområden</a
+				>
+				<a
+					href="#security"
+					(click)="ui.scrollTo('security', $event)"
+					class="hover:text-veraBronze transition-colors"
+					>Säkerhet</a
+				>
+				<a
+					href="#savings"
+					(click)="ui.scrollTo('savings', $event)"
+					class="hover:text-veraBronze transition-colors"
+					>ROI</a
+				>
+				<a
+					href="#faq"
+					(click)="ui.scrollTo('faq', $event)"
+					class="hover:text-veraBronze transition-colors"
+					>FAQ</a
+				>
+			</div>
+			<div class="flex items-center gap-3">
+				<a
+					href="#demo"
+					(click)="ui.scrollTo('demo', $event)"
+					class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-md bg-veraGold hover:bg-veraBronze text-slate-950 text-sm font-semibold transition-all shadow-lg shadow-veraGold/20 hover:shadow-veraGold/40"
+				>
+					Boka demo
+					<span aria-hidden="true">→</span>
+				</a>
+				<button
+					(click)="ui.toggleMobileMenu()"
+					class="lg:hidden p-2 text-slate-300 hover:text-veraBronze"
+					aria-label="Öppna meny"
+				>
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						@if (!ui.mobileMenuOpen()) {
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16"
+						/>
+						} @else {
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M6 18L18 6M6 6l12 12"
+						/>
+						}
+					</svg>
+				</button>
+			</div>
+		</div>
+		@if (ui.mobileMenuOpen()) {
+		<div class="lg:hidden border-t border-slate-800 py-4 space-y-3">
+			<a
+				href="#workflows"
+				(click)="ui.scrollTo('workflows', $event)"
+				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
+				>Arbetsflöden</a
+			>
+			<a
+				href="#playbooks"
+				(click)="ui.scrollTo('playbooks', $event)"
+				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
+				>Rättsområden</a
+			>
+			<a
+				href="#security"
+				(click)="ui.scrollTo('security', $event)"
+				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
+				>Säkerhet</a
+			>
+			<a
+				href="#savings"
+				(click)="ui.scrollTo('savings', $event)"
+				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
+				>ROI</a
+			>
+			<a
+				href="#faq"
+				(click)="ui.scrollTo('faq', $event)"
+				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
+				>FAQ</a
+			>
+			<a
+				href="#demo"
+				(click)="ui.scrollTo('demo', $event)"
+				class="block mx-2 mt-2 px-4 py-2 rounded-md bg-veraGold text-slate-950 text-center text-sm font-semibold"
+				>Boka demo</a
+			>
+		</div>
+		}
+	</div>
+</nav>

@@ -25,6 +25,7 @@ module.exports = {
 					'Segoe UI Emoji',
 					'Segoe UI Symbol',
 				],
+				serif: ['Lora', 'Georgia', 'serif'],
 			},
 			letterSpacing: {
 				wider2: '0.08em',

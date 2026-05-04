@@ -1,0 +1,297 @@
+<section
+	id="home"
+	class="relative pt-32 lg:pt-44 pb-20 lg:pb-32 bg-slate-950 overflow-hidden min-h-[80vh] flex items-center"
+>
+	<!-- Parallax Bakgrundsbild -->
+	<div
+		class="absolute inset-0 z-0 bg-fixed bg-cover bg-center opacity-20 transition-opacity duration-1000"
+		style="background-image: url('assets/imgs/vera01logo.png')"
+	>
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/40 to-slate-950"
+		></div>
+		<div class="absolute inset-0 bg-slate-950/20 backdrop-blur-[2px]"></div>
+	</div>
+
+	<!-- Ambient background glow -->
+	<div
+		class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-veraGold/10 rounded-full blur-3xl pointer-events-none z-1"
+	></div>
+
+	<div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
+		<div class="text-center mb-14 gsap-header">
+			<h1
+				class="  text-4xl sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight mb-6 text-slate-100"
+			>
+				En <span class="text-veraBronze">lokal</span> AI-agent för <br />
+				<span class="text-slate-400">advokatbyråer.</span>
+			</h1>
+			<p class="text-lg lg:text-xl text-slate-200 max-w-xl mx-auto mb-10 drop-shadow-md">
+				Eliminerar alla kritiska risker med molnbaserad AI.
+			</p>
+		</div>
+
+		<!-- ===== COMPARISON SLIDER ===== -->
+		<div
+			#comparisonContainer
+			class="relative gsap-comparison opacity-0 select-none rounded-3xl"
+			(click)="onContainerClick($event)"
+		>
+			<!-- ChatGPT Card (left side — sets height) -->
+			<div
+				class="relative bg-red-950/10 border border-red-900/20 rounded-3xl p-8 lg:p-12 overflow-hidden backdrop-blur-sm shadow-inner will-change-[clip-path]"
+				[style.clip-path]="'inset(0 ' + (100 - sliderPos) + '% 0 0)'"
+			>
+				<div class="mb-8 flex items-center justify-between relative z-20">
+					<h3 class="text-xl   text-slate-100">
+						Generell AI <span class="text-slate-600 text-sm">(ChatGPT m.fl.)</span>
+					</h3>
+					<div
+						class="bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2 whitespace-nowrap"
+					>
+						<svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+							/>
+						</svg>
+						<span class="hidden sm:inline">En prompt. Flera brott mot god advokatsed</span>
+						<span class="sm:hidden">Bristande sekretess</span>
+					</div>
+				</div>
+
+				<div class="relative">
+					<div
+						id="line-cg-h"
+						class="gsap-line absolute top-6 left-6 right-6 h-2 rounded-full bg-gradient-to-r from-slate-400 via-amber-500 to-red-600 hidden lg:block origin-left scale-x-0 z-0 shadow-[0_0_10px_rgba(239,68,68,0.3)]"
+					></div>
+					<div
+						id="line-cg-v"
+						class="gsap-line absolute top-6 bottom-6 left-6 w-2 rounded-full bg-gradient-to-b from-slate-400 via-amber-500 to-red-600 block lg:hidden origin-top scale-y-0 z-0 shadow-[0_0_10px_rgba(239,68,68,0.3)]"
+					></div>
+
+					<div class="grid grid-cols-1 lg:grid-cols-4 gap-8 relative z-10">
+						@for (step of chatGptJourney; track step.id) {
+						<div
+							class="relative flex lg:flex-col items-start lg:items-center gap-6 lg:gap-4 lg:text-center pl-16 lg:pl-0 cg-step"
+						>
+							<div
+								class="gsap-node absolute lg:relative left-0 top-0 lg:top-auto w-12 h-12 rounded-full flex items-center justify-center border-4 border-slate-900 shrink-0 shadow-xl opacity-0 scale-50"
+								[class]="step.colorClass"
+							>
+								<svg
+									class="w-5 h-5 text-slate-900"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path stroke-linecap="round" stroke-linejoin="round" [attr.d]="step.iconPath" />
+								</svg>
+							</div>
+							<div class="gsap-content mt-1 lg:mt-4 opacity-0 translateY-10">
+								<h4 class="text-slate-100 font-bold text-sm mb-1">{{ step.title }}</h4>
+
+								<p
+									class="text-xs text-slate-500 leading-relaxed flex items-center gap-1.5 lg:justify-center"
+								>
+									@if (step.id === 'cg-1') { } @if (step.fileIconPath) {
+									<svg
+										class="w-3.5 h-3.5 text-red-500 shrink-0"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											[attr.d]="step.fileIconPath"
+										/>
+									</svg>
+									}
+									<span>{{ step.desc }}</span>
+								</p>
+							</div>
+						</div>
+						}
+					</div>
+				</div>
+			</div>
+
+			<!-- VERA Card (right side — absolute overlay) -->
+			<div
+				class="absolute inset-0 bg-emerald-950/20 border border-emerald-900/30 rounded-3xl p-8 lg:p-12 overflow-hidden backdrop-blur-sm will-change-[clip-path]"
+				[style.clip-path]="'inset(0 0 0 ' + sliderPos + '%)'"
+			>
+				<div
+					class="absolute -top-24 -left-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"
+				></div>
+
+				<div class="mb-8 flex items-center justify-between relative z-20">
+					<h3 class="text-xl   text-slate-100">
+						VERA-01 <span class="text-emerald-500/60 text-sm italic">(Lokalt)</span>
+					</h3>
+					<div
+						class="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2 whitespace-nowrap"
+					>
+						<svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+							/>
+						</svg>
+						<span class="hidden sm:inline">Advokatsekretessen förblir intakt</span>
+						<span class="sm:hidden">Sekretessen intakt</span>
+					</div>
+				</div>
+
+				<div class="relative">
+					<div
+						id="line-vera-h"
+						class="gsap-line absolute top-6 left-6 right-6 h-2 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-400 hidden lg:block origin-left scale-x-0 z-0 shadow-[0_0_20px_rgba(16,185,129,0.5)]"
+					></div>
+					<div
+						id="line-vera-v"
+						class="gsap-line absolute top-6 bottom-6 left-6 w-2 rounded-full bg-gradient-to-b from-emerald-600 via-emerald-500 to-emerald-400 block lg:hidden origin-top scale-y-0 z-0 shadow-[0_0_20px_rgba(16,185,129,0.5)]"
+					></div>
+
+					<div class="grid grid-cols-1 lg:grid-cols-4 gap-8 relative z-10">
+						@for (step of veraJourney; track step.id) {
+						<div
+							class="relative flex lg:flex-col items-start lg:items-center gap-6 lg:gap-4 lg:text-center pl-16 lg:pl-0 vera-step"
+						>
+							<div
+								class="gsap-node absolute lg:relative left-0 top-0 lg:top-auto w-12 h-12 rounded-full flex items-center justify-center border-4 border-slate-900 shrink-0 shadow-xl opacity-0 scale-50"
+								[class]="step.colorClass"
+							>
+								<svg
+									class="w-5 h-5 text-slate-900"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path stroke-linecap="round" stroke-linejoin="round" [attr.d]="step.iconPath" />
+								</svg>
+							</div>
+							<div class="gsap-content mt-1 lg:mt-4 opacity-0 translateY-10">
+								<h4 class="text-slate-100 font-bold text-sm mb-1">{{ step.title }}</h4>
+
+								<p
+									class="text-xs text-slate-500 leading-relaxed flex items-center gap-1.5 lg:justify-center"
+								>
+									@if (step.id === 'cg-1') { } @if (step.fileIconPath) {
+									<svg
+										class="w-3.5 h-3.5 text-red-500 shrink-0"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											[attr.d]="step.fileIconPath"
+										/>
+									</svg>
+									}
+									<span>{{ step.desc }}</span>
+								</p>
+							</div>
+						</div>
+						}
+					</div>
+				</div>
+			</div>
+
+			<!-- Slider Handle -->
+			<div
+				class="absolute top-0 bottom-0 z-30 w-12 -ml-6 cursor-col-resize"
+				[style.left.%]="sliderPos"
+				style="touch-action: none"
+				(pointerdown)="onHandleDown($event)"
+				(pointermove)="onHandleMove($event)"
+				(pointerup)="onHandleUp($event)"
+				(lostpointercapture)="isDragging = false"
+			>
+				<!-- Glow effect bakom linjen -->
+				<div
+					class="absolute inset-y-0 -left-4 -right-4 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"
+				></div>
+				@if (sliderPos === 0) {
+				<div
+					class="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white/10 px-3 py-1 rounded-full backdrop-blur-md border border-white/20 animate-bounce"
+				>
+					<span class="text-[10px] uppercase tracking-widest text-white/80 font-bold"
+						>Dra för att jämföra</span
+					>
+				</div>
+				}
+				<!-- Vertical line -->
+				<div
+					class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-transparent via-white/70 to-transparent"
+				></div>
+				<!-- Grip knob -->
+				<div
+					class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900 shadow-[0_0_30px_rgba(255,255,255,0.2)] flex items-center justify-center border-2 border-white"
+				>
+					<div class="flex gap-1">
+						<svg
+							class="w-4 h-4 text-white animate-pulse"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="3"
+								d="M15 19l-7-7 7-7"
+							/>
+						</svg>
+						<svg
+							class="w-4 h-4 text-white animate-pulse"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="3"
+								d="M9 5l7 7-7 7"
+							/>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
+			<a
+				href="#workflows"
+				class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-slate-100 font-medium transition-all"
+			>
+				Se arbetsflöden
+			</a>
+			<a
+				href="#demo"
+				class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md bg-veraGold hover:bg-veraBronze text-slate-950 font-semibold transition-all shadow-xl shadow-veraGold/20 hover:shadow-veraGold/40"
+			>
+				Boka demo
+				<span aria-hidden="true">&rarr;</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.translateY-10 {
+		transform: translateY(20px);
+	}
+</style>

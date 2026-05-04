@@ -11,8 +11,7 @@
 	--shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 	--radius: 14px;
 	--mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-	--sans: system-ui, -apple-system, Segoe UI, Roboto, Inter, 'Helvetica Neue',
-		Arial, sans-serif;
+	--sans: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 @media (prefers-color-scheme: light) {
 	:root {
@@ -53,16 +52,9 @@ a:hover {
 header.hero {
 	position: relative;
 	border-radius: calc(var(--radius) + 6px);
-	background: radial-gradient(
-			1200px 400px at 20% -10%,
-			rgba(87, 195, 255, 0.25),
-			transparent 60%
-		),
-		radial-gradient(
-			1200px 400px at 90% 0%,
-			rgba(138, 241, 138, 0.2),
-			transparent 60%
-		),
+	background:
+		radial-gradient(1200px 400px at 20% -10%, rgba(87, 195, 255, 0.25), transparent 60%),
+		radial-gradient(1200px 400px at 90% 0%, rgba(138, 241, 138, 0.2), transparent 60%),
 		linear-gradient(180deg, var(--bg-soft), var(--bg));
 	padding: 42px 28px;
 	overflow: hidden;
@@ -203,28 +195,16 @@ section.block h2 {
 .hl {
 	padding: 10px 12px;
 	border-radius: 10px;
-	background: linear-gradient(
-		0deg,
-		rgba(87, 195, 255, 0.14),
-		rgba(87, 195, 255, 0.14)
-	);
+	background: linear-gradient(0deg, rgba(87, 195, 255, 0.14), rgba(87, 195, 255, 0.14));
 	border: 1px dashed rgba(87, 195, 255, 0.4);
 	margin: 10px 0;
 }
 .warn {
-	background: linear-gradient(
-		0deg,
-		rgba(255, 211, 107, 0.18),
-		rgba(255, 211, 107, 0.18)
-	);
+	background: linear-gradient(0deg, rgba(255, 211, 107, 0.18), rgba(255, 211, 107, 0.18));
 	border-color: rgba(255, 211, 107, 0.55);
 }
 .ok {
-	background: linear-gradient(
-		0deg,
-		rgba(138, 241, 138, 0.16),
-		rgba(138, 241, 138, 0.16)
-	);
+	background: linear-gradient(0deg, rgba(138, 241, 138, 0.16), rgba(138, 241, 138, 0.16));
 	border-color: rgba(138, 241, 138, 0.45);
 }
 
