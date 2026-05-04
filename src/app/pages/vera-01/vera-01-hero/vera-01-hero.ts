@@ -3,12 +3,14 @@ import {
 	AfterViewInit,
 	Component,
 	ElementRef,
+	inject,
 	Inject,
 	PLATFORM_ID,
 	ViewChild,
 } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Vera01UiService } from '../../../vera-01.ui.service';
 
 @Component({
 	selector: 'app-vera-01-hero',
@@ -19,6 +21,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 export class Vera01Hero implements AfterViewInit {
 	@ViewChild('comparisonContainer', { static: false })
 	comparisonContainer!: ElementRef<HTMLDivElement>;
+	public ui = inject(Vera01UiService);
+
 
 	sliderPos = 50;
 	isDragging = false;

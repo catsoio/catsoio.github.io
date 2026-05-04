@@ -14,38 +14,45 @@
 					alt="VERA-01"
 					class="w-8 h-8 rounded-md flex-shrink-0"
 				/>
-				<span class="  text-xl tracking-tight">VERA-01</span>
+				<span class="text-xl tracking-tight">VERA-01</span>
 			</a>
 			<div class="hidden lg:flex items-center gap-8 text-sm text-slate-300">
+				<a
+					href="#home"
+					(click)="ui.scrollTo('home', $event)"
+					class="hover:text-veraBronze transition-colors"
+					>Hem</a
+				>
 				<a
 					href="#workflows"
 					(click)="ui.scrollTo('workflows', $event)"
 					class="hover:text-veraBronze transition-colors"
-					>Arbetsflöden</a
+					>Modeller</a
 				>
 				<a
-					href="#playbooks"
-					(click)="ui.scrollTo('playbooks', $event)"
+					href="#how"
+					(click)="ui.scrollTo('how', $event)"
 					class="hover:text-veraBronze transition-colors"
-					>Rättsområden</a
+					>Hur den funkar</a
 				>
 				<a
-					href="#security"
-					(click)="ui.scrollTo('security', $event)"
+					href="#ai-comparison"
+					(click)="ui.scrollTo('ai-comparison', $event)"
 					class="hover:text-veraBronze transition-colors"
-					>Säkerhet</a
+					>Jämför</a
 				>
-				<a
-					href="#savings"
-					(click)="ui.scrollTo('savings', $event)"
-					class="hover:text-veraBronze transition-colors"
-					>ROI</a
-				>
+
 				<a
 					href="#faq"
 					(click)="ui.scrollTo('faq', $event)"
 					class="hover:text-veraBronze transition-colors"
 					>FAQ</a
+				>
+				<a
+					href="#demo"
+					(click)="ui.scrollTo('demo', $event)"
+					class="hover:text-veraBronze transition-colors"
+					>Kontakta oss</a
 				>
 			</div>
 			<div class="flex items-center gap-3">
