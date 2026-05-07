@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, HostListener, inject, signal } from '@angular/core';
 import { Vera01Hero } from './vera-01-hero/vera-01-hero';
 import { Vera01Banner } from './vera-01-banner/vera-01-banner';
-import { Vera01Demo } from './vera-01-demo/vera-01-demo';
 import { Vera01Workspaces } from './vera-01-workspaces/vera-01-workspaces';
 import { Vera01Table } from './vera-01-table/vera-01-table';
 import { Vera01Faq } from './vera-01-faq/vera-01-faq';

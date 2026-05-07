@@ -26,6 +26,7 @@ module.exports = {
 					'Segoe UI Symbol',
 				],
 				serif: ['Lora', 'Georgia', 'serif'],
+				pj: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 			},
 			letterSpacing: {
 				wider2: '0.08em',
