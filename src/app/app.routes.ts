@@ -132,7 +132,7 @@ export const routes: Routes = [
 		],
 	},
 	{
-		path: 'poangjakten',
+		path: 'poangjakten/sponsor',
 		loadComponent: () =>
 			import('./pages/poangjakten/poangjakten').then((m) => m.Poangjakten),
 		data: { seo: POANGJAKTEN_SEO },

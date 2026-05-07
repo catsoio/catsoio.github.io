@@ -72,7 +72,7 @@
             <div>
                <div class="inline-block px-4 py-1.5 rounded-full bg-pink-100 text-pink-700 text-xs font-bold mb-6 uppercase tracking-wider">Affärslogiken</div>
                <h3 class="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tight text-zinc-900">
-                  Det är de som gör reklamen åt er.
+                  Det är eleverna som gör reklamen åt er.
                   <span class="text-pink-600 underline decoration-pink-200 underline-offset-8">Inte tvärtom.</span>
                </h3>
                <div class="space-y-6 text-lg text-zinc-600 leading-relaxed">
@@ -203,79 +203,63 @@
          </div>
       </div>
    </section>
-
    <section id="zoner" class="py-24 bg-zinc-900 text-white">
       <div class="max-w-6xl mx-auto px-6">
-         <div class="text-sm font-bold uppercase tracking-wider text-pink-500 mb-4 text-center">Spelplanen</div>
-         <h2 class="text-4xl font-black mb-16 tracking-tight text-center">Var syns ert varumärke?</h2>
+         <div class="text-sm font-bold uppercase tracking-wider text-pink-500 mb-4 text-center">Spelplanen & Arkitekturen</div>
+         <h2 class="text-4xl md:text-5xl font-black mb-8 tracking-tight text-center">Målstyrd synlighet.</h2>
+
+         <div class="max-w-3xl mx-auto bg-zinc-800/80 border border-zinc-700 p-6 md:p-8 rounded-2xl mb-16 text-center shadow-lg">
+            <h3 class="text-xl font-bold text-white mb-3">Så funkar hierarkin</h3>
+            <p class="text-zinc-300 leading-relaxed">
+               Sponsringen i appen är geografiskt staplad. En elev i exempelvis Malmö får en skräddarsydd upplevelse och ser
+               <strong class="text-pink-400">Nationella uppdrag</strong> (t.ex. IKEA), plus <strong class="text-pink-400">Regionala uppdrag</strong> (t.ex. ICA
+               Syd), och slutligen <strong class="text-pink-400">Lokala uppdrag</strong> (t.ex. en lokal padelhall). På så sätt är utmaningarna alltid relevanta
+               för eleven, och ni betalar bara för den räckvidd ni faktiskt vill åt.
+            </p>
+         </div>
 
          <div class="grid md:grid-cols-3 gap-8">
             @for (z of zones; track z.title; let i = $index) {
-            <div class="bg-zinc-800/50 rounded-3xl border border-zinc-700 overflow-hidden flex flex-col">
-               <!-- Visualisering (ersätter image) — switch på position i listan -->
+            <div
+               class="bg-zinc-800/50 rounded-3xl border border-zinc-700 overflow-hidden flex flex-col transform hover:-translate-y-1 transition-transform duration-300"
+            >
                <div class="relative h-48 overflow-hidden border-b border-zinc-700">
-                  @switch (i) {
-
-                  <!-- 0 — PLATINUM: "presenteras av" på hero -->
-                  @case (0) {
+                  @switch (i) { @case (0) {
                   <div class="absolute inset-0 bg-gradient-to-br from-violet-600 via-pink-500 to-orange-400 p-4 flex flex-col justify-end">
                      <div class="text-white font-black text-2xl leading-none">2026.</div>
-                     <div class="text-white/80 text-[11px] lowercase mb-3">studentjakten</div>
+                     <div class="text-white/80 text-[11px] lowercase mb-3">hela sverige</div>
                      <div class="self-start bg-white rounded-full px-3 py-1.5 inline-flex items-center gap-2 shadow-2xl ring-2 ring-white/40">
-                        <span class="text-[9px] text-zinc-500 uppercase tracking-wider">presenteras av</span>
-                        <span class="text-[11px] font-black text-pink-600 tracking-wide">ERT NAMN</span>
+                        <span class="text-[9px] text-zinc-500 uppercase tracking-wider">huvudsponsor</span>
+                        <span class="text-[11px] font-black text-pink-600 tracking-wide">IKEA</span>
                      </div>
                   </div>
-                  }
-
-                  <!-- 1 — GOLD: spotlight-utmaning överst i listan -->
-                  @case (1) {
+                  } @case (1) {
                   <div class="absolute inset-0 bg-slate-50 p-3 flex flex-col gap-1.5">
                      <div class="rounded-xl border-2 border-amber-400 bg-gradient-to-br from-amber-50 to-white p-2.5 shadow-lg shadow-amber-500/20">
-                        <div class="text-[8px] uppercase tracking-wider text-amber-600 font-black mb-0.5">★ sponsrat uppdrag</div>
-                        <div class="font-black text-zinc-900 text-sm leading-tight">er utmaning här</div>
+                        <div class="text-[8px] uppercase tracking-wider text-amber-600 font-black mb-0.5">📍 regional utmaning: skåne</div>
+                        <div class="font-black text-zinc-900 text-sm leading-tight">ICA Syd-racet</div>
                         <div class="flex justify-between items-center mt-1.5">
                            <span class="font-black text-amber-600 text-base">+40p</span>
                            <span class="text-[10px] bg-pink-500 text-white px-2 py-0.5 rounded-full font-bold">kör →</span>
                         </div>
                      </div>
                      <div class="rounded-lg border border-zinc-200 bg-white px-2.5 py-1.5 flex justify-between items-center opacity-40">
-                        <span class="text-[10px] text-zinc-700">vanlig utmaning</span>
-                        <span class="font-black text-pink-600 text-xs">10p</span>
+                        <span class="text-[10px] text-zinc-700">Nationellt Uppdrag (IKEA)</span>
+                        <span class="font-black text-pink-600 text-xs">50p</span>
                      </div>
                      <div class="rounded-lg border border-zinc-200 bg-white px-2.5 py-1.5 flex justify-between items-center opacity-40">
                         <span class="text-[10px] text-zinc-700">vanlig utmaning</span>
                         <span class="font-black text-pink-600 text-xs">23p</span>
                      </div>
                   </div>
-                  }
-
-                  <!-- 2 — SILVER: rabattkod i elevprofilen -->
-                  @case (2) {
-                  <div class="absolute inset-0 bg-slate-50 p-3 flex flex-col gap-2">
-                     <div class="flex items-center gap-1.5 px-1">
-                        <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
-                        <div class="text-[9px] uppercase tracking-wider font-bold text-zinc-500">förmåner</div>
+                  } @case (2) {
+                  <div class="absolute inset-0 bg-slate-50 p-3 flex flex-col justify-center items-center text-center gap-2">
+                     <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-1 border-2 border-emerald-400 shadow-lg">
+                        <span class="text-xl">📍</span>
                      </div>
-                     <div class="rounded-xl border border-emerald-400 bg-white p-2.5 flex items-center gap-2 shadow-lg shadow-emerald-500/20">
-                        <div class="w-9 h-9 rounded-lg bg-zinc-100 grid place-items-center flex-shrink-0">
-                           <span class="text-[8px] font-black text-zinc-400">LOGO</span>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                           <div class="text-[11px] font-black text-zinc-900 leading-tight">er rabatt här</div>
-                           <div class="text-[9px] text-zinc-500 leading-tight mt-0.5">
-                              kod: <span class="font-black text-emerald-600 tracking-wide">SPNSR-26</span>
-                           </div>
-                        </div>
-                        <div class="text-[9px] bg-zinc-900 text-white px-2 py-1 rounded-full font-bold flex-shrink-0">kopiera</div>
-                     </div>
-                     <div class="rounded-xl border border-zinc-200 bg-white p-2 flex items-center gap-2 opacity-30">
-                        <div class="w-7 h-7 rounded-lg bg-zinc-100 flex-shrink-0"></div>
-                        <div class="flex-1 space-y-1">
-                           <div class="h-1.5 w-2/3 bg-zinc-200 rounded"></div>
-                           <div class="h-1 w-1/2 bg-zinc-200 rounded"></div>
-                        </div>
-                     </div>
+                     <div class="text-[10px] uppercase tracking-wider font-bold text-zinc-500">Endast för elever i</div>
+                     <div class="text-lg font-black text-zinc-900 leading-none">Luleå Kommun</div>
+                     <div class="mt-2 text-[10px] bg-emerald-600 text-white px-3 py-1 rounded-full font-bold">Ert lokala uppdrag</div>
                   </div>
                   } }
                </div>
@@ -285,8 +269,8 @@
                   <h3 class="text-2xl font-black mb-4">{{ z.title }}</h3>
                   <p class="text-zinc-400 leading-relaxed mb-6 flex-grow">{{ z.desc }}</p>
                   <div class="p-4 bg-zinc-900 rounded-xl border border-zinc-800">
-                     <span class="text-xs font-bold text-zinc-500 uppercase block mb-1">Mätpunkt</span>
-                     <span class="text-sm text-zinc-300">{{ z.metric }}</span>
+                     <span class="text-xs font-bold text-zinc-500 uppercase block mb-1">Synlighet</span>
+                     <span class="text-sm text-white font-medium">{{ z.metric }}</span>
                   </div>
                </div>
             </div>
@@ -298,18 +282,21 @@
    <section id="priser" class="py-24 bg-zinc-50">
       <div class="max-w-6xl mx-auto px-6">
          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">Sponsorpaket HT26</h2>
+            <div class="text-sm font-bold uppercase tracking-wider text-pink-500 mb-4">Sponsorpaket HT26</div>
+            <h2 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">Köp räckvidden ni behöver.</h2>
             <p class="text-zinc-600 text-lg max-w-2xl mx-auto">
-               För att bibehålla trovärdigheten mot eleverna säljer vi inte ut appen. Vi jobbar med ett fåtal, noga utvalda varumärken som tillför värde.
+               Ni väljer själva er geografiska räckvidd. Appen ser till att ert varumärke hamnar i fickan på exakt rätt elever.
             </p>
          </div>
 
          <div class="grid md:grid-cols-3 gap-8">
             @for (t of tiers; track t.name) {
             <div
-               class="relative bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm flex flex-col"
+               class="relative bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm flex flex-col transform transition-all duration-300"
                [class.ring-2]="t.highlight"
                [class.ring-pink-600]="t.highlight"
+               [class.shadow-xl]="t.highlight"
+               [class.-translate-y-2]="t.highlight"
             >
                @if (t.highlight) {
                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-pink-600 text-white text-xs font-bold rounded-full uppercase tracking-wider">
@@ -318,7 +305,18 @@
                }
                <h3 class="text-2xl font-black mb-1" [class.text-pink-600]="t.highlight">{{ t.name }}</h3>
                <div class="text-zinc-500 font-medium mb-4">{{ t.price }}</div>
-               <div class="text-sm font-semibold text-zinc-500 mb-6 pb-6 border-b border-zinc-100">{{ t.reach }}</div>
+               <div class="text-sm font-semibold text-zinc-500 mb-6 pb-6 border-b border-zinc-100 flex items-center gap-2">
+                  <svg class="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                     />
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  {{ t.reach }}
+               </div>
 
                <ul class="space-y-4 mb-8 flex-grow">
                   @for (f of t.features; track f) {
@@ -346,7 +344,6 @@
          </div>
       </div>
    </section>
-
    <!-- ============================================================ -->
    <!-- NY SEKTION: Tidsplan                                         -->
    <!-- Lägg in MELLAN #priser och #kontakt                          -->
@@ -456,8 +453,8 @@
                      class="w-full px-4 py-3 bg-zinc-900/50 border border-zinc-600 rounded-lg text-white focus:outline-none focus:border-pink-500/50 transition-colors"
                   >
                      <option value="" class="bg-zinc-900">Välj paket...</option>
-                     <option value="Spotlight Regional" class="bg-zinc-900">Spotlight Regional – från 30.000 SEK</option>
-                     <option value="Platinum Nationell" class="bg-zinc-900">Platinum Nationell – från 150.000 SEK</option>
+                     <option value="Spotlight Regional" class="bg-zinc-900">Spotlight Regional</option>
+                     <option value="Platinum Nationell" class="bg-zinc-900">Platinum Nationell</option>
                      <option value="Performance / Förmån" class="bg-zinc-900">Performance / Förmån – Revenue Share</option>
                      <option value="Vet ej ännu" class="bg-zinc-900">Vet inte ännu – vill veta mer</option>
                   </select>
@@ -528,7 +525,7 @@
          </div>
          <div class="text-center text-sm text-zinc-500">© {{ year }} Poängjakten. All rights reserved.</div>
          <div class="flex items-center justify-center md:justify-end gap-6 text-sm">
-            <a href="mailto:hej@poangjakten.se" class="text-zinc-600 hover:text-pink-600 transition">hej&#64;poangjakten.se</a>
+            <a href="mailto:support@catso.io" class="text-zinc-600 hover:text-pink-600 transition">support&#64;catso.io</a>
             <span class="cursor-pointer text-zinc-600 hover:text-pink-600 transition" (click)="scrollTo('kontakt')">Kontakt</span>
          </div>
       </div>
