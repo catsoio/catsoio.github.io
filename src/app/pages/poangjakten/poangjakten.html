@@ -1,0 +1,306 @@
+<div class="min-h-screen bg-white text-zinc-900 antialiased font-sans">
+	<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-zinc-200">
+		<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+			<div class="flex items-center gap-2 cursor-pointer" (click)="scrollTo('top')">
+				<div
+					class="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 grid place-items-center text-white font-display text-xl shadow-md shadow-pink-500/30"
+				>
+					P
+				</div>
+				<span class="font-display text-2xl tracking-tight">poängjakten</span>
+			</div>
+			<div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
+				<a (click)="scrollTo('koncept')" class="hover:text-zinc-900 cursor-pointer transition"
+					>Konceptet</a
+				>
+				<a (click)="scrollTo('zoner')" class="hover:text-zinc-900 cursor-pointer transition"
+					>Exponering</a
+				>
+				<a (click)="scrollTo('priser')" class="hover:text-zinc-900 cursor-pointer transition"
+					>Paket & Priser</a
+				>
+				<a (click)="scrollTo('faq')" class="hover:text-zinc-900 cursor-pointer transition">FAQ</a>
+			</div>
+			<button
+				(click)="scrollTo('priser')"
+				class="bg-zinc-900 hover:bg-pink-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all"
+			>
+				Se sponsorpaket
+			</button>
+		</div>
+	</nav>
+
+	<section id="top" class="relative overflow-hidden bg-zinc-50 border-b border-zinc-200">
+		<div class="absolute inset-0 grid-bg opacity-40"></div>
+		<div
+			class="relative max-w-6xl mx-auto px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-2 gap-12 items-center"
+		>
+			<div>
+				<div
+					class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100 text-pink-700 text-xs font-bold mb-6 uppercase tracking-wide"
+				>
+					<span class="w-2 h-2 bg-pink-500 rounded-full animate-pulse"></span>
+					Partner-onboarding HT26
+				</div>
+				<h1 class="text-5xl md:text-6xl font-black leading-[1.1] mb-6 tracking-tight text-zinc-900">
+					gen z skippar er reklam.<br />
+					i poängjakten tävlar de om att<br />
+					<span class="text-pink-500">få göra den åt er.</span>
+				</h1>
+				<p class="text-lg md:text-xl text-zinc-600 mb-10 leading-relaxed">
+					vi digitaliserar sveriges största studenttradition. istället för att köpa dyra annonser i
+					ett flöde sponsrar ni en utmaning. 100 000 gymnasieelever filmar, redigerar och sprider
+					ert varumärke på sina egna sociala medier för att samla poäng till klassen.
+				</p>
+				<div class="flex flex-wrap gap-4">
+					<button
+						(click)="scrollTo('priser')"
+						class="bg-pink-600 hover:bg-pink-700 text-white font-semibold px-8 py-4 rounded-full transition-all shadow-lg shadow-pink-200"
+					>
+						Visa samarbetspaket
+					</button>
+					<button
+						(click)="scrollTo('koncept')"
+						class="bg-white hover:bg-zinc-50 border border-zinc-200 hover:border-zinc-300 text-zinc-900 font-semibold px-8 py-4 rounded-full transition"
+					>
+						Hur funkar det?
+					</button>
+				</div>
+			</div>
+
+			<div class="relative mx-auto w-full max-w-sm">
+				<div
+					class="bg-zinc-900 aspect-[9/19] rounded-[3rem] sm:p-2 shadow-2xl rotate-2 relative border-[8px] border-zinc-800"
+				>
+					<img
+						src="/assets/imgs/homepagepj.png"
+						alt="Poängjakten App"
+						class="w-full h-full object-cover rounded-[2rem] sm:rounded-[2.5rem]"
+					/>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="koncept" class="py-24 bg-white overflow-hidden border-b border-zinc-100">
+		<div class="max-w-6xl mx-auto px-6">
+			<div class="max-w-4xl mx-auto text-center mb-24">
+				<h2 class="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight text-zinc-900">
+					Från "Skip Ad" till <br class="hidden md:block" />
+					<span class="text-pink-600">"Kolla vad vi gjorde på IKEA!"</span>
+				</h2>
+			</div>
+
+			<div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+				<div>
+					<div
+						class="inline-block px-4 py-1.5 rounded-full bg-pink-100 text-pink-700 text-xs font-bold mb-6 uppercase tracking-wider"
+					>
+						Affärslogiken
+					</div>
+					<h3
+						class="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tight text-zinc-900"
+					>
+						Det är de som gör reklamen åt er.
+						<span class="text-pink-600 underline decoration-pink-200 underline-offset-8"
+							>Inte tvärtom.</span
+						>
+					</h3>
+					<div class="space-y-6 text-lg text-zinc-600 leading-relaxed">
+						<p>
+							I en traditionell kampanj producerar ni innehåll och hoppas att någon tittar. I
+							<strong class="text-zinc-900">Poängjakten</strong> är det eleverna som tävlar om att
+							få skapa det mest kreativa innehållet med ert varumärke i fokus.
+						</p>
+
+						<div class="bg-pink-50/50 p-6 rounded-2xl border-l-4 border-pink-500">
+							<p class="italic text-zinc-900 font-medium">
+								"Tänk er att 500 klasser tävlar om att göra den snyggaste videon i era lokaler. De
+								filmar, de redigerar och
+								<strong>de lägger ut på sina egna sociala medier</strong> för att få poäng. Ni lutar
+								er tillbaka och ser räckvidden växa."
+							</p>
+						</div>
+
+						<p>
+							Ni slipper produktionskostnader och "ad-fatigue". Ni får autentiska rekommendationer
+							från unga till unga – den mest kraftfulla formen av marknadsföring som finns idag.
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="bg-zinc-900 rounded-[2rem] p-8 md:p-10 text-white shadow-2xl relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300"
+				>
+					<div class="absolute -top-10 -right-10 p-8 opacity-5">
+						<svg class="w-48 h-48 text-white" fill="currentColor" viewBox="0 0 24 24">
+							<path
+								d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"
+							/>
+						</svg>
+					</div>
+					<div class="absolute top-60 -right-20 p-8 opacity-5">
+						<svg class="w-48 h-48 text-white" fill="currentColor" viewBox="0 0 24 24">
+							<path
+								d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+							/>
+						</svg>
+					</div>
+
+					<h4 class="text-xl md:text-2xl font-bold mb-8 text-pink-400">Multiplikatoreffekten</h4>
+
+					<div class="space-y-6 md:space-y-8 relative z-10">
+						<div class="flex items-start gap-4 md:gap-5">
+							<div
+								class="w-12 h-12 shrink-0 rounded-full bg-pink-500/20 border border-pink-500/30 flex items-center justify-center text-pink-400 font-bold text-lg"
+							>
+								1
+							</div>
+							<div class="pt-1">
+								<p class="text-white font-bold text-lg mb-1 leading-none">Ni skapar ett uppdrag</p>
+								<p class="text-zinc-400 text-sm">"Gör X i vår butik / med vår tjänst"</p>
+							</div>
+						</div>
+
+						<div class="ml-6 w-0.5 h-6 bg-gradient-to-b from-pink-500/50 to-transparent"></div>
+
+						<div class="flex items-start gap-4 md:gap-5">
+							<div
+								class="w-12 h-12 shrink-0 rounded-full bg-pink-500/20 border border-pink-500/30 flex items-center justify-center text-pink-400 font-bold text-lg"
+							>
+								500+
+							</div>
+							<div class="pt-1">
+								<p class="text-white font-bold text-lg mb-1 leading-none">Elever skapar innehåll</p>
+								<p class="text-zinc-400 text-sm">De filmar, taggar och pushar ert brand</p>
+							</div>
+						</div>
+
+						<div class="ml-6 w-0.5 h-6 bg-gradient-to-b from-pink-500/50 to-transparent"></div>
+
+						<div class="flex items-start gap-4 md:gap-5">
+							<div
+								class="w-12 h-12 shrink-0 rounded-full bg-pink-600 shadow-[0_0_15px_rgba(219,39,119,0.5)] flex items-center justify-center text-white font-bold text-3xl pb-1"
+							>
+								∞
+							</div>
+							<div class="pt-1">
+								<p class="text-white font-bold text-lg mb-1 leading-none">Viral räckvidd</p>
+								<p class="text-zinc-400 text-sm">
+									Exponering på deras sociala medier till tusentals vänner
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="zoner" class="py-24 bg-zinc-900 text-white">
+		<div class="max-w-6xl mx-auto px-6">
+			<div class="text-sm font-bold uppercase tracking-wider text-pink-500 mb-4 text-center">
+				Spelplanen
+			</div>
+			<h2 class="text-4xl font-black mb-16 tracking-tight text-center">Var syns ert varumärke?</h2>
+
+			<div class="grid md:grid-cols-3 gap-8">
+				@for (z of zones; track z.title) {
+				<div class="bg-zinc-800/50 p-8 rounded-3xl border border-zinc-700">
+					<div class="text-pink-400 font-bold mb-2 uppercase text-sm tracking-wider">
+						{{ z.type }}
+					</div>
+					<h3 class="text-2xl font-black mb-4">{{ z.title }}</h3>
+					<p class="text-zinc-400 leading-relaxed mb-6">{{ z.desc }}</p>
+					<div class="p-4 bg-zinc-900 rounded-xl border border-zinc-800">
+						<span class="text-xs font-bold text-zinc-500 uppercase block mb-1">Mätpunkt</span>
+						<span class="text-sm text-zinc-300">{{ z.metric }}</span>
+					</div>
+				</div>
+				}
+			</div>
+		</div>
+	</section>
+
+	<section id="priser" class="py-24 bg-zinc-50">
+		<div class="max-w-6xl mx-auto px-6">
+			<div class="text-center mb-16">
+				<h2 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">Sponsorpaket HT26</h2>
+				<p class="text-zinc-600 text-lg max-w-2xl mx-auto">
+					För att bibehålla trovärdigheten mot eleverna säljer vi inte ut appen. Vi jobbar med ett
+					fåtal, noga utvalda varumärken som tillför värde.
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-8">
+				@for (t of tiers; track t.name) {
+				<div
+					class="relative bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm flex flex-col"
+					[class.ring-2]="t.highlight"
+					[class.ring-pink-600]="t.highlight"
+				>
+					@if (t.highlight) {
+					<div
+						class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-pink-600 text-white text-xs font-bold rounded-full uppercase tracking-wider"
+					>
+						Mest populär
+					</div>
+					}
+					<h3 class="text-2xl font-black mb-1" [class.text-pink-600]="t.highlight">{{ t.name }}</h3>
+					<div class="text-zinc-500 font-medium mb-4">{{ t.price }}</div>
+					<div class="text-sm font-semibold text-zinc-500 mb-6 pb-6 border-b border-zinc-100">
+						{{ t.reach }}
+					</div>
+
+					<ul class="space-y-4 mb-8 flex-grow">
+						@for (f of t.features; track f) {
+						<li class="flex items-start gap-3 text-zinc-700">
+							<span class="text-pink-500 font-bold">✓</span>
+							<span class="text-sm">{{ f }}</span>
+						</li>
+						}
+					</ul>
+
+					<button
+						class="w-full font-bold py-3.5 rounded-full transition-all text-center"
+						[class.bg-pink-600]="t.highlight"
+						[class.hover:bg-pink-700]="t.highlight"
+						[class.text-white]="t.highlight"
+						[class.bg-zinc-100]="!t.highlight"
+						[class.hover:bg-zinc-200]="!t.highlight"
+						[class.text-zinc-900]="!t.highlight"
+					>
+						{{ t.cta }}
+					</button>
+				</div>
+				}
+			</div>
+		</div>
+	</section>
+
+	<section id="faq" class="py-24 bg-white">
+		<div class="max-w-3xl mx-auto px-6">
+			<h2 class="text-3xl font-black mb-10 text-center tracking-tight">Beslutsfattarens FAQ</h2>
+			<div class="space-y-4">
+				@for (f of faqs; track f.q; let i = $index) {
+				<div class="rounded-2xl border border-zinc-200 bg-zinc-50 overflow-hidden">
+					<button
+						(click)="toggleFaq(i)"
+						class="w-full flex items-center justify-between p-6 text-left font-bold text-lg text-zinc-900 hover:bg-zinc-100 transition-colors"
+					>
+						{{ f.q }}
+						<span
+							class="text-pink-600 text-2xl leading-none transition-transform"
+							[class.rotate-45]="openFaq() === i"
+							>+</span
+						>
+					</button>
+					@if (openFaq() === i) {
+					<div class="px-6 pb-6 pt-2 text-zinc-600 leading-relaxed">{{ f.a }}</div>
+					}
+				</div>
+				}
+			</div>
+		</div>
+	</section>
+</div>

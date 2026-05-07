@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { RouteSEO } from './seo/seo.types';
 import { AppComponent } from './app.component';
-import { HEMMAFEST_SEO } from './seo/seo.consts';
+import { HEMMAFEST_SEO, POANGJAKTEN_SEO } from './seo/seo.consts';
 
 export const routes: Routes = [
 	{ path: '', component: AppComponent },
@@ -130,6 +130,12 @@ export const routes: Routes = [
 				},
 			},
 		],
+	},
+	{
+		path: 'poangjakten',
+		loadComponent: () =>
+			import('./pages/poangjakten/poangjakten').then((m) => m.Poangjakten),
+		data: { seo: POANGJAKTEN_SEO },
 	},
 	{
 		path: 'hemmafest',
