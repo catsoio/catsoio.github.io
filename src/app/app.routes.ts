@@ -1,23 +1,22 @@
 import { Routes } from '@angular/router';
 import { RouteSEO } from './seo/seo.types';
-import { AppComponent } from './app.component';
 import { HEMMAFEST_SEO, POANGJAKTEN_SEO } from './seo/seo.consts';
 
 export const routes: Routes = [
-	{ path: '', component: AppComponent },
+	{ path: '', redirectTo: 'home', pathMatch: 'full' },
 
 	{
 		path: 'home',
 		loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
 		data: {
 			seo: {
-				title: 'Catso - AI and Robotics Infrastructure',
+				title: 'Catso — AI-agenter & robotik för svensk industri',
 				description:
-					'Ship SaaS faster with a Turborepo-powered PaaS. NestJS backends, Angular frontends, SSR, CI/CD, and observability built in.',
-				og: { type: 'website', image: '/assets/imgs/ogcatso.png' },
+					'Catso bygger virtuella och fysiska AI-agenter för svenska företag. VERA-01 för juridik, Hemmafest för event, Poängjakten för studenter — och robotik för industrin.',
+				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/imgs/ogcatso.png',
+					image: 'https://catso.io/assets/og/catso-og.jpg',
 				},
 				jsonLd: {
 					'@context': 'https://schema.org',
@@ -34,18 +33,18 @@ export const routes: Routes = [
 			import('./pages/pricing/pricing.component').then((m) => m.PricingComponent),
 		data: {
 			seo: {
-				title: 'Pricing — Catso',
+				title: 'Priser — Catso',
 				description:
-					'Simple, transparent pricing in SEK. Start free, scale predictably across environments and teams.',
-				og: { type: 'website', image: '/assets/og/catso-pricing-1200x630.png' },
+					'Transparenta priser i SEK för Catsos AI-agenter och robotiklösningar. Börja gratis, skala efter behov.',
+				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/og/catso-pricing-1200x630.png',
+					image: 'https://catso.io/assets/og/catso-og.jpg',
 				},
 				jsonLd: {
 					'@context': 'https://schema.org',
 					'@type': 'OfferCatalog',
-					name: 'Catso Pricing',
+					name: 'Catso Priser',
 					url: 'https://catso.io/pricing',
 				},
 			} as RouteSEO,
@@ -56,18 +55,18 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/docs/docs.component').then((m) => m.DocsComponent),
 		data: {
 			seo: {
-				title: 'Docs — Catso',
+				title: 'Dokumentation — Catso',
 				description:
-					'Guides, quickstarts, and API references for building on Catso with NestJS and Angular.',
-				og: { type: 'website', image: '/assets/og/catso-docs-1200x630.png' },
+					'Guider och API-referenser för Catsos AI-agenter och robotikplattform. Kom igång med VERA-01 och mer.',
+				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/og/catso-docs-1200x630.png',
+					image: 'https://catso.io/assets/og/catso-og.jpg',
 				},
 				jsonLd: {
 					'@context': 'https://schema.org',
 					'@type': 'TechArticle',
-					name: 'Catso Documentation',
+					name: 'Catso Dokumentation',
 					url: 'https://catso.io/docs',
 				},
 			} as RouteSEO,
@@ -78,12 +77,12 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/blog/blog.component').then((m) => m.BlogComponent),
 		data: {
 			seo: {
-				title: 'Blog — Catso',
-				description: 'Engineering notes, platform updates, and guides for modern SaaS teams.',
-				og: { type: 'website', image: '/assets/og/catso-blog-1200x630.png' },
+				title: 'Blogg — Catso',
+				description: 'Nyheter, tekniska artiklar och uppdateringar från Catso om AI-agenter, robotik och svensk tech.',
+				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/og/catso-blog-1200x630.png',
+					image: 'https://catso.io/assets/og/catso-og.jpg',
 				},
 			} as RouteSEO,
 		},
@@ -100,36 +99,29 @@ export const routes: Routes = [
 	// 	},
 	// },
 	{
-		// Föräldra-routen har nu INGEN komponent. Den agerar bara "mapp" för URL:en.
 		path: 'vera-01',
-		children: [
-			{
-				// Landningssidan ligger nu på den tomma pathen (dvs /vera-01)
-				path: '',
-				loadComponent: () => import('./pages/vera-01/vera-01').then((m) => m.Vera01),
-				data: {
-					seo: {
-						title: 'VERA-01 | Lokal AI-agent för advokatbyråer',
-						description:
-							'Er lokala AI-drivna juristexpert. - Konstruerad och Tränad på svensk lag.',
-						og: { type: 'product', image: '/assets/imgs/vera01banner3d.png' },
-						twitter: {
-							card: 'summary_large_image',
-							image: '/assets/imgs/vera01banner3d.png',
-						},
-						jsonLd: {
-							'@context': 'https://schema.org',
-							'@type': 'SoftwareApplication',
-							name: 'Vera',
-							applicationCategory: 'BusinessApplication',
-							operatingSystem: 'Web',
-							url: 'https://catso.io/vera-01',
-							offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
-						},
-					} as RouteSEO,
+		loadComponent: () => import('./pages/vera-01/vera-01').then((m) => m.Vera01),
+		data: {
+			seo: {
+				title: 'VERA-01 | Lokal AI-agent för advokatbyråer — Catso',
+				description:
+					'VERA-01 är Catsos AI-agent för svenska advokatbyråer. Analyserar ärenden, genererar utkast och hänvisar till rättskällor — lokalt och GDPR-säkrat.',
+				og: { type: 'product', image: 'https://catso.io/assets/imgs/vera01banner3d.png' },
+				twitter: {
+					card: 'summary_large_image',
+					image: 'https://catso.io/assets/imgs/vera01banner3d.png',
 				},
-			},
-		],
+				jsonLd: {
+					'@context': 'https://schema.org',
+					'@type': 'SoftwareApplication',
+					name: 'VERA-01',
+					applicationCategory: 'BusinessApplication',
+					operatingSystem: 'Web',
+					url: 'https://catso.io/vera-01',
+					offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
+				},
+			} as RouteSEO,
+		},
 	},
 	{
 		path: 'poangjakten/sponsor',
@@ -168,13 +160,13 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
 		data: {
 			seo: {
-				title: 'About — Catso',
+				title: 'Om oss — Catso',
 				description:
-					'We’re building the developer-first PaaS to help teams move from idea to production faster.',
-				og: { type: 'website', image: '/assets/og/catso-about-1200x630.png' },
+					'Catso är ett svenskt AI- och robotikbolag. Vi bygger produkter som VERA-01, Hemmafest och Poängjakten.',
+				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/og/catso-about-1200x630.png',
+					image: 'https://catso.io/assets/og/catso-og.jpg',
 				},
 			} as RouteSEO,
 		},
@@ -185,12 +177,12 @@ export const routes: Routes = [
 			import('./pages/contact/contact.component').then((m) => m.ContactComponent),
 		data: {
 			seo: {
-				title: 'Contact — Catso',
-				description: 'Talk to our team about Catso, enterprise options, and Vera for legal teams.',
-				og: { type: 'website', image: '/assets/og/catso-contact-1200x630.png' },
+				title: 'Kontakt — Catso',
+				description: 'Kontakta Catso för frågor om AI-agenter, robotik, VERA-01 eller enterprise-lösningar.',
+				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/og/catso-contact-1200x630.png',
+					image: 'https://catso.io/assets/og/catso-og.jpg',
 				},
 			} as RouteSEO,
 		},
@@ -201,12 +193,12 @@ export const routes: Routes = [
 			import('./pages/careers/careers.component').then((m) => m.CareersComponent),
 		data: {
 			seo: {
-				title: 'Careers — Catso',
-				description: 'Join us to build the PaaS developers love.',
-				og: { type: 'website', image: '/assets/og/catso-careers-1200x630.png' },
+				title: 'Karriär — Catso',
+				description: 'Jobba på Catso. Vi söker ingenjörer och kreatörer som vill bygga framtidens AI och robotik.',
+				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
 				twitter: {
 					card: 'summary_large_image',
-					image: '/assets/og/catso-careers-1200x630.png',
+					image: 'https://catso.io/assets/og/catso-og.jpg',
 				},
 			} as RouteSEO,
 		},

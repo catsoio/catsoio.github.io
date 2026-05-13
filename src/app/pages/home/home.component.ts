@@ -104,6 +104,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	navLinks: NavLink[] = [
+		{ label: 'Produkter', href: '#products' },
 		{ label: 'AI-agenter', href: '#agents' },
 		{ label: 'Robotik', href: '#robotics' },
 		{ label: 'Kontakt', href: '#contact' },
@@ -120,13 +121,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	stats: Stat[] = [
-		{ value: '50+', label: 'AI-agenter i drift' },
-		{ value: '99.9%', label: 'Drifttid' },
-		{ value: '<200ms', label: 'Svarstid lokalt' },
+		{ value: '3', label: 'Produkter i drift' },
 		{ value: '100%', label: 'Svensk data i Sverige' },
+		{ value: '<200ms', label: 'Svarstid lokalt' },
+		{ value: 'GDPR', label: 'Compliant från grunden' },
 	];
 
-	logos = ['LKAB', 'Boliden', 'Volvo', 'SSAB', 'Scania', 'Ericsson'];
+	logos: string[] = [];
 
 	tabs = [
 		{
@@ -356,57 +357,32 @@ export class HomeComponent implements OnInit, OnDestroy {
 		},
 	];
 
-	testimonials: Testimonial[] = [
-		{
-			initials: 'JL',
-			quote:
-				'Catso har helt förändrat hur vi hanterar juridiska dokument. Från timmar till minuter.',
-			name: 'Johan Lindström',
-			role: 'Delägare, Advokatbyrån Lindström & Co',
-			stars: 5,
-		},
-		{
-			initials: 'AE',
-			quote:
-				'Säkerheten och spårbarheten är i en helt annan liga. Vi kan äntligen lita på AI i vården.',
-			name: 'Anna Eriksson',
-			role: 'IT-chef, Region Norrbotten',
-			stars: 5,
-		},
-		{
-			initials: 'MN',
-			quote:
-				'Robotik-visionen med digital tvilling är exakt vad svensk industri behöver för nästa steg.',
-			name: 'Marcus Nilsson',
-			role: 'CTO, Nordic Logistics AB',
-			stars: 5,
-		},
-	];
+	testimonials: Testimonial[] = [];
 
 	faqs: FAQ[] = [
 		{
 			q: 'Vad är Catso?',
-			a: 'Catso bygger virtuella och fysiska AI-agenter för svenska företag och myndigheter. Vi levererar allt från juridiska AI-assistenter till robotik-pipelines med digitala tvillingar.',
-		},
-		{
-			q: 'Hur skiljer sig Catso från ChatGPT eller andra AI-tjänster?',
-			a: 'Catso kör lokalt hos er med modeller tränade på svensk data. Ingen data lämnar er miljö. Vi erbjuder spårbarhet, källhänvisningar och branschspecifika moduler — inte en generell chattbot.',
+			a: 'Catso är ett svenskt tech-bolag som bygger AI-agenter och robotiklösningar. Vi driver produkter som VERA-01 (juridisk AI), Hemmafest (event-app) och Poängjakten (studentplattform).',
 		},
 		{
 			q: 'Vad är VERA-01?',
-			a: 'VERA-01 är en av våra AI-agenter, specifikt byggd för svenska advokatbyråer. Den analyserar ärenden, genererar dokument och hänvisar till svenska rättskällor. Den är ett exempel på vad Catso kan bygga för just er bransch.',
+			a: 'VERA-01 är vår AI-agent byggd specifikt för svenska advokatbyråer. Den analyserar ärenden, genererar utkast och hänvisar till svenska rättskällor — utan att data lämnar er miljö.',
 		},
 		{
-			q: 'Hur fungerar robotik-delen?',
-			a: 'Vi bygger en Sim-to-Real-pipeline med NVIDIA Isaac Sim och Omniverse. Det innebär att vi skapar digitala tvillingar av era anläggningar, tränar robot-AI i simulering och rullar sedan ut i verkligheten med full säkerhet.',
+			q: 'Vad är Hemmafest?',
+			a: 'Hemmafest är en app där du snabbt kan skapa eller hitta fester. Bjud in vänner, sätt datum och kör. Tillgänglig på webben och mobil.',
+		},
+		{
+			q: 'Vad är Poängjakten?',
+			a: 'Poängjakten är en plattform där gymnasieelever tävlar om att skapa innehåll åt partnerföretag. Företag når studenter där de faktiskt är.',
 		},
 		{
 			q: 'Lämnar vår data Sverige?',
-			a: 'Nej. All drift sker lokalt hos er eller i svensk molnregion. Vi använder inga externa molntjänster som skickar data utanför Sverige.',
+			a: 'Nej. All drift sker lokalt eller i svensk molnregion. Vi använder inga externa tjänster som skickar data utanför Sverige.',
 		},
 		{
 			q: 'Kan vi boka en demo?',
-			a: 'Absolut. Fyll i kontaktformuläret eller mejla oss direkt så bokar vi en tid som passar er.',
+			a: 'Självklart. Mejla support@catso.io eller använd kontaktformuläret så bokar vi en tid.',
 		},
 	];
 

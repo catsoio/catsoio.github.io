@@ -31,10 +31,10 @@ export const appConfig: ApplicationConfig = {
 		{
 			provide: DEFAULT_SEO,
 			useValue: {
-				siteName: 'catso',
+				siteName: 'Catso',
 				origin: 'https://catso.io',
-				defaultDescription: 'Getting blessed.',
-				defaultImage: '/assets/og/catso-og.png',
+				defaultDescription: 'Catso bygger AI-agenter och robotiklösningar för svenska företag. VERA-01, Hemmafest, Poängjakten och mer.',
+				defaultImage: 'https://catso.io/assets/og/catso-og.jpg',
 				locale: 'sv_SE',
 			} as DefaultSeo,
 		},

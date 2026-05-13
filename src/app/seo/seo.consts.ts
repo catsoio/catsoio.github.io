@@ -2,8 +2,8 @@ import { RouteSEO } from './seo.types';
 
 // seo/hemmafest.seo.ts
 export const HEMMAFEST_SEO: RouteSEO = {
-	title: 'Hemmafest! | Joina eller skapa egna fester!',
-	description: 'Hitta och skapa fester snabbt och enkelt! Ange festnamn, datum, och voilà!...',
+	title: 'Hemmafest — Skapa och hitta fester | Catso',
+	description: 'Hitta och skapa fester snabbt och enkelt med Hemmafest från Catso. Ange festnamn, datum, bjud in vänner — klart.',
 	og: { type: 'product', image: '/assets/imgs/hemmafestbanner.png' },
 	twitter: {
 		card: 'summary_large_image',
@@ -12,21 +12,21 @@ export const HEMMAFEST_SEO: RouteSEO = {
 	jsonLd: {
 		'@context': 'https://schema.org',
 		'@type': 'SoftwareApplication',
-		name: 'Vera',
-		applicationCategory: 'BusinessApplication',
-		operatingSystem: 'Web',
+		name: 'Hemmafest',
+		applicationCategory: 'LifestyleApplication',
+		operatingSystem: 'Web, iOS, Android',
 		url: 'https://catso.io/hemmafest',
 		offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
 	},
 };
 
 export const POANGJAKTEN_SEO: RouteSEO = {
-	title: 'Poängjakten | Hem',
+	title: 'Poängjakten — Tävla och nå studenter | Catso',
 	description:
-		'Gen Z skippar er reklam. I Poängjakten tävlar 100 000 gymnasieelever om att skapa den åt er. Bli partner och nå Sveriges studenter där de faktiskt är.',
+		'Poängjakten från Catso: gymnasieelever tävlar om att skapa innehåll åt ert varumärke. Bli partner och nå Sveriges studenter.',
 	og: {
 		type: 'website',
-		image: 'https://catso.io/assets/og/catso-og.jpg', // Samma bild som du använder i heron
+		image: 'https://catso.io/assets/og/catso-og.jpg',
 	},
 	twitter: {
 		card: 'summary_large_image',

@@ -106,12 +106,12 @@ export class Vera01Hero implements AfterViewInit {
 	ngAfterViewInit(): void {
 		if (isPlatformBrowser(this.platformId)) {
 			this.initAnimations();
-		}
 
-		// Vänta lite tills resten av GSAP-animationerna (headers etc) är klara
-		setTimeout(() => {
-			this.introSwipe();
-		}, 3000);
+			// Vänta lite tills resten av GSAP-animationerna (headers etc) är klara
+			setTimeout(() => {
+				this.introSwipe();
+			}, 3000);
+		}
 	}
 
 	introSwipe() {
@@ -189,7 +189,7 @@ export class Vera01Hero implements AfterViewInit {
 	}
 
 	private animateBothCards(): void {
-		const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+		const isDesktop = typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : true;
 
 		for (const prefix of ['cg', 'vera']) {
 			const stepClass = `.${prefix}-step`;

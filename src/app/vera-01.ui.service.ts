@@ -1,18 +1,22 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class Vera01UiService {
+	private platformId = inject(PLATFORM_ID);
+
 	// States
 	scrolled = signal(false);
 	mobileMenuOpen = signal(false);
 
 	constructor() {
-		// Hantera scroll-logiken centralt
-		window.addEventListener('scroll', () => {
-			this.scrolled.set(window.scrollY > 32);
-		});
+		if (isPlatformBrowser(this.platformId)) {
+			window.addEventListener('scroll', () => {
+				this.scrolled.set(window.scrollY > 32);
+			});
+		}
 	}
 
 	// Actions
@@ -29,11 +33,13 @@ export class Vera01UiService {
 			event.preventDefault();
 		}
 
-		this.closeMobileMenu(); // Stäng menyn om man navigerar
+		this.closeMobileMenu();
 
-		const element = document.getElementById(id);
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		if (isPlatformBrowser(this.platformId)) {
+			const element = document.getElementById(id);
+			if (element) {
+				element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
 		}
 	}
 }

@@ -4,8 +4,18 @@ const origin = 'https://catso.io';
 const now = new Date().toISOString();
 
 const routes = [
-	'/home',
-	'/vera-01',
+	{ path: '/home', priority: '1.0' },
+	{ path: '/vera-01', priority: '0.9' },
+	{ path: '/hemmafest', priority: '0.9' },
+	{ path: '/poangjakten/sponsor', priority: '0.8' },
+	{ path: '/about', priority: '0.6' },
+	{ path: '/contact', priority: '0.6' },
+	{ path: '/pricing', priority: '0.7' },
+	{ path: '/blog', priority: '0.7' },
+	{ path: '/docs', priority: '0.6' },
+	{ path: '/careers', priority: '0.5' },
+	{ path: '/privacy', priority: '0.3' },
+	{ path: '/terms', priority: '0.3' },
 ];
 
 const urlXml = (loc, lastmod, priority = '0.8', changefreq = 'weekly') => `
@@ -18,7 +28,7 @@ const urlXml = (loc, lastmod, priority = '0.8', changefreq = 'weekly') => `
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes
-	.map((p) => urlXml(p, now, p === '/' ? '1.0' : '0.8'))
+	.map((r) => urlXml(r.path, now, r.priority))
 	.join('')}
 </urlset>`;
 

@@ -5,7 +5,7 @@
 		"start": "ng serve",
 		"dev:ssr": "ng serve",
 		"build": "ng build",
-		"postbuild": "node tools/generate-sitemap.mjs && cp dist/catsoio/browser/index.html dist/catsoio/browser/404.html",
+		"postbuild": "node tools/generate-sitemap.mjs && cp dist/catsoio/browser/index.csr.html dist/catsoio/browser/404.html",
 		"start:ssr": "node dist/catsoio/server/server.mjs",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
