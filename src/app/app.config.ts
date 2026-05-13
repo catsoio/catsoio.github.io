@@ -31,9 +31,9 @@ export const appConfig: ApplicationConfig = {
 		{
 			provide: DEFAULT_SEO,
 			useValue: {
-				siteName: 'Catso',
+				siteName: 'Catso AI & Robotics',
 				origin: 'https://catso.io',
-				defaultDescription: 'Catso bygger AI-agenter och robotiklösningar för svenska företag. VERA-01, Hemmafest, Poängjakten och mer.',
+				defaultDescription: 'Catso AI & Robotics bygger AI-agenter och robotiklösningar för svenska företag och myndigheter.',
 				defaultImage: 'https://catso.io/assets/og/catso-og.jpg',
 				locale: 'sv_SE',
 			} as DefaultSeo,

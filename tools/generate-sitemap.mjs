@@ -6,14 +6,8 @@ const now = new Date().toISOString();
 const routes = [
 	{ path: '/home', priority: '1.0' },
 	{ path: '/vera-01', priority: '0.9' },
-	{ path: '/hemmafest', priority: '0.9' },
-	{ path: '/poangjakten/sponsor', priority: '0.8' },
-	{ path: '/about', priority: '0.6' },
-	{ path: '/contact', priority: '0.6' },
-	{ path: '/pricing', priority: '0.7' },
-	{ path: '/blog', priority: '0.7' },
-	{ path: '/docs', priority: '0.6' },
-	{ path: '/careers', priority: '0.5' },
+	{ path: '/hemmafest', priority: '0.7' },
+	{ path: '/poangjakten/sponsor', priority: '0.7' },
 	{ path: '/privacy', priority: '0.3' },
 	{ path: '/terms', priority: '0.3' },
 ];

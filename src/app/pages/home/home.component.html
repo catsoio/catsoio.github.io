@@ -4,13 +4,13 @@
 		class="fixed top-0 left-0 right-0 z-50 w-full border-b border-white/10 bg-black/20 backdrop-blur supports-[backdrop-filter]:bg-black/10"
 	>
 		<nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
-			<!-- Left: Logo -->
 			<div class="flex items-center gap-3 shrink-0">
 				<img src="/assets/imgs/catso-logo-blackwhite.png" class="h-10 w-10 invert" alt="Catso" />
-				<span class="text-lg font-semibold tracking-tight hidden sm:inline text-white">Catso</span>
+				<span class="text-base font-semibold tracking-tight hidden sm:inline text-white"
+					>Catso AI & Robotics</span
+				>
 			</div>
 
-			<!-- Center: Links -->
 			<div class="hidden lg:flex items-center gap-6">
 				<a
 					*ngFor="let link of navLinks"
@@ -22,14 +22,13 @@
 				</a>
 			</div>
 
-			<!-- Right: CTA + hamburger -->
 			<div class="flex items-center gap-2 shrink-0">
 				<a
 					href="#contact"
 					(click)="scrollTo($event, '#contact')"
 					class="hidden sm:inline-flex items-center justify-center rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-11 px-5 text-sm font-medium transition-colors"
 				>
-					Prata med oss
+					Kontakta oss
 				</a>
 				<button
 					(click)="toggleMobileMenu()"
@@ -61,7 +60,6 @@
 			</div>
 		</nav>
 
-		<!-- Mobile menu -->
 		<div
 			*ngIf="mobileMenuOpen"
 			class="lg:hidden border-t border-white/10 bg-black/80 backdrop-blur px-4 py-3 space-y-1"
@@ -79,45 +77,48 @@
 				(click)="scrollTo($event, '#contact')"
 				class="block px-4 py-3 text-sm font-medium text-black bg-white text-center rounded-2xl mt-2"
 			>
-				Prata med oss
+				Kontakta oss
 			</a>
 		</div>
 	</div>
 
 	<!-- ═══════════════════ HERO ═══════════════════ -->
 	<header class="relative min-h-[90vh] flex items-center overflow-hidden">
-		<!-- Background image -->
 		<img
 			src="/assets/imgs/catso-hero-background.avif"
 			alt=""
 			class="absolute inset-0 h-full w-full object-cover"
 		/>
-		<!-- Dark overlay -->
-		<div class="absolute inset-0 bg-black/60"></div>
+		<div class="absolute inset-0 bg-black/65"></div>
 
 		<div class="relative mx-auto max-w-7xl px-4 py-20 md:px-6 w-full">
 			<div class="max-w-3xl">
+				<span
+					class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/55 mb-6"
+				>
+					Catso AI & Robotics
+				</span>
 				<h1
 					class="text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1]"
 				>
-					AI och robotik
+					AI-agenter och robotik
 					<div style="height: 10px"></div>
-					<span class="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-						byggt i Sverige.
+					<span class="bg-gradient-to-r from-white to-white/50 bg-clip-text text-transparent">
+						för svensk verksamhet.
 					</span>
 				</h1>
 
-				<p class="mt-6 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl">
-					Vi bygger VERA-01, Hemmafest och Poängjakten — och levererar AI-agenter och robotiklösningar till svenska företag.
+				<p class="mt-6 max-w-xl text-lg leading-relaxed text-white/55 md:text-xl">
+					Vi bygger AI-agenter för offentlig sektor och juridik, och robotiklösningar för industrin.
+					Allt körs lokalt — ingen data lämnar er miljö.
 				</p>
 
 				<div class="mt-10 flex flex-col gap-3 sm:flex-row">
 					<a
-						href="#products"
-						(click)="scrollTo($event, '#products')"
+						href="/vera-01"
 						class="inline-flex items-center justify-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-12 px-6 text-base font-medium transition-colors"
 					>
-						Se våra produkter
+						Se VERA-01
 					</a>
 					<a
 						href="#contact"
@@ -133,7 +134,7 @@
 
 	<!-- Scroll indicator -->
 	<button
-		(click)="scrollTo($event, '#products')"
+		(click)="scrollTo($event, '#agents')"
 		class="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-1 cursor-pointer transition-opacity duration-500"
 		[class.opacity-0]="!showScrollIndicator"
 		[class.pointer-events-none]="!showScrollIndicator"
@@ -150,250 +151,176 @@
 		</svg>
 	</button>
 
-	<!-- ═══════════════════ PRODUKTER ═══════════════════ -->
-	<section id="products" class="border-t border-black/10 bg-white">
+	<!-- ═══════════════════ VAD VI GÖR ═══════════════════ -->
+	<section id="agents" class="border-t border-black/10 bg-white">
 		<div class="mx-auto max-w-7xl px-4 py-20 md:px-6">
-			<div class="text-center mb-14">
-				<h2 class="text-3xl font-semibold tracking-tight md:text-5xl">Våra produkter</h2>
-				<p class="mt-4 text-black/50 text-lg max-w-2xl mx-auto">
-					Tre produkter i drift — byggda på AI, designade för verkliga behov.
+			<div class="mb-12">
+				<h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Vad vi bygger</h2>
+				<p class="mt-3 text-black/50 text-lg max-w-2xl">
+					Två saker. AI-agenter för organisationer med komplexa arbetsflöden, och robotik för
+					industrin.
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-				<!-- VERA-01 -->
-				<a
-					href="/vera-01"
-					class="group relative rounded-3xl border border-black/10 bg-black/[0.02] p-8 transition-all hover:border-black/20 hover:shadow-lg"
-				>
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+				<!-- AI-agenter -->
+				<div class="rounded-3xl bg-black text-white p-10 flex flex-col">
 					<span
-						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/60 mb-4"
+						class="inline-flex w-fit items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/55 mb-6"
 					>
-						AI-agent
+						AI-agenter
 					</span>
-					<h3 class="text-xl font-semibold">VERA-01</h3>
-					<p class="mt-2 text-black/50 text-sm leading-relaxed">
-						Lokal AI-agent för svenska advokatbyråer. Analyserar ärenden, genererar utkast och hänvisar till rättskällor — utan att data lämnar er miljö.
+					<h3 class="text-2xl font-semibold leading-snug">
+						Agenter som faktiskt förstår er verksamhet.
+					</h3>
+					<p class="mt-4 text-white/50 leading-relaxed">
+						Vi bygger AI-agenter anpassade för specifika branscher. VERA-01 är vår första, byggd för
+						svenska advokatbyråer. Näst ut är agenter för offentlig sektor och industri. Allt kör
+						lokalt — ingen data till molnet.
 					</p>
-					<span
-						class="mt-4 inline-flex items-center text-sm font-medium text-black/70 group-hover:text-black transition-colors"
-					>
-						Läs mer →
-					</span>
-				</a>
-
-				<!-- Hemmafest -->
-				<a
-					href="/hemmafest"
-					class="group relative rounded-3xl border border-black/10 bg-black/[0.02] p-8 transition-all hover:border-black/20 hover:shadow-lg"
-				>
-					<span
-						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/60 mb-4"
-					>
-						App
-					</span>
-					<h3 class="text-xl font-semibold">Hemmafest</h3>
-					<p class="mt-2 text-black/50 text-sm leading-relaxed">
-						Skapa eller hitta fester på sekunder. Bjud in vänner, sätt datum, dela länk — klart. Tillgänglig på webben och mobil.
-					</p>
-					<span
-						class="mt-4 inline-flex items-center text-sm font-medium text-black/70 group-hover:text-black transition-colors"
-					>
-						Läs mer →
-					</span>
-				</a>
-
-				<!-- Poängjakten -->
-				<a
-					href="/poangjakten/sponsor"
-					class="group relative rounded-3xl border border-black/10 bg-black/[0.02] p-8 transition-all hover:border-black/20 hover:shadow-lg"
-				>
-					<span
-						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/60 mb-4"
-					>
-						Plattform
-					</span>
-					<h3 class="text-xl font-semibold">Poängjakten</h3>
-					<p class="mt-2 text-black/50 text-sm leading-relaxed">
-						Gymnasieelever tävlar om att skapa innehåll åt ert varumärke. Nå Sveriges studenter där de faktiskt är.
-					</p>
-					<span
-						class="mt-4 inline-flex items-center text-sm font-medium text-black/70 group-hover:text-black transition-colors"
-					>
-						Bli partner →
-					</span>
-				</a>
-			</div>
-		</div>
-	</section>
-
-	<!-- ═══════════════════ ROBOTIK DEEP DIVE ═══════════════════ -->
-	<section
-		id="robotics"
-		class="border-t border-black/10 bg-black text-white min-h-[80vh] flex items-center"
-	>
-		<div class="mx-auto max-w-7xl px-4 py-20 md:px-6 w-full">
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-				<!-- Left: Content -->
-				<div>
-					<span
-						class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/60 mb-4"
-					>
-						Physical AI
-					</span>
-					<h2 class="text-3xl font-semibold tracking-tight md:text-5xl">
-						Robotik för
-						<span
-							class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent"
-						>
-							svensk industri.
-						</span>
-					</h2>
-					<p class="mt-5 text-white/50 text-lg leading-relaxed">
-						Vi bygger AI-hjärnan som styr autonoma robotflottor i lager, gruvor och
-						produktionsanläggningar. Från simulering till driftsatt verklighet — utan att riskera en
-						enda produktionstimme.
-					</p>
-					<p class="mt-4 text-white/40 text-base leading-relaxed">
-						Genom digitala tvillingar kan ni testa och optimera hela er anläggning virtuellt innan
-						en enda robot rör sig på golvet. Resultatet: snabbare utrullning, lägre risk och mätbar
-						ROI från dag ett.
-					</p>
-
-					<div class="mt-8 space-y-4">
-						<div class="flex items-start gap-3">
-							<span class="text-sm text-white/70">
-								Bygg en exakt digital kopia av er anläggning
-							</span>
-						</div>
-						<div class="flex items-start gap-3">
-							<span class="text-sm text-white/70">
-								Träna och validera robot-AI i simulering innan driftsättning
-							</span>
-						</div>
-						<div class="flex items-start gap-3">
-							<span class="text-sm text-white/70">
-								Orkestrera hundratals enheter i realtid med centrala uppdateringar
-							</span>
-						</div>
-						<div class="flex items-start gap-3">
-							<span class="text-sm text-white/70">
-								Kontinuerlig övervakning och säkerhet i enlighet med EU AI Act
-							</span>
-						</div>
-					</div>
-
-					<div class="mt-8 flex flex-wrap gap-3">
+					<ul class="mt-6 space-y-3 text-sm text-white/55">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-white/35 shrink-0"></span>
+							Körs on-prem eller i svensk molnregion
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-white/35 shrink-0"></span>
+							Tränad på svenska datakällor och regelverk
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-white/35 shrink-0"></span>
+							Integreras med era befintliga system
+						</li>
+					</ul>
+					<div class="mt-8">
 						<a
-							href="#contact"
-							(click)="scrollTo($event, '#contact')"
-							class="inline-flex items-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-12 px-6 text-sm font-medium transition-colors"
+							href="/vera-01"
+							class="inline-flex items-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 h-11 px-5 text-sm font-medium transition-colors"
 						>
-							Boka intro
-						</a>
-						<a
-							href="#contact"
-							(click)="scrollTo($event, '#contact')"
-							class="inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-white/5 text-white/90 hover:bg-white/10 h-12 px-6 text-sm font-medium transition-colors backdrop-blur"
-						>
-							Bli partner
+							Se VERA-01
 						</a>
 					</div>
 				</div>
 
-				<!-- Right: Visual -->
-				<div class="relative aspect-square max-w-lg mx-auto w-full overflow-hidden rounded-3xl">
-					<video
-						src="/assets/imgs/inudstriAIVideo.mp4"
-						autoplay
-						loop
-						muted
-						playsinline
-						class="absolute inset-0 h-full w-full object-cover"
-					></video>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ═══════════════════ AI-AGENTER DEEP DIVE ═══════════════════ -->
-	<section
-		id="agents"
-		class="border-t border-black/10 bg-50 text-black min-h-[80vh] flex items-center"
-	>
-		<div class="mx-auto max-w-7xl px-4 py-20 md:px-6 w-full">
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-				<!-- Left: Visual -->
+				<!-- Robotik -->
 				<div
-					class="relative aspect-square max-w-lg mx-auto w-full overflow-hidden rounded-3xl order-2 lg:order-1"
+					id="robotics"
+					class="rounded-3xl border border-black/10 bg-black/[0.02] p-10 flex flex-col"
 				>
+					<span
+						class="inline-flex w-fit items-center rounded-full border border-black/10 bg-black/[0.04] px-3 py-1 text-xs font-medium text-black/55 mb-6"
+					>
+						Robotik
+					</span>
+					<h3 class="text-2xl font-semibold leading-snug">Robotar som vet vad de gör.</h3>
+					<p class="mt-4 text-black/50 leading-relaxed">
+						Vi bygger styrningen för autonoma robotflottor. Jobbet börjar med en digital tvilling av
+						er anläggning — testa och validera i simulering innan en enda robot rör sig på golvet.
+						Sedan driftsätter vi i verkligheten.
+					</p>
+					<ul class="mt-6 space-y-3 text-sm text-black/55">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Digital tvilling med NVIDIA Isaac Sim
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Fleet management för AMR och robotarmar
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							EU AI Act-kompatibelt säkerhetslager
+						</li>
+					</ul>
+					<div class="mt-8">
+						<a
+							href="#contact"
+							(click)="scrollTo($event, '#contact')"
+							class="inline-flex items-center gap-2 rounded-2xl bg-black text-white hover:bg-black/90 h-11 px-5 text-sm font-medium transition-colors"
+						>
+							Kontakta oss
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════ FÖR VEM ═══════════════════ -->
+	<section class="border-t border-black/10 bg-black text-white">
+		<div class="mx-auto max-w-7xl px-4 py-20 md:px-6">
+			<div class="mb-12">
+				<h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Vi jobbar med</h2>
+				<p class="mt-3 text-white/45 text-lg max-w-2xl">
+					Tre sektorer där vi ser störst nytta och faktiskt levererar.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<div
+					*ngFor="let sector of sectors"
+					class="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-8"
+				>
+					<h3 class="text-lg font-semibold">{{ sector.title }}</h3>
+					<p class="mt-3 text-white/45 text-sm leading-relaxed">{{ sector.desc }}</p>
+					<div class="mt-5 flex flex-wrap gap-2">
+						<span
+							*ngFor="let tag of sector.tags"
+							class="rounded-full border border-white/10 px-3 py-1 text-xs text-white/45"
+						>
+							{{ tag }}
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════ VERA-01 SPOTLIGHT ═══════════════════ -->
+	<section class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-7xl px-4 py-20 md:px-6">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div class="relative aspect-square max-w-lg mx-auto w-full overflow-hidden rounded-3xl">
 					<img
 						src="/assets/imgs/catsoaiagent.png"
-						alt="AI-agent som analyserar dokument"
-						class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-105"
+						alt="VERA-01 AI-agent"
+						class="absolute inset-0 h-full w-full object-cover"
 					/>
 				</div>
 
-				<!-- Right: Content -->
-				<div class="order-1 lg:order-2">
+				<div>
 					<span
-						class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/60 mb-4"
+						class="inline-flex items-center rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/55 mb-4"
 					>
-						Virtual AI
+						Produkt
 					</span>
-					<h2 class="text-3xl font-semibold tracking-tight md:text-5xl">
-						AI-agenter för
-						<span class="bg-gradient-to-r from-black to-black/50 bg-clip-text text-transparent">
-							varje bransch.
-						</span>
-					</h2>
-					<p class="mt-5 text-black/50 text-lg leading-relaxed">
-						Vi bygger skräddarsydda AI-agenter som förstår er bransch, ert språk och era regler.
-						Agenter som inte bara svarar — utan resonerar, hänvisar till källor och levererar
-						spårbara resultat.
+					<h2 class="text-3xl font-semibold tracking-tight md:text-5xl">VERA-01</h2>
+					<p class="mt-2 text-xl text-black/35 font-normal">AI-agent för advokatbyråer</p>
+					<p class="mt-5 text-black/55 text-lg leading-relaxed">
+						Vår första AI-agent. Byggd specifikt för svenska advokatbyråer. Ärendeanalys,
+						dokumentgenerering och sökning i rättskällor — tränad på svensk lag och körandes lokalt
+						hos er.
 					</p>
-					<p class="mt-4 text-black/40 text-base leading-relaxed">
-						Allt körs lokalt hos er. Ingen data lämnar er miljö. Ni behåller full kontroll — vi
-						levererar intelligensen.
-					</p>
-
-					<div class="mt-8 space-y-4">
-						<div class="flex items-start gap-3">
-							<span class="text-sm text-black/70">
-								Tränade på svensk data med branschspecifika modeller
-							</span>
-						</div>
-						<div class="flex items-start gap-3">
-							<span class="text-sm text-black/70">
-								Spårbara svar med källhänvisningar i varje steg
-							</span>
-						</div>
-						<div class="flex items-start gap-3">
-							<span class="text-sm text-black/70">
-								Lokal drift utan molnberoende — GDPR-säkrad från grunden
-							</span>
-						</div>
-						<div class="flex items-start gap-3">
-							<span class="text-sm text-black/70">
-								Sömlös integration med era befintliga system och arbetsflöden
-							</span>
-						</div>
-					</div>
-
-					<div class="mt-8 flex flex-wrap gap-3">
+					<ul class="mt-6 space-y-3 text-sm text-black/55">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Analyserar ärenden och tar fram utkast
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Söker och citerar svenska rättskällor
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Körs on-prem — data lämnar inte er server
+						</li>
+					</ul>
+					<div class="mt-8">
 						<a
-							href="#contact"
-							(click)="scrollTo($event, '#contact')"
+							href="/vera-01"
 							class="inline-flex items-center gap-2 rounded-2xl bg-black text-white hover:bg-black/90 shadow-sm h-12 px-6 text-sm font-medium transition-colors"
 						>
-							Boka intro
-						</a>
-						<a
-							href="#contact"
-							(click)="scrollTo($event, '#contact')"
-							class="inline-flex items-center gap-2 rounded-2xl border border-black/10 bg-white text-black hover:bg-black/5 h-12 px-6 text-sm font-medium transition-colors"
-						>
-							Se användningsfall
+							Läs mer om VERA-01
 						</a>
 					</div>
 				</div>
@@ -401,11 +328,70 @@
 		</div>
 	</section>
 
-	<!-- ═══════════════════ CTA ═══════════════════ -->
+	<!-- ═══════════════════ FAQ ═══════════════════ -->
+	<section class="border-t border-black/10 bg-black/[0.02]">
+		<div class="mx-auto max-w-3xl px-4 py-20 md:px-6">
+			<h2 class="text-2xl font-semibold tracking-tight mb-8">Vanliga frågor</h2>
+
+			<div class="divide-y divide-black/10">
+				<div *ngFor="let faq of faqs; let i = index">
+					<button
+						(click)="toggleFaq(i)"
+						class="w-full flex items-center justify-between py-5 text-left gap-4"
+					>
+						<span class="text-base font-medium">{{ faq.q }}</span>
+						<svg
+							class="h-4 w-4 shrink-0 text-black/35 transition-transform duration-200"
+							[class.rotate-180]="expandedFaq === i"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<path d="M19 9l-7 7-7-7" />
+						</svg>
+					</button>
+					<div *ngIf="expandedFaq === i" class="pb-5 text-sm text-black/55 leading-relaxed">
+						{{ faq.a }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════ ÖVRIGA APPAR ═══════════════════ -->
+	<section class="border-t border-black/10 bg-white">
+		<div class="mx-auto max-w-7xl px-4 py-16 md:px-6">
+			<p class="text-sm font-medium text-black/40 uppercase tracking-widest mb-6">
+				Annat vi byggt
+			</p>
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl">
+				<a
+					href="/hemmafest"
+					class="rounded-2xl border border-black/10 p-6 transition-all hover:border-black/20 hover:shadow-sm"
+				>
+					<h3 class="font-semibold">Hemmafest</h3>
+					<p class="mt-1 text-sm text-black/45">
+						Festapp för iOS, Android och webben. Skapa eller hitta fester på sekunder.
+					</p>
+				</a>
+				<a
+					href="/poangjakten/sponsor"
+					class="rounded-2xl border border-black/10 p-6 transition-all hover:border-black/20 hover:shadow-sm"
+				>
+					<h3 class="font-semibold">Poängjakten</h3>
+					<p class="mt-1 text-sm text-black/45">
+						Gymnasieelever skapar innehåll åt varumärken och tävlar om poäng.
+					</p>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════ KONTAKT ═══════════════════ -->
 	<section id="contact" class="border-t border-black/10 bg-white">
 		<div class="mx-auto max-w-5xl px-4 py-20 md:px-6">
 			<div class="relative overflow-hidden rounded-3xl bg-black p-10 md:p-16 text-center">
-				<!-- Glows -->
 				<div class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl"></div>
 				<div
 					class="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl"
@@ -413,11 +399,11 @@
 
 				<div class="relative">
 					<h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
-						Redo att bygga er AI-framtid?
+						Prata med oss
 					</h2>
-					<p class="mt-4 text-white/50 text-lg leading-relaxed max-w-xl mx-auto">
-						Oavsett om ni vill automatisera juridik, optimera lager med robotar eller bygga er egen
-						AI-agent — vi hjälper er hela vägen.
+					<p class="mt-4 text-white/40 text-lg leading-relaxed max-w-lg mx-auto">
+						Vill ni veta mer om VERA-01, diskutera robotik eller höra vad vi jobbar med — hör av
+						er.
 					</p>
 					<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
 						<a
@@ -438,19 +424,21 @@
 			<div class="grid grid-cols-1 gap-10 md:grid-cols-4">
 				<div class="md:col-span-2">
 					<div class="flex items-center gap-3">
-						<img src="/assets/imgs/catso-logo-blackwhite.png" class="h-8 w-9" alt="Catso" />
-						<span class="text-lg font-semibold tracking-tight">Catso</span>
+						<img
+							src="/assets/imgs/catso-logo-blackwhite.png"
+							class="h-8 w-9"
+							alt="Catso AI & Robotics"
+						/>
+						<span class="text-base font-semibold tracking-tight">Catso AI & Robotics</span>
 					</div>
-					<p class="mt-4 max-w-md text-sm text-black/50">
-						Catso bygger AI-agenter och robotik i Sverige. Produkter: VERA-01, Hemmafest, Poängjakten.
+					<p class="mt-4 max-w-sm text-sm text-black/40">
+						Vi bygger AI-agenter och robotik i Sverige. VERA-01 är vår flaggskeppsprodukt.
 					</p>
 				</div>
 				<div>
 					<h4 class="text-sm font-semibold text-black">Produkter</h4>
-					<ul class="mt-3 space-y-2 text-sm text-black/50">
-						<li>
-							<a href="/vera-01" class="hover:text-black transition-colors">VERA-01</a>
-						</li>
+					<ul class="mt-3 space-y-2 text-sm text-black/45">
+						<li><a href="/vera-01" class="hover:text-black transition-colors">VERA-01</a></li>
 						<li>
 							<a href="/hemmafest" class="hover:text-black transition-colors">Hemmafest</a>
 						</li>
@@ -462,19 +450,8 @@
 					</ul>
 				</div>
 				<div>
-					<h4 class="text-sm font-semibold text-black">Företag</h4>
-					<ul class="mt-3 space-y-2 text-sm text-black/50">
-						<li>
-							<a href="/about" class="hover:text-black transition-colors">Om oss</a>
-						</li>
-						<li>
-							<a
-								href="#contact"
-								(click)="scrollTo($event, '#contact')"
-								class="hover:text-black transition-colors"
-								>Kontakt</a
-							>
-						</li>
+					<h4 class="text-sm font-semibold text-black">Kontakt</h4>
+					<ul class="mt-3 space-y-2 text-sm text-black/45">
 						<li>
 							<a href="mailto:support@catso.io" class="hover:text-black transition-colors"
 								>support&#64;catso.io</a
@@ -484,9 +461,9 @@
 				</div>
 			</div>
 			<div
-				class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-black/10 pt-6 text-sm text-black/40 md:flex-row"
+				class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-black/10 pt-6 text-sm text-black/30 md:flex-row"
 			>
-				<p>© {{ currentYear }} Catso AB. Alla rättigheter förbehållna.</p>
+				<p>© {{ currentYear }} Catso AI & Robotics. Alla rättigheter förbehållna.</p>
 				<div class="flex items-center gap-4">
 					<a href="/terms" class="hover:text-black transition-colors">Villkor</a>
 					<a href="/privacy" class="hover:text-black transition-colors">Integritetspolicy</a>

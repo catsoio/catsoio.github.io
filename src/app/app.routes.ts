@@ -10,9 +10,9 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
 		data: {
 			seo: {
-				title: 'Catso — AI-agenter & robotik för svensk industri',
+				title: 'Catso AI & Robotics — AI-agenter och robotik för svensk verksamhet',
 				description:
-					'Catso bygger virtuella och fysiska AI-agenter för svenska företag. VERA-01 för juridik, Hemmafest för event, Poängjakten för studenter — och robotik för industrin.',
+					'Vi bygger AI-agenter för offentlig sektor och juridik, och robotiklösningar för industrin. VERA-01 är vår första produkt.',
 				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
 				twitter: {
 					card: 'summary_large_image',
@@ -21,7 +21,7 @@ export const routes: Routes = [
 				jsonLd: {
 					'@context': 'https://schema.org',
 					'@type': 'WebSite',
-					name: 'Catso',
+					name: 'Catso AI & Robotics',
 					url: 'https://catso.io',
 				},
 			} as RouteSEO,
@@ -31,61 +31,17 @@ export const routes: Routes = [
 		path: 'pricing',
 		loadComponent: () =>
 			import('./pages/pricing/pricing.component').then((m) => m.PricingComponent),
-		data: {
-			seo: {
-				title: 'Priser — Catso',
-				description:
-					'Transparenta priser i SEK för Catsos AI-agenter och robotiklösningar. Börja gratis, skala efter behov.',
-				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
-				twitter: {
-					card: 'summary_large_image',
-					image: 'https://catso.io/assets/og/catso-og.jpg',
-				},
-				jsonLd: {
-					'@context': 'https://schema.org',
-					'@type': 'OfferCatalog',
-					name: 'Catso Priser',
-					url: 'https://catso.io/pricing',
-				},
-			} as RouteSEO,
-		},
+		data: { seo: { title: 'Priser — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO },
 	},
 	{
 		path: 'docs',
 		loadComponent: () => import('./pages/docs/docs.component').then((m) => m.DocsComponent),
-		data: {
-			seo: {
-				title: 'Dokumentation — Catso',
-				description:
-					'Guider och API-referenser för Catsos AI-agenter och robotikplattform. Kom igång med VERA-01 och mer.',
-				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
-				twitter: {
-					card: 'summary_large_image',
-					image: 'https://catso.io/assets/og/catso-og.jpg',
-				},
-				jsonLd: {
-					'@context': 'https://schema.org',
-					'@type': 'TechArticle',
-					name: 'Catso Dokumentation',
-					url: 'https://catso.io/docs',
-				},
-			} as RouteSEO,
-		},
+		data: { seo: { title: 'Dokumentation — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO },
 	},
 	{
 		path: 'blog',
 		loadComponent: () => import('./pages/blog/blog.component').then((m) => m.BlogComponent),
-		data: {
-			seo: {
-				title: 'Blogg — Catso',
-				description: 'Nyheter, tekniska artiklar och uppdateringar från Catso om AI-agenter, robotik och svensk tech.',
-				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
-				twitter: {
-					card: 'summary_large_image',
-					image: 'https://catso.io/assets/og/catso-og.jpg',
-				},
-			} as RouteSEO,
-		},
+		data: { seo: { title: 'Blogg — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO },
 	},
 	// {
 	// 	path: 'blog/:slug',
@@ -103,9 +59,9 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/vera-01/vera-01').then((m) => m.Vera01),
 		data: {
 			seo: {
-				title: 'VERA-01 | Lokal AI-agent för advokatbyråer — Catso',
+				title: 'VERA-01 — AI-agent för advokatbyråer | Catso AI & Robotics',
 				description:
-					'VERA-01 är Catsos AI-agent för svenska advokatbyråer. Analyserar ärenden, genererar utkast och hänvisar till rättskällor — lokalt och GDPR-säkrat.',
+					'VERA-01 är en AI-agent byggd för svenska advokatbyråer. Körs lokalt, tränad på svensk lag. Ingen data lämnar er miljö.',
 				og: { type: 'product', image: 'https://catso.io/assets/imgs/vera01banner3d.png' },
 				twitter: {
 					card: 'summary_large_image',
@@ -158,50 +114,19 @@ export const routes: Routes = [
 	{
 		path: 'about',
 		loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
-		data: {
-			seo: {
-				title: 'Om oss — Catso',
-				description:
-					'Catso är ett svenskt AI- och robotikbolag. Vi bygger produkter som VERA-01, Hemmafest och Poängjakten.',
-				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
-				twitter: {
-					card: 'summary_large_image',
-					image: 'https://catso.io/assets/og/catso-og.jpg',
-				},
-			} as RouteSEO,
-		},
+		data: { seo: { title: 'Om oss — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO },
 	},
 	{
 		path: 'contact',
 		loadComponent: () =>
 			import('./pages/contact/contact.component').then((m) => m.ContactComponent),
-		data: {
-			seo: {
-				title: 'Kontakt — Catso',
-				description: 'Kontakta Catso för frågor om AI-agenter, robotik, VERA-01 eller enterprise-lösningar.',
-				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
-				twitter: {
-					card: 'summary_large_image',
-					image: 'https://catso.io/assets/og/catso-og.jpg',
-				},
-			} as RouteSEO,
-		},
+		data: { seo: { title: 'Kontakt — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO },
 	},
 	{
 		path: 'careers',
 		loadComponent: () =>
 			import('./pages/careers/careers.component').then((m) => m.CareersComponent),
-		data: {
-			seo: {
-				title: 'Karriär — Catso',
-				description: 'Jobba på Catso. Vi söker ingenjörer och kreatörer som vill bygga framtidens AI och robotik.',
-				og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
-				twitter: {
-					card: 'summary_large_image',
-					image: 'https://catso.io/assets/og/catso-og.jpg',
-				},
-			} as RouteSEO,
-		},
+		data: { seo: { title: 'Karriär — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO },
 	},
 	{
 		path: 'privacy',
