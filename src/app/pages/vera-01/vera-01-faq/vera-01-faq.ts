@@ -17,7 +17,7 @@ export class Vera01Faq {
 		{
 			question: 'Är detta förenligt med Advokatsamfundets vägledning?',
 			answer:
-				'Ja. VERA-01 är byggd kring VRGA 2.2, GDPR och Advokatsamfundets AI-vägledning (2025).',
+				'Ja. VERA-01 är byggd kring VRGA 2.2, GDPR och Advokatsamfundets AI vägledning (2025).',
 		},
 		{
 			question: 'Ersätter VERA-01 advokaten?',

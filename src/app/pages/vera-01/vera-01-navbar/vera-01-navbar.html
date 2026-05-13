@@ -92,28 +92,28 @@
 		@if (ui.mobileMenuOpen()) {
 		<div class="lg:hidden border-t border-slate-800 py-4 space-y-3">
 			<a
+				href="#home"
+				(click)="ui.scrollTo('home', $event)"
+				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
+				>Hem</a
+			>
+			<a
 				href="#workflows"
 				(click)="ui.scrollTo('workflows', $event)"
 				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
-				>Arbetsflöden</a
+				>Modeller</a
 			>
 			<a
-				href="#playbooks"
-				(click)="ui.scrollTo('playbooks', $event)"
+				href="#how"
+				(click)="ui.scrollTo('how', $event)"
 				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
-				>Rättsområden</a
+				>Hur den funkar</a
 			>
 			<a
-				href="#security"
-				(click)="ui.scrollTo('security', $event)"
+				href="#ai-comparison"
+				(click)="ui.scrollTo('ai-comparison', $event)"
 				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
-				>Säkerhet</a
-			>
-			<a
-				href="#savings"
-				(click)="ui.scrollTo('savings', $event)"
-				class="block px-2 py-2 text-slate-300 hover:text-veraBronze"
-				>ROI</a
+				>Jämför</a
 			>
 			<a
 				href="#faq"

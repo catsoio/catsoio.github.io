@@ -47,7 +47,7 @@ export class Vera01Hero implements AfterViewInit {
 		{
 			id: 'cg-3',
 			title: 'Sekretessen röjs',
-			desc: 'Klientuppgifter lagras och används för AI-träning.',
+				desc: 'Klientuppgifter lagras och används för AI träning.',
 			colorClass: 'bg-red-500 shadow-red-500/40',
 			iconPath:
 				'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
