@@ -59,7 +59,7 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/vera-01/vera-01').then((m) => m.Vera01),
 		data: {
 			seo: {
-				title: 'VERA-01 — AI-agent för advokatbyråer | Catso AI & Robotics',
+				title: 'VERA-01 | AI-agent för svenska advokatbyråer',
 				description:
 					'VERA-01 är en AI-agent byggd för svenska advokatbyråer. Körs lokalt, tränad på svensk lag. Ingen data lämnar er miljö.',
 				og: { type: 'product', image: 'https://catso.io/assets/imgs/vera01banner3d.png' },
