@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import {
 	ChangeDetectionStrategy,
 	Component,
@@ -18,6 +17,7 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
+import { DemoBookingService } from '../../services/vera01/demo-booking.service';
 
 interface FaqItem {
 	question: string;
@@ -34,7 +34,7 @@ interface FaqItem {
 })
 export class CareersComponent {
 	private readonly fb = inject(FormBuilder);
-	private readonly http = inject(HttpClient);
+	private readonly demoService = inject(DemoBookingService);
 
 	// ───────── UI state ─────────
 	readonly isMenuOpen = signal(false);
@@ -312,18 +312,34 @@ export class CareersComponent {
 		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 
-	submit(): void {
+	async submit(): Promise<void> {
 		if (this.demoForm.invalid || this.isSubmitting()) {
 			this.demoForm.markAllAsTouched();
 			return;
 		}
 		this.submissionState.set('submitting');
-		this.http.post('/api/demo-requests', this.demoForm.getRawValue()).subscribe({
-			next: () => {
-				this.submissionState.set('success');
-				this.demoForm.reset({ consent: false });
-			},
-			error: () => this.submissionState.set('error'),
-		});
+		const v = this.demoForm.getRawValue();
+		const extraDetails = [
+			v.title ? `Titel: ${v.title}` : '',
+			v.phone ? `Telefon: ${v.phone}` : '',
+			v.firmSize ? `Byråns storlek: ${v.firmSize}` : '',
+			v.message ? `Meddelande: ${v.message}` : '',
+		]
+			.filter(Boolean)
+			.join('\n');
+		try {
+			await this.demoService.createDemoRequest({
+				name: v.fullName,
+				email: v.email,
+				byra: v.firmName,
+				message: extraDetails,
+				date: new Date().toISOString(),
+				modules: [],
+			});
+			this.submissionState.set('success');
+			this.demoForm.reset({ consent: false });
+		} catch {
+			this.submissionState.set('error');
+		}
 	}
 }

@@ -15,17 +15,10 @@
 			<div class="hidden lg:flex items-center gap-9 text-sm text-zinc-400">
 				<button
 					type="button"
-					(click)="scrollToSection('landscape')"
+					(click)="scrollToSection('background')"
 					class="hover:text-zinc-100 transition-colors"
 				>
-					Marknaden
-				</button>
-				<button
-					type="button"
-					(click)="scrollToSection('practice')"
-					class="hover:text-zinc-100 transition-colors"
-				>
-					Praktikområden
+					Bakgrund
 				</button>
 				<button
 					type="button"
@@ -36,24 +29,17 @@
 				</button>
 				<button
 					type="button"
-					(click)="scrollToSection('architecture')"
+					(click)="scrollToSection('why-vera')"
 					class="hover:text-zinc-100 transition-colors"
 				>
-					Arkitektur
-				</button>
-				<button
-					type="button"
-					(click)="scrollToSection('compliance')"
-					class="hover:text-zinc-100 transition-colors"
-				>
-					Säkerhet
+					Varför VERA-01
 				</button>
 				<button
 					type="button"
 					(click)="scrollToSection('faq')"
 					class="hover:text-zinc-100 transition-colors"
 				>
-					FAQ
+					Vanliga frågor
 				</button>
 			</div>
 
@@ -101,17 +87,10 @@
 				<div class="px-6 py-6 flex flex-col gap-5 text-base">
 					<button
 						type="button"
-						(click)="scrollToSection('landscape')"
+						(click)="scrollToSection('background')"
 						class="text-left text-zinc-300"
 					>
-						Marknaden
-					</button>
-					<button
-						type="button"
-						(click)="scrollToSection('practice')"
-						class="text-left text-zinc-300"
-					>
-						Praktikområden
+						Bakgrund
 					</button>
 					<button
 						type="button"
@@ -122,20 +101,13 @@
 					</button>
 					<button
 						type="button"
-						(click)="scrollToSection('architecture')"
+						(click)="scrollToSection('why-vera')"
 						class="text-left text-zinc-300"
 					>
-						Arkitektur
-					</button>
-					<button
-						type="button"
-						(click)="scrollToSection('compliance')"
-						class="text-left text-zinc-300"
-					>
-						Säkerhet
+						Varför VERA-01
 					</button>
 					<button type="button" (click)="scrollToSection('faq')" class="text-left text-zinc-300">
-						FAQ
+						Vanliga frågor
 					</button>
 					<button
 						type="button"
@@ -196,7 +168,7 @@
 					</button>
 					<button
 						type="button"
-						(click)="scrollToSection('landscape')"
+						(click)="scrollToSection('why-vera')"
 						class="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full border border-white/20 text-zinc-100 hover:bg-white/5 transition-colors"
 					>
 						Varför VERA-01?
@@ -223,13 +195,13 @@
 		</div>
 
 		<div class="relative max-w-7xl mx-auto px-6 lg:px-12 pt-24 lg:pt-36 pb-28 lg:pb-44">
-			<div class="max-w-2xl">
+			<div class="max-w-3xl">
 				<h2
 					class="text-4xl lg:text-5xl xl:text-6xl leading-[1.06] tracking-tight text-zinc-50 font-light"
 				>
-					<span class="font-serif italic text-zinc-300">Framtidens juridiska arbete</span>
+					<span class="font-serif italic text-zinc-300">Framtidens juridiska arbete.</span>
 				</h2>
-				<div class="mt-10 space-y-6 text-lg text-zinc-300/90 leading-relaxed">
+				<div class="mt-8 space-y-6 text-lg text-zinc-300/90 leading-relaxed">
 					<p>
 						Implementeringen av AI i en advokatverksamhet ställer krav som saknar motstycke i andra
 						branscher. Här är klientsekretessen absolut och icke förhandlingsbar. Traditionella,
@@ -254,7 +226,7 @@
 		</div>
 	</section>
 
-	<div class="relative border-t border-b border-white/10 bg-[#0a0d14]/40 backdrop-blur-md mt-auto">
+	<!-- <div class="relative border-t border-b border-white/10 bg-[#0a0d14]/40 backdrop-blur-md mt-auto">
 		<div class="max-w-7xl mx-auto px-6 lg:px-12 py-8 lg:py-10">
 			<p
 				class="text-center text-xs sm:text-sm font-medium text-zinc-500 uppercase tracking-widest mb-8"
@@ -287,7 +259,7 @@
 				/>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<section id="solutions" class="relative py-24 lg:py-36 border-b border-white/5">
 		<div class="max-w-7xl mx-auto px-6 lg:px-12">
@@ -450,37 +422,33 @@
 	</section>
 
 	<section class="relative border-y border-white/5 bg-[#0c1019]">
-		<div
-			class="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/5"
-		>
-			@for (p of pillars; track p.label) {
-				<article class="py-12 lg:py-16 px-0 md:px-10 first:md:pl-0 last:md:pr-0">
-					<p class="text-[11px] uppercase tracking-[0.24em] text-[#c9a572] mb-5">{{ p.label }}</p>
-					<h3 class="text-2xl lg:text-[1.65rem] text-zinc-50 mb-4 font-light leading-snug">
-						{{ p.title }}
-					</h3>
-					<p class="text-zinc-400 leading-relaxed mb-6">{{ p.body }}</p>
-				</article>
-			}
+		<div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
+			<div class="grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10 lg:gap-y-12">
+				@for (p of pillars; track p.label) {
+					<article class="border-l border-white/10 pl-6 lg:pl-8">
+						<p class="text-[11px] uppercase tracking-[0.24em] text-[#c9a572] mb-5">{{ p.label }}</p>
+						<h3 class="text-2xl lg:text-[1.65rem] text-zinc-50 mb-4 font-light leading-snug">
+							{{ p.title }}
+						</h3>
+						<p class="text-zinc-400 leading-relaxed">{{ p.body }}</p>
+					</article>
+				}
+			</div>
 		</div>
 	</section>
 
-	<section class="relative py-24 lg:py-36 border-b border-white/5 bg-[#0c1019]">
-		<div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
-			<svg
-				class="w-10 h-10 mx-auto text-[#c9a572]/40 mb-10"
-				viewBox="0 0 24 24"
-				fill="currentColor"
-			>
+	<!-- <section class="relative py-24 lg:py-36 border-b border-white/5 bg-[#0c1019]">
+		<div class="max-w-3xl mx-auto px-6 lg:px-12">
+			<svg class="w-10 h-10 text-[#c9a572]/40 mb-10" viewBox="0 0 24 24" fill="currentColor">
 				<path d="M6 17h3l2-4V7H5v6h3l-2 4zm10 0h3l2-4V7h-6v6h3l-2 4z" />
 			</svg>
 			<blockquote
 				class="font-serif text-3xl lg:text-4xl text-zinc-100 font-light leading-[1.25] italic"
 			>
-				"När klienten frågar om vi använder AI i vårt arbete då säger jag ja. vi använder en lokal
-				agent. och er data stannar i byrån utan att skämmas"
+				”När klienten frågar om vi använder AI i vårt arbete säger jag ja. Vi använder en lokal
+				agent, och er data stannar i byrån. Utan att vi behöver skämmas.”
 			</blockquote>
-			<div class="mt-12 flex items-center justify-center gap-4 text-sm">
+			<div class="mt-12 flex items-center gap-4 text-sm">
 				<div class="w-px h-10 bg-white/15"></div>
 				<div class="text-left">
 					<p class="text-zinc-100">Delägare</p>
@@ -488,13 +456,13 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 
 	<section id="faq" class="relative py-24 lg:py-36 border-b border-white/5 bg-[#0c1019]">
-		<div class="max-w-4xl mx-auto px-6 lg:px-12">
-			<div class="text-center mb-16">
+		<div class="max-w-7xl mx-auto px-6 lg:px-12">
+			<div class="mb-16">
 				<h2 class="text-4xl lg:text-5xl leading-[1.08] text-zinc-50 font-light">
-					<span class="font-serif italic text-zinc-300">frågor.</span>
+					<span class="font-serif italic text-zinc-300">Vanliga frågor.</span>
 				</h2>
 			</div>
 
@@ -509,17 +477,15 @@
 							<span class="text-lg lg:text-xl text-zinc-100 font-light pr-4">{{ item.q }}</span>
 							<span
 								class="shrink-0 w-6 h-6 mt-1 text-[#c9a572] transition-transform duration-300"
-								[class.rotate-45]="openFaqIndex() === i"
+								[class.rotate-45]="openFaqIndex() === i || (openFaqIndex() == null && i === 0)"
 							>
 								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
 									<path d="M12 5v14M5 12h14" stroke-linecap="round" />
 								</svg>
 							</span>
 						</button>
-						@if (openFaqIndex() === i) {
-							<div
-								class="pb-7 -mt-2 text-zinc-400 leading-relaxed text-[15px] lg:text-base max-w-3xl"
-							>
+						@if (openFaqIndex() === i || (openFaqIndex() == null && i === 0)) {
+							<div class="pb-7 -mt-2 text-zinc-400 leading-relaxed text-[15px] lg:text-base">
 								{{ item.a }}
 							</div>
 						}
@@ -533,15 +499,16 @@
 		<div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 lg:gap-24">
 			<div class="lg:col-span-5">
 				<h2 class="text-4xl lg:text-5xl leading-[1.05] text-zinc-50 font-light mb-8">
-					Intresserad?
-					<span class="font-serif italic text-zinc-300">Intresseanmälan</span>
+					<span class="font-serif italic text-zinc-300">Intresserad? </span>
+					<br />
+					<span class="font-serif italic text-zinc-300">Boka en demo.</span>
 				</h2>
 
 				<div class="space-y-6 pt-8 border-t border-white/5">
 					<div>
 						<p class="text-[11px] uppercase tracking-[0.22em] text-zinc-500 mb-2">Direktkontakt</p>
 						<a
-							href="mailto:vera@catso.io"
+							href="mailto:support@catso.io"
 							class="text-zinc-100 hover:text-[#c9a572] transition-colors text-lg"
 							>support&#64;catso.io</a
 						>
@@ -624,7 +591,7 @@
 									formControlName="phone"
 									autocomplete="tel"
 									class="w-full bg-transparent border-b border-white/15 focus:border-[#c9a572]/60 text-zinc-100 placeholder:text-zinc-600 py-3 outline-none transition-colors"
-									placeholder="+46 …"
+									placeholder="070-123 45 67"
 								/>
 							</div>
 						</div>
@@ -683,8 +650,8 @@
 						@if (submissionState() === 'error') {
 							<p class="text-sm text-red-300/90">
 								Något gick fel. Försök igen eller kontakta oss på
-								<a href="mailto:vera@catso.io" class="underline hover:text-red-200"
-									>vera&#64;catso.io</a
+								<a href="mailto:support@catso.io" class="underline hover:text-red-200"
+									>support&#64;catso.io</a
 								>.
 							</p>
 						}
@@ -698,7 +665,7 @@
 								@if (isSubmitting()) {
 									<span>Skickar …</span>
 								} @else {
-									<span>Boka konfidentiell genomgång</span>
+									<span>Boka demo</span>
 									<svg
 										class="w-4 h-4"
 										viewBox="0 0 20 20"
