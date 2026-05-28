@@ -284,7 +284,7 @@ export class CareersComponent {
 			a: 'Samma sak som om en biträdande jurist gör det.',
 		},
 		{
-			q: 'Vad är skillnanden mellan VERA-01 och en ChatGPT?',
+			q: 'Vad är skillnanden mellan VERA-01 och ChatGPT?',
 			a: 'VERA-01 körs lokalt och är tränad på svensk rätt. ChatGPT är en generell modell och körs i molnet.',
 		},
 		{
