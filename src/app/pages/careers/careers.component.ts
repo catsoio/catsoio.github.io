@@ -60,22 +60,24 @@ export class CareersComponent {
 	// ───────── Three pillars (under hero) ─────────
 	readonly pillars = [
 		{
-			label: 'Lokal arkitektur',
-			title: 'Er data stannar hos er. Punkt.',
-			body: 'VERA-01 sitter fysiskt på ert kontor. Det betyder att varje fråga, varje svar och varje klientuppgift behandlas i samma rum som era jurister. Ingenting skickas ut — varken till oss, till ett datacenter eller till någon annan.',
-			cta: { label: 'Så fungerar arkitekturen', target: 'architecture' },
+			label: '',
+			title: '100% lokalt.',
+			body: 'VERA-01 sitter fysiskt på ert kontor. Det betyder att varje fråga, varje svar och varje klientuppgift behandlas i samma rum som era jurister. Ingenting skickas ut. Varken till oss, till ett datacenter eller till någon annan.',
 		},
 		{
-			label: 'Inget internetberoende',
-			title: 'Fungerar även när nätet inte gör det',
-			body: 'Eftersom allt körs lokalt finns inget molnkonto som kan gå ner, ingen uppkoppling som måste fungera, ingen extern part som kan stängas av eller byta villkor. Systemet är ert — oavsett vad som händer utanför.',
-			cta: { label: 'Compliance-modellen', target: 'compliance' },
+			label: '',
+			title: 'Fungerar även offline.',
+			body: 'VERA-01 körs 100% offline i byrån. Ingen uppkoppling eller exteran part som kan stängas av eller byta villkor.',
 		},
 		{
-			label: 'Svensk juridik',
-			title: 'Förstår era ärenden, inte bara lagar',
-			body: 'VERA-01 arbetar med svensk lagstiftning, förarbeten och praxis — men också med era egna PM, mallar och gamla ärenden. Det är skillnaden mellan en generisk AI och ett verktyg som faktiskt vet hur ni jobbar.',
-			cta: { label: 'Användningsområden', target: 'solutions' },
+			label: '',
+			title: 'Samfundet säger ifrån',
+			body: 'Advokatsamfundets vägledning (2025) kräver att klientinformation inte får användas för träning eller utdata till andra, att personuppgifter inte överförs till tredje land. Vi eliminerar samtliga risker genom att köra modellen lokalt hos er.',
+		},
+		{
+			label: '',
+			title: 'AI som hittar på saker',
+			body: 'Över 600 jurister sanktionerades globalt under 2025 för att deras AI-verktyg hittade på rättsfall som inte existerade. När ni kör AI lokalt mot era egna källor kan ni verifiera varje svar. Det är skillnaden mellan ett verktyg och ett lotteri.',
 		},
 	] as const;
 
@@ -83,24 +85,6 @@ export class CareersComponent {
 		{ value: '100', unit: '%', label: 'Lokalt' },
 		{ value: '0', unit: '', label: 'API-anrop till tredje part' },
 		{ value: '24/7', unit: '', label: 'Tillgänglig' },
-	] as const;
-
-	// ───────── Three forces shaping the moment ─────────
-	readonly forces = [
-		{
-			tag: 'Yrkesetik',
-			title: 'Samfundet säger ifrån',
-			stat: 'Juni 2025',
-			body: 'Advokatsamfundets vägledning (2025) kräver att klientinformation inte får användas för träning eller utdata till andra, att personuppgifter inte överförs till tredje land. Vi eliminerar samtliga risker genom att köra modellen lokalt hos er.',
-			source: 'Sveriges advokatsamfund, 2025',
-		},
-		{
-			tag: 'Kvalitet',
-			title: 'AI som hittar på saker',
-			stat: '600+ fall',
-			body: 'Över 600 jurister sanktionerades globalt under 2025 för att deras AI-verktyg hittade på rättsfall som inte existerade. När ni kör AI lokalt mot era egna källor kan ni verifiera varje svar. Det är skillnaden mellan ett verktyg och ett lotteri.',
-			source: 'Charlotin AI Hallucination Tracker, 2025',
-		},
 	] as const;
 
 	// ───────── Practice areas (industries-style cards) ─────────
@@ -137,44 +121,77 @@ export class CareersComponent {
 		},
 	] as const;
 
-	// ───────── Solutions (tabbed capabilities) ─────────
 	readonly solutions = [
 		{
 			tab: 'Dokumentanalys',
-			title: 'Sammanfatta +600 sidor på minuter.',
-			body: 'FUP, förhör, domar, transaktionshandlingar och bilagor. VERA-01 läser in omfattande ärendematerial, kartlägger nyckelinformation och bygger en sökbar struktur. Extraherar exakt det ni söker.',
+			iconPath:
+				'M7 4h7l3 3v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z M14 4v3h3 M9 12h6 M9 16h4',
+			title: 'Gå in i förhandlingen som om ni läst varje sida.',
+			body: 'FUP, domar, vittnesförhör eller komplexa transaktionshandlingar. Modellen läser in massivt ärendematerial, identifierar nyckelinformation och bygger en sökbar struktur av era dokument. Systemet extraherar exakt det ni letar efter, med omedelbar hänvisning till källan.',
 			bullets: [
-				'Kronologisk tidslinje.',
-				'Extraherar exakt de datapunkter ni efter frågar. Direkt i chatten.',
-				'Exporterar till Word, Excel eller PDF',
+				'Kronologiska tidslinjer med källhänvisning.',
+				'Extraherar specifika datapunkter.',
+				'Exporterar direkt till Word, Excel eller PDF',
 			],
 			image: '/assets/imgs/veramanydocs.png',
 			bubble1: '',
-			bubble2: '/assets/imgs/mormor4.png',
+			bubble2: '', // /assets/imgs/mormor4.png
 		},
 		{
-			tab: 'Avtalsgranskning',
-			title: 'Hela datarummet — utan att det lämnar ert.',
-			body: 'Istället för att ladda upp tusentals filer till en molntjänst kör VERA-01 extraktionen på plats. Ni får en strukturerad tabell med datapunkter ni faktiskt behöver — inte en AI-sammanfattning ni inte vågar lita på.',
+			tab: 'Rättsutredning',
+			iconPath: 'M12 3v15 M5 6h14 M5 6l-2 7a3 3 0 0 0 6 0L7 6 M19 6l-2 7a3 3 0 0 0 6 0L21 6',
+			title: 'Utreder ärendet mot lag och praxis.',
+			body: 'Hitta relevanta rättskällor och få strukturerade svar med juridiskt sammanhang och tydliga hänvisningar till relevanta lagar, praxis och förarbeten. Eller låt juristen styra urvalet manuellt och lägga till eller ta bort källor under utredningens gång.',
 			bullets: [
-				'Extraherar exakt det ni söker ur varje dokument',
-				'Flaggar risker med hänvisning till källa',
-				'Exportera till Excel eller direkt in i era befintliga verktyg',
+				'Citerar lagrum, NJA och förarbeten vid varje slutsats',
+				'Välj rättskällor automatiskt eller styr urvalet manuellt',
+				'Besvarar enligt juridiska metoden.',
 			],
-			image: '/assets/imgs/verascanmulti.png',
+			image: '/assets/imgs/verarattsurredning.png',
 			bubble1: '',
 			bubble2: '',
 		},
 		{
-			tab: 'Rättsutredning',
-			title: 'Svar med källa — eller inget svar alls.',
-			body: 'VERA-01 söker i svensk lag, förarbeten och praxis. Hittar systemet inte stöd för ett påstående säger det det, istället för att hitta på ett rättsfall som inte finns. Allt körs lokalt, så era sökningar är bara era.',
+			tab: 'Avtalsgranskning',
+			iconPath:
+				'M7 4h6l4 4v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z M13 4v4h4 M9 14l2 2 4-4',
+			title: 'Hitta riskerna innan motparten gör det.',
+			body: 'Ladda upp ett SPA, NDA, anställnings- eller leverantörsavtal. Modellen jämför och flaggar avvikelser med severity och föreslår förhandlingsstrategi för varje punkt.',
 			bullets: [
-				'Varje svar hänvisar till lagrum eller rättsfall',
-				'Spårbart ner till enskilt stycke i förarbete',
-				'Säger "jag vet inte" istället för att fabricera',
+				'Klassificerar varje avvikelse som gynnsam, ogynnsam eller tvetydig',
+				'Föreslår omformuleringar i byråns egen ton och stil',
+				'Markerar riskklausuler med severity och konkret rekommendation',
 			],
-			image: '/assets/vera/solutions/research.jpg',
+			image: '/assets/imgs/veraavtalgranskning.png',
+			bubble1: '',
+			bubble2: '',
+		},
+		{
+			tab: 'Due diligence',
+			iconPath: 'M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z M9 12l2 2 4-4',
+			title: 'Vet vad ni köper innan ni signerar.',
+			body: 'Ladda upp hela datarummet, oavsett om det rör sig om 40, 100 eller 500 dokument. VERA-01 klassificerar varje fil, identifierar transaktionsrelevanta fynd och bygger en strukturerad DD-rapport. Allt presenteras med direktlänkar till källdokumenten.',
+			bullets: [
+				'Klassificerar och prioriterar fynd som HIGH, MEDIUM eller LOW',
+				'Identifierar change of control, garantier och pågående tvister',
+				'Exporterar till Excel för granskning offline med teamet',
+			],
+			image: '/assets/imgs/veradd.png',
+			bubble1: '',
+			bubble2: '',
+		},
+		{
+			tab: 'Dokumentutkast',
+			iconPath:
+				'M4 19V5a1 1 0 0 1 1-1h10l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z M15 4v4h4 M9 13l5-5 2 2-5 5h-2v-2Z',
+			title: 'Skapa dokument på sekunder med minimal beskrivning.',
+			body: 'Generera överklaganden, kravbrev, PM och utkast. Beskriv typ av dokument du behöver, detaljer som ska ingå, så skapas det direkt. Allt sker på ditt språk och i din ton. Varje påstående bygger på källor hämtade direkt från svensk rätt. Inkludera byråns sidhuvud och logotyp, exportera direkt som PDF för att skicka, eller som Word för att finjustera detaljerna.',
+			bullets: [
+				'Exportera direkt som PDF, Word eller annat valfritt format',
+				'Tydliga hänvisningar till svenska rättskällor',
+				'Skapas på bara några sekunder',
+			],
+			image: '/assets/imgs/veradokumentutkast.png',
 			bubble1: '',
 			bubble2: '',
 		},
