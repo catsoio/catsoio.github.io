@@ -40,6 +40,7 @@ export class CareersComponent {
 	readonly isMenuOpen = signal(false);
 	readonly openFaqIndex = signal<number | null>(null);
 	readonly activeSolutionTab = signal(0);
+	readonly isBackgroundExpanded = signal(false);
 	readonly submissionState = signal<'idle' | 'submitting' | 'success' | 'error'>('idle');
 	readonly currentYear = new Date().getFullYear();
 
@@ -303,6 +304,9 @@ export class CareersComponent {
 	}
 	toggleFaq(i: number): void {
 		this.openFaqIndex.update((c) => (c === i ? null : i));
+	}
+	toggleBackground(): void {
+		this.isBackgroundExpanded.update((v) => !v);
 	}
 	selectSolution(i: number): void {
 		this.activeSolutionTab.set(i);
