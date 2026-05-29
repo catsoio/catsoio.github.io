@@ -1,1 +1,781 @@
-<p>careers works!</p>
+<div class="bg-[#0a0d14] text-zinc-100 antialiased">
+	<header
+		class="sticky top-0 inset-x-0 z-50 backdrop-blur-md bg-[#0a0d14]/85 border-b border-white/5"
+	>
+		<nav class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+			<button type="button" (click)="scrollToSection('hero')" class="flex items-center gap-3">
+				<img
+					src="/assets/imgs/vera01logo.png"
+					alt="VERA-01"
+					class="h-8 lg:h-9 w-auto object-contain"
+				/>
+				VERA-01
+			</button>
+
+			<div class="hidden lg:flex items-center gap-9 text-sm text-zinc-400">
+				<button
+					type="button"
+					(click)="scrollToSection('background')"
+					class="hover:text-zinc-100 transition-colors"
+				>
+					Bakgrund
+				</button>
+				<button
+					type="button"
+					(click)="scrollToSection('solutions')"
+					class="hover:text-zinc-100 transition-colors"
+				>
+					Användning
+				</button>
+				<button
+					type="button"
+					(click)="scrollToSection('why-vera')"
+					class="hover:text-zinc-100 transition-colors"
+				>
+					Varför VERA-01
+				</button>
+				<button
+					type="button"
+					(click)="scrollToSection('faq')"
+					class="hover:text-zinc-100 transition-colors"
+				>
+					Vanliga frågor
+				</button>
+			</div>
+
+			<button
+				type="button"
+				(click)="scrollToSection('contact')"
+				class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#c9a572] text-stone-900 text-sm font-medium hover:bg-[#d4b384] transition-colors"
+			>
+				Boka demo
+				<svg
+					class="w-3.5 h-3.5"
+					viewBox="0 0 20 20"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.6"
+				>
+					<path d="M5 10h10M11 5l5 5-5 5" stroke-linecap="round" />
+				</svg>
+			</button>
+
+			<button
+				type="button"
+				(click)="toggleMenu()"
+				class="lg:hidden text-zinc-200 p-2"
+				aria-label="Meny"
+			>
+				<svg
+					class="w-6 h-6"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.5"
+				>
+					@if (isMenuOpen()) {
+						<path d="M6 6l12 12M6 18L18 6" stroke-linecap="round" />
+					} @else {
+						<path d="M4 7h16M4 17h16" stroke-linecap="round" />
+					}
+				</svg>
+			</button>
+		</nav>
+
+		@if (isMenuOpen()) {
+			<div class="lg:hidden border-t border-white/5 bg-[#0a0d14]">
+				<div class="px-6 py-6 flex flex-col gap-5 text-base">
+					<button
+						type="button"
+						(click)="scrollToSection('background')"
+						class="text-left text-zinc-300"
+					>
+						Bakgrund
+					</button>
+					<button
+						type="button"
+						(click)="scrollToSection('solutions')"
+						class="text-left text-zinc-300"
+					>
+						Användning
+					</button>
+					<button
+						type="button"
+						(click)="scrollToSection('why-vera')"
+						class="text-left text-zinc-300"
+					>
+						Varför VERA-01
+					</button>
+					<button type="button" (click)="scrollToSection('faq')" class="text-left text-zinc-300">
+						Vanliga frågor
+					</button>
+					<button
+						type="button"
+						(click)="scrollToSection('contact')"
+						class="mt-2 inline-flex justify-center px-5 py-3 rounded-full bg-[#c9a572] text-stone-900 text-sm font-medium"
+					>
+						Boka demo
+					</button>
+				</div>
+			</div>
+		}
+	</header>
+
+	<section id="hero" class="relative isolate overflow-hidden">
+		<div class="absolute inset-0 -z-10">
+			<img
+				src="/assets/imgs/veraaibakgrund.png"
+				alt="Bakgrundsbild"
+				class="absolute inset-0 w-full h-full object-cover object-center sm:object-[10%_30%]"
+			/>
+			<div class="absolute inset-0 bg-[#0a0d14]/45 sm:bg-[#0a0d14]/70"></div>
+			<div
+				class="absolute inset-0 bg-gradient-to-b from-[#0a0d14]/10 via-[#0a0d14]/45 to-[#0a0d14] sm:from-[#0a0d14]/30 sm:via-[#0a0d14]/60"
+			></div>
+		</div>
+
+		<div
+			class="relative max-w-7xl mx-auto px-6 lg:px-12 pt-20 sm:pt-24 lg:pt-36 pb-24 sm:pb-28 lg:pb-44"
+		>
+			<div class="max-w-4xl">
+				<h1
+					class="text-[2.75rem] sm:text-6xl lg:text-7xl xl:text-[5.25rem] leading-[1.05] tracking-tight text-zinc-50 font-medium"
+				>
+					AI
+					<span class="font-serif italic text-zinc-300">för advokatbyråer.</span>
+				</h1>
+
+				<p
+					class="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg lg:text-xl xl:text-lg text-zinc-300 sm:text-zinc-400 leading-relaxed font-light"
+				>
+					En juridisk AI-agent för advokatverksamhet, byggd på svensk rätt. Processar all
+					information <u>lokalt</u>, helt utan kompromisser kring sekretess eller behov av externa
+					molntjänster.
+				</p>
+
+				<div class="mt-10 sm:mt-12 flex flex-col sm:flex-row gap-4">
+					<button
+						type="button"
+						(click)="scrollToSection('contact')"
+						class="group inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-[#c9a572] text-stone-900 font-medium hover:bg-[#d4b384] transition-colors"
+					>
+						Boka demo
+						<svg
+							class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+							viewBox="0 0 20 20"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+						>
+							<path d="M5 10h10M11 5l5 5-5 5" stroke-linecap="round" />
+						</svg>
+					</button>
+					<button
+						type="button"
+						(click)="scrollToSection('why-vera')"
+						class="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full border border-white/20 text-zinc-100 hover:bg-white/5 transition-colors"
+					>
+						Varför VERA-01?
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="background" class="relative isolate overflow-hidden border-b border-white/5">
+		<div class="absolute inset-0 -z-10">
+			<img
+				src="/assets/imgs/gdpr.png"
+				alt="Datasekretess och lokal AI"
+				class="absolute inset-0 w-full h-full object-cover object-[75%_center] scale-105"
+			/>
+			<div class="absolute inset-0 bg-[#0a0d14]/70"></div>
+			<div
+				class="absolute inset-0 bg-gradient-to-r from-[#0a0d14]/90 via-[#0a0d14]/60 to-transparent"
+			></div>
+			<div
+				class="absolute inset-0 bg-gradient-to-b from-[#0a0d14]/30 via-transparent to-[#0a0d14]"
+			></div>
+		</div>
+
+		<div
+			class="relative max-w-7xl mx-auto px-6 lg:px-12 pt-20 sm:pt-24 lg:pt-36 pb-20 sm:pb-28 lg:pb-44"
+		>
+			<div class="max-w-3xl">
+				<h2
+					class="text-[2rem] sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.08] tracking-tight text-zinc-50 font-light"
+				>
+					<span class="font-serif italic text-zinc-300">Framtidens juridiska arbete.</span>
+				</h2>
+				<div
+					class="mt-6 sm:mt-8 space-y-5 sm:space-y-6 text-base sm:text-lg text-zinc-300/90 leading-relaxed"
+				>
+					<p>
+						Implementeringen av AI i en advokatverksamhet ställer krav som saknar motstycke i andra
+						branscher. Här är klientsekretessen absolut och icke förhandlingsbar. Traditionella,
+						molnbaserade AI-tjänster hamnar ofta i direkt konflikt med både tystnadsplikt och
+						dataskyddsregleringar.
+					</p>
+					<div class="space-y-5 sm:space-y-6 lg:!block" [class.hidden]="!isBackgroundExpanded()">
+						<p>
+							Som advokat ska du inte behöva oroa er för informationsläckage, otillräcklig
+							anonymisering eller var en extern server rent fysiskt är placerad. Frågor om
+							datasäkerhet från klienter, motparter eller tillsynsorgan stjäl värdefull tid. Tid som
+							i stället ska läggas på klienten och det juridiska hantverket.
+						</p>
+						<p>
+							För att ett AI-verktyg ska kunna användas i skarp produktion måste tre grundläggande
+							krav uppfyllas: det ska förstå
+							<strong class="text-zinc-50">svensk rättstillämpning</strong>, det ska kunna processa
+							<strong class="text-zinc-50">enorma datamängder</strong>, och det måste drivas
+							<strong class="text-zinc-50">helt lokalt</strong> under er kontroll.
+						</p>
+					</div>
+					<button
+						type="button"
+						(click)="toggleBackground()"
+						class="lg:hidden inline-flex items-center gap-2 text-sm font-medium text-[#c9a572] hover:text-[#d4b384] transition-colors"
+					>
+						{{ isBackgroundExpanded() ? 'Visa mindre' : 'Läs mer' }}
+						<svg
+							class="w-4 h-4 transition-transform duration-300"
+							[class.rotate-180]="isBackgroundExpanded()"
+							viewBox="0 0 20 20"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+						>
+							<path d="M5 8l5 5 5-5" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- <div class="relative border-t border-b border-white/10 bg-[#0a0d14]/40 backdrop-blur-md mt-auto">
+		<div class="max-w-7xl mx-auto px-6 lg:px-12 py-8 lg:py-10">
+			<p
+				class="text-center text-xs sm:text-sm font-medium text-zinc-500 uppercase tracking-widest mb-8"
+			>
+				Betrodd av
+			</p>
+
+			<div
+				class="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60 brightness-0 invert"
+			>
+				<img
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ollama-logo.svg/960px-Ollama-logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"
+					class="h-8 lg:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300"
+					alt="Ollama"
+				/>
+				<img
+					src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/openrouter-text.png"
+					class="h-8 lg:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300"
+					alt="OpenRouter"
+				/>
+				<img
+					src="https://cybersecurity-excellence-awards.com/wp-content/uploads/2022/01/507133.png"
+					class="h-8 lg:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300"
+					alt="Cybersecurity Excellence"
+				/>
+				<img
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/DeepMind_new_logo.svg/3840px-DeepMind_new_logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"
+					class="h-8 lg:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300"
+					alt="DeepMind"
+				/>
+			</div>
+		</div>
+	</div> -->
+
+	<section id="solutions" class="relative py-20 sm:py-24 lg:py-36 border-b border-white/5">
+		<div class="max-w-7xl mx-auto px-6 lg:px-12">
+			<div class="max-w-3xl mb-10 sm:mb-16">
+				<h2 class="text-[2rem] sm:text-4xl lg:text-5xl leading-[1.1] text-zinc-50 font-light">
+					Så jobbar du med VERA-01.
+				</h2>
+				<p
+					class="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg lg:text-xl xl:text-lg text-zinc-400 leading-relaxed font-light"
+				>
+					Växla sömlöst mellan olika arbetssätt i ett och samma gränssnitt. Låt AI analysera
+					komplexa dokument, sammanfatta domar eller generera överklaganden. När ni är klara
+					exporterar ni enkelt resultatet som PDF i era egna byråmallar. Eller exportera till Word
+					och finjustera precis som vanligt. En smartare plattform för det moderna juridiska
+					hantverket.
+				</p>
+			</div>
+
+			<div
+				class="flex lg:flex-wrap gap-2 lg:gap-3 mb-10 lg:mb-12 border-b border-white/5 pb-1 overflow-x-auto lg:overflow-visible vera-tabs-scroll -mx-6 px-6 lg:mx-0 lg:px-0"
+			>
+				@for (s of solutions; track s.tab; let i = $index) {
+					<button
+						type="button"
+						(click)="selectSolution(i)"
+						class="inline-flex items-center gap-2.5 px-4 lg:px-5 py-3 text-sm whitespace-nowrap shrink-0 transition-colors border-b-2 -mb-px"
+						[class.text-zinc-50]="activeSolutionTab() === i"
+						[class.border-\[\#c9a572\]]="activeSolutionTab() === i"
+						[class.text-zinc-500]="activeSolutionTab() !== i"
+						[class.border-transparent]="activeSolutionTab() !== i"
+						[class.hover:text-zinc-300]="activeSolutionTab() !== i"
+					>
+						<svg
+							class="w-4 h-4 shrink-0"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+						>
+							<path [attr.d]="s.iconPath" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+						{{ s.tab }}
+					</button>
+				}
+			</div>
+
+			@let active = solutions[activeSolutionTab()];
+			<div class="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start lg:min-h-[600px]">
+				<div class="lg:col-span-5">
+					<h3
+						class="text-2xl sm:text-3xl lg:text-4xl text-zinc-50 mb-4 sm:mb-6 font-light leading-snug"
+					>
+						{{ active.title }}
+					</h3>
+					<p class="text-base sm:text-lg text-zinc-400 leading-relaxed mb-6 sm:mb-8">
+						{{ active.body }}
+					</p>
+					<ul class="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
+						@for (b of active.bullets; track b) {
+							<li class="flex items-start gap-4">
+								<svg
+									class="w-5 h-5 mt-0.5 text-[#c9a572] shrink-0"
+									viewBox="0 0 20 20"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.6"
+								>
+									<path d="M4 10l4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+								<span class="text-zinc-300">{{ b }}</span>
+							</li>
+						}
+					</ul>
+					<button
+						type="button"
+						(click)="scrollToSection('contact')"
+						class="inline-flex items-center gap-2 text-sm text-[#c9a572] hover:text-[#d4b384] transition-colors"
+					>
+						Se det live i en demo
+						<svg
+							class="w-3.5 h-3.5"
+							viewBox="0 0 20 20"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+						>
+							<path d="M5 10h10M11 5l5 5-5 5" stroke-linecap="round" />
+						</svg>
+					</button>
+				</div>
+				<div class="lg:col-span-7">
+					<div class="relative">
+						<div
+							class="aspect-[5/4] rounded-lg overflow-hidden border border-white/5 vera-image-frame"
+						>
+							<img
+								[src]="active.image"
+								[alt]="active.tab"
+								loading="lazy"
+								class="w-full h-full object-cover opacity-90"
+							/>
+						</div>
+						@if (active.bubble1) {
+							<div
+								class="absolute -top-4 -right-2 sm:-top-6 sm:-right-4 lg:-top-10 lg:-right-8 z-10 w-[45%] sm:w-[40%] max-w-[260px] rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60 bg-[#0c1019]"
+							>
+								<img
+									[src]="active.bubble1"
+									[alt]="active.tab + ' preview'"
+									loading="lazy"
+									class="w-full h-auto object-cover"
+								/>
+							</div>
+						}
+						@if (active.bubble2) {
+							<div
+								class="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-4 lg:-bottom-10 lg:-left-8 z-10 w-[40%] sm:w-[35%] max-w-[220px] rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60 bg-[#0c1019] rotate-[-3deg]"
+							>
+								<img
+									[src]="active.bubble2"
+									[alt]="active.tab + ' detalj'"
+									loading="lazy"
+									class="w-full h-auto object-cover"
+								/>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section
+		id="why-vera"
+		class="relative py-20 sm:py-24 lg:py-36 border-b border-white/5 bg-[#0c1019]"
+	>
+		<div class="max-w-7xl mx-auto px-6 lg:px-12">
+			<div class="max-w-3xl mb-10 sm:mb-16">
+				<h2 class="text-[2rem] sm:text-4xl lg:text-5xl leading-[1.1] text-zinc-50 font-light">
+					Varför VERA-01?
+				</h2>
+				<div
+					class="mt-6 sm:mt-8 space-y-5 sm:space-y-6 text-base sm:text-lg text-zinc-400 leading-relaxed"
+				>
+					<p>
+						De flesta AI-verktyg på marknaden är skapade för allmänheten. De är i huvudsak tränade
+						på engelsk litteratur, amerikansk juridik och bred internetdata. Att förlita sig på
+						generiska system i en svensk advokatverksamhet innebär alltför stora kvalitets- och
+						säkerhetsrisker.
+					</p>
+					<p>
+						VERA-01 bygger på en annan premiss. Modellen är optimerad för svensk rätt – från lagrum
+						och förarbeten till rådande praxis. Den är ingen allmän chattbot, utan en specialiserad
+						agent designad för att assistera i den juridiska vardagen.
+					</p>
+					<p>
+						Genom att kombinera kraften i moderna, lokalt orkestrerade språkmodeller med en sluten
+						arkitektur, eliminerar vi gapet mellan innovation och regelefterlevnad. VERA-01 ger er
+						byrå den teknologiska skärpan som krävs i dag, med den obrutna trygghet som
+						advokatetiken kräver.
+					</p>
+				</div>
+
+				<div class="mt-10">
+					<button
+						type="button"
+						(click)="scrollToSection('contact')"
+						class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#c9a572] text-stone-900 font-medium hover:bg-[#d4b384] transition-colors duration-300"
+					>
+						Boka en demo
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="relative border-y border-white/5 bg-[#0c1019]">
+		<div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
+			<div class="grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-8 sm:gap-y-10 lg:gap-y-12">
+				@for (p of pillars; track p.label) {
+					<article class="border-l border-white/10 pl-5 sm:pl-6 lg:pl-8">
+						<p class="text-[11px] uppercase tracking-[0.24em] text-[#c9a572] mb-5">{{ p.label }}</p>
+						<h3
+							class="text-xl sm:text-2xl lg:text-[1.65rem] text-zinc-50 mb-3 sm:mb-4 font-light leading-snug"
+						>
+							{{ p.title }}
+						</h3>
+						<p class="text-zinc-400 leading-relaxed text-[15px] sm:text-base">{{ p.body }}</p>
+					</article>
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- <section class="relative py-24 lg:py-36 border-b border-white/5 bg-[#0c1019]">
+		<div class="max-w-3xl mx-auto px-6 lg:px-12">
+			<svg class="w-10 h-10 text-[#c9a572]/40 mb-10" viewBox="0 0 24 24" fill="currentColor">
+				<path d="M6 17h3l2-4V7H5v6h3l-2 4zm10 0h3l2-4V7h-6v6h3l-2 4z" />
+			</svg>
+			<blockquote
+				class="font-serif text-3xl lg:text-4xl text-zinc-100 font-light leading-[1.25] italic"
+			>
+				”När klienten frågar om vi använder AI i vårt arbete säger jag ja. Vi använder en lokal
+				agent, och er data stannar i byrån. Utan att vi behöver skämmas.”
+			</blockquote>
+			<div class="mt-12 flex items-center gap-4 text-sm">
+				<div class="w-px h-10 bg-white/15"></div>
+				<div class="text-left">
+					<p class="text-zinc-100">Delägare</p>
+					<p class="text-zinc-500">Affärsjuridisk byrå, Stockholm</p>
+				</div>
+			</div>
+		</div>
+	</section> -->
+
+	<section id="faq" class="relative py-20 sm:py-24 lg:py-36 border-b border-white/5 bg-[#0c1019]">
+		<div class="max-w-7xl mx-auto px-6 lg:px-12">
+			<div class="mb-10 sm:mb-16">
+				<h2 class="text-[2rem] sm:text-4xl lg:text-5xl leading-[1.1] text-zinc-50 font-light">
+					<span class="font-serif italic text-zinc-300">Vanliga frågor.</span>
+				</h2>
+			</div>
+
+			<div class="divide-y divide-white/5 border-y border-white/5">
+				@for (item of faqs; track item.q; let i = $index) {
+					<div>
+						<button
+							type="button"
+							(click)="toggleFaq(i)"
+							class="w-full text-left py-5 sm:py-6 lg:py-7 flex items-start justify-between gap-4 sm:gap-8"
+						>
+							<span class="text-base sm:text-lg lg:text-xl text-zinc-100 font-light pr-2 sm:pr-4">{{
+								item.q
+							}}</span>
+							<span
+								class="shrink-0 w-6 h-6 mt-1 text-[#c9a572] transition-transform duration-300"
+								[class.rotate-45]="openFaqIndex() === i || (openFaqIndex() == null && i === 0)"
+							>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+									<path d="M12 5v14M5 12h14" stroke-linecap="round" />
+								</svg>
+							</span>
+						</button>
+						@if (openFaqIndex() === i || (openFaqIndex() == null && i === 0)) {
+							<div class="pb-7 -mt-2 text-zinc-400 leading-relaxed text-[15px] lg:text-base">
+								{{ item.a }}
+							</div>
+						}
+					</div>
+				}
+			</div>
+		</div>
+	</section>
+
+	<section id="contact" class="relative py-20 sm:py-24 lg:py-40 border-b border-white/5">
+		<div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12 sm:gap-16 lg:gap-24">
+			<div class="lg:col-span-5">
+				<h2
+					class="text-[2rem] sm:text-4xl lg:text-5xl leading-[1.08] text-zinc-50 font-light mb-6 sm:mb-8"
+				>
+					<span class="font-serif italic text-zinc-300">Intresserad? </span>
+					<br />
+					<span class="font-serif italic text-zinc-300">Boka en demo.</span>
+				</h2>
+
+				<div class="space-y-6 pt-8 border-t border-white/5">
+					<div>
+						<p class="text-[11px] uppercase tracking-[0.22em] text-zinc-500 mb-2">Direktkontakt</p>
+						<a
+							href="mailto:support@catso.io"
+							class="text-zinc-100 hover:text-[#c9a572] transition-colors text-lg"
+							>support&#64;catso.io</a
+						>
+					</div>
+					<div>
+						<p class="text-[11px] uppercase tracking-[0.22em] text-zinc-500 mb-2">Konfidentiellt</p>
+						<p class="text-zinc-400 text-sm leading-relaxed max-w-sm">
+							Förfrågningar behandlas av Catso AI & Robotics. Inga uppgifter delas med tredje part.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="lg:col-span-7">
+				@if (submissionState() === 'success') {
+					<div class="bg-[#c9a572]/[0.04] border border-[#c9a572]/20 rounded-2xl p-12 text-center">
+						<svg
+							class="w-12 h-12 mx-auto mb-8 text-[#c9a572]"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.2"
+						>
+							<circle cx="12" cy="12" r="10" />
+							<path d="M8 12l3 3 5-6" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+						<h3 class="font-serif text-3xl text-zinc-50 mb-4 font-light">Tack.</h3>
+						<p class="text-zinc-400 max-w-sm mx-auto">
+							Vi återkommer inom 24 timmar för att boka en tid som passar er byrå.
+						</p>
+					</div>
+				} @else {
+					<form [formGroup]="demoForm" (ngSubmit)="submit()" class="space-y-7">
+						<div class="grid sm:grid-cols-2 gap-7">
+							<div>
+								<label class="block text-xs uppercase tracking-[0.18em] text-zinc-500 mb-3"
+									>Byrå</label
+								>
+								<input
+									type="text"
+									formControlName="firmName"
+									autocomplete="organization"
+									class="w-full bg-transparent border-b border-white/15 focus:border-[#c9a572]/60 text-zinc-100 placeholder:text-zinc-600 py-3 outline-none transition-colors"
+									placeholder="Advokatfirman …"
+								/>
+							</div>
+							<div>
+								<label class="block text-xs uppercase tracking-[0.18em] text-zinc-500 mb-3"
+									>Namn</label
+								>
+								<input
+									type="text"
+									formControlName="fullName"
+									autocomplete="name"
+									class="w-full bg-transparent border-b border-white/15 focus:border-[#c9a572]/60 text-zinc-100 placeholder:text-zinc-600 py-3 outline-none transition-colors"
+									placeholder="För- och efternamn"
+								/>
+							</div>
+						</div>
+
+						<div class="grid sm:grid-cols-2 gap-7">
+							<div>
+								<label class="block text-xs uppercase tracking-[0.18em] text-zinc-500 mb-3">
+									Titel <span class="text-zinc-600 normal-case">(valfritt)</span>
+								</label>
+								<input
+									type="text"
+									formControlName="title"
+									autocomplete="organization-title"
+									class="w-full bg-transparent border-b border-white/15 focus:border-[#c9a572]/60 text-zinc-100 placeholder:text-zinc-600 py-3 outline-none transition-colors"
+									placeholder="Delägare, IT-ansvarig …"
+								/>
+							</div>
+							<div>
+								<label class="block text-xs uppercase tracking-[0.18em] text-zinc-500 mb-3"
+									>Telefon</label
+								>
+								<input
+									type="tel"
+									formControlName="phone"
+									autocomplete="tel"
+									class="w-full bg-transparent border-b border-white/15 focus:border-[#c9a572]/60 text-zinc-100 placeholder:text-zinc-600 py-3 outline-none transition-colors"
+									placeholder="070-123 45 67"
+								/>
+							</div>
+						</div>
+
+						<div class="grid sm:grid-cols-2 gap-7">
+							<div>
+								<label class="block text-xs uppercase tracking-[0.18em] text-zinc-500 mb-3"
+									>E-post</label
+								>
+								<input
+									type="email"
+									formControlName="email"
+									autocomplete="email"
+									class="w-full bg-transparent border-b border-white/15 focus:border-[#c9a572]/60 text-zinc-100 placeholder:text-zinc-600 py-3 outline-none transition-colors"
+									placeholder="namn@byran.se"
+								/>
+							</div>
+							<div>
+								<label class="block text-xs uppercase tracking-[0.18em] text-zinc-500 mb-3"
+									>Byråns storlek <span class="text-zinc-600 normal-case">(valfritt)</span></label
+								>
+								<select
+									formControlName="firmSize"
+									class="w-full bg-transparent border-b border-white/15 focus:border-[#c9a572]/60 text-zinc-100 py-3 outline-none transition-colors appearance-none vera-select"
+								>
+									<option value="" class="bg-[#0a0d14]">Välj antal jurister</option>
+									<option value="1-5" class="bg-[#0a0d14]">1–5 jurister</option>
+									<option value="6-20" class="bg-[#0a0d14]">6–20 jurister</option>
+									<option value="21-50" class="bg-[#0a0d14]">21–50 jurister</option>
+									<option value="51-100" class="bg-[#0a0d14]">51–100 jurister</option>
+									<option value="100+" class="bg-[#0a0d14]">100+ jurister</option>
+								</select>
+							</div>
+						</div>
+
+						<div>
+							<label class="block text-xs uppercase tracking-[0.18em] text-zinc-500 mb-3">
+								Meddelande <span class="text-zinc-600 normal-case">(valfritt)</span>
+							</label>
+							<textarea
+								formControlName="message"
+								rows="3"
+								class="w-full bg-transparent border-b border-white/15 focus:border-[#c9a572]/60 text-zinc-100 placeholder:text-zinc-600 py-3 outline-none transition-colors resize-none"
+								placeholder="Vad vill ni veta mer om?"
+							></textarea>
+						</div>
+
+						<label class="flex items-start gap-3 pt-4 cursor-pointer">
+							<input type="checkbox" formControlName="consent" class="mt-1" />
+							<span class="text-sm text-zinc-400 leading-relaxed">
+								Jag samtycker till att Catso AI &amp; Robotics behandlar mina uppgifter för att
+								besvara denna förfrågan. Inga uppgifter delas med tredje part.
+							</span>
+						</label>
+
+						@if (submissionState() === 'error') {
+							<p class="text-sm text-red-300/90">
+								Något gick fel. Försök igen eller kontakta oss på
+								<a href="mailto:support@catso.io" class="underline hover:text-red-200"
+									>support&#64;catso.io</a
+								>.
+							</p>
+						}
+
+						<div class="pt-6">
+							<button
+								type="submit"
+								[disabled]="isSubmitting()"
+								class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#c9a572] text-stone-900 font-medium hover:bg-[#d4b384] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+							>
+								@if (isSubmitting()) {
+									<span>Skickar …</span>
+								} @else {
+									<span>Boka demo</span>
+									<svg
+										class="w-4 h-4"
+										viewBox="0 0 20 20"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="1.6"
+									>
+										<path d="M5 10h10M11 5l5 5-5 5" stroke-linecap="round" />
+									</svg>
+								}
+							</button>
+						</div>
+					</form>
+				}
+			</div>
+		</div>
+	</section>
+
+	<footer class="relative pt-20 pb-12 bg-[#0a0d14]">
+		<div class="max-w-7xl mx-auto px-6 lg:px-12">
+			<div class="grid md:grid-cols-12 gap-12 mb-20">
+				<div class="md:col-span-5">
+					<p class="text-2xl text-zinc-50 mb-4">VERA-01</p>
+					<p class="text-zinc-500 max-w-md leading-relaxed mb-8">
+						En AI-agent av Catso AI &amp; Robotics.
+					</p>
+					<div class="flex items-center gap-4 text-zinc-600">
+						<a
+							href="https://linkedin.com"
+							target="_blank"
+							rel="noopener"
+							class="hover:text-[#c9a572] transition-colors"
+							aria-label="LinkedIn"
+						>
+							<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+								<path
+									d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8 19H5V8h3v11zM6.5 6.5a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM20 19h-3v-5.5c0-1.4-.5-2.5-2-2.5-1.5 0-2 1.1-2 2.5V19h-3V8h3v1.4c.5-1 1.7-1.7 3-1.7 2.7 0 4 1.8 4 4.7V19z"
+								/>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<div class="md:col-span-4">
+					<p class="text-xs uppercase tracking-[0.22em] text-zinc-500 mb-5">
+						Catso AI &amp; Robotics
+					</p>
+					<ul class="space-y-3 text-zinc-400">
+						<li>
+							<a href="mailto:support@catso.io" class="hover:text-[#c9a572] transition-colors"
+								>support&#64;catso.io</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div
+				class="pt-10 border-t border-white/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-zinc-600"
+			>
+				<p>© {{ currentYear }} Catso AI &amp; Robotics.</p>
+			</div>
+		</div>
+	</footer>
+</div>

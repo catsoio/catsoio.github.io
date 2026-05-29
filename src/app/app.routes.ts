@@ -62,10 +62,10 @@ export const routes: Routes = [
 				title: 'VERA-01 | AI-agent för svenska advokatbyråer',
 				description:
 					'VERA-01 är en AI-agent byggd för svenska advokatbyråer. Körs lokalt, tränad på svensk lag. Ingen data lämnar er miljö.',
-				og: { type: 'product', image: 'https://catso.io/assets/imgs/vera01banner3d.png' },
+				og: { type: 'product', image: 'https://catso.io/assets/imgs/vera-01/vera01banner00.png' },
 				twitter: {
 					card: 'summary_large_image',
-					image: 'https://catso.io/assets/imgs/vera01banner3d.png',
+					image: 'https://catso.io/assets/imgs/vera-01/vera01banner00.png',
 				},
 				jsonLd: {
 					'@context': 'https://schema.org',
