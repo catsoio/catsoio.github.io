@@ -20,6 +20,13 @@ export interface ContactUsRequest {
 	byra: string;
 }
 
+export interface ShopifyLeadRequest {
+	name: string;
+	email: string;
+	store: string;
+	message: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class DemoBookingService {
 	private http = inject(HttpClient);
@@ -39,6 +46,20 @@ export class DemoBookingService {
 				withCredentials: true,
 			})
 		);
+	}
+
+	/**
+	 * Lead från Shopify AI Sök-sidan. Återanvänder samma endpoint som VERA,
+	 * men taggar avsändaren så att vi ser var förfrågan kommer ifrån.
+	 */
+	async createShopifyAiSearchLead(payload: ShopifyLeadRequest): Promise<void> {
+		await this.contactUsRequest({
+			name: payload.name,
+			email: payload.email,
+			byra: payload.store,
+			message: `[Shopify AI Sök] Butik: ${payload.store}\n\n${payload.message}`,
+			date: new Date().toISOString(),
+		});
 	}
 }
 

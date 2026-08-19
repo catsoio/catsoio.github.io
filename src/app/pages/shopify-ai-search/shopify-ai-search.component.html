@@ -1,348 +1,371 @@
-<div class="min-h-screen bg-black text-neutral-100 antialiased">
-  <!-- ─────────── NAV ─────────── -->
-  <header class="sticky top-0 z-50 border-b border-neutral-800 bg-black/80 backdrop-blur">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-      <a routerLink="/home" class="text-lg font-bold tracking-tight text-white">
-        Catso<span class="text-neutral-500"> / AI Sök</span>
-      </a>
-      <div class="hidden items-center gap-6 text-sm text-neutral-400 md:flex">
-        <a [routerLink]="[]" fragment="funktioner" class="transition hover:text-white"
-          >Funktioner</a
-        >
-        <a [routerLink]="[]" fragment="sa-funkar-det" class="transition hover:text-white"
-          >Så funkar det</a
-        >
-        <a [routerLink]="[]" fragment="priser" class="transition hover:text-white">Priser</a>
-        <a [routerLink]="[]" fragment="faq" class="transition hover:text-white">FAQ</a>
-      </div>
-      <a
-        [routerLink]="[]"
-        fragment="priser"
-        class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-neutral-200"
-      >
-        Kom igång
-      </a>
-    </nav>
-  </header>
+<div
+	class="min-h-screen bg-white text-neutral-600 antialiased selection:bg-neutral-900 selection:text-white"
+>
+	<!-- NAV -->
+	<header
+		class="fixed top-6 left-1/2 z-50 flex w-[95%] max-w-5xl -translate-x-1/2 items-center justify-between rounded-full border border-neutral-200 bg-white/80 px-6 py-3 shadow-sm backdrop-blur-xl"
+	>
+		<a routerLink="/home" class="flex items-center gap-3">
+			<img
+				src="assets/imgs/store-listing/catso-logo.png"
+				alt="Catso"
+				class="h-6 w-auto opacity-90"
+			/>
+			<span class="font-semibold tracking-tight text-neutral-900">Catso AI Sök</span>
+		</a>
+		<nav class="hidden gap-8 text-sm font-medium text-neutral-500 md:flex">
+			<a [routerLink]="[]" fragment="funktioner" class="transition-colors hover:text-neutral-900"
+				>Funktioner</a
+			>
+			<a [routerLink]="[]" fragment="granssnitt" class="transition-colors hover:text-neutral-900"
+				>Så ser det ut</a
+			>
+			<a [routerLink]="[]" fragment="priser" class="transition-colors hover:text-neutral-900"
+				>Priser</a
+			>
+		</nav>
+		<a
+			[routerLink]="[]"
+			fragment="kontakt"
+			class="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
+		>
+			Kom igång
+		</a>
+	</header>
 
-  <main class="mx-auto max-w-6xl px-4">
-    <!-- ─────────── HERO ─────────── -->
-    <section class="grid items-center gap-10 py-20 md:grid-cols-2 md:py-28">
-      <div>
-        <span
-          class="inline-block rounded-full border border-neutral-700 px-3 py-1 text-xs font-medium uppercase tracking-wider text-neutral-400"
-        >
-          Shopify-app
-        </span>
-        <h1
-          class="mt-5 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl"
-        >
-          AI-sök & shoppingassistent för din Shopify-butik
-        </h1>
-        <p class="mt-5 max-w-xl text-lg text-neutral-400">
-          Byt ut butikens vanliga sökruta mot en sökning som förstår vad kunden menar — och en
-          AI-assistent som bara rekommenderar produkter du faktiskt har. På svenska och engelska.
-        </p>
-        <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a
-            [routerLink]="[]"
-            fragment="priser"
-            class="rounded-full bg-white px-6 py-3 font-semibold text-black transition hover:bg-neutral-200"
-          >
-            Kom igång
-          </a>
-          <a
-            routerLink="/contact"
-            class="rounded-full border border-neutral-700 px-6 py-3 font-semibold text-white transition hover:border-neutral-500"
-          >
-            Kontakta oss
-          </a>
-        </div>
-        <p class="mt-4 text-xs text-neutral-500">
-          14 dagars kostnadsfri provperiod · Installeras från Shopify App Store · Avsluta när som
-          helst
-        </p>
-      </div>
+	<main class="mx-auto max-w-6xl px-4 pt-40 pb-24">
+		<!-- HERO -->
+		<section class="text-center">
+			<h1
+				class="mt-8 text-5xl font-semibold tracking-tight text-neutral-900 sm:text-6xl lg:text-7xl"
+			>
+				Rätt sökresultat.
+				<span class="block text-neutral-400">Även vid felstavningar.</span>
+			</h1>
 
-      <div class="relative">
-        <div
-          class="rounded-3xl border border-neutral-800 bg-neutral-950 p-6 shadow-2xl"
-          aria-hidden="true"
-        >
-          <div
-            class="flex items-center gap-2 rounded-xl border border-neutral-800 bg-black px-4 py-3"
-          >
-            <span class="text-neutral-500">⌕</span>
-            <span class="text-neutral-300">laddare under 100 kr</span>
-          </div>
-          <div class="mt-4 space-y-3">
-            <div
-              class="flex items-center justify-between rounded-xl border border-neutral-800 bg-black px-4 py-3"
-            >
-              <span class="text-sm text-neutral-200">USB-C till USB-C Kabel 1m</span>
-              <span class="text-sm font-semibold text-white">99 kr</span>
-            </div>
-            <div
-              class="flex items-center justify-between rounded-xl border border-neutral-800 bg-black px-4 py-3"
-            >
-              <span class="text-sm text-neutral-200">Skärmskydd Härdat Glas</span>
-              <span class="text-sm font-semibold text-white">149 kr</span>
-            </div>
-            <div
-              class="flex items-center justify-between rounded-xl border border-neutral-800 bg-black px-4 py-3"
-            >
-              <span class="text-sm text-neutral-200">HDMI-kabel 2m 4K</span>
-              <span class="text-sm font-semibold text-white">149 kr</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+			<p class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-neutral-500">
+				En sökning på
+				<span class="whitespace-nowrap">
+					<span class="text-neutral-500 underline decoration-rose-400/80 decoration-2"
+						>"vinderjaka till barn"</span
+					>
+				</span>
+				ska inte ge <span class="font-semibold text-neutral-900">noll träffar</span>. Catso matchar kundens intention och visar rätt lagervaror direkt.
+				Fungerar i er befintliga sökruta, helt utan kod.
+			</p>
 
-    <!-- ─────────── FEATURES ─────────── -->
-    <section id="funktioner" class="border-t border-neutral-900 py-20">
-      <h2 class="text-3xl font-bold tracking-tight text-white">Vad du får</h2>
-      <p class="mt-3 max-w-2xl text-neutral-400">
-        Allt som behövs för att kunderna ska hitta rätt produkt snabbare — utan att röra butikens
-        hastighet.
-      </p>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <article
-          *ngFor="let f of features"
-          class="rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition hover:border-neutral-600"
-        >
-          <div class="text-2xl text-white" aria-hidden="true">{{ f.icon }}</div>
-          <h3 class="mt-3 text-lg font-semibold text-white">{{ f.title }}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-neutral-400">{{ f.body }}</p>
-        </article>
-      </div>
-    </section>
+			<div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+				<a
+					[routerLink]="[]"
+					fragment="kontakt"
+					class="w-full rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-700 sm:w-auto"
+				>
+					Kom igång
+				</a>
+				<a
+					[routerLink]="[]"
+					fragment="granssnitt"
+					class="w-full rounded-full border border-neutral-300 px-6 py-3 text-sm font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900 sm:w-auto"
+				>
+					Se hur det fungerar
+				</a>
+			</div>
+		</section>
 
-    <!-- ─────────── HOW IT WORKS ─────────── -->
-    <section id="sa-funkar-det" class="border-t border-neutral-900 py-20">
-      <h2 class="text-3xl font-bold tracking-tight text-white">Så funkar det</h2>
-      <ol class="mt-10 grid gap-6 md:grid-cols-3">
-        <li
-          *ngFor="let s of steps; let i = index"
-          class="rounded-2xl border border-neutral-800 bg-neutral-950 p-6"
-        >
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-700 font-bold text-white"
-          >
-            {{ i + 1 }}
-          </div>
-          <h3 class="mt-4 text-lg font-semibold text-white">{{ s.title }}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-neutral-400">{{ s.body }}</p>
-        </li>
-      </ol>
-    </section>
+		<!-- TRUST -->
+		<section class="mt-20">
+			<div
+				class="flex flex-col items-center justify-center gap-6 rounded-2xl border border-neutral-200 bg-neutral-50 px-6 py-8 text-center sm:flex-row sm:gap-10 sm:text-left"
+			>
+				<div class="flex items-center gap-3">
+					<img
+						src="https://cdn.iconscout.com/icon/free/png-256/free-shopify-logo-icon-svg-download-png-2945149.png?f=webp"
+						alt="Shopify"
+						class="h-8 w-8 shrink-0"
+					/>
+					<div>
+						<p class="text-sm font-semibold text-neutral-900">Byggd för Shopify</p>
+						<p class="text-xs text-neutral-500">Installeras och faktureras via din butik</p>
+					</div>
+				</div>
 
-    <!-- ─────────── PRICING ─────────── -->
-    <section id="priser" class="border-t border-neutral-900 py-20">
-      <h2 class="text-3xl font-bold tracking-tight text-white">Priser</h2>
-      <p class="mt-3 max-w-2xl text-neutral-400">
-        Månadsvis med rabatt vid årsbetalning. 14 dagars gratis provperiod. Extra AI-sökningar
-        utöver kvoten debiteras löpande.
-      </p>
-      <div class="mt-10 grid gap-6 lg:grid-cols-3">
-        <article
-          *ngFor="let p of plans"
-          class="flex flex-col rounded-2xl border bg-neutral-950 p-7"
-          [class.border-white]="p.featured"
-          [class.border-neutral-800]="!p.featured"
-          [class.ring-1]="p.featured"
-          [class.ring-white]="p.featured"
-        >
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-bold text-white">{{ p.name }}</h3>
-            <span
-              *ngIf="p.featured"
-              class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-black"
-            >
-              Populärast
-            </span>
-          </div>
-          <div class="mt-5 flex items-baseline gap-1">
-            <span class="text-4xl font-extrabold text-white">{{ p.monthly }}</span>
-            <span class="text-neutral-500">/ mån</span>
-          </div>
-          <p class="mt-1 text-sm text-neutral-500">eller {{ p.yearly }}</p>
-          <ul class="mt-6 space-y-3 text-sm text-neutral-300">
-            <li class="flex gap-2"><span class="text-white">✓</span>{{ p.included }}</li>
-            <li class="flex gap-2"><span class="text-white">✓</span>{{ p.overage }}</li>
-            <li class="flex gap-2"><span class="text-white">✓</span>{{ p.products }}</li>
-            <li class="flex gap-2"><span class="text-white">✓</span>Sök + AI-assistent</li>
-            <li class="flex gap-2"><span class="text-white">✓</span>Svenska & engelska</li>
-          </ul>
-          <a
-            routerLink="/contact"
-            class="mt-8 rounded-full px-5 py-3 text-center font-semibold transition"
-            [class.bg-white]="p.featured"
-            [class.text-black]="p.featured"
-            [class.hover:bg-neutral-200]="p.featured"
-            [class.border]="!p.featured"
-            [class.border-neutral-700]="!p.featured"
-            [class.text-white]="!p.featured"
-            [class.hover:border-neutral-500]="!p.featured"
-          >
-            Välj {{ p.name }}
-          </a>
-        </article>
-      </div>
-      <p class="mt-6 text-xs text-neutral-600">
-        Priser i USD. Fakturering hanteras via Shopify. Priser kan ändras — se villkoren nedan.
-      </p>
-    </section>
+				<div class="hidden h-10 w-px bg-neutral-200 sm:block"></div>
 
-    <!-- ─────────── FAQ ─────────── -->
-    <section id="faq" class="border-t border-neutral-900 py-20">
-      <h2 class="text-3xl font-bold tracking-tight text-white">Vanliga frågor</h2>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <article
-          *ngFor="let f of faqs"
-          class="rounded-2xl border border-neutral-800 bg-neutral-950 p-6"
-        >
-          <h3 class="text-base font-semibold text-white">{{ f.q }}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-neutral-400">{{ f.a }}</p>
-        </article>
-      </div>
-    </section>
+				<div class="flex items-center gap-3">
+					<img
+						src="https://www.iconpacks.net/icons/1/free-time-icon-968-thumb.png"
+						alt="Shopify"
+						class="h-8 w-8 shrink-0"
+					/>
+					<div>
+						<p class="text-sm font-semibold text-neutral-900">5 min</p>
+						<p class="text-xs text-neutral-500">Från installation till aktiv sökruta</p>
+					</div>
+				</div>
 
-    <!-- ─────────── POLICY: INTEGRITET ─────────── -->
-    <section id="integritet" class="border-t border-neutral-900 py-20">
-      <h2 class="text-3xl font-bold tracking-tight text-white">Integritetspolicy</h2>
-      <p class="mt-2 text-sm text-neutral-600">Senast uppdaterad: {{ currentYear }}</p>
-      <div class="mt-8 space-y-6 text-sm leading-relaxed text-neutral-300">
-        <div>
-          <h3 class="text-lg font-semibold text-white">Vilka uppgifter vi behandlar</h3>
-          <p class="mt-2 text-neutral-400">
-            Catso AI Sök behandlar din butiks produktkatalog (titlar, beskrivningar, taggar, priser,
-            bilder och tillgänglighet) för att bygga ett sökindex, samt de sökfrågor besökare
-            skriver i sökrutan och chattassistenten. Vi säljer aldrig data och använder den inte för
-            att träna generella modeller.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-white">Hur uppgifterna används</h3>
-          <p class="mt-2 text-neutral-400">
-            Produktdata används enbart för att ge relevanta sökträffar och rekommendationer i just
-            din butik. Sökfrågor används för att returnera resultat och för att förbättra
-            sökkvaliteten. Varje butiks data hålls isolerad i en egen partition.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-white">Lagring och radering</h3>
-          <p class="mt-2 text-neutral-400">
-            Data lagras så länge appen är installerad. När du avinstallerar appen raderas butikens
-            sökindex. Du kan när som helst begära radering genom att kontakta oss på
-            <a class="underline hover:text-white" [href]="'mailto:' + supportEmail">{{
-              supportEmail
-            }}</a
-            >.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-white">Personuppgifter & GDPR</h3>
-          <p class="mt-2 text-neutral-400">
-            Appen är byggd för produktsökning och samlar inte medvetet in personuppgifter om
-            slutkunder. Vi följer Shopifys obligatoriska GDPR-webhooks för dataförfrågningar och
-            radering. Personuppgiftsbiträdesavtal kan tillhandahållas på begäran.
-          </p>
-        </div>
-      </div>
-    </section>
+				<div class="hidden h-10 w-px bg-neutral-200 sm:block"></div>
 
-    <!-- ─────────── POLICY: VILLKOR ─────────── -->
-    <section id="villkor" class="border-t border-neutral-900 py-20">
-      <h2 class="text-3xl font-bold tracking-tight text-white">Användarvillkor</h2>
-      <p class="mt-2 text-sm text-neutral-600">Senast uppdaterad: {{ currentYear }}</p>
-      <div class="mt-8 space-y-6 text-sm leading-relaxed text-neutral-300">
-        <div>
-          <h3 class="text-lg font-semibold text-white">Tjänsten</h3>
-          <p class="mt-2 text-neutral-400">
-            Catso AI Sök tillhandahåller semantisk produktsökning och en AI-shoppingassistent som en
-            Shopify-app. Genom att installera och använda appen godkänner du dessa villkor.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-white">Abonnemang & provperiod</h3>
-          <p class="mt-2 text-neutral-400">
-            Planerna faktureras månadsvis eller årsvis via Shopify. Varje plan inleds med 14 dagars
-            kostnadsfri provperiod. AI-sökningar utöver planens kvot debiteras löpande enligt
-            angiven styckekostnad. Du kan avsluta när som helst; avinstallation avslutar
-            faktureringen.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-white">Acceptabel användning</h3>
-          <p class="mt-2 text-neutral-400">
-            Appen får inte användas för olaglig verksamhet, för att kringgå kvoter eller för att
-            överbelasta tjänsten. Vi kan begränsa eller stänga av konton som bryter mot villkoren.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-white">Ansvarsbegränsning</h3>
-          <p class="mt-2 text-neutral-400">
-            Tjänsten tillhandahålls i befintligt skick. Vi strävar efter hög tillgänglighet men
-            garanterar inte oavbruten drift. Vi ansvarar inte för indirekta skador eller utebliven
-            vinst till följd av användning av appen.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-white">Ändringar</h3>
-          <p class="mt-2 text-neutral-400">
-            Vi kan uppdatera dessa villkor och priser. Väsentliga ändringar meddelas i förväg.
-            Frågor? Kontakta oss på
-            <a class="underline hover:text-white" [href]="'mailto:' + supportEmail">{{
-              supportEmail
-            }}</a
-            >.
-          </p>
-        </div>
-      </div>
-    </section>
+				<div class="flex items-center gap-3">
+					<img
+						src="https://png.pngtree.com/png-vector/20230228/ourmid/pngtree-outcome-line-icon-vector-png-image_6624156.png"
+						alt="Shopify"
+						class="h-8 w-8 shrink-0"
+					/>
+					<div>
+						<p class="text-sm font-semibold text-neutral-900">Direkt</p>
+						<p class="text-xs text-neutral-500">Resultat medan kunden skriver</p>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <!-- ─────────── CTA ─────────── -->
-    <section class="border-t border-neutral-900 py-20">
-      <div class="rounded-3xl border border-neutral-800 bg-neutral-950 p-10 text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-white">
-          Redo att låta kunderna hitta rätt?
-        </h2>
-        <p class="mx-auto mt-3 max-w-xl text-neutral-400">
-          Kom igång på minuter med 14 dagars gratis provperiod.
-        </p>
-        <div class="mt-8 flex flex-wrap justify-center gap-3">
-          <a
-            [routerLink]="[]"
-            fragment="priser"
-            class="rounded-full bg-white px-6 py-3 font-semibold text-black transition hover:bg-neutral-200"
-          >
-            Se priser
-          </a>
-          <a
-            routerLink="/contact"
-            class="rounded-full border border-neutral-700 px-6 py-3 font-semibold text-white transition hover:border-neutral-500"
-          >
-            Kontakta oss
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+		<!-- FUNKTIONER -->
+		<section
+			id="funktioner"
+			class="mt-32 grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-1 lg:h-[600px]"
+		>
+			<div
+				class="relative col-span-1 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50 p-8 md:col-span-2 md:row-span-2"
+			>
+				<h2 class="text-2xl font-semibold text-neutral-900">Hanterar stavfel</h2>
+				<p class="mt-3 text-sm leading-relaxed text-neutral-500">
+					”Sneakrs” och ”byxer” ger relevanta produkter i stället för en tom resultatsida. Sortimentet behöver inte skrivas om för att bli sökbart.
+				</p>
+				<img
+					src="assets/imgs/store-listing/store-search-misspell.png"
+					alt="Sökrutan i butiken"
+					class="absolute -right-20 -bottom-5 w-[110%] max-w-4xl rounded-tl-2xl border border-neutral-200"
+				/>
+			</div>
 
-  <!-- ─────────── FOOTER ─────────── -->
-  <footer class="border-t border-neutral-900">
-    <div
-      class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-10 text-sm text-neutral-500 md:flex-row"
-    >
-      <span>© {{ currentYear }} Catso AI &amp; Robotics</span>
-      <div class="flex items-center gap-6">
-        <a [routerLink]="[]" fragment="integritet" class="transition hover:text-white"
-          >Integritet</a
-        >
-        <a [routerLink]="[]" fragment="villkor" class="transition hover:text-white">Villkor</a>
-        <a routerLink="/home" class="transition hover:text-white">catso.io</a>
-      </div>
-    </div>
-  </footer>
+			<div
+				class="flex flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50 p-8"
+			>
+				<h2 class="text-xl font-semibold text-neutral-900">Utgår från kundens avsikt</h2>
+				<p class="mt-2 text-sm leading-relaxed text-neutral-500">
+					En sökning på ”varm jacka” matchas mot parkas och dunjackor, även när de orden inte finns
+					i produkttexten.
+				</p>
+				<div class="mt-auto pt-6">
+					<img
+						src="assets/imgs/store-listing/screenshot-3-mobile.png"
+						alt="Felstavad sökning som ger rätt träffar"
+						class="rounded-lg border border-neutral-200"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- GRÄNSSNITT -->
+		<section id="granssnitt" class="mt-32">
+			<div class="mb-12 text-center">
+				<h2 class="text-3xl font-semibold text-neutral-900">Följer butikens egen design</h2>
+				<p class="mt-3 text-neutral-500">
+					Sökrutan använder butikens typsnitt och färger och smälter in i det befintliga temat.
+				</p>
+			</div>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+				<div class="rounded-3xl border border-neutral-200 bg-neutral-50 p-4">
+					<img
+						src="assets/imgs/store-listing/store-search-desktoptheme.png"
+						alt="Sökresultat på dator"
+						class="w-full rounded-2xl border border-neutral-200"
+					/>
+				</div>
+				<div
+					class="flex items-center justify-center rounded-3xl border border-neutral-200 bg-neutral-50 p-4"
+				>
+					<img
+						src="assets/imgs/store-listing/store-search-phonetheme.png"
+						alt="Sökresultat i mobilen"
+						class="max-h-[500px] rounded-2xl border border-neutral-200"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- PRISER -->
+		<section id="priser" class="mt-32">
+			<div class="mb-16 text-center">
+				<h2 class="text-3xl font-semibold text-neutral-900">Priser</h2>
+				<p class="mt-3 text-neutral-500">
+					Månadsvis debitering utan bindningstid, direkt på din Shopify-faktura.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+				<div
+					*ngFor="let p of plans"
+					[class.border-neutral-900]="p.highlight"
+					[class.ring-1]="p.highlight"
+					[class.ring-neutral-900]="p.highlight"
+					class="flex flex-col rounded-3xl border border-neutral-200 bg-white p-8"
+				>
+					<div class="flex items-center justify-between">
+						<h3 class="text-lg font-semibold text-neutral-900">{{ p.name }}</h3>
+						<span
+							*ngIf="p.highlight"
+							class="rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium text-white"
+							>Vanligast</span
+						>
+					</div>
+
+					<p class="mt-2 text-sm text-neutral-500">{{ p.audience }}</p>
+
+					<div class="mt-6 flex items-baseline gap-1">
+						<span class="text-4xl font-semibold text-neutral-900">{{ p.price }}</span>
+						<span class="text-sm text-neutral-500">/ mån</span>
+					</div>
+
+					<ul class="mt-8 space-y-3 text-sm text-neutral-600">
+						<li *ngFor="let f of p.features" class="flex items-start gap-3">
+							<svg
+								class="mt-0.5 h-4 w-4 shrink-0 text-neutral-900"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke="currentColor"
+								aria-hidden="true"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+							</svg>
+							<span>{{ f }}</span>
+						</li>
+					</ul>
+
+					<a
+						[routerLink]="[]"
+						fragment="kontakt"
+						[class.bg-neutral-900]="p.highlight"
+						[class.text-white]="p.highlight"
+						[class.hover:bg-neutral-700]="p.highlight"
+						[class.border]="!p.highlight"
+						[class.border-neutral-300]="!p.highlight"
+						[class.text-neutral-900]="!p.highlight"
+						[class.hover:border-neutral-400]="!p.highlight"
+						class="mt-10 w-full rounded-full py-3 text-center text-sm font-semibold transition-colors"
+					>
+						Välj {{ p.name }}
+					</a>
+				</div>
+			</div>
+
+			<p class="mt-8 text-center text-xs text-neutral-500">
+				Byt eller avsluta plan när du vill. Sökningar utöver din plan debiteras enligt prislista.
+			</p>
+		</section>
+
+		<!-- KONTAKT -->
+		<section id="kontakt" class="mt-32">
+			<div
+				class="mx-auto max-w-3xl rounded-3xl border border-neutral-200 bg-neutral-50 p-8 sm:p-12"
+			>
+				<div class="text-center">
+					<h2 class="text-3xl font-semibold text-neutral-900">Kom igång</h2>
+					<p class="mx-auto mt-3 max-w-xl text-neutral-500">
+						Lämna dina uppgifter så återkommer vi med hur ni kommer igång i butiken. Vanligtvis
+						svarar vi inom ett dygn.
+					</p>
+				</div>
+
+				<div class="mx-auto mt-10 max-w-xl">
+					<div
+						*ngIf="submitSuccess()"
+						class="flex flex-col items-center justify-center gap-4 py-10 text-center"
+					>
+						<div
+							class="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-900"
+						>
+							<svg
+								class="h-5 w-5"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								stroke-width="2"
+								aria-hidden="true"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+							</svg>
+						</div>
+						<p class="font-medium text-neutral-900">Tack! Vi hör av oss inom ett dygn.</p>
+						<p class="text-sm text-neutral-500">
+							Vi ser fram emot att visa hur sökningen fungerar i er butik.
+						</p>
+					</div>
+
+					<form *ngIf="!submitSuccess()" class="space-y-4" (ngSubmit)="submit()">
+						<div class="grid gap-4 sm:grid-cols-2">
+							<div>
+								<label class="mb-2 block text-xs font-medium text-neutral-600">Namn</label>
+								<input
+									[(ngModel)]="form.name"
+									name="name"
+									type="text"
+									required
+									class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 transition-colors focus:border-neutral-900 focus:outline-none"
+									placeholder="Anna Andersson"
+								/>
+							</div>
+							<div>
+								<label class="mb-2 block text-xs font-medium text-neutral-600">Butik</label>
+								<input
+									[(ngModel)]="form.store"
+									name="store"
+									type="text"
+									required
+									class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 transition-colors focus:border-neutral-900 focus:outline-none"
+									placeholder="butik.myshopify.com"
+								/>
+							</div>
+						</div>
+						<div>
+							<label class="mb-2 block text-xs font-medium text-neutral-600">E-post</label>
+							<input
+								[(ngModel)]="form.email"
+								name="email"
+								type="email"
+								required
+								class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 transition-colors focus:border-neutral-900 focus:outline-none"
+								placeholder="anna@exempel.se"
+							/>
+						</div>
+						<div>
+							<label class="mb-2 block text-xs font-medium text-neutral-600">
+								Meddelande <span class="text-neutral-400">(valfritt)</span>
+							</label>
+							<textarea
+								[(ngModel)]="form.message"
+								name="message"
+								rows="3"
+								class="w-full resize-none rounded-lg border border-neutral-300 bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 transition-colors focus:border-neutral-900 focus:outline-none"
+								placeholder="T.ex. antal produkter, nuvarande söklösning..."
+							></textarea>
+						</div>
+
+						<p *ngIf="submitError()" class="text-center text-xs text-red-600">
+							Något gick fel. Försök igen eller mejla oss på support&#64;catso.io.
+						</p>
+
+						<button
+							type="submit"
+							[disabled]="submitting() || !form.name || !form.email || !form.store"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-900 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
+						>
+							{{ submitting() ? 'Skickar...' : 'Skicka' }}
+							<span *ngIf="!submitting()" aria-hidden="true">→</span>
+						</button>
+						<p class="pt-2 text-center text-xs text-neutral-500">Svar inom ett dygn.</p>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="border-t border-neutral-200 py-12 text-center text-sm text-neutral-500">
+		<div class="flex items-center justify-center gap-2">
+			<img src="assets/imgs/store-listing/shopify-logo.svg" alt="Shopify" class="h-4 w-4" />
+			<span>Officiell Shopify-partner</span>
+		</div>
+		<p class="mt-3">© {{ currentYear }} Catso AI &amp; Robotics</p>
+	</footer>
 </div>

@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	navLinks: NavLink[] = [
-		{ label: 'VERA-01', href: '/vera-01' },
+		{ label: 'Produkter', href: '#products' },
 		{ label: 'Robotik', href: '#robotics' },
 		{ label: 'Kontakt', href: '#contact' },
 	];
@@ -105,19 +105,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 	faqs: FAQ[] = [
 		{
 			q: 'Vad är Catso AI & Robotics?',
-			a: 'Vi bygger AI-agenter och robotiklösningar för svenska företag och myndigheter. VERA-01 är vår första produkt, en AI-agent för advokatbyråer. Vi jobbar också med robotik för industrin.',
+			a: 'Vi bygger AI-agenter, appar för e-handel och robotiklösningar för svenska företag och myndigheter. VERA-01 är vår AI-agent för advokatbyråer och Catso AI Sök är vår Shopify-app.',
 		},
 		{
 			q: 'Vad är VERA-01?',
 			a: 'En AI-agent byggd specifikt för svenska advokatbyråer. Den körs lokalt hos er, analyserar ärenden, genererar utkast och söker i svenska rättskällor. Ingen data skickas till externa tjänster.',
 		},
 		{
-			q: 'Var finns vår data?',
-			a: 'Hos er. Vi kör antingen on-prem eller i en svensk molnregion. Data lämnar inte Sverige.',
+			q: 'Bygger ni appar för Shopify?',
+			a: 'Ja, vi är officiell Shopify-partner. Catso AI Sök är vår första app — en sökruta som tolkar kundens fråga och visar produkter som finns i lager. Den installeras direkt i butiken utan ändringar i temat.',
 		},
 		{
 			q: 'Vad kostar det?',
-			a: 'Det beror på er verksamhet och volym. Mejla oss på support@catso.io så pratar vi.',
+			a: 'Det beror på produkt, verksamhet och volym. Mejla oss på support@catso.io så pratar vi.',
 		},
 	];
 

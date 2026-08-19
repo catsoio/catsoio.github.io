@@ -123,6 +123,11 @@ export const routes: Routes = [
   },
   {
     path: 'shopify/ai-search',
+    redirectTo: 'shopify/apps/ai-search',
+    pathMatch: 'full',
+  },
+  {
+    path: 'shopify/apps/ai-search',
     loadComponent: () =>
       import('./pages/shopify-ai-search/shopify-ai-search.component').then(
         (m) => m.ShopifyAiSearchComponent,
@@ -144,7 +149,7 @@ export const routes: Routes = [
           name: 'Catso AI Sök',
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'Shopify',
-          url: 'https://catso.io/shopify/ai-search',
+          url: 'https://catso.io/shopify/apps/ai-search',
           offers: { '@type': 'Offer', price: '19', priceCurrency: 'USD' },
         },
       } as RouteSEO,

@@ -109,16 +109,17 @@
 				</h1>
 
 				<p class="mt-6 max-w-xl text-lg leading-relaxed text-white/55 md:text-xl">
-					Vi bygger AI-agenter för offentlig sektor och juridik, och robotiklösningar för industrin.
-					Allt körs lokalt — ingen data lämnar er miljö.
+					Vi bygger AI-agenter för juridik och offentlig sektor, appar för e-handel och
+					robotik för industrin. Byggt i Sverige, med datahantering inom EU.
 				</p>
 
 				<div class="mt-10 flex flex-col gap-3 sm:flex-row">
 					<a
-						href="/vera-01"
+						href="#agents"
+						(click)="scrollTo($event, '#agents')"
 						class="inline-flex items-center justify-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-12 px-6 text-base font-medium transition-colors"
 					>
-						Se VERA-01
+						Vad vi bygger
 					</a>
 					<a
 						href="#contact"
@@ -157,12 +158,12 @@
 			<div class="mb-12">
 				<h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Vad vi bygger</h2>
 				<p class="mt-3 text-black/50 text-lg max-w-2xl">
-					Två saker. AI-agenter för organisationer med komplexa arbetsflöden, och robotik för
-					industrin.
+					Tre områden. AI-agenter för organisationer med komplexa arbetsflöden, appar för
+					e-handel och robotik för industrin.
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 				<!-- AI-agenter -->
 				<div class="rounded-3xl bg-black text-white p-10 flex flex-col">
 					<span
@@ -198,6 +199,44 @@
 							class="inline-flex items-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 h-11 px-5 text-sm font-medium transition-colors"
 						>
 							Se VERA-01
+						</a>
+					</div>
+				</div>
+
+				<!-- E-handel -->
+				<div
+					class="rounded-3xl border border-black/10 bg-black/[0.02] p-10 flex flex-col"
+				>
+					<span
+						class="inline-flex w-fit items-center rounded-full border border-black/10 bg-black/[0.04] px-3 py-1 text-xs font-medium text-black/55 mb-6"
+					>
+						E-handel
+					</span>
+					<h3 class="text-2xl font-semibold leading-snug">Appar för Shopify-butiker.</h3>
+					<p class="mt-4 text-black/50 leading-relaxed">
+						Vi bygger appar för e-handel som officiell Shopify-partner. Catso AI Sök är vår
+						första — en sökruta som tolkar kundens fråga och visar produkter som finns i lager.
+					</p>
+					<ul class="mt-6 space-y-3 text-sm text-black/55">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Officiell Shopify-partner
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Installeras direkt i butiken, utan temaändringar
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Svenska och engelska
+						</li>
+					</ul>
+					<div class="mt-8">
+						<a
+							href="/shopify/apps/ai-search"
+							class="inline-flex items-center gap-2 rounded-2xl bg-black text-white hover:bg-black/90 h-11 px-5 text-sm font-medium transition-colors"
+						>
+							Se Catso AI Sök
 						</a>
 					</div>
 				</div>
@@ -276,30 +315,29 @@
 		</div>
 	</section>
 
-	<!-- ═══════════════════ VERA-01 SPOTLIGHT ═══════════════════ -->
-	<section class="border-t border-black/10 bg-white">
+	<!-- ═══════════════════ PRODUKTER ═══════════════════ -->
+	<section id="products" class="border-t border-black/10 bg-white">
 		<div class="mx-auto max-w-7xl px-4 py-20 md:px-6">
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-				<div class="relative aspect-square max-w-lg mx-auto w-full overflow-hidden rounded-3xl">
-					<img
-						src="/assets/imgs/catsoaiagent.png"
-						alt="VERA-01 AI-agent"
-						class="absolute inset-0 h-full w-full object-cover"
-					/>
-				</div>
+			<div class="mb-12">
+				<h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Våra produkter</h2>
+				<p class="mt-3 text-black/50 text-lg max-w-2xl">
+					Egna produkter som vi bygger, driftar och vidareutvecklar själva.
+				</p>
+			</div>
 
-				<div>
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+				<!-- VERA-01 -->
+				<div class="rounded-3xl border border-black/10 bg-black/[0.02] p-8 md:p-10 flex flex-col">
 					<span
-						class="inline-flex items-center rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/55 mb-4"
+						class="inline-flex w-fit items-center rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/55 mb-4"
 					>
-						Produkt
+						AI-agent
 					</span>
-					<h2 class="text-3xl font-semibold tracking-tight md:text-5xl">VERA-01</h2>
-					<p class="mt-2 text-xl text-black/35 font-normal">AI-agent för advokatbyråer</p>
-					<p class="mt-5 text-black/55 text-lg leading-relaxed">
-						Vår första AI-agent. Byggd specifikt för svenska advokatbyråer. Ärendeanalys,
-						dokumentgenerering och sökning i rättskällor — tränad på svensk lag och körandes lokalt
-						hos er.
+					<h3 class="text-2xl font-semibold tracking-tight md:text-3xl">VERA-01</h3>
+					<p class="mt-1 text-black/35">AI-agent för advokatbyråer</p>
+					<p class="mt-4 text-black/55 leading-relaxed">
+						Byggd för svenska advokatbyråer. Ärendeanalys, dokumentgenerering och sökning i
+						rättskällor — tränad på svensk lag och körandes lokalt hos er.
 					</p>
 					<ul class="mt-6 space-y-3 text-sm text-black/55">
 						<li class="flex items-start gap-2">
@@ -318,9 +356,46 @@
 					<div class="mt-8">
 						<a
 							href="/vera-01"
-							class="inline-flex items-center gap-2 rounded-2xl bg-black text-white hover:bg-black/90 shadow-sm h-12 px-6 text-sm font-medium transition-colors"
+							class="inline-flex items-center gap-2 rounded-2xl bg-black text-white hover:bg-black/90 shadow-sm h-11 px-5 text-sm font-medium transition-colors"
 						>
 							Läs mer om VERA-01
+						</a>
+					</div>
+				</div>
+
+				<!-- Catso AI Sök -->
+				<div class="rounded-3xl border border-black/10 bg-black/[0.02] p-8 md:p-10 flex flex-col">
+					<span
+						class="inline-flex w-fit items-center rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/55 mb-4"
+					>
+						Shopify-app
+					</span>
+					<h3 class="text-2xl font-semibold tracking-tight md:text-3xl">Catso AI Sök</h3>
+					<p class="mt-1 text-black/35">AI-sök för Shopify-butiker</p>
+					<p class="mt-4 text-black/55 leading-relaxed">
+						En sökruta som tolkar kundens fråga och visar produkter som finns i lager. Installeras
+						direkt i Shopify som officiell partner, utan ändringar i temat.
+					</p>
+					<ul class="mt-6 space-y-3 text-sm text-black/55">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Tolkar sökningen och filtrerar på pris och egenskaper
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Hanterar stavfel och synonymer
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Svenska och engelska
+						</li>
+					</ul>
+					<div class="mt-8">
+						<a
+							href="/shopify/apps/ai-search"
+							class="inline-flex items-center gap-2 rounded-2xl bg-black text-white hover:bg-black/90 shadow-sm h-11 px-5 text-sm font-medium transition-colors"
+						>
+							Läs mer om Catso AI Sök
 						</a>
 					</div>
 				</div>
@@ -402,8 +477,8 @@
 						Prata med oss
 					</h2>
 					<p class="mt-4 text-white/40 text-lg leading-relaxed max-w-lg mx-auto">
-						Vill ni veta mer om VERA-01, diskutera robotik eller höra vad vi jobbar med — hör av
-						er.
+						Vill ni veta mer om våra produkter, diskutera ett e-handelsprojekt eller höra vad vi
+						jobbar med — hör av er.
 					</p>
 					<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
 						<a
@@ -432,13 +507,18 @@
 						<span class="text-base font-semibold tracking-tight">Catso AI & Robotics</span>
 					</div>
 					<p class="mt-4 max-w-sm text-sm text-black/40">
-						Vi bygger AI-agenter och robotik i Sverige. VERA-01 är vår flaggskeppsprodukt.
+						Vi bygger AI-agenter, appar för e-handel och robotik i Sverige.
 					</p>
 				</div>
 				<div>
 					<h4 class="text-sm font-semibold text-black">Produkter</h4>
 					<ul class="mt-3 space-y-2 text-sm text-black/45">
 						<li><a href="/vera-01" class="hover:text-black transition-colors">VERA-01</a></li>
+						<li>
+							<a href="/shopify/apps/ai-search" class="hover:text-black transition-colors"
+								>Catso AI Sök</a
+							>
+						</li>
 						<li>
 							<a href="/hemmafest" class="hover:text-black transition-colors">Hemmafest</a>
 						</li>
