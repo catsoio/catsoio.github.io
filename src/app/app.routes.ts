@@ -137,10 +137,10 @@ export const routes: Routes = [
         title: 'Catso AI Sök — AI-sök & shoppingassistent för Shopify',
         description:
           'Byt ut butikens sökruta mot en AI-sökning som förstår vad kunden menar, plus en shoppingassistent som bara rekommenderar produkter du har. Svenska & engelska.',
-        og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
+        og: { type: 'website', image: 'https://catso.io/assets/og/catso-ai-search-og.png' },
         twitter: {
           card: 'summary_large_image',
-          image: 'https://catso.io/assets/og/catso-og.jpg',
+          image: 'https://catso.io/assets/og/catso-ai-search-og.png',
         },
         robots: 'index,follow',
         jsonLd: {
