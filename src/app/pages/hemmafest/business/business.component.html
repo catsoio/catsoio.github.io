@@ -1,0 +1,261 @@
+<article class="mx-auto max-w-6xl px-4 py-12 text-gray-900 dark:text-gray-100">
+	<!-- HERO -->
+	<header class="max-w-3xl">
+		<p class="text-sm font-semibold uppercase tracking-wide text-gray-500">Hemmafest för företag</p>
+		<h1 class="mt-2 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">
+			Nå unga festsugna direkt i appen
+		</h1>
+		<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+			Hemmafest är där unga hittar och skapar fester. Annonsera hos oss och synas direkt i flödet.
+			Diskret banner eller ett helt kort - du väljer.
+		</p>
+		<div class="mt-6 flex flex-wrap gap-3">
+			<a
+				href="#kontakt"
+				class="inline-flex items-center rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 dark:bg-white dark:text-black"
+			>
+				Hör av dig
+			</a>
+			<a
+				routerLink="/hemmafest"
+				class="rounded-2xl border border-gray-300 bg-white px-5 py-3 text-sm font-medium shadow hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900"
+			>
+				Om Hemmafest
+			</a>
+		</div>
+	</header>
+
+	<!-- VAR ANNONSERNA VISAS -->
+	<section class="mt-16">
+		<h2 class="text-2xl font-bold">Var annonserna visas</h2>
+		<div class="mt-6 grid gap-6 md:grid-cols-2">
+			<article
+				class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+			>
+				<h3 class="text-lg font-semibold">Banner (liten)</h3>
+				<p class="mt-2 text-gray-600 dark:text-gray-300">
+					En smal banner högst upp på Hitta-sidan med bild och kort text. Diskret och inte
+					påträngande. Detta är standardplaceringen.
+				</p>
+			</article>
+			<article
+				class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+			>
+				<h3 class="text-lg font-semibold">Swipe (helt kort)</h3>
+				<p class="mt-2 text-gray-600 dark:text-gray-300">
+					Ett helt kort i flödet mellan festerna. Mer utrymme och syns mer. Används sparsamt för
+					maximal effekt.
+				</p>
+			</article>
+		</div>
+	</section>
+
+	<!-- PAKET -->
+	<section class="mt-16">
+		<h2 class="text-2xl font-bold">Paket</h2>
+		<p class="mt-2 text-gray-600 dark:text-gray-300">Priser är ex moms och kan anpassas.</p>
+		<div class="mt-6 grid gap-6 md:grid-cols-3">
+			<article
+				*ngFor="let p of packages"
+				class="flex flex-col rounded-2xl border bg-white p-6 shadow-sm dark:bg-gray-900"
+				[class.border-gray-200]="!p.highlight"
+				[class.dark:border-gray-700]="!p.highlight"
+				[class.border-black]="p.highlight"
+				[class.ring-2]="p.highlight"
+				[class.ring-black]="p.highlight"
+				[class.dark:border-white]="p.highlight"
+				[class.dark:ring-white]="p.highlight"
+			>
+				<div class="flex items-center justify-between">
+					<h3 class="text-xl font-bold">{{ p.name }}</h3>
+					<span
+						*ngIf="p.highlight"
+						class="rounded-full bg-black px-3 py-1 text-xs font-semibold text-white dark:bg-white dark:text-black"
+						>Populärast</span
+					>
+				</div>
+				<p class="mt-4 text-2xl font-extrabold">{{ p.price }}</p>
+				<dl class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+					<div class="flex justify-between gap-4">
+						<dt class="font-medium">Placering</dt>
+						<dd class="text-right">{{ p.placement }}</dd>
+					</div>
+					<div class="flex justify-between gap-4">
+						<dt class="font-medium">Synlighet</dt>
+						<dd class="text-right">{{ p.visibility }}</dd>
+					</div>
+				</dl>
+				<button
+					type="button"
+					(click)="selectPackage(p.id)"
+					class="mt-6 inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold shadow transition"
+					[class.bg-black]="p.highlight"
+					[class.text-white]="p.highlight"
+					[class.dark:bg-white]="p.highlight"
+					[class.dark:text-black]="p.highlight"
+					[class.border]="!p.highlight"
+					[class.border-gray-300]="!p.highlight"
+					[class.dark:border-gray-700]="!p.highlight"
+				>
+					Välj {{ p.name }}
+				</button>
+			</article>
+		</div>
+	</section>
+
+	<!-- SÅ FUNKAR DET -->
+	<section class="mt-16">
+		<h2 class="text-2xl font-bold">Så funkar det</h2>
+		<ol class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			<li
+				*ngFor="let s of steps; let i = index"
+				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+			>
+				<div
+					class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 font-bold dark:bg-gray-800"
+				>
+					{{ i + 1 }}
+				</div>
+				<p class="mt-3 text-gray-600 dark:text-gray-300">{{ s }}</p>
+			</li>
+		</ol>
+	</section>
+
+	<!-- KONTAKTFORMULÄR -->
+	<section id="kontakt" class="mt-16 scroll-mt-24">
+		<h2 class="text-2xl font-bold">Hör av dig</h2>
+		<p class="mt-2 max-w-2xl text-gray-600 dark:text-gray-300">
+			Fyll i formuläret så återkommer vi. Berätta gärna vilket paket du är sugen på och vad du vill
+			annonsera för.
+		</p>
+
+		<div
+			*ngIf="state === 'success'"
+			class="mt-6 rounded-2xl border border-green-300 bg-green-50 p-5 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
+		>
+			<p class="font-semibold">Tack! Vi har tagit emot din förfrågan.</p>
+			<p class="mt-1 text-sm">Vi hör av oss till dig så snart vi kan.</p>
+		</div>
+
+		<form
+			*ngIf="state !== 'success'"
+			[formGroup]="form"
+			(ngSubmit)="submit()"
+			class="mt-6 grid max-w-2xl gap-5"
+			novalidate
+		>
+			<div class="grid gap-5 sm:grid-cols-2">
+				<div>
+					<label for="company" class="block text-sm font-medium">Företag *</label>
+					<input
+						id="company"
+						type="text"
+						formControlName="company"
+						class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+					/>
+					<p
+						*ngIf="form.controls.company.touched && form.controls.company.invalid"
+						class="mt-1 text-xs text-red-600"
+					>
+						Ange företagsnamn.
+					</p>
+				</div>
+				<div>
+					<label for="contact_name" class="block text-sm font-medium">Kontaktperson *</label>
+					<input
+						id="contact_name"
+						type="text"
+						formControlName="contact_name"
+						class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+					/>
+					<p
+						*ngIf="form.controls.contact_name.touched && form.controls.contact_name.invalid"
+						class="mt-1 text-xs text-red-600"
+					>
+						Ange en kontaktperson.
+					</p>
+				</div>
+			</div>
+
+			<div class="grid gap-5 sm:grid-cols-2">
+				<div>
+					<label for="email" class="block text-sm font-medium">E-post *</label>
+					<input
+						id="email"
+						type="email"
+						formControlName="email"
+						class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+					/>
+					<p
+						*ngIf="form.controls.email.touched && form.controls.email.invalid"
+						class="mt-1 text-xs text-red-600"
+					>
+						Ange en giltig e-post.
+					</p>
+				</div>
+				<div>
+					<label for="phone" class="block text-sm font-medium">Telefon</label>
+					<input
+						id="phone"
+						type="tel"
+						formControlName="phone"
+						class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+					/>
+				</div>
+			</div>
+
+			<div>
+				<label for="package" class="block text-sm font-medium">Paket</label>
+				<select
+					id="package"
+					formControlName="package"
+					class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+				>
+					<option value="">Vet inte än</option>
+					<option value="bas">Bas - banner</option>
+					<option value="plus">Plus - banner + swipe</option>
+					<option value="premium">Premium - swipe (offert)</option>
+				</select>
+			</div>
+
+			<div>
+				<label for="message" class="block text-sm font-medium">Meddelande</label>
+				<textarea
+					id="message"
+					rows="4"
+					formControlName="message"
+					class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+					placeholder="Vad vill du annonsera för?"
+				></textarea>
+			</div>
+
+			<p
+				*ngIf="state === 'error'"
+				class="rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950 dark:text-red-200"
+			>
+				{{ errorMsg }}
+			</p>
+
+			<div>
+				<button
+					type="submit"
+					[disabled]="state === 'submitting'"
+					class="inline-flex items-center rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 disabled:opacity-60 dark:bg-white dark:text-black"
+				>
+					{{ state === 'submitting' ? 'Skickar...' : 'Skicka förfrågan' }}
+				</button>
+			</div>
+		</form>
+	</section>
+
+	<!-- FOOTER -->
+	<footer class="mt-16 border-t border-gray-200 pt-8 text-sm text-gray-500 dark:border-gray-800">
+		<div class="flex flex-wrap items-center gap-4">
+			<a routerLink="/hemmafest" class="underline">Hemmafest</a>
+			<a routerLink="/hemmafest/privacy" class="underline">Integritetspolicy</a>
+			<a routerLink="/hemmafest/terms" class="underline">Villkor</a>
+			<a [href]="appStoreUrl" target="_blank" rel="noopener" class="underline">App Store</a>
+		</div>
+		<p class="mt-3 text-xs">© Hemmafest! av Catso. 18+.</p>
+	</footer>
+</article>

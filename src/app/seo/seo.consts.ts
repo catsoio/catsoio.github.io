@@ -20,6 +20,23 @@ export const HEMMAFEST_SEO: RouteSEO = {
 	},
 };
 
+export const HEMMAFEST_BUSINESS_SEO: RouteSEO = {
+	title: 'Annonsera i Hemmafest | Nå unga festsugna | Catso',
+	description:
+		'Annonsera i Hemmafest och synas direkt i flödet. Banner eller helt kort, paket från 2 000 kr/mån. Hör av dig så kör vi.',
+	og: { type: 'website', image: '/assets/imgs/hemmafestbanner.png' },
+	twitter: {
+		card: 'summary_large_image',
+		image: '/assets/imgs/hemmafestbanner.png',
+	},
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: 'Annonsera i Hemmafest',
+		url: 'https://catso.io/hemmafest/business',
+	},
+};
+
 export const POANGJAKTEN_SEO: RouteSEO = {
 	title: 'Poängjakten — Tävla och nå studenter | Catso',
 	description:

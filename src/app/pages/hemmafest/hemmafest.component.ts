@@ -1,28 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import {
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	ReactiveFormsModule,
-	Validators,
-} from '@angular/forms';
+import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-
-type Mode = 'create' | 'join';
-
-interface PartyDraft {
-	name: string;
-	date: string; // ISO datetime-local string
-	place?: string;
-	description?: string;
-	public: boolean;
-}
 
 @Component({
 	selector: 'app-hemmafest',
 	standalone: true,
-	imports: [RouterOutlet, CommonModule, ReactiveFormsModule, RouterLink],
+	imports: [RouterOutlet, CommonModule, RouterLink],
 	templateUrl: './hemmafest.component.html',
 	styleUrl: './hemmafest.component.scss',
 })
@@ -31,34 +14,38 @@ export class HemmafestComponent {
 
 	features = [
 		{
-			title: 'Skapa eller joina på sekunder',
-			body: 'Starta en fest med namn och tid, eller gå med i en fest nära dig.',
-			icon: '⚡️',
+			title: 'Swipa fram fester nära dig',
+			body: 'Bläddra i flödet och hitta fester i närheten. Skicka en förfrågan för att gå med.',
+			icon: '🔥',
 		},
 		{
-			title: 'Synligt i närheten',
-			body: 'Fester dyker upp för folk i området — perfekt för spontana häng.',
-			icon: '📍',
+			title: 'Skapa och styr din fest',
+			body: 'Starta en fest, godkänn vilka som får komma och håll koll på gästerna.',
+			icon: '🎉',
 		},
 		{
-			title: 'Integritet först',
-			body: 'Ingen spårning. Inga annonser. Bara fest.',
-			icon: '🛡️',
+			title: 'Chatt, betyg och notiser',
+			body: 'Prata med gänget i festchatten, betygsätt fester och få pushnotiser när det händer grejer.',
+			icon: '💬',
 		},
 	];
 
 	faqs = [
 		{
-			q: 'Kostar appen något?',
-			a: 'Nej, Hemmafest! är gratis att ladda ner och använda.',
+			q: 'Behöver jag ett konto?',
+			a: 'Ja. Du skapar ett konto för att kunna skapa fester, skicka förfrågningar och chatta.',
 		},
 		{
-			q: 'Behöver jag skapa konto?',
-			a: 'Nej. Appen fungerar utan konto och utan personuppgiftsinsamling.',
+			q: 'Vad är Hemmafest+?',
+			a: 'Hemmafest+ är vårt premium som låser upp mer, till exempel att se och nå fester i hela Sverige. Du kan använda appen gratis, men plus ger dig extra.',
 		},
 		{
 			q: 'Vilken åldersgräns gäller?',
 			a: '18+. Följ lokal lagstiftning och visa hänsyn till grannar.',
+		},
+		{
+			q: 'Finns appen på Android?',
+			a: 'Just nu är Hemmafest på iOS via App Store. Android är på gång.',
 		},
 	];
 }
