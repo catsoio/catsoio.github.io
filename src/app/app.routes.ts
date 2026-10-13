@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { RouteSEO } from './seo/seo.types';
-import { HEMMAFEST_SEO, HEMMAFEST_BUSINESS_SEO, POANGJAKTEN_SEO } from './seo/seo.consts';
+import { HEMMAFEST_SEO, HEMMAFEST_BUSINESS_SEO, INVENTORY_SEO, POANGJAKTEN_SEO } from './seo/seo.consts';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -82,6 +82,14 @@ export const routes: Routes = [
         },
       } as RouteSEO,
     },
+  },
+  {
+    path: 'inventory',
+    loadComponent: () =>
+      import('./pages/inventory-landing/inventory-landing.component').then(
+        (m) => m.InventoryLandingComponent,
+      ),
+    data: { seo: INVENTORY_SEO },
   },
   {
     path: 'poangjakten/sponsor',

@@ -59,3 +59,29 @@ export const POANGJAKTEN_SEO: RouteSEO = {
 		offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
 	},
 };
+
+export const INVENTORY_SEO: RouteSEO = {
+	title: 'Catso Verkstad | Lager, däckhotell, tidsbokning och arbetsorder',
+	description:
+		'Släpp pappren. Lager, däckhotell, tidsbokning och arbetsorder för verkstäder och däckfirmor. Från 495 kr/mån, 14 dagar gratis.',
+	og: { type: 'product', image: 'https://catso.io/assets/og/catso-og.jpg' },
+	twitter: {
+		card: 'summary_large_image',
+		image: 'https://catso.io/assets/og/catso-og.jpg',
+	},
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@type': 'SoftwareApplication',
+		name: 'Catso Verkstad',
+		applicationCategory: 'BusinessApplication',
+		operatingSystem: 'Web',
+		url: 'https://catso.io/inventory',
+		offers: {
+			'@type': 'AggregateOffer',
+			lowPrice: '495',
+			highPrice: '1295',
+			priceCurrency: 'SEK',
+		},
+	},
+};

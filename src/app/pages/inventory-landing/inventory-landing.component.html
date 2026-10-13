@@ -1,0 +1,304 @@
+<div
+	class="min-h-screen bg-white text-neutral-600 antialiased selection:bg-neutral-900 selection:text-white"
+>
+	<!-- NAV -->
+	<header
+		class="fixed top-6 left-1/2 z-50 flex w-[95%] max-w-5xl -translate-x-1/2 items-center justify-between rounded-full border border-neutral-200 bg-white/80 px-6 py-3 shadow-sm backdrop-blur-xl"
+	>
+		<a routerLink="/home" class="flex items-center gap-3">
+			<img
+				src="assets/imgs/store-listing/catso-logo.png"
+				alt="Catso"
+				class="h-6 w-auto opacity-90"
+			/>
+			<span class="font-semibold tracking-tight text-neutral-900">Catso Verkstad</span>
+		</a>
+		<nav class="hidden gap-8 text-sm font-medium text-neutral-500 md:flex">
+			<a [routerLink]="[]" fragment="system" class="transition-colors hover:text-neutral-900"
+				>Systemen</a
+			>
+			<a [routerLink]="[]" fragment="priser" class="transition-colors hover:text-neutral-900"
+				>Priser</a
+			>
+			<a [routerLink]="[]" fragment="fragor" class="transition-colors hover:text-neutral-900"
+				>Frågor</a
+			>
+		</nav>
+		<a
+			[href]="appUrl"
+			class="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
+		>
+			Testa gratis
+		</a>
+	</header>
+
+	<main class="mx-auto max-w-6xl px-4 pt-40 pb-24">
+		<!-- HERO -->
+		<section class="text-center">
+			<p class="text-sm font-medium text-neutral-500">För verkstäder, däckfirmor och bilhandlare</p>
+			<h1
+				class="mt-6 text-5xl font-semibold tracking-tight text-neutral-900 sm:text-6xl lg:text-7xl"
+			>
+				Släpp pappren.
+				<span class="block text-neutral-400">Behåll koll på allt.</span>
+			</h1>
+
+			<p class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-neutral-500">
+				Lager, däckhotell, tidsbokning och arbetsorder i samma system. Skriv in kunden och bilen
+				<span class="font-semibold text-neutral-900">en gång</span>, så finns de överallt.
+			</p>
+
+			<div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+				<a
+					[href]="appUrl"
+					class="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
+				>
+					Testa gratis i 14 dagar <span aria-hidden="true">→</span>
+				</a>
+				<a
+					[routerLink]="[]"
+					fragment="priser"
+					class="rounded-full border border-neutral-300 px-8 py-3.5 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-400"
+				>
+					Se priser
+				</a>
+			</div>
+			<p class="mt-4 text-xs text-neutral-500">Inget kort behövs. Ingen bindningstid.</p>
+		</section>
+
+		<!-- SYSTEM -->
+		<section id="system" class="mt-32 scroll-mt-28">
+			<div class="mb-12 text-center">
+				<h2 class="text-3xl font-semibold text-neutral-900">Fyra system som hänger ihop</h2>
+				<p class="mt-3 text-neutral-500">Börja med det du behöver mest och bygg ut när du vill.</p>
+			</div>
+
+			<div class="flex flex-wrap justify-center gap-2" role="tablist">
+				<button
+					*ngFor="let t of tabs"
+					type="button"
+					role="tab"
+					[attr.aria-selected]="activeTab() === t.id"
+					(click)="selectTab(t.id)"
+					[class.bg-neutral-900]="activeTab() === t.id"
+					[class.text-white]="activeTab() === t.id"
+					[class.border-neutral-300]="activeTab() !== t.id"
+					[class.text-neutral-700]="activeTab() !== t.id"
+					class="rounded-full border px-5 py-2 text-sm font-semibold transition-colors"
+				>
+					{{ t.label }}
+				</button>
+			</div>
+
+			<div
+				role="tabpanel"
+				class="mx-auto mt-8 max-w-3xl rounded-3xl border border-neutral-200 bg-white p-8 sm:p-10"
+			>
+				<p class="text-xs font-medium text-neutral-500">{{ tab().plan }}</p>
+				<h3 class="mt-2 text-2xl font-semibold text-neutral-900">{{ tab().headline }}</h3>
+				<p class="mt-3 text-neutral-500">{{ tab().text }}</p>
+				<ul class="mt-8 space-y-3 text-sm text-neutral-600">
+					<li *ngFor="let p of tab().points" class="flex items-start gap-3">
+						<svg
+							class="mt-0.5 h-4 w-4 shrink-0 text-neutral-900"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke-width="2"
+							stroke="currentColor"
+							aria-hidden="true"
+						>
+							<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+						</svg>
+						<span>{{ p }}</span>
+					</li>
+				</ul>
+			</div>
+
+			<p class="mx-auto mt-6 max-w-2xl text-center text-sm text-neutral-500">
+				Kunder, bilar och leverantörer delas mellan alla system. Du fyller i dem en gång och väljer
+				dem sedan i en lista överallt.
+			</p>
+		</section>
+
+		<!-- KOM IGÅNG -->
+		<section class="mt-32">
+			<div class="mb-12 text-center">
+				<h2 class="text-3xl font-semibold text-neutral-900">Igång på en eftermiddag</h2>
+			</div>
+			<ol class="grid grid-cols-1 gap-6 md:grid-cols-3">
+				<li
+					*ngFor="let s of steps; let i = index"
+					class="rounded-3xl border border-neutral-200 bg-white p-8"
+				>
+					<span class="text-sm font-semibold text-neutral-400">{{ i + 1 }}</span>
+					<h3 class="mt-2 text-lg font-semibold text-neutral-900">{{ s.title }}</h3>
+					<p class="mt-2 text-sm text-neutral-500">{{ s.text }}</p>
+				</li>
+			</ol>
+		</section>
+
+		<!-- PRISER -->
+		<section id="priser" class="mt-32 scroll-mt-28">
+			<div class="mb-16 text-center">
+				<h2 class="text-3xl font-semibold text-neutral-900">Priser</h2>
+				<p class="mt-3 text-neutral-500">
+					14 dagar gratis med alla funktioner. Ingen bindningstid. Priserna är exklusive moms.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+				<div
+					*ngFor="let p of plans"
+					[class.border-neutral-900]="p.id === 'verkstad'"
+					[class.ring-1]="p.id === 'verkstad'"
+					[class.ring-neutral-900]="p.id === 'verkstad'"
+					class="flex flex-col rounded-3xl border border-neutral-200 bg-white p-8"
+				>
+					<div class="flex items-center justify-between">
+						<h3 class="text-lg font-semibold text-neutral-900">{{ p.name }}</h3>
+						<span
+							*ngIf="p.id === 'verkstad'"
+							class="rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium text-white"
+							>Hela flödet</span
+						>
+					</div>
+					<p class="mt-2 text-sm text-neutral-500">{{ p.audience }}</p>
+
+					<div class="mt-6 flex items-baseline gap-1">
+						<span class="text-4xl font-semibold text-neutral-900">{{ p.price | number: '1.0-0' }} kr</span>
+						<span class="text-sm text-neutral-500">/ mån</span>
+					</div>
+
+					<ul class="mt-8 space-y-3 text-sm text-neutral-600">
+						<li *ngFor="let f of p.features" class="flex items-start gap-3">
+							<svg
+								class="mt-0.5 h-4 w-4 shrink-0 text-neutral-900"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke="currentColor"
+								aria-hidden="true"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+							</svg>
+							<span>{{ f }}</span>
+						</li>
+					</ul>
+
+					<a
+						[href]="appUrl"
+						[class.bg-neutral-900]="p.id === 'verkstad'"
+						[class.text-white]="p.id === 'verkstad'"
+						[class.hover:bg-neutral-700]="p.id === 'verkstad'"
+						[class.border]="p.id !== 'verkstad'"
+						[class.border-neutral-300]="p.id !== 'verkstad'"
+						[class.text-neutral-900]="p.id !== 'verkstad'"
+						[class.hover:border-neutral-400]="p.id !== 'verkstad'"
+						class="mt-auto w-full rounded-full py-3 text-center text-sm font-semibold transition-colors"
+					>
+						Testa {{ p.name }} gratis
+					</a>
+				</div>
+			</div>
+
+			<!-- KALKYLATOR -->
+			<div class="mx-auto mt-10 max-w-3xl rounded-3xl border border-neutral-200 bg-neutral-50 p-8">
+				<h3 class="text-lg font-semibold text-neutral-900">Räkna ut din kostnad</h3>
+				<div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+					<div>
+						<p class="mb-2 text-xs font-medium text-neutral-600">Plan</p>
+						<div class="flex gap-2">
+							<button
+								*ngFor="let p of plans"
+								type="button"
+								(click)="selectPlan(p.id)"
+								[class.bg-neutral-900]="selectedPlan() === p.id"
+								[class.text-white]="selectedPlan() === p.id"
+								[class.border-neutral-300]="selectedPlan() !== p.id"
+								[class.text-neutral-700]="selectedPlan() !== p.id"
+								class="flex-1 rounded-full border px-4 py-2 text-sm font-semibold transition-colors"
+							>
+								{{ p.name }}
+							</button>
+						</div>
+					</div>
+					<div>
+						<p class="mb-2 text-xs font-medium text-neutral-600">Antal användare</p>
+						<div class="flex items-center gap-3">
+							<button
+								type="button"
+								(click)="changeUsers(-1)"
+								aria-label="Färre användare"
+								class="h-10 w-10 rounded-full border border-neutral-300 text-lg font-semibold text-neutral-900 transition-colors hover:border-neutral-400"
+							>
+								−
+							</button>
+							<span class="w-8 text-center text-xl font-semibold text-neutral-900">{{ users() }}</span>
+							<button
+								type="button"
+								(click)="changeUsers(1)"
+								aria-label="Fler användare"
+								class="h-10 w-10 rounded-full border border-neutral-300 text-lg font-semibold text-neutral-900 transition-colors hover:border-neutral-400"
+							>
+								+
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<dl class="mt-8 space-y-2 border-t border-neutral-200 pt-6 text-sm">
+					<div class="flex justify-between">
+						<dt>{{ plan().name }} ({{ plan().includedUsers }} användare ingår)</dt>
+						<dd class="text-neutral-900">{{ plan().price | number: '1.0-0' }} kr</dd>
+					</div>
+					<div *ngIf="extraUsers() > 0" class="flex justify-between">
+						<dt>{{ extraUsers() }} extra användare × {{ extraUserPrice }} kr</dt>
+						<dd class="text-neutral-900">{{ extraUsers() * extraUserPrice | number: '1.0-0' }} kr</dd>
+					</div>
+					<div class="flex justify-between pt-2 text-base font-semibold text-neutral-900">
+						<dt>Totalt per månad, exkl. moms</dt>
+						<dd>{{ total() | number: '1.0-0' }} kr</dd>
+					</div>
+				</dl>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section id="fragor" class="mt-32 scroll-mt-28">
+			<div class="mb-12 text-center">
+				<h2 class="text-3xl font-semibold text-neutral-900">Vanliga frågor</h2>
+			</div>
+			<div class="mx-auto max-w-3xl divide-y divide-neutral-200 rounded-3xl border border-neutral-200 bg-white">
+				<details *ngFor="let f of faqs" class="group px-6 py-5">
+					<summary
+						class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-neutral-900"
+					>
+						{{ f.q }}
+						<span class="text-neutral-400 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+					</summary>
+					<p class="mt-3 text-sm leading-relaxed text-neutral-500" [innerHTML]="f.a"></p>
+				</details>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section class="mt-32 text-center">
+			<h2 class="text-3xl font-semibold text-neutral-900">Redo att slippa pappren?</h2>
+			<p class="mt-3 text-neutral-500">Testa i 14 dagar. Inget kort, ingen bindning.</p>
+			<a
+				[href]="appUrl"
+				class="mt-8 inline-flex items-center gap-2 rounded-full bg-neutral-900 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
+			>
+				Kom igång gratis <span aria-hidden="true">→</span>
+			</a>
+		</section>
+	</main>
+
+	<footer class="border-t border-neutral-200 py-12 text-center text-sm text-neutral-500">
+		<p>
+			Frågor? Mejla
+			<a href="mailto:support&#64;catso.io" class="text-neutral-900 underline">support&#64;catso.io</a>
+		</p>
+		<p class="mt-3">© {{ currentYear }} Catso AI &amp; Robotics</p>
+	</footer>
+</div>
