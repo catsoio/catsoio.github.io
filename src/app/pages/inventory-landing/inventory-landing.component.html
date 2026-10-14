@@ -142,7 +142,7 @@
 			<div class="mb-16 text-center">
 				<h2 class="text-3xl font-semibold text-neutral-900">Priser</h2>
 				<p class="mt-3 text-neutral-500">
-					14 dagar gratis med alla funktioner. Ingen bindningstid. Priserna är exklusive moms.
+					14 dagar gratis med alla funktioner. Ingen bindningstid. Priserna är exklusive moms, 25 % tillkommer.
 				</p>
 			</div>
 
@@ -258,6 +258,10 @@
 					<div class="flex justify-between pt-2 text-base font-semibold text-neutral-900">
 						<dt>Totalt per månad, exkl. moms</dt>
 						<dd>{{ total() | number: '1.0-0' }} kr</dd>
+					</div>
+					<div class="flex justify-between text-neutral-500">
+						<dt>Inklusive 25 % moms</dt>
+						<dd>{{ total() * 1.25 | number: '1.0-2' }} kr</dd>
 					</div>
 				</dl>
 			</div>

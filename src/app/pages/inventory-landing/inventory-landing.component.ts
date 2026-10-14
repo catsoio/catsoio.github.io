@@ -125,7 +125,7 @@ export class InventoryLandingComponent {
 	];
 
 	readonly steps = [
-		{ title: 'Skapa konto', text: 'Registrera dig och lägg upp din verkstad. Inget kort behövs.' },
+		{ title: 'Skapa konto', text: 'Du får en startkod av oss, registrerar dig och lägger upp din verkstad. Inget kort behövs.' },
 		{ title: 'Lägg in dina första däck och artiklar', text: 'Börja med det du har på hyllan idag. Resten fyller du på allt eftersom.' },
 		{ title: 'Bjud in kollegorna', text: 'Skicka en engångskod till varje mekaniker. Klart på en minut.' },
 	];
@@ -137,11 +137,11 @@ export class InventoryLandingComponent {
 		},
 		{
 			q: 'Gäller priserna inklusive moms?',
-			a: 'Alla priser är exklusive moms.',
+			a: 'Alla priser är exklusive moms. Svensk moms (25 %) tillkommer på fakturan, så Däck blir 618,75 kr och Verkstad 1 618,75 kr per månad inklusive moms.',
 		},
 		{
 			q: 'Hur räknas användare?',
-			a: 'Däck inkluderar 2 användare och Verkstad 5. Fler användare kostar 99 kr per användare och månad. Lägger du till eller tar bort någon justeras fakturan automatiskt.',
+			a: 'Däck inkluderar 2 användare och Verkstad 5, och det är ett fast tak. Ingen kan läggas till av misstag och kostnaden ändras aldrig av sig självt. Behöver ni fler hör ni av er, så lägger vi till användare för 99 kr per användare och månad exklusive moms.',
 		},
 		{
 			q: 'Kan jag byta plan eller säga upp?',
