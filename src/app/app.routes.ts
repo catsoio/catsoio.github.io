@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
 import { RouteSEO } from './seo/seo.types';
-import { HEMMAFEST_SEO, HEMMAFEST_BUSINESS_SEO, INVENTORY_SEO, POANGJAKTEN_SEO } from './seo/seo.consts';
+import {
+  HEMMAFEST_SEO,
+  HEMMAFEST_BUSINESS_SEO,
+  INVENTORY_SEO,
+  POANGJAKTEN_SEO,
+} from './seo/seo.consts';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -127,6 +132,13 @@ export const routes: Routes = [
         (m) => m.RequestDeleteAccount,
       ),
     data: { seo: HEMMAFEST_SEO },
+  },
+  {
+    path: 'admin',
+    loadComponent: () => import('./pages/admin/admin.component').then((m) => m.AdminComponent),
+    data: {
+      seo: { title: 'Catso Admin', robots: 'noindex,nofollow' } as RouteSEO,
+    },
   },
   {
     path: 'about',

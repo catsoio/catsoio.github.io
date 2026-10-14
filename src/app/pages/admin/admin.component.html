@@ -1,0 +1,240 @@
+<div class="min-h-screen bg-neutral-950 text-neutral-100">
+	@if (!loggedIn()) {
+		<main class="mx-auto grid min-h-screen max-w-sm place-items-center px-4">
+			<form class="w-full space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6" (ngSubmit)="signIn()">
+				<div>
+					<h1 class="text-xl font-semibold">Catso Admin</h1>
+					<p class="mt-1 text-sm text-neutral-400">Logga in med ditt operatörskonto.</p>
+				</div>
+				<label class="block text-sm">
+					<span class="text-neutral-300">E-post</span>
+					<input
+						type="email"
+						name="email"
+						autocomplete="username"
+						required
+						[ngModel]="email()"
+						(ngModelChange)="email.set($event)"
+						class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]"
+					/>
+				</label>
+				<label class="block text-sm">
+					<span class="text-neutral-300">Lösenord</span>
+					<input
+						type="password"
+						name="password"
+						autocomplete="current-password"
+						required
+						[ngModel]="password()"
+						(ngModelChange)="password.set($event)"
+						class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]"
+					/>
+				</label>
+				@if (error()) {
+					<p class="text-sm text-red-400" role="alert">{{ error() }}</p>
+				}
+				<button
+					type="submit"
+					[disabled]="busy()"
+					class="w-full rounded-lg bg-[#d4af37] px-4 py-2 font-medium text-black disabled:opacity-60"
+				>
+					{{ busy() ? 'Loggar in…' : 'Logga in' }}
+				</button>
+			</form>
+		</main>
+	} @else {
+		<header class="sticky top-0 z-10 border-b border-white/10 bg-neutral-950/90 backdrop-blur">
+			<div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
+				<h1 class="text-lg font-semibold">Catso Admin</h1>
+				<span class="text-sm text-neutral-500">Däcklager</span>
+				<span class="flex-1"></span>
+				<button
+					type="button"
+					(click)="load()"
+					class="rounded-lg border border-white/10 px-3 py-1.5 text-sm hover:bg-white/5"
+				>
+					{{ loading() ? 'Hämtar…' : 'Uppdatera' }}
+				</button>
+				<button
+					type="button"
+					(click)="signOut()"
+					class="rounded-lg border border-white/10 px-3 py-1.5 text-sm hover:bg-white/5"
+				>
+					Logga ut
+				</button>
+			</div>
+		</header>
+
+		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">
+			@if (error()) {
+				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ error() }}</p>
+			}
+
+			<section class="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
+				@for (k of [
+					{ label: 'Kunder', value: stats().total },
+					{ label: 'Provperiod', value: stats().trial },
+					{ label: 'Går ut ≤ 7 dagar', value: stats().expiring },
+					{ label: 'Betalande', value: stats().paying },
+					{ label: 'Spärrade', value: stats().blocked },
+					{ label: 'MRR exkl. moms', value: (stats().mrr | number: '1.0-0') + ' kr' }
+				]; track k.label) {
+					<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+						<div class="text-xs tracking-wide text-neutral-400 uppercase">{{ k.label }}</div>
+						<div class="mt-1 text-2xl font-semibold tabular-nums">{{ k.value }}</div>
+					</div>
+				}
+			</section>
+
+			<section class="flex flex-wrap items-center gap-3">
+				<input
+					type="search"
+					placeholder="Sök kund, e-post eller telefon…"
+					[ngModel]="query()"
+					(ngModelChange)="query.set($event)"
+					class="w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm outline-none focus:border-[#d4af37] sm:w-80"
+				/>
+				<div class="flex flex-wrap gap-1.5">
+					@for (f of filters; track f.id) {
+						<button
+							type="button"
+							(click)="filter.set(f.id)"
+							class="rounded-full px-3 py-1 text-sm"
+							[class]="filter() === f.id ? 'bg-[#d4af37] text-black' : 'bg-white/5 text-neutral-300 hover:bg-white/10'"
+						>
+							{{ f.label }}
+						</button>
+					}
+				</div>
+			</section>
+
+			<section class="overflow-x-auto rounded-xl border border-white/10">
+				<table class="w-full min-w-[56rem] text-left text-sm">
+					<thead class="bg-white/5 text-xs tracking-wide text-neutral-400 uppercase">
+						<tr>
+							<th class="px-4 py-3">Kund</th>
+							<th class="px-4 py-3">Ägare</th>
+							<th class="px-4 py-3">Användare</th>
+							<th class="px-4 py-3">Senast aktiv</th>
+							<th class="px-4 py-3">Plan</th>
+							<th class="px-4 py-3">Status</th>
+							<th class="px-4 py-3">Provperiod / förnyas</th>
+							<th class="px-4 py-3"></th>
+						</tr>
+					</thead>
+					<tbody class="divide-y divide-white/5">
+						@for (g of shown(); track g.id) {
+							<tr class="hover:bg-white/[0.03]">
+								<td class="px-4 py-3">
+									<div class="font-medium">{{ g.name }}</div>
+									<div class="text-xs text-neutral-500">Skapad {{ date(g.createdAt) }}</div>
+								</td>
+								<td class="px-4 py-3">
+									<div>{{ g.owner?.name || g.owner?.email || '–' }}</div>
+									@if (g.owner?.name && g.owner?.email) {
+										<div class="text-xs text-neutral-500">{{ g.owner?.email }}</div>
+									}
+								</td>
+								<td class="px-4 py-3 tabular-nums">{{ g.memberCount }}</td>
+								<td class="px-4 py-3 text-neutral-300">{{ ago(g.lastSeenAt) }}</td>
+								<td class="px-4 py-3">{{ g.subscription ? planLabel(g.subscription.plan) : '–' }}</td>
+								<td class="px-4 py-3">
+									<span class="rounded-full px-2.5 py-0.5 text-xs" [class]="stateClass(g)">{{ stateLabel(g) }}</span>
+								</td>
+								<td class="px-4 py-3 text-neutral-300">{{ endLabel(g) }}</td>
+								<td class="px-4 py-3 text-right">
+									<button
+										type="button"
+										(click)="open(g)"
+										class="rounded-lg border border-white/10 px-3 py-1 hover:bg-white/10"
+									>
+										Hantera
+									</button>
+								</td>
+							</tr>
+						} @empty {
+							<tr>
+								<td colspan="8" class="px-4 py-10 text-center text-neutral-500">
+									{{ loading() ? 'Hämtar…' : 'Inga kunder matchar.' }}
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</section>
+		</main>
+
+		@if (selected(); as g) {
+			<div class="fixed inset-0 z-20 flex justify-end bg-black/60" (click)="close()">
+				<aside
+					class="h-full w-full max-w-md overflow-y-auto border-l border-white/10 bg-neutral-950 p-6"
+					(click)="$event.stopPropagation()"
+					role="dialog"
+					aria-label="Hantera kund"
+				>
+					<div class="flex items-start justify-between gap-3">
+						<div>
+							<h2 class="text-lg font-semibold">{{ g.name }}</h2>
+							<p class="text-sm text-neutral-400">{{ g.owner?.email || 'Ingen ägare' }} · {{ g.memberCount }} användare</p>
+						</div>
+						<button type="button" (click)="close()" class="rounded-lg px-2 py-1 text-neutral-400 hover:bg-white/10" aria-label="Stäng">✕</button>
+					</div>
+
+					@if (!g.subscription) {
+						<p class="mt-4 rounded-lg bg-white/5 px-3 py-2 text-sm text-neutral-300">
+							Kunden har inte öppnat appen sedan billing infördes. Provperioden startar vid första öppning. Sparar du här skapas den direkt.
+						</p>
+					}
+
+					<form class="mt-5 space-y-4" (ngSubmit)="save()">
+						<label class="block text-sm">
+							<span class="text-neutral-300">Plan</span>
+							<select name="plan" [(ngModel)]="plan" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2">
+								@for (p of plans; track p) {
+									<option [value]="p">{{ planLabel(p) }}</option>
+								}
+							</select>
+						</label>
+						<label class="block text-sm">
+							<span class="text-neutral-300">Status</span>
+							<select name="status" [(ngModel)]="status" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2">
+								@for (s of statuses; track s.id) {
+									<option [value]="s.id">{{ s.label }}</option>
+								}
+							</select>
+						</label>
+						<label class="block text-sm">
+							<span class="text-neutral-300">Extra användare (köpta utöver planen)</span>
+							<input type="number" min="0" max="100" name="extraSeats" [(ngModel)]="extraSeats" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2" />
+						</label>
+						<div class="text-sm">
+							<label>
+								<span class="text-neutral-300">Provperioden slutar</span>
+								<input type="date" name="trialEnds" [(ngModel)]="trialEnds" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2" />
+							</label>
+							<div class="mt-2 flex gap-2">
+								@for (d of [7, 14, 30]; track d) {
+									<button type="button" (click)="extendTrial(d)" class="rounded-lg border border-white/10 px-3 py-1 text-xs hover:bg-white/10">+{{ d }} dagar</button>
+								}
+							</div>
+						</div>
+						<label class="block text-sm">
+							<span class="text-neutral-300">Licens gäller till (kund som faktureras)</span>
+							<input type="date" name="licenseUntil" [(ngModel)]="licenseUntil" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2" />
+						</label>
+
+						@if (saveError()) {
+							<p class="text-sm text-red-400" role="alert">{{ saveError() }}</p>
+						}
+						<div class="flex gap-2 pt-2">
+							<button type="submit" [disabled]="saving()" class="flex-1 rounded-lg bg-[#d4af37] px-4 py-2 font-medium text-black disabled:opacity-60">
+								{{ saving() ? 'Sparar…' : 'Spara' }}
+							</button>
+							<button type="button" (click)="close()" class="rounded-lg border border-white/10 px-4 py-2 hover:bg-white/10">Avbryt</button>
+						</div>
+					</form>
+				</aside>
+			</div>
+		}
+	}
+</div>
