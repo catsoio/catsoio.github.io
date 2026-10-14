@@ -68,6 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	navLinks: NavLink[] = [
+		{ label: 'Däcklager', href: '/dacklager' },
 		{ label: 'Produkter', href: '#products' },
 		{ label: 'Robotik', href: '#robotics' },
 		{ label: 'Kontakt', href: '#contact' },

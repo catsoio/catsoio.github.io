@@ -134,6 +134,23 @@ export const routes: Routes = [
     data: { seo: HEMMAFEST_SEO },
   },
   {
+    path: 'dacklager',
+    loadComponent: () =>
+      import('./pages/dacklager/dacklager.component').then((m) => m.DacklagerComponent),
+    data: {
+      seo: {
+        title: 'Catso Däcklager — system för däckverkstäder',
+        description:
+          'Lager, däckhotell, tidsbokning och arbetsorder i ett system för däckverkstäder. Fungerar på dator, surfplatta och mobil. Prova gratis i 14 dagar.',
+        og: { type: 'website', image: 'https://catso.io/assets/imgs/dacklager/desktop-dashboard.webp' },
+        twitter: {
+          card: 'summary_large_image',
+          image: 'https://catso.io/assets/imgs/dacklager/desktop-dashboard.webp',
+        },
+      } as RouteSEO,
+    },
+  },
+  {
     path: 'admin',
     loadComponent: () => import('./pages/admin/admin.component').then((m) => m.AdminComponent),
     data: {
