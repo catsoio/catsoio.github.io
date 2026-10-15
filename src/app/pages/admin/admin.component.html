@@ -50,6 +50,13 @@
 				<span class="flex-1"></span>
 				<button
 					type="button"
+					(click)="showPlans.set(!showPlans())"
+					class="rounded-lg border border-white/10 px-3 py-1.5 text-sm hover:bg-white/5"
+				>
+					Paket och priser
+				</button>
+				<button
+					type="button"
 					(click)="load()"
 					class="rounded-lg border border-white/10 px-3 py-1.5 text-sm hover:bg-white/5"
 				>
@@ -68,6 +75,53 @@
 		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">
 			@if (error()) {
 				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ error() }}</p>
+			}
+
+			@if (showPlans()) {
+				<section class="space-y-4 rounded-xl border border-white/10 bg-white/5 p-5">
+					<div>
+						<h2 class="text-lg font-semibold">Paket och priser</h2>
+						<p class="mt-1 text-sm text-neutral-400">
+							Priser anges i kr per månad exklusive moms. Ändringarna visas på landingpagen och i appen.
+							Antal inkluderade användare och vilka funktioner ett paket låser upp ändras i koden. Priset i Stripe
+							ändras i Stripe.
+						</p>
+					</div>
+					<div class="grid gap-4 md:grid-cols-2">
+						@for (id of plans; track id) {
+							<div class="space-y-3 rounded-lg border border-white/10 bg-black/20 p-4">
+								<label class="block text-sm">
+									<span class="text-neutral-300">Namn</span>
+									<input [(ngModel)]="planForms[id].name" name="pn-{{ id }}" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]" />
+								</label>
+								<label class="block text-sm">
+									<span class="text-neutral-300">Pris (kr / månad)</span>
+									<input type="number" min="0" [(ngModel)]="planForms[id].price" name="pp-{{ id }}" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]" />
+								</label>
+								<label class="block text-sm">
+									<span class="text-neutral-300">Beskrivning</span>
+									<input [(ngModel)]="planForms[id].blurb" name="pb-{{ id }}" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]" />
+								</label>
+								<label class="block text-sm">
+									<span class="text-neutral-300">Funktioner (en per rad)</span>
+									<textarea rows="5" [(ngModel)]="planForms[id].features" name="pf-{{ id }}" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]"></textarea>
+								</label>
+							</div>
+						}
+					</div>
+					<label class="block max-w-xs text-sm">
+						<span class="text-neutral-300">Extra användare (kr / månad)</span>
+						<input type="number" min="0" [(ngModel)]="extraUserPrice" name="extra-user" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]" />
+					</label>
+					<div class="flex items-center gap-3">
+						<button type="button" (click)="savePlans()" [disabled]="planSaving()" class="rounded-lg bg-[#d4af37] px-5 py-2 font-medium text-black disabled:opacity-60">
+							{{ planSaving() ? 'Sparar…' : 'Spara paket' }}
+						</button>
+						@if (planMsg()) {
+							<span class="text-sm text-neutral-300">{{ planMsg() }}</span>
+						}
+					</div>
+				</section>
 			}
 
 			<section class="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">

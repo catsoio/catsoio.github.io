@@ -37,6 +37,25 @@ export interface LicenseChange {
 	licenseUntil?: string;
 }
 
+export interface PlanInfo {
+	id: PlanId;
+	name: string;
+	blurb: string;
+	features: string[];
+	priceMinor: number;
+	includedUsers: number;
+}
+
+export interface PlanCatalog {
+	extraUserPriceMinor: number;
+	plans: PlanInfo[];
+}
+
+export interface PlanCatalogChange {
+	extraUserPriceMinor?: number;
+	plans?: Partial<Record<PlanId, { name?: string; blurb?: string; priceMinor?: number; features?: string[] }>>;
+}
+
 interface Tokens {
 	accessToken: string;
 	refreshToken: string;
@@ -153,6 +172,16 @@ export class AdminService {
 			this.http.put<any>(`${this.base}/inventory/garage/${garageId}/license`, change, {
 				headers: this.headers(true),
 			}),
+		);
+	}
+
+	plans(): Promise<PlanCatalog> {
+		return this.call(() => this.http.get<any>(`${this.base}/inventory/plans`, { headers: this.headers(true) }));
+	}
+
+	savePlans(change: PlanCatalogChange): Promise<PlanCatalog> {
+		return this.call(() =>
+			this.http.put<any>(`${this.base}/inventory/plans`, change, { headers: this.headers(true) }),
 		);
 	}
 }

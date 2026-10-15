@@ -61,9 +61,9 @@ export const POANGJAKTEN_SEO: RouteSEO = {
 };
 
 export const INVENTORY_SEO: RouteSEO = {
-	title: 'Catso Verkstad | Lager, däckhotell, tidsbokning och arbetsorder',
+	title: 'Catso Bay | Lager, däckhotell, bokningar och arbetsorder för verkstäder',
 	description:
-		'Släpp pappren. Lager, däckhotell, tidsbokning och arbetsorder för verkstäder och däckfirmor. Från 495 kr/mån, 14 dagar gratis.',
+		'Verksamhetssystem för däckfirmor och verkstäder: lager, däckhotell, bokningar och arbetsorder. Från 495 kr/mån.',
 	og: { type: 'product', image: 'https://catso.io/assets/og/catso-og.jpg' },
 	twitter: {
 		card: 'summary_large_image',
@@ -73,7 +73,7 @@ export const INVENTORY_SEO: RouteSEO = {
 	jsonLd: {
 		'@context': 'https://schema.org',
 		'@type': 'SoftwareApplication',
-		name: 'Catso Verkstad',
+		name: 'Catso Bay',
 		applicationCategory: 'BusinessApplication',
 		operatingSystem: 'Web',
 		url: 'https://catso.io/inventory',

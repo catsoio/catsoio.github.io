@@ -7,15 +7,15 @@ import {
 	AdminGarage,
 	AdminService,
 	LicenseChange,
+	PlanCatalog,
 	PlanId,
 	SubStatus,
 } from './admin.service';
 
 type Filter = 'all' | 'trial' | 'expiring' | 'paying' | 'blocked';
 
-/** Monthly price excl. VAT, SEK. Mirrors the backend catalog; Stripe is the source of truth. */
-const PLAN_PRICE: Record<PlanId, number> = { dack: 495, verkstad: 1295 };
-const EXTRA_USER_PRICE = 99;
+/** Fallback until the catalog has loaded. The backend catalog is the source of truth for display. */
+const DEFAULT_PRICE: Record<PlanId, number> = { dack: 495, verkstad: 1295 };
 const DAY = 86_400_000;
 
 const STATE_LABEL: Record<AccessState, string> = {
@@ -65,6 +65,17 @@ export class AdminComponent implements OnInit {
 	readonly saving = signal(false);
 	readonly saveError = signal('');
 
+	// Plan catalog editor
+	readonly catalog = signal<PlanCatalog | null>(null);
+	readonly showPlans = signal(false);
+	readonly planSaving = signal(false);
+	readonly planMsg = signal('');
+	planForms: Record<PlanId, { name: string; blurb: string; price: number; features: string }> = {
+		dack: { name: '', blurb: '', price: 0, features: '' },
+		verkstad: { name: '', blurb: '', price: 0, features: '' },
+	};
+	extraUserPrice = 0;
+
 	readonly filters: { id: Filter; label: string }[] = [
 		{ id: 'all', label: 'Alla' },
 		{ id: 'trial', label: 'Provperiod' },
@@ -86,7 +97,9 @@ export class AdminComponent implements OnInit {
 		const paying = all.filter((g) => sub(g)?.state === 'subscribed' || sub(g)?.state === 'past_due');
 		const mrr = paying.reduce((sum, g) => {
 			const s = sub(g)!;
-			return sum + PLAN_PRICE[s.plan] + s.extraSeats * EXTRA_USER_PRICE;
+			const price = this.catalog()?.plans.find((p) => p.id === s.plan)?.priceMinor;
+			const extra = this.catalog()?.extraUserPriceMinor ?? 9900;
+			return sum + (price !== undefined ? price / 100 : DEFAULT_PRICE[s.plan]) + (s.extraSeats * extra) / 100;
 		}, 0);
 		return {
 			total: all.length,
@@ -192,6 +205,7 @@ export class AdminComponent implements OnInit {
 				return;
 			}
 			this.garages.set(await this.api.garages());
+			this.applyCatalog(await this.api.plans());
 			const sel = this.selected();
 			if (sel) this.selected.set(this.garages().find((g) => g.id === sel.id) ?? null);
 		} catch (e) {
@@ -252,6 +266,46 @@ export class AdminComponent implements OnInit {
 			this.saveError.set('Kunde inte spara. Kontrollera uppgifterna och försök igen.');
 		} finally {
 			this.saving.set(false);
+		}
+	}
+
+	private applyCatalog(c: PlanCatalog) {
+		this.catalog.set(c);
+		for (const p of c.plans) {
+			this.planForms[p.id] = {
+				name: p.name,
+				blurb: p.blurb,
+				price: p.priceMinor / 100,
+				features: p.features.join('\n'),
+			};
+		}
+		this.extraUserPrice = c.extraUserPriceMinor / 100;
+	}
+
+	async savePlans() {
+		this.planSaving.set(true);
+		this.planMsg.set('');
+		try {
+			const plans: Record<string, unknown> = {};
+			for (const id of this.plans) {
+				const f = this.planForms[id];
+				plans[id] = {
+					name: f.name.trim(),
+					blurb: f.blurb.trim(),
+					priceMinor: Math.round(Number(f.price) * 100),
+					features: f.features.split('\n').map((l) => l.trim()).filter(Boolean),
+				};
+			}
+			const res = await this.api.savePlans({
+				extraUserPriceMinor: Math.round(Number(this.extraUserPrice) * 100),
+				plans: plans as never,
+			});
+			this.applyCatalog(res);
+			this.planMsg.set('Sparat. Landingpagen visar de nya uppgifterna direkt.');
+		} catch {
+			this.planMsg.set('Kunde inte spara. Kontrollera uppgifterna.');
+		} finally {
+			this.planSaving.set(false);
 		}
 	}
 }
