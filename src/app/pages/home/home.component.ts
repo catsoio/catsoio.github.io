@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	navLinks: NavLink[] = [
-		{ label: 'Catso Bay', href: '/inventory' },
+		{ label: 'Catso Verkstad', href: '/apps/verkstad' },
 		{ label: 'Produkter', href: '#products' },
 		{ label: 'Robotik', href: '#robotics' },
 		{ label: 'Kontakt', href: '#contact' },

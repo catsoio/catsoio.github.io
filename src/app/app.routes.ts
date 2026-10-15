@@ -89,7 +89,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'inventory',
+    path: 'apps/verkstad',
     loadComponent: () =>
       import('./pages/inventory-landing/inventory-landing.component').then(
         (m) => m.InventoryLandingComponent,
@@ -133,7 +133,8 @@ export const routes: Routes = [
       ),
     data: { seo: HEMMAFEST_SEO },
   },
-  { path: 'dacklager', redirectTo: 'inventory', pathMatch: 'full' },
+  { path: 'dacklager', redirectTo: 'apps/verkstad', pathMatch: 'full' },
+  { path: 'inventory', redirectTo: 'apps/verkstad', pathMatch: 'full' },
   {
     path: 'admin',
     loadComponent: () => import('./pages/admin/admin.component').then((m) => m.AdminComponent),

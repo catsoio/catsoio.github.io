@@ -5,7 +5,7 @@ const now = new Date().toISOString();
 
 const routes = [
 	{ path: '/home', priority: '1.0' },
-	{ path: '/dacklager', priority: '0.9' },
+	{ path: '/apps/verkstad', priority: '0.9' },
 	{ path: '/vera-01', priority: '0.9' },
 	{ path: '/hemmafest', priority: '0.7' },
 	{ path: '/poangjakten/sponsor', priority: '0.7' },
