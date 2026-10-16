@@ -163,6 +163,7 @@ export class InventoryLandingComponent implements OnInit {
 
 	async ngOnInit(): Promise<void> {
 		if (!this.browser) return;
+		this.notifyVisit();
 		try {
 			const res = await firstValueFrom(
 				this.http.get<{ data: Catalog }>(`${this.apiBase}/inventory/plans`, {
@@ -184,6 +185,17 @@ export class InventoryLandingComponent implements OnInit {
 		} catch {
 			// Behåller standardpriserna om katalogen inte kan hämtas.
 		}
+	}
+
+	/** Ger ägaren en notis om besöket. Backend filtrerar bots och tar IP/plats själv. */
+	private notifyVisit(): void {
+		if (isDevMode()) return;
+		this.http
+			.post(`${this.apiBase}/contact/visit`, {
+				path: location.pathname,
+				referrer: document.referrer || undefined,
+			})
+			.subscribe({ error: () => {} });
 	}
 
 	/** Förifyller meddelandet när någon klickar på en plan i prislistan. */
