@@ -28,7 +28,9 @@
 			</a>
 			<div class="display hidden items-center gap-8 text-lg font-semibold tracking-wider text-neutral-400 md:flex">
 				<a routerLink="/apps/verkstad" fragment="funktioner" class="hover:text-[#ffc400]">Funktioner</a>
+				<!-- TILLFÄLLIGT BORTTAGET (priser):
 				<a routerLink="/apps/verkstad" fragment="priser" class="hover:text-[#ffc400]">Priser</a>
+				-->
 			</div>
 			<div class="flex items-center gap-2">
 				@if (appUrl) {
@@ -49,7 +51,9 @@
 		@if (menuOpen()) {
 			<div class="display space-y-1 border-t-2 border-neutral-800 px-4 py-3 text-xl md:hidden">
 				<a routerLink="/apps/verkstad" fragment="funktioner" (click)="menuOpen.set(false)" class="block px-3 py-3 hover:bg-neutral-900">Funktioner</a>
+				<!-- TILLFÄLLIGT BORTTAGET (priser):
 				<a routerLink="/apps/verkstad" fragment="priser" (click)="menuOpen.set(false)" class="block px-3 py-3 hover:bg-neutral-900">Priser</a>
+				-->
 				@if (appUrl) {
 					<a [href]="appUrl" class="block px-3 py-3 hover:bg-neutral-900">Logga in</a>
 				}
@@ -71,7 +75,9 @@
 					<p class="mt-6 text-xl text-neutral-300">Lager, däckhotell, bokningar och arbetsorder.</p>
 					<div class="mt-8 flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">
 						<a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-yellow">Kontakta oss</a>
+						<!-- TILLFÄLLIGT BORTTAGET (priser):
 						<a routerLink="/apps/verkstad" fragment="priser" class="btn btn-ghost">Priser</a>
+						-->
 					</div>
 				</div>
 				<div class="relative pr-3 pb-10 lg:col-span-8 lg:-mr-24 xl:-mr-40">
@@ -126,7 +132,8 @@
 		</section>
 		<div class="hazard"></div>
 
-		<!-- PRISER -->
+		<!-- TILLFÄLLIGT BORTTAGET: prissektionen. Ta bort kommentaren för att visa den igen.
+		PRISER
 		<section id="priser" class="scroll-mt-16 px-4 py-20">
 			<div class="mx-auto max-w-4xl">
 				<h2 class="display text-5xl font-extrabold text-white sm:text-6xl">Priser</h2>
@@ -166,6 +173,7 @@
 				<p class="mt-6 text-neutral-500">Extra användare {{ extraUserPrice() }} kr/mån.</p>
 			</div>
 		</section>
+		-->
 
 		<div class="hazard"></div>
 

@@ -63,7 +63,7 @@ export const POANGJAKTEN_SEO: RouteSEO = {
 export const INVENTORY_SEO: RouteSEO = {
 	title: 'Catso Verkstad | Lager, däckhotell, bokningar och arbetsorder',
 	description:
-		'Verksamhetssystem för däckfirmor och verkstäder: lager, däckhotell, bokningar och arbetsorder. Från 495 kr/mån.',
+		'Verksamhetssystem för däckfirmor och verkstäder: lager, däckhotell, bokningar och arbetsorder.',
 	og: { type: 'product', image: 'https://catso.io/assets/og/catso-verkstad-og.jpg' },
 	twitter: {
 		card: 'summary_large_image',
@@ -77,11 +77,12 @@ export const INVENTORY_SEO: RouteSEO = {
 		applicationCategory: 'BusinessApplication',
 		operatingSystem: 'Web',
 		url: 'https://catso.io/apps/verkstad',
-		offers: {
-			'@type': 'AggregateOffer',
-			lowPrice: '495',
-			highPrice: '1295',
-			priceCurrency: 'SEK',
-		},
+		// TILLFÄLLIGT BORTTAGET (priser):
+		// offers: {
+		// 	'@type': 'AggregateOffer',
+		// 	lowPrice: '495',
+		// 	highPrice: '1295',
+		// 	priceCurrency: 'SEK',
+		// },
 	},
 };
