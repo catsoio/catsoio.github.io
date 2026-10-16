@@ -65,45 +65,45 @@ export class InventoryLandingComponent implements OnInit {
 	readonly menuOpen = signal(false);
 
 	readonly pains = [
-		{ title: 'Hjulen är borta', text: 'Kunden ringer och undrar om bilen är klar. Du går ut och letar bland hyllorna efter rätt hjulset.' },
-		{ title: 'Saldot stämmer inte', text: 'Systemet säger fyra däck, hyllan har två. Du upptäcker det först när kunden står vid disken.' },
-		{ title: 'Papper överallt', text: 'Bokningen på en lapp, arbetsordern i en pärm och fakturaunderlaget i ett Excelark.' },
+		{ title: 'Var är hjulen?', text: 'Kunden ringer och frågar om bilen är klar. Du går ut och letar bland hyllorna efter rätt set, och hoppas att någon ställde tillbaka det på rätt plats.' },
+		{ title: 'Saldot stämmer inte', text: 'Systemet säger fyra däck, hyllan har två. Det märks först när kunden redan står vid disken.' },
+		{ title: 'Papper överallt', text: 'Bokningen på en lapp, arbetsordern i en pärm och underlaget till fakturan i ett Excelark som bara en person förstår.' },
 	];
 
 	readonly features: Feature[] = [
 		{
 			id: 'lager',
 			title: 'Lager',
-			headline: 'Lager och saldo',
-			text: 'Saldo, hyllplats och pris på varje artikel. Sök på dimension eller märke.',
-			points: [],
+			headline: 'Du ser vad du har, och vad som snart är slut',
+			text: 'Varje artikel har saldo, hyllplats och pris. Du söker på dimension eller märke och ser direkt om det finns. När något börjar ta slut hamnar det i listan över vad du behöver beställa, så du slipper upptäcka det när kunden redan är på plats.',
+			points: ['Sök på dimension, märke eller artikelnummer', 'Varning för lågt lager och slut', 'Inköp och leverantörer på samma ställe', 'Se bruttovinst och marginal per period'],
 			image: `${IMG}/desktop-inventory.webp`,
 			alt: 'Artikellistan med däck, fälgar och lagersaldo',
 		},
 		{
 			id: 'dackhotell',
 			title: 'Däckhotell',
-			headline: 'Däckhotell',
-			text: 'Kundens hjulset med regnummer, plats och avgift. Obetalda hämtningar syns direkt.',
-			points: [],
+			headline: 'Varje hjulset har en plats och en ägare',
+			text: 'Du lägger in kundens set med regnummer, hyllplats och avgift. Du ser vilka som är betalda, vilka som inte är det och vilka som skulle ha hämtats för länge sedan. Vid säsongsbytet vet du precis var allt står.',
+			points: ['Regnummer, plats och avgift per set', 'Obetalda och försenade hämtningar syns på startsidan', 'Sök fram kunden på sekunder när hen ringer'],
 			image: `${IMG}/desktop-storage.webp`,
 			alt: 'Listan över inlagrade däck i däckhotellet',
 		},
 		{
 			id: 'bokningar',
 			title: 'Bokningar',
-			headline: 'Bokningar per mekaniker',
-			text: 'Veckokalender per mekaniker. Ett klick gör bokningen till en arbetsorder.',
-			points: [],
+			headline: 'En kalender där alla mekaniker syns',
+			text: 'Se veckan per mekaniker, flytta en bokning genom att dra den och lägg till en ny på ett par sekunder. När kunden kommer gör du bokningen till en arbetsorder med ett klick, så skriver du inte in samma uppgifter två gånger.',
+			points: ['Vecko-, dag- och månadsvy', 'Filtrera på en enskild mekaniker', 'Bokning blir arbetsorder med kund och bil ifyllda'],
 			image: `${IMG}/desktop-bookings.webp`,
 			alt: 'Veckokalender med bokningar per mekaniker',
 		},
 		{
 			id: 'arbetsorder',
 			title: 'Arbetsorder',
-			headline: 'Arbetsorder med delar och summa',
-			text: 'Arbete och delar på samma order. Delarna tas från lagret.',
-			points: [],
+			headline: 'Från inlämnad bil till färdig faktura',
+			text: 'Arbete och delar står på samma order. Mekanikern öppnar den i mobilen, ser bara det som rör hens egna bilar och bockar av raderna när de är gjorda. När ordern är klar tas delarna ur lagret, och du kan skriva ut faktura eller kvitto med moms utan att räkna något för hand.',
+			points: ['Egen mobilvy för mekanikern, utan priser och kunduppgifter', 'Delar tas ur lagret när ordern blir klar', 'Faktura och kvitto med rätt moms och löpande nummer', 'Status: öppen, pågår, väntar på del, klar'],
 			image: `${IMG}/desktop-workorder.webp`,
 			alt: 'Arbetsorder med arbete, delar och summa',
 		},
@@ -116,12 +116,12 @@ export class InventoryLandingComponent implements OnInit {
 	];
 
 	readonly overview = [
-		{ title: 'Kunder och bilar', text: 'Lägg in dem en gång, välj dem sedan var du vill.' },
-		{ title: 'Leverantörer', text: 'Vem du handlar av och vad du har köpt.' },
-		{ title: 'Rapporter', text: 'Försäljning, bruttovinst och inköp, per period.' },
-		{ title: 'Bokföring', text: 'Stäng månaden och lämna över underlaget till redovisaren.' },
-		{ title: 'Behörigheter', text: 'Du som äger ser allt. Personalen jobbar i systemet men ser varken inköpspriser eller bokföring.' },
-		{ title: 'Dator, surfplatta, mobil', text: 'Det körs i webbläsaren. Inget program att installera eller uppdatera.' },
+		{ title: 'Kunder och bilar', text: 'Lägg in kunden och bilen en gång. Sedan väljer du dem i bokning, däckhotell och arbetsorder i stället för att skriva om dem. Företagskunder får organisationsnummer och adress på fakturan.' },
+		{ title: 'Leverantörer', text: 'Vem du handlar av och vad du har köpt, så du hittar tillbaka när något ska beställas om.' },
+		{ title: 'Rapporter', text: 'Försäljning, bruttovinst och inköp för vald period. Inga egna sammanställningar i Excel.' },
+		{ title: 'Moms och bokföring', text: 'Momsrapport för utgående moms och ett underlag du kan lämna till redovisaren när månaden är stängd.' },
+		{ title: 'Behörigheter', text: 'Ägaren ser allt. Personalen jobbar i systemet men ser inte inköpspriser eller bokföring, och mekanikerna ser bara sina egna order.' },
+		{ title: 'Dator, surfplatta och mobil', text: 'Det körs i webbläsaren, så det finns inget att installera och ingen uppdatering att komma ihåg. Det funkar lika bra i verkstaden som vid disken.' },
 	];
 
 	private readonly defaultPlans: Plan[] = [
