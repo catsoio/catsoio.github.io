@@ -60,6 +60,14 @@ export const POANGJAKTEN_SEO: RouteSEO = {
 	},
 };
 
+/** Genomgång av hur systemet hänger ihop, att visa för en kund. Inte för sökmotorer. */
+export const VERKSTAD_INFO_SEO: RouteSEO = {
+	title: 'Så hänger verkstaden ihop | Catso Verkstad',
+	description:
+		'Så hänger kund, bil, bokning, arbetsorder, säljkort, däckhotell, lager och faktura ihop i Catso Verkstad.',
+	robots: 'noindex,follow',
+};
+
 export const INVENTORY_SEO: RouteSEO = {
 	title: 'Catso Verkstad | Lager, däckhotell, bokningar och arbetsorder',
 	description:

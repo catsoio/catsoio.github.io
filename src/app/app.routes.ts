@@ -4,6 +4,7 @@ import {
   HEMMAFEST_SEO,
   HEMMAFEST_BUSINESS_SEO,
   INVENTORY_SEO,
+  VERKSTAD_INFO_SEO,
   POANGJAKTEN_SEO,
 } from './seo/seo.consts';
 
@@ -95,6 +96,13 @@ export const routes: Routes = [
         (m) => m.InventoryLandingComponent,
       ),
     data: { seo: INVENTORY_SEO },
+  },
+  { path: 'verkstad', redirectTo: 'apps/verkstad', pathMatch: 'full' },
+  {
+    path: 'verkstad/info',
+    loadComponent: () =>
+      import('./pages/verkstad-info/verkstad-info.component').then((m) => m.VerkstadInfoComponent),
+    data: { seo: VERKSTAD_INFO_SEO },
   },
   {
     path: 'poangjakten/sponsor',

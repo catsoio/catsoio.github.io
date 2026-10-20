@@ -1,0 +1,542 @@
+<div
+  class="bay min-h-screen bg-[#0c0c0d] text-neutral-300 antialiased selection:bg-[#ffc400] selection:text-black"
+>
+  <!-- NAV -->
+  <header
+    class="fixed inset-x-0 top-0 z-50 border-b-2 border-neutral-800 bg-[#0c0c0d]/90 backdrop-blur"
+  >
+    <nav
+      class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3"
+      aria-label="Huvudmeny"
+    >
+      <a routerLink="/apps/verkstad" class="flex items-center gap-3">
+        <img src="assets/imgs/store-listing/catso-logo.png" alt="Catso" class="h-6 w-auto invert" />
+        <span class="display text-2xl font-extrabold text-white">{{ product }}</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <a
+          routerLink="/apps/verkstad"
+          class="display hidden px-3 py-2 text-lg font-semibold text-neutral-300 hover:text-[#ffc400] sm:inline-block"
+          >Om systemet</a
+        >
+        <a
+          routerLink="/apps/verkstad"
+          fragment="kontakt"
+          class="btn btn-yellow !px-5 !py-2 !text-base"
+          >Kontakta oss</a
+        >
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="tread relative overflow-hidden px-4 pt-28 pb-16 md:pt-36">
+      <div class="mx-auto max-w-5xl">
+        <p
+          class="display inline-block bg-[#ffc400] px-3 py-1 text-base font-bold tracking-widest text-black"
+        >
+          Så fungerar det
+        </p>
+        <h1 class="display mt-6 text-6xl font-extrabold text-white sm:text-7xl">
+          Så hänger <span class="text-[#ffc400]">verkstaden</span> ihop
+        </h1>
+        <p class="mt-6 max-w-2xl text-xl text-neutral-300">
+          Allt som händer i verkstaden hamnar på ett kort med ett eget nummer. Korten pekar på
+          varandra, så kunden, bilen, jobbet, däcken och pengarna går att följa från början till
+          slut.
+        </p>
+      </div>
+    </section>
+    <div class="hazard"></div>
+
+    <!-- KARTAN -->
+    <section class="px-4 py-20">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">
+          Kartan: vilka kort som finns
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl leading-snug text-neutral-300">
+          Mitten är säljkortet. Allt som ska betalas går dit, oavsett om det började som en
+          bokning, en arbetsorder, ett däckhotell eller ett köp i disken.
+        </p>
+        <figure class="plate mt-10 p-4 sm:p-6">
+          <div class="overflow-x-auto">
+            <svg
+              class="map"
+              viewBox="0 0 920 590"
+              role="img"
+              aria-label="Kartan över korten. Kund och bil, bokning, arbetsorder och däckhotell leder alla till säljkortet. Säljkortet ger faktura eller kvitto och minskar lagret. Inköp från leverantör ökar lagret och kommer som eget kort senare."
+            >
+              <defs>
+                <marker
+                  id="ah"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M0,0 L10,5 L0,10 z" fill="#a1a1a8" />
+                </marker>
+                <marker
+                  id="ah-y"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M0,0 L10,5 L0,10 z" fill="#ffc400" />
+                </marker>
+              </defs>
+
+              <!-- Register: kund och bil -->
+              <rect class="group" x="20" y="190" width="190" height="180" rx="4" />
+              <text class="gtitle" x="34" y="209">REGISTER</text>
+              <rect class="node" x="35" y="222" width="160" height="56" />
+              <text class="mono" x="49" y="243">KU</text>
+              <text class="name" x="49" y="264">Kund</text>
+              <rect class="node" x="35" y="304" width="160" height="56" />
+              <text class="mono" x="49" y="325">BIL</text>
+              <text class="name" x="49" y="346">Bil</text>
+              <line class="edge" x1="115" y1="278" x2="115" y2="304" marker-end="url(#ah)" />
+              <text class="elabel" x="124" y="296">äger</text>
+
+              <!-- Bokning och arbetsorder -->
+              <rect class="node" x="30" y="30" width="170" height="60" />
+              <text class="mono" x="44" y="52">TID</text>
+              <text class="name" x="44" y="73">Bokning</text>
+              <rect class="node" x="375" y="30" width="170" height="60" />
+              <text class="mono" x="389" y="52">AO</text>
+              <text class="name" x="389" y="73">Arbetsorder</text>
+              <line class="edge" x1="200" y1="60" x2="375" y2="60" marker-end="url(#ah)" />
+              <text class="elabel" x="287" y="50" text-anchor="middle">blir</text>
+              <line class="edge" x1="210" y1="226" x2="375" y2="88" marker-end="url(#ah)" />
+              <text class="elabel" x="282" y="140">gäller</text>
+
+              <!-- Säljkort -->
+              <rect class="node core" x="375" y="210" width="170" height="76" />
+              <text class="mono core-t" x="391" y="236" opacity="0.8">SK</text>
+              <text class="name core-t" x="391" y="260" font-size="17">Säljkort</text>
+              <text class="note core-t" x="391" y="278" opacity="0.8">rader, rabatt, betalning</text>
+              <line class="edge" x1="460" y1="90" x2="460" y2="210" marker-end="url(#ah)" />
+              <text class="elabel" x="472" y="154">faktureras på</text>
+              <line class="edge" x1="210" y1="262" x2="375" y2="262" marker-end="url(#ah)" />
+              <text class="elabel" x="292" y="253" text-anchor="middle">köper</text>
+
+              <!-- Däckhotell -->
+              <rect class="node" x="720" y="212" width="170" height="64" />
+              <text class="mono" x="734" y="234">DH</text>
+              <text class="name" x="734" y="256">Däckhotell</text>
+              <line class="edge" x1="720" y1="244" x2="545" y2="244" marker-end="url(#ah)" />
+              <text class="elabel" x="632" y="234" text-anchor="middle">läggs på</text>
+
+              <!-- Faktura / kvitto -->
+              <rect class="node" x="375" y="380" width="170" height="70" />
+              <text class="mono" x="389" y="402">FAK</text>
+              <text class="name" x="389" y="424">Faktura / kvitto</text>
+              <text class="note" x="389" y="441">sedan betalning</text>
+              <line class="edge" x1="460" y1="286" x2="460" y2="380" marker-end="url(#ah)" />
+              <text class="elabel" x="472" y="338">bokför ger</text>
+
+              <!-- Lager -->
+              <rect class="node" x="720" y="380" width="170" height="70" />
+              <text class="mono" x="734" y="402">ART</text>
+              <text class="name" x="734" y="424">Lager (artiklar)</text>
+              <text class="note" x="734" y="441">däck, fälgar, delar</text>
+              <line class="edge" x1="545" y1="274" x2="722" y2="396" marker-end="url(#ah)" />
+              <text class="elabel" x="604" y="352">minskar lagret</text>
+
+              <!-- Inköp (kommer som kort) -->
+              <rect class="planned" x="375" y="505" width="170" height="64" />
+              <text class="mono planned-t" x="389" y="527">LEV</text>
+              <text class="name" x="389" y="549">Leverantör</text>
+              <rect class="planned" x="720" y="505" width="170" height="64" />
+              <text class="mono planned-t" x="734" y="527">INK</text>
+              <text class="name" x="734" y="549">Inköpskort</text>
+              <text class="note planned-t" x="800" y="549">kommer</text>
+              <line
+                class="edge planned-edge"
+                x1="545"
+                y1="537"
+                x2="720"
+                y2="537"
+                marker-end="url(#ah-y)"
+              />
+              <text class="elabel planned-t" x="632" y="527" text-anchor="middle">säljer till oss</text>
+              <line
+                class="edge planned-edge"
+                x1="805"
+                y1="505"
+                x2="805"
+                y2="450"
+                marker-end="url(#ah-y)"
+              />
+              <text class="elabel planned-t" x="817" y="482">ökar lagret</text>
+            </svg>
+          </div>
+          <figcaption class="mt-4 max-w-3xl text-neutral-400">
+            Pilarna visar vad som leder till vad. Streckat är det som kommer: inköp finns idag som en
+            vanlig sida (leverantör, artiklar, lagret ökar) och blir ett eget kort. Delar på en
+            arbetsorder tas ur lagret när ordern blir klar.
+          </figcaption>
+        </figure>
+        <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-neutral-400" aria-label="Förklaring av numren">
+          @for (c of codes; track c[0]) {
+            <li>
+              <span class="code">{{ c[0] }}</span> {{ c[1] }}
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+    <div class="hazard"></div>
+
+    <!-- HÄNDELSER -->
+    <section class="px-4 py-20">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">Fem vanliga händelser</h2>
+        <p class="mt-4 max-w-2xl text-xl leading-snug text-neutral-300">
+          Så ser flödet ut i verkstaden, steg för steg, och vad som skrivs ut på vägen.
+        </p>
+
+        <!-- 1 -->
+        <article class="plate mt-10 p-6 sm:p-8">
+          <h3 class="display text-3xl font-extrabold text-white sm:text-4xl">
+            En bil kommer in för ett jobb
+          </h3>
+          <p class="mt-3 text-lg text-neutral-400">
+            <b class="font-semibold text-neutral-200">Så säger du till kunden:</b> bokningen blir ett
+            arbetsblad till mekanikern, och när jobbet är klart får du ett kvitto.
+          </p>
+          <ol class="steps mt-6">
+            @for (s of job; track s.title) {
+              <li>
+                <div class="where">{{ s.where }}</div>
+                <div class="text-xl font-semibold text-white">{{ s.title }}</div>
+                <p class="mt-1 text-neutral-400">{{ s.text }}</p>
+                @if (s.chips || s.prints) {
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    @for (c of s.chips; track c) {
+                      <span class="chip">{{ c }}</span>
+                    }
+                    @for (p of s.prints; track p) {
+                      <span class="chip chip-print">Utskrift: {{ p }}</span>
+                    }
+                  </div>
+                }
+              </li>
+            }
+          </ol>
+        </article>
+
+        <!-- 2 -->
+        <article class="plate mt-8 p-6 sm:p-8">
+          <h3 class="display text-3xl font-extrabold text-white sm:text-4xl">
+            Någon köper däck i disken
+          </h3>
+          <p class="mt-3 text-lg text-neutral-400">
+            <b class="font-semibold text-neutral-200">Så säger du till kunden:</b> du får kvitto
+            direkt, och lagret räknas ner av sig självt.
+          </p>
+          <ol class="steps mt-6">
+            @for (s of counter; track s.title) {
+              <li>
+                <div class="where">{{ s.where }}</div>
+                <div class="text-xl font-semibold text-white">{{ s.title }}</div>
+                <p class="mt-1 text-neutral-400">{{ s.text }}</p>
+                @if (s.chips || s.prints) {
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    @for (c of s.chips; track c) {
+                      <span class="chip">{{ c }}</span>
+                    }
+                    @for (p of s.prints; track p) {
+                      <span class="chip chip-print">Utskrift: {{ p }}</span>
+                    }
+                  </div>
+                }
+              </li>
+            }
+          </ol>
+        </article>
+
+        <!-- 3 -->
+        <article class="plate mt-8 p-6 sm:p-8">
+          <h3 class="display text-3xl font-extrabold text-white sm:text-4xl">
+            Däckhotell för fyra bilar, med rabatt
+          </h3>
+          <p class="mt-3 text-lg text-neutral-400">
+            <b class="font-semibold text-neutral-200">Så säger du till kunden:</b> varje bil får sin
+            egen plats och sitt eget nummer, men du betalar allt på ett kvitto, med din rabatt.
+          </p>
+          <ol class="steps mt-6">
+            @for (s of hotel; track s.title) {
+              <li>
+                <div class="where">{{ s.where }}</div>
+                <div class="text-xl font-semibold text-white">{{ s.title }}</div>
+                <p class="mt-1 text-neutral-400">{{ s.text }}</p>
+                @if (s.chips || s.prints) {
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    @for (c of s.chips; track c) {
+                      <span class="chip">{{ c }}</span>
+                    }
+                    @for (p of s.prints; track p) {
+                      <span class="chip chip-print">Utskrift: {{ p }}</span>
+                    }
+                  </div>
+                }
+              </li>
+            }
+            <li>
+              <div class="where">Säljkort, rabatt på hela kortet</div>
+              <div class="text-xl font-semibold text-white">Du ger 10 % och skriver varför</div>
+              <p class="mt-1 text-neutral-400">
+                Anledningen ("4 bilar") syns bara för er, inte på kvittot. Rabatten fördelas på
+                raderna och momsen räknas på det kunden faktiskt betalar.
+              </p>
+              <div class="sum mt-3" role="table" aria-label="Räkneexempel">
+                <div role="row"><span>4 bilar × 995 kr</span><span>3 980,00 kr</span></div>
+                <div role="row" class="minus"><span>Rabatt 10 %</span><span>−398,00 kr</span></div>
+                <div role="row" class="total">
+                  <span>Att betala inkl. moms</span><span>3 582,00 kr</span>
+                </div>
+                <div role="row"><span>varav moms 25 %</span><span>716,40 kr</span></div>
+                <div role="row"><span>Belopp utan moms</span><span>2 865,60 kr</span></div>
+              </div>
+            </li>
+            @for (s of hotelEnd; track s.title) {
+              <li>
+                <div class="where">{{ s.where }}</div>
+                <div class="text-xl font-semibold text-white">{{ s.title }}</div>
+                <p class="mt-1 text-neutral-400">{{ s.text }}</p>
+                @if (s.chips || s.prints) {
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    @for (c of s.chips; track c) {
+                      <span class="chip">{{ c }}</span>
+                    }
+                    @for (p of s.prints; track p) {
+                      <span class="chip chip-print">Utskrift: {{ p }}</span>
+                    }
+                  </div>
+                }
+              </li>
+            }
+          </ol>
+        </article>
+
+        <!-- 4 -->
+        <article class="plate mt-8 p-6 sm:p-8">
+          <h3 class="display text-3xl font-extrabold text-white sm:text-4xl">En del saknas</h3>
+          <p class="mt-3 text-lg text-neutral-400">
+            <b class="font-semibold text-neutral-200">Så säger du till kunden:</b> jobbet står och
+            väntar tills delen är på plats, och du ser det direkt i systemet.
+          </p>
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="border-2 border-neutral-800 p-5">
+              <p class="where">Så fungerar det idag</p>
+              <ol class="steps mt-4">
+                <li>
+                  <div class="text-lg font-semibold text-white">
+                    Raden markeras "Saknas, ska beställas"
+                  </div>
+                  <p class="mt-1 text-neutral-400">
+                    Arbetsordern visar en varning och kan sättas på Väntar på del. I listan finns
+                    filtret "Behöver åtgärd".
+                  </p>
+                </li>
+                <li>
+                  <div class="text-lg font-semibold text-white">Du köper in delen</div>
+                  <p class="mt-1 text-neutral-400">
+                    På sidan Inköp väljer du leverantör och artiklar med inköpspris utan moms.
+                    Lagret ökar.
+                  </p>
+                </li>
+                <li>
+                  <div class="text-lg font-semibold text-white">Jobbet fortsätter</div>
+                  <p class="mt-1 text-neutral-400">
+                    Ordern sätts tillbaka till Pågår och blir sedan klar.
+                  </p>
+                </li>
+              </ol>
+            </div>
+            <div class="border-2 border-dashed border-[#ffc400] p-5">
+              <p class="where !text-[#ffc400]">Kommer: inköpskort</p>
+              <ol class="steps mt-4">
+                <li>
+                  <div class="text-lg font-semibold text-white">
+                    Markeringen skapar en rad på ett inköpskort
+                  </div>
+                  <p class="mt-1 text-neutral-400">
+                    Ett utkast per leverantör, med delarna som saknas.
+                  </p>
+                </li>
+                <li>
+                  <div class="text-lg font-semibold text-white">Beställ, ta emot, bokför</div>
+                  <p class="mt-1 text-neutral-400">
+                    Mottagningen ökar lagret och arbetsordern ser att delen finns.
+                  </p>
+                </li>
+                <li>
+                  <div class="text-lg font-semibold text-white">
+                    Leverantörens faktura registreras
+                  </div>
+                  <p class="mt-1 text-neutral-400">
+                    Med förfallodag och ingående moms, så att momsrapporten blir komplett.
+                  </p>
+                  <div class="mt-2"><span class="chip chip-soon">INK-00001</span></div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="plate mt-8 p-6 sm:p-8">
+          <h3 class="display text-3xl font-extrabold text-white sm:text-4xl">
+            Företag eller privatperson
+          </h3>
+          <p class="mt-3 text-lg text-neutral-400">
+            <b class="font-semibold text-neutral-200">Så säger du till kunden:</b> privatpersoner
+            får kvitto. Företag får en faktura med förfallodag.
+          </p>
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="border-2 border-neutral-800 p-5">
+              <p class="where">Privatkund</p>
+              <p class="mt-2 text-neutral-300">
+                Kvitto med priset inklusive moms, och betalas oftast direkt. Kontantkund utan kort i
+                registret går också.
+              </p>
+            </div>
+            <div class="border-2 border-neutral-800 p-5">
+              <p class="where">Företagskund</p>
+              <p class="mt-2 text-neutral-300">
+                Faktura med kundens organisationsnummer och adress, förfallodatum (30 dagar om inget
+                annat sätts) och betalningsuppgifter. Utan organisationsnummer och adress på
+                kundkortet går det inte att bokföra.
+              </p>
+            </div>
+          </div>
+          <p class="mt-6 border-l-4 border-[#ffc400] bg-[#1a1700] px-4 py-3 text-neutral-200">
+            Verkstadens egna uppgifter (namn, organisationsnummer, momsregistreringsnummer, adress)
+            fylls i en gång under Inställningar, Fakturauppgifter. De kopieras in på varje dokument
+            och ändras inte efteråt.
+          </p>
+        </article>
+      </div>
+    </section>
+    <div class="hazard"></div>
+
+    <!-- PRIS -->
+    <section class="px-4 py-20">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">
+          Priset är alltid inklusive moms
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl leading-snug text-neutral-300">
+          Det du säger i telefon är det du skriver in. Systemet räknar fram momsen åt dig, så kunden
+          betalar precis det du sa.
+        </p>
+        <div class="plate mt-10 p-6">
+          <div
+            class="bar"
+            role="img"
+            aria-label="995 kronor består av 796 kronor utan moms och 199 kronor moms"
+          >
+            <div class="net">796 kr utan moms</div>
+            <div class="vat">199 kr moms</div>
+          </div>
+          <div class="mt-3 flex flex-wrap justify-between gap-3 text-neutral-400">
+            <span>Totalt: 995 kr, det du säger och det som står på kvittot</span>
+            <span>25 % moms</span>
+          </div>
+          <p class="mt-4 max-w-3xl text-neutral-400">
+            Samma sak gäller artiklar, åtgärder, bokningar, arbetsorder och däckhotell. Bara
+            inköpspriser från leverantörer anges utan moms, eftersom de fakturerar utan moms.
+          </p>
+        </div>
+      </div>
+    </section>
+    <div class="hazard"></div>
+
+    <!-- UTSKRIFTER -->
+    <section class="px-4 py-20">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">Vad som skrivs ut</h2>
+        <div class="plate mt-10 overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Dokument</th>
+                <th>Vem får det</th>
+                <th>Innehåll</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of printouts; track p.name) {
+                <tr>
+                  <td>
+                    <b class="text-white">{{ p.name }}</b><br /><span class="code">{{ p.code }}</span>
+                  </td>
+                  <td>{{ p.who }}</td>
+                  <td class="text-neutral-400">{{ p.what }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <div class="hazard"></div>
+
+    <!-- LÄGET -->
+    <section class="px-4 py-20">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">
+          Vad som finns idag och vad som kommer
+        </h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <div class="plate p-6">
+            <p class="where">Finns idag</p>
+            <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-300">
+              @for (e of exists; track e) {
+                <li>{{ e }}</li>
+              }
+            </ul>
+          </div>
+          <div class="border-2 border-dashed border-[#ffc400] p-6">
+            <p class="where !text-[#ffc400]">Kommer</p>
+            <ul class="mt-3 list-disc space-y-1 pl-5 text-neutral-300">
+              @for (e of soon; track e) {
+                <li>{{ e }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+        <p class="mt-8 border-l-4 border-[#ffc400] bg-[#1a1700] px-4 py-3 text-neutral-200">
+          Kassaregister: försäljning till privatpersoner mot kontant, kort eller Swish kan kräva ett
+          certifierat kassaregister om försäljningen över ett år överstiger fyra prisbasbelopp
+          inklusive moms (236 800 kr för 2026). Systemet är inget kassaregister. Fråga revisorn
+          eller Skatteverket hur ni ska göra.
+        </p>
+        <div class="mt-10">
+          <a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-yellow">Kontakta oss</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t-2 border-neutral-800 px-4 py-8 text-neutral-500">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
+      <span>© {{ currentYear }} Catso AI &amp; Robotics</span>
+      <nav class="flex gap-5">
+        <a routerLink="/home" class="hover:text-[#ffc400]">Catso</a>
+        <a routerLink="/privacy" class="hover:text-[#ffc400]">Integritet</a>
+        <a routerLink="/terms" class="hover:text-[#ffc400]">Villkor</a>
+        <a href="mailto:support&#64;catso.io" class="hover:text-[#ffc400]">support&#64;catso.io</a>
+      </nav>
+    </div>
+  </footer>
+</div>
