@@ -46,14 +46,14 @@ export class BusinessComponent {
 			name: 'Bas',
 			placement: 'Banner',
 			visibility: 'Roterar med andra banners',
-			price: '2 000 kr / mån',
+			price: '500 kr',
 		},
 		{
 			id: 'plus',
 			name: 'Plus',
 			placement: 'Banner + Swipe',
 			visibility: 'Prioriterad rotation',
-			price: '5 000 kr / mån',
+			price: '1 250 kr',
 			highlight: true,
 		},
 		{
@@ -66,10 +66,17 @@ export class BusinessComponent {
 	];
 
 	steps = [
-		'Du hör av dig via formuläret här nedanför.',
-		'Vi lägger upp din annons: titel, text, bild, länk och placering.',
-		'Annonsen visas direkt i appen för vår målgrupp.',
-		'Vi kan pausa, ändra eller ta bort den när som helst.',
+		{ title: 'hör av dig', body: 'Fyll i formuläret så svarar vi.' },
+		{ title: 'vi fixar annonsen', body: 'Titel, text, bild, länk och placering.' },
+		{ title: 'du syns', body: 'Annonsen visas direkt i appen för unga som letar fest.' },
+		{ title: 'du bestämmer', body: 'Vi pausar, ändrar eller tar bort den när du vill.' },
+	];
+
+	faqs = [
+		{ q: 'Hur länge kör vi?', a: 'Du väljer själv hur många veckor. Ingen bindningstid.' },
+		{ q: 'Vem godkänner annonsen?', a: 'Vi sätter ihop den med dig och du ser den innan den går live.' },
+		{ q: 'Kan vi ändra eller pausa?', a: 'Ja, när som helst. Hör av dig så fixar vi det.' },
+		{ q: 'Vilka ser annonsen?', a: 'Användare i appen som swipar bland fester.' },
 	];
 
 	state: UiState = 'idle';

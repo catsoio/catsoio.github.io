@@ -1,177 +1,225 @@
-<article class="mx-auto max-w-6xl px-4 py-12 text-gray-900 dark:text-gray-100">
+<div class="min-h-screen bg-white font-pj text-zinc-900 antialiased">
+	<!-- NAV -->
+	<nav class="sticky top-0 z-50 border-b border-zinc-200 bg-white/90 backdrop-blur-md">
+		<div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+			<span class="text-2xl font-black tracking-tight">hemmafest<span class="text-pink-600">!</span></span>
+			<div class="hidden items-center gap-8 text-sm font-medium text-zinc-600 md:flex">
+				<a [routerLink]="[]" fragment="sa-funkar-det" class="transition hover:text-zinc-900">Så funkar det</a>
+				<a [routerLink]="[]" fragment="tryggt" class="transition hover:text-zinc-900">Tryggt</a>
+				<a [routerLink]="[]" fragment="faq" class="transition hover:text-zinc-900">Frågor</a>
+				<a routerLink="/hemmafest/business" class="transition hover:text-zinc-900">För företag</a>
+			</div>
+			<a
+				[href]="webAppUrl"
+				class="rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-pink-600"
+			>
+				Öppna appen
+			</a>
+		</div>
+	</nav>
+
 	<!-- HERO -->
-	<header class="grid items-center gap-10 md:grid-cols-2">
-		<div>
-			<h1 class="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">Hemmafest!</h1>
-			<p class="mt-3 text-lg text-gray-600 dark:text-gray-300">
-				Swipa fram fester nära dig, skapa din egen och styr vilka som får komma. Chatt, betyg och
-				notiser på köpet.
-			</p>
-
-			<div class="mt-6 flex flex-wrap items-center gap-3">
-				<a
-					[href]="appStoreUrl"
-					target="_blank"
-					rel="noopener"
-					class="inline-flex items-center gap-2 rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 dark:bg-white dark:text-black"
-					aria-label="Hämta Hemmafest på App Store"
-				>
-					<!-- Apple glyph -->
-					<svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true">
-						<path
-							d="M16.365 1.43c0 1.14-.46 2.19-1.2 2.98-.76.82-1.99 1.47-3.2 1.38-.13-1.1.38-2.27 1.14-3.05.77-.82 2.07-1.41 3.26-1.31zm4.07 16.37c-.76 1.54-1.67 3.05-3 3.07-1.32.02-1.74-.88-3.24-.88-1.5 0-1.96.86-3.27.9-1.34.03-2.35-1.65-3.12-3.18-1.7-3.31-1.88-7.2-.83-9.24.9-1.77 2.45-2.89 4.15-2.92 1.3-.03 2.53.91 3.24.91.7 0 2.25-1.12 3.8-1 .65.03 2.49.26 3.67 2.03-3.2 1.74-2.69 6.27.6 7.31-.33.9-.73 1.76-1.03 2.0z"
-							fill="currentColor"
-						/>
-					</svg>
-					Hämta på App Store
-				</a>
-
-				<a
-					routerLink="privacy"
-					class="rounded-2xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium shadow hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900"
-				>
-					Integritet
-				</a>
-				<a
-					routerLink="terms"
-					class="rounded-2xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium shadow hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900"
-				>
-					Villkor
-				</a>
+	<section class="relative overflow-hidden border-b border-zinc-200 bg-zinc-50">
+		<div
+			class="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-24 pt-20 md:grid-cols-2 md:pb-32 md:pt-28"
+		>
+			<div>
+				<h1 class="mb-6 text-5xl font-black leading-[1.1] tracking-tight md:text-6xl">
+					ikväll finns det en <u>fest</u> nära dig.
+					<span
+						class="bg-gradient-to-r from-pink-500 via-rose-500 to-rose-600 bg-clip-text text-transparent"
+						>hitta den.</span
+					>
+				</h1>
+				<p class="mb-10 max-w-lg text-lg leading-relaxed text-zinc-600 md:text-xl">
+					Swipa fester, fråga om du får komma eller skapa din egen och bestäm själv vem som kommer
+					in. Gratis, från 15 år.
+				</p>
+				<div class="flex flex-wrap items-center gap-3">
+					<a
+						[href]="webAppUrl"
+						class="rounded-full bg-pink-600 px-8 py-4 font-semibold text-white shadow-lg shadow-pink-200 transition-all hover:bg-pink-700"
+					>
+						Öppna i webbläsaren
+					</a>
+					<a
+						[href]="appStoreUrl"
+						target="_blank"
+						rel="noopener"
+						class="rounded-full border border-zinc-300 bg-white px-8 py-4 font-semibold transition-all hover:border-zinc-900"
+					>
+						Hämta för iPhone
+					</a>
+				</div>
+				<p class="mt-5 text-sm text-zinc-500">
+					Android? Öppna webbappen och lägg till den på startskärmen. Play Store kommer senare.
+				</p>
 			</div>
 
-			<p class="mt-3 text-xs text-gray-500">Konto krävs. 18+.</p>
-		</div>
-
-		<div>
-			<img
-				src="/assets/imgs/hemmafestbanner.png"
-				alt="Skärmbild från Hemmafest!"
-				class="w-full rounded-3xl shadow-xl ring-1 ring-black/5"
-				loading="eager"
-				decoding="async"
-			/>
-		</div>
-	</header>
-
-	<!-- FEATURES -->
-	<section class="mt-16">
-		<h2 class="text-2xl font-bold">Varför Hemmafest?</h2>
-		<div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-			<article
-				*ngFor="let f of features"
-				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
-			>
-				<div class="text-2xl" aria-hidden="true">{{ f.icon }}</div>
-				<h3 class="mt-2 text-lg font-semibold">{{ f.title }}</h3>
-				<p class="mt-1 text-gray-600 dark:text-gray-300">{{ f.body }}</p>
-			</article>
+			<div class="relative mx-auto w-[270px] md:w-[300px]">
+				<div
+					class="absolute -inset-8 -z-0 rounded-full bg-gradient-to-br from-pink-200 to-sky-200 opacity-60 blur-3xl"
+				></div>
+				<div
+					class="relative rotate-3 rounded-[2.8rem] border-[7px] border-zinc-900 bg-zinc-900 shadow-2xl"
+				>
+					<img
+						src="/assets/imgs/hemmafest/hitta.png"
+						alt="Hitta-flödet i Hemmafest"
+						class="w-full rounded-[2.2rem]"
+						loading="eager"
+					/>
+				</div>
+			</div>
 		</div>
 	</section>
 
-	<!-- HOW IT WORKS -->
-	<section class="mt-16">
-		<h2 class="text-2xl font-bold">Så funkar det</h2>
-		<ol class="mt-6 grid gap-6 md:grid-cols-3">
-			<li
-				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-			>
-				<div
-					class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 font-bold dark:bg-gray-800"
-				>
-					1
+	<!-- SÅ FUNKAR DET -->
+	<section id="sa-funkar-det" class="scroll-mt-20 px-6 py-24">
+		<div class="mx-auto max-w-6xl">
+			<h2 class="mb-14 max-w-2xl text-4xl font-black leading-tight tracking-tight md:text-5xl">
+				tre steg från soffan till
+				<span class="text-pink-600">dansgolvet.</span>
+			</h2>
+			<div class="grid gap-6 md:grid-cols-3">
+				<div *ngFor="let s of steps" class="rounded-3xl border border-zinc-200 bg-white p-8">
+					<div
+						class="flex h-12 w-12 items-center justify-center rounded-full border border-pink-500/30 bg-pink-100 text-lg font-bold text-pink-700"
+					>
+						{{ s.n }}
+					</div>
+					<h3 class="mt-6 text-2xl font-black">{{ s.title }}</h3>
+					<p class="mt-2 leading-relaxed text-zinc-600">{{ s.body }}</p>
 				</div>
-				<h3 class="mt-3 font-semibold">Ladda ner appen</h3>
-				<p class="mt-1 text-gray-600 dark:text-gray-300">Installera från App Store.</p>
-			</li>
-			<li
-				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-			>
-				<div
-					class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 font-bold dark:bg-gray-800"
-				>
-					2
-				</div>
-				<h3 class="mt-3 font-semibold">Skapa eller skicka förfrågan</h3>
-				<p class="mt-1 text-gray-600 dark:text-gray-300">
-					Starta en egen fest eller swipa fram en och skicka en förfrågan om att gå med.
-				</p>
-			</li>
-			<li
-				class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-			>
-				<div
-					class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 font-bold dark:bg-gray-800"
-				>
-					3
-				</div>
-				<h3 class="mt-3 font-semibold">Ha kul & visa hänsyn</h3>
-				<p class="mt-1 text-gray-600 dark:text-gray-300">
-					Följ lokala regler och respekt för grannar.
-				</p>
-			</li>
-		</ol>
+			</div>
+		</div>
+	</section>
 
-		<div class="mt-8">
-			<a
-				[href]="appStoreUrl"
-				target="_blank"
-				rel="noopener"
-				class="inline-flex items-center rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 dark:bg-white dark:text-black"
-			>
-				Hämta Hemmafest!
-			</a>
+	<!-- I APPEN -->
+	<section class="border-y border-zinc-200 bg-zinc-50 px-6 py-24">
+		<div class="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
+			<div class="order-2 flex justify-center gap-5 md:order-1">
+				<img
+					src="/assets/imgs/hemmafest/fester.png"
+					alt="Fester-fliken med karta över pågående fester"
+					class="w-[46%] rounded-[1.8rem] border-[5px] border-zinc-900 shadow-xl"
+					loading="lazy"
+				/>
+				<img
+					src="/assets/imgs/hemmafest/vantar.png"
+					alt="Förfrågningar-fliken"
+					class="mt-12 w-[46%] rounded-[1.8rem] border-[5px] border-zinc-900 shadow-xl"
+					loading="lazy"
+				/>
+			</div>
+			<div class="order-1 md:order-2">
+				<div
+					class="mb-6 inline-block rounded-full bg-pink-100 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-pink-700"
+				>
+					Värd eller gäst
+				</div>
+				<h2 class="mb-6 text-4xl font-black leading-tight tracking-tight md:text-5xl">
+					du har koll på allt.
+					<span class="text-pink-600 underline decoration-pink-200 underline-offset-8"
+						>Utan att fråga i fem chattar.</span
+					>
+				</h2>
+				<p class="leading-relaxed text-zinc-600">
+					Skapa en fest på en minut. Godkänn gäster med ett tryck. Se var det är liv just nu på
+					kartan (bara ungefärligt område, aldrig en exakt plats). Allt om festen finns i en tråd,
+					från planering till efterfest.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- TRYGGT -->
+	<section id="tryggt" class="scroll-mt-20 px-6 py-24">
+		<div class="mx-auto max-w-6xl">
+			<div class="mb-12 text-center">
+				<div
+					class="mb-5 inline-block rounded-full bg-pink-100 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-pink-700"
+				>
+					Trygghet
+				</div>
+				<h2 class="text-4xl font-black leading-tight tracking-tight md:text-5xl">
+					fest ska vara kul.
+					<span class="text-pink-600">Inte läskigt.</span>
+				</h2>
+			</div>
+			<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+				<div
+					*ngFor="let s of safety"
+					class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm"
+				>
+					<h3 class="font-bold">{{ s.title }}</h3>
+					<p class="mt-2 text-sm leading-relaxed text-zinc-600">{{ s.body }}</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FÖRETAG -->
+	<section class="px-6 pb-24">
+		<div
+			class="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-zinc-900 p-10 text-white md:p-16"
+		>
+			<div class="max-w-2xl">
+				<h2 class="mb-4 text-3xl font-black leading-tight md:text-5xl">
+					driver du en klubb eller ett ställe?
+					<span class="text-pink-400">Syns där festerna visas.</span>
+				</h2>
+				<p class="mb-8 text-lg leading-relaxed text-zinc-300">
+					Bli en del av flödet med en banner eller ett helt kort mellan festerna. Ingen bindning.
+				</p>
+				<a
+					routerLink="/hemmafest/business"
+					class="inline-block rounded-full bg-pink-600 px-8 py-4 font-semibold text-white shadow-[0_0_15px_rgba(219,39,119,0.5)] transition-all hover:bg-pink-500"
+				>
+					Se paket och hör av dig
+				</a>
+			</div>
 		</div>
 	</section>
 
 	<!-- FAQ -->
-	<section class="mt-16">
-		<h2 class="text-2xl font-bold">Vanliga frågor</h2>
-		<div class="mt-6 grid gap-4">
-			<details
-				*ngFor="let f of faqs"
-				class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-			>
-				<summary class="cursor-pointer list-none font-semibold">
-					{{ f.q }}
-				</summary>
-				<p class="mt-2 text-gray-600 dark:text-gray-300">
-					{{ f.a }}
-				</p>
-			</details>
+	<section id="faq" class="scroll-mt-20 border-t border-zinc-200 bg-zinc-50 px-6 py-24">
+		<div class="mx-auto max-w-3xl">
+			<h2 class="mb-10 text-4xl font-black tracking-tight">frågor</h2>
+			<div class="grid gap-3">
+				<details
+					*ngFor="let f of faqs"
+					class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm"
+				>
+					<summary class="cursor-pointer list-none font-bold">{{ f.q }}</summary>
+					<p class="mt-3 leading-relaxed text-zinc-600">{{ f.a }}</p>
+				</details>
+			</div>
 		</div>
 	</section>
 
-	<!-- FÖR FÖRETAG -->
-	<section
-		class="mt-16 rounded-3xl border border-gray-200 bg-gray-50 p-8 dark:border-gray-700 dark:bg-gray-900"
-	>
-		<div class="flex flex-wrap items-center justify-between gap-6">
-			<div>
-				<h2 class="text-2xl font-bold">Vill du nå unga festsugna?</h2>
-				<p class="mt-2 max-w-xl text-gray-600 dark:text-gray-300">
-					Annonsera i Hemmafest och synas direkt i flödet. Vi har paket för allt från en diskret
-					banner till egna kampanjer.
-				</p>
-			</div>
-			<a
-				routerLink="business"
-				class="inline-flex items-center rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 dark:bg-white dark:text-black"
-			>
-				Annonsera hos oss
-			</a>
-		</div>
+	<!-- SLUT-CTA -->
+	<section class="px-6 py-24 text-center">
+		<h2 class="text-4xl font-black tracking-tight md:text-6xl">
+			vad händer <span class="text-pink-600">ikväll?</span>
+		</h2>
+		<a
+			[href]="webAppUrl"
+			class="mt-8 inline-block rounded-full bg-pink-600 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-pink-200 transition-all hover:bg-pink-700"
+		>
+			Öppna Hemmafest
+		</a>
 	</section>
 
 	<!-- FOOTER -->
-	<footer class="mt-16 border-t border-gray-200 pt-8 text-sm text-gray-500 dark:border-gray-800">
-		<div class="flex flex-wrap items-center gap-4">
-			<a [href]="appStoreUrl" target="_blank" rel="noopener" class="underline">App Store</a>
-			<a routerLink="privacy" class="underline">Integritetspolicy</a>
-			<a routerLink="terms" class="underline">Villkor</a>
-			<a routerLink="business" class="underline">För företag</a>
+	<footer class="border-t border-zinc-200 px-6 py-8 text-sm text-zinc-500">
+		<div class="mx-auto flex max-w-6xl flex-wrap items-center gap-6">
+			<a [href]="webAppUrl" class="hover:text-zinc-900">Webbappen</a>
+			<a [href]="appStoreUrl" target="_blank" rel="noopener" class="hover:text-zinc-900">App Store</a>
+			<a routerLink="/hemmafest/business" class="hover:text-zinc-900">För företag</a>
+			<a routerLink="/hemmafest/privacy" class="hover:text-zinc-900">Integritetspolicy</a>
+			<a routerLink="/hemmafest/terms" class="hover:text-zinc-900">Villkor</a>
+			<span class="ml-auto text-xs">© Hemmafest! av Catso. 15+.</span>
 		</div>
-		<p class="mt-3 text-xs">© Hemmafest! av Catso. 18+.</p>
 	</footer>
-	<router-outlet></router-outlet>
-</article>
+</div>

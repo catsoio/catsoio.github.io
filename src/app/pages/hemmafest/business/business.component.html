@@ -1,137 +1,140 @@
-<article class="mx-auto max-w-6xl px-4 py-12 text-gray-900 dark:text-gray-100">
-  <!-- HERO -->
-  <header class="max-w-3xl">
-    <p class="text-sm font-semibold uppercase tracking-wide text-gray-500">Hemmafest för företag</p>
-    <h1 class="mt-2 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">
-      Nå unga festsugna direkt i appen
-    </h1>
-    <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
-      Hemmafest är där unga hittar och skapar fester. Annonsera hos oss så syns du direkt i flödet.
-      Vill du ha en diskret banner eller ett helt kort? Du bestämmer.
-    </p>
-    <div class="mt-6 flex flex-wrap gap-3">
-      <a
-        href="#kontakt"
-        class="inline-flex items-center rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 dark:bg-white dark:text-black"
-      >
-        Hör av dig
-      </a>
-      <a
-        routerLink="/hemmafest"
-        class="rounded-2xl border border-gray-300 bg-white px-5 py-3 text-sm font-medium shadow hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900"
-      >
-        Om Hemmafest
-      </a>
+<div class="min-h-screen bg-white font-pj text-zinc-900 antialiased">
+  <nav class="sticky top-0 z-50 border-b border-zinc-200 bg-white/90 backdrop-blur-md">
+    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <a routerLink="/hemmafest" class="text-2xl font-black tracking-tight">hemmafest<span class="text-pink-600">!</span></a>
+      <div class="hidden items-center gap-8 text-sm font-medium text-zinc-600 md:flex">
+        <a [routerLink]="[]" fragment="placeringar" class="transition hover:text-zinc-900">Placeringar</a>
+        <a [routerLink]="[]" fragment="paket" class="transition hover:text-zinc-900">Paket</a>
+        <a [routerLink]="[]" fragment="faq" class="transition hover:text-zinc-900">Frågor</a>
+      </div>
+      <a [routerLink]="[]" fragment="kontakt" class="rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-pink-600">Hör av dig</a>
     </div>
-  </header>
+  </nav>
 
-  <!-- VAR ANNONSERNA VISAS -->
-  <section class="mt-16">
-    <h2 class="text-2xl font-bold">Var annonserna visas</h2>
-    <div class="mt-6 grid gap-6 md:grid-cols-2">
-      <article
-        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-      >
-        <h3 class="text-lg font-semibold">Banner (liten)</h3>
-        <p class="mt-2 text-gray-600 dark:text-gray-300">
-          En smal banner högst upp på Hitta-sidan med bild och en kort text. Diskret och inte i
-          vägen. Det här är standardplaceringen.
-        </p>
-      </article>
-      <article
-        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-      >
-        <h3 class="text-lg font-semibold">Swipe (helt kort)</h3>
-        <p class="mt-2 text-gray-600 dark:text-gray-300">
-          Ett helt kort i flödet mellan festerna. Mer plats och mer synlighet. Vi kör den sparsamt
-          så att den får effekt.
-        </p>
-      </article>
+  <section class="border-b border-zinc-200 bg-zinc-50 px-6 pb-24 pt-20 md:pt-28">
+    <div class="mx-auto max-w-6xl">
+      <h1 class="mb-6 max-w-3xl text-5xl font-black leading-[1.1] tracking-tight md:text-6xl">
+        de letar efter kvällens fest. <u>var</u>&nbsp;<span class="bg-gradient-to-r from-pink-500 via-rose-500 to-rose-600 bg-clip-text text-transparent">där de letar.</span>
+      </h1>
+      <p class="mb-10 max-w-xl text-lg leading-relaxed text-zinc-600 md:text-xl">
+        Hemmafest är där unga hittar och skapar fester. Syns direkt i flödet, betala per vecka och sluta när du vill.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a [routerLink]="[]" fragment="kontakt" class="rounded-full bg-pink-600 px-8 py-4 font-semibold text-white shadow-lg shadow-pink-200 transition-all hover:bg-pink-700">Hör av dig</a>
+        <a [routerLink]="[]" fragment="paket" class="rounded-full border border-zinc-300 bg-white px-8 py-4 font-semibold transition-all hover:border-zinc-900">Se priser</a>
+      </div>
     </div>
   </section>
 
-  <!-- PAKET -->
-  <section class="mt-16">
-    <h2 class="text-2xl font-bold">Paket</h2>
-    <p class="mt-2 text-gray-600 dark:text-gray-300">Priserna är ex moms och går att anpassa.</p>
-    <div class="mt-6 grid gap-6 md:grid-cols-3">
-      <article
-        *ngFor="let p of packages"
-        class="flex flex-col rounded-2xl border bg-white p-6 shadow-sm dark:bg-gray-900"
-        [class.border-gray-200]="!p.highlight"
-        [class.dark:border-gray-700]="!p.highlight"
-        [class.border-black]="p.highlight"
-        [class.ring-2]="p.highlight"
-        [class.ring-black]="p.highlight"
-        [class.dark:border-white]="p.highlight"
-        [class.dark:ring-white]="p.highlight"
-      >
-        <div class="flex items-center justify-between">
-          <h3 class="text-xl font-bold">{{ p.name }}</h3>
-          <span
-            *ngIf="p.highlight"
-            class="rounded-full bg-black px-3 py-1 text-xs font-semibold text-white dark:bg-white dark:text-black"
-            >Populärast</span
+  <section id="placeringar" class="scroll-mt-20 px-6 py-24">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="mb-14 max-w-2xl text-4xl font-black leading-tight tracking-tight md:text-5xl">
+        två sätt att <span class="text-pink-600">synas.</span>
+      </h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        <article class="rounded-3xl border border-zinc-200 bg-white p-8">
+          <div class="mb-6 rounded-2xl bg-zinc-100 p-5">
+            <div class="flex items-center gap-4 rounded-2xl bg-zinc-900 p-4 text-white">
+              <div class="h-14 w-14 shrink-0 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600"></div>
+              <div class="min-w-0 flex-1">
+                <span class="rounded bg-white/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-300">Annons</span>
+                <p class="mt-1 truncate font-bold">Ditt ställe</p>
+                <p class="truncate text-sm text-zinc-300">Fredag: gratis entré före 23</p>
+              </div>
+            </div>
+          </div>
+          <h3 class="text-2xl font-black">banner</h3>
+          <p class="mt-2 leading-relaxed text-zinc-600">En smal rad högst upp i Hitta, med bild och en kort text. Syns utan att vara i vägen.</p>
+        </article>
+        <article class="rounded-3xl border border-zinc-200 bg-white p-8">
+          <div class="mb-6 flex justify-center rounded-2xl bg-zinc-100 p-5">
+            <div class="flex h-[168px] w-full max-w-[260px] flex-col justify-end rounded-2xl bg-gradient-to-br from-pink-500 via-purple-600 to-sky-500 p-5 text-white">
+              <span class="mb-auto w-fit rounded bg-black/25 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">Annons</span>
+              <p class="text-xl font-black leading-tight">Ditt ställe</p>
+              <p class="text-sm text-white/85">Kvällens event</p>
+            </div>
+          </div>
+          <h3 class="text-2xl font-black">helt kort</h3>
+          <p class="mt-2 leading-relaxed text-zinc-600">Ett eget kort i flödet mellan festerna. Mer plats, mer uppmärksamhet. Vi kör det sparsamt så att det märks.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="paket" class="scroll-mt-20 border-y border-zinc-200 bg-zinc-50 px-6 py-24">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="mb-3 text-4xl font-black leading-tight tracking-tight md:text-5xl">
+        betala per vecka. <span class="text-pink-600">Sluta när du vill.</span>
+      </h2>
+      <p class="mb-12 text-zinc-600">Priserna är per vecka, ex moms, och går att anpassa.</p>
+      <div class="grid gap-6 md:grid-cols-3">
+        <article
+          *ngFor="let p of packages"
+          class="relative flex flex-col rounded-3xl bg-white p-8"
+          [ngClass]="p.highlight ? 'border-2 border-pink-600 shadow-xl shadow-pink-100' : 'border border-zinc-200'"
+        >
+          <span *ngIf="p.highlight" class="absolute -top-3 right-6 rounded-full bg-pink-600 px-3 py-1 text-xs font-bold text-white">Populärast</span>
+          <h3 class="text-2xl font-black">{{ p.name }}</h3>
+          <p class="mt-4 text-4xl font-black">
+            {{ p.price }}<span *ngIf="p.price !== 'Offert'" class="text-base font-semibold text-zinc-500"> / vecka</span>
+          </p>
+          <dl class="mt-6 space-y-3 text-sm text-zinc-600">
+            <div class="flex justify-between gap-4 border-t border-zinc-100 pt-3">
+              <dt class="font-semibold text-zinc-900">Placering</dt><dd class="text-right">{{ p.placement }}</dd>
+            </div>
+            <div class="flex justify-between gap-4 border-t border-zinc-100 pt-3">
+              <dt class="font-semibold text-zinc-900">Synlighet</dt><dd class="text-right">{{ p.visibility }}</dd>
+            </div>
+          </dl>
+          <a
+            [routerLink]="[]" fragment="kontakt"
+            (click)="selectPackage(p.id)"
+            class="mt-8 rounded-full px-6 py-3 text-center font-semibold transition-all"
+            [ngClass]="p.highlight ? 'bg-pink-600 text-white hover:bg-pink-700' : 'border border-zinc-300 hover:border-zinc-900'"
           >
-        </div>
-        <p class="mt-4 text-2xl font-extrabold">{{ p.price }}</p>
-        <dl class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
-          <div class="flex justify-between gap-4">
-            <dt class="font-medium">Placering</dt>
-            <dd class="text-right">{{ p.placement }}</dd>
-          </div>
-          <div class="flex justify-between gap-4">
-            <dt class="font-medium">Synlighet</dt>
-            <dd class="text-right">{{ p.visibility }}</dd>
-          </div>
-        </dl>
-        <button
-          type="button"
-          (click)="selectPackage(p.id)"
-          class="mt-6 inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold shadow transition"
-          [class.bg-black]="p.highlight"
-          [class.text-white]="p.highlight"
-          [class.dark:bg-white]="p.highlight"
-          [class.dark:text-black]="p.highlight"
-          [class.border]="!p.highlight"
-          [class.border-gray-300]="!p.highlight"
-          [class.dark:border-gray-700]="!p.highlight"
-        >
-          Välj {{ p.name }}
-        </button>
-      </article>
+            Välj {{ p.name }}
+          </a>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- SÅ FUNKAR DET -->
-  <section class="mt-16">
-    <h2 class="text-2xl font-bold">Så funkar det</h2>
-    <ol class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <li
-        *ngFor="let s of steps; let i = index"
-        class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-      >
-        <div
-          class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 font-bold dark:bg-gray-800"
-        >
-          {{ i + 1 }}
-        </div>
-        <p class="mt-3 text-gray-600 dark:text-gray-300">{{ s }}</p>
-      </li>
-    </ol>
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="mb-12 text-4xl font-black tracking-tight md:text-5xl">så funkar det.</h2>
+      <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <li *ngFor="let s of steps; let i = index" class="rounded-3xl border border-zinc-200 bg-white p-7">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full border border-pink-500/30 bg-pink-100 text-lg font-bold text-pink-700">{{ i + 1 }}</div>
+          <h3 class="mt-5 text-xl font-black">{{ s.title }}</h3>
+          <p class="mt-2 text-zinc-600">{{ s.body }}</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="faq" class="scroll-mt-20 border-t border-zinc-200 px-6 py-24">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="mb-10 text-4xl font-black tracking-tight">frågor</h2>
+      <div class="grid gap-3">
+        <details *ngFor="let f of faqs" class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+          <summary class="cursor-pointer list-none font-bold">{{ f.q }}</summary>
+          <p class="mt-3 leading-relaxed text-zinc-600">{{ f.a }}</p>
+        </details>
+      </div>
+    </div>
   </section>
 
   <!-- KONTAKTFORMULÄR -->
-  <section id="kontakt" class="mt-16 scroll-mt-24">
-    <h2 class="text-2xl font-bold">Hör av dig</h2>
-    <p class="mt-2 max-w-2xl text-gray-600 dark:text-gray-300">
+  <section id="kontakt" class="scroll-mt-20 border-t border-zinc-200 bg-zinc-50 px-6 py-24"><div class="mx-auto max-w-3xl">
+    <h2 class="text-4xl font-black tracking-tight">hör av <span class="text-pink-600">dig.</span></h2>
+    <p class="mt-2 mb-2 max-w-2xl text-zinc-600">
       Fyll i formuläret så återkommer vi. Berätta gärna vilket paket du är sugen på och vad du vill
       annonsera för.
     </p>
 
     <div
       *ngIf="state === 'success'"
-      class="mt-6 rounded-2xl border border-green-300 bg-green-50 p-5 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
+      class="mt-6 rounded-2xl border border-green-300 bg-green-50 p-5 text-green-800"
     >
       <p class="font-semibold">Tack! Vi har tagit emot din förfrågan.</p>
       <p class="mt-1 text-sm">Vi hör av oss till dig så snart vi kan.</p>
@@ -151,7 +154,7 @@
             id="company"
             type="text"
             formControlName="company"
-            class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+            class="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 outline-none focus:border-pink-600"
           />
           <p
             *ngIf="form.controls.company.touched && form.controls.company.invalid"
@@ -166,7 +169,7 @@
             id="contact_name"
             type="text"
             formControlName="contact_name"
-            class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+            class="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 outline-none focus:border-pink-600"
           />
           <p
             *ngIf="form.controls.contact_name.touched && form.controls.contact_name.invalid"
@@ -184,7 +187,7 @@
             id="email"
             type="email"
             formControlName="email"
-            class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+            class="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 outline-none focus:border-pink-600"
           />
           <p
             *ngIf="form.controls.email.touched && form.controls.email.invalid"
@@ -199,7 +202,7 @@
             id="phone"
             type="tel"
             formControlName="phone"
-            class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+            class="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 outline-none focus:border-pink-600"
           />
         </div>
       </div>
@@ -209,7 +212,7 @@
         <select
           id="package"
           formControlName="package"
-          class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+          class="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 outline-none focus:border-pink-600"
         >
           <option value="">Vet inte än</option>
           <option value="bas">Bas - banner</option>
@@ -224,14 +227,14 @@
           id="message"
           rows="4"
           formControlName="message"
-          class="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 shadow-sm outline-none focus:border-black dark:border-gray-700 dark:bg-gray-900 dark:focus:border-white"
+          class="mt-1 w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 outline-none focus:border-pink-600"
           placeholder="Vad vill du annonsera för?"
         ></textarea>
       </div>
 
       <p
         *ngIf="state === 'error'"
-        class="rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950 dark:text-red-200"
+        class="rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-700"
       >
         {{ errorMsg }}
       </p>
@@ -240,22 +243,21 @@
         <button
           type="submit"
           [disabled]="state === 'submitting'"
-          class="inline-flex items-center rounded-2xl bg-black px-5 py-3 font-semibold text-white shadow hover:opacity-90 disabled:opacity-60 dark:bg-white dark:text-black"
+          class="rounded-full bg-pink-600 px-8 py-4 font-semibold text-white shadow-lg shadow-pink-200 transition-all hover:bg-pink-700 disabled:opacity-60"
         >
           {{ state === 'submitting' ? 'Skickar...' : 'Skicka förfrågan' }}
         </button>
       </div>
     </form>
-  </section>
+  </div></section>
 
-  <!-- FOOTER -->
-  <footer class="mt-16 border-t border-gray-200 pt-8 text-sm text-gray-500 dark:border-gray-800">
-    <div class="flex flex-wrap items-center gap-4">
-      <a routerLink="/hemmafest" class="underline">Hemmafest</a>
-      <a routerLink="/hemmafest/privacy" class="underline">Integritetspolicy</a>
-      <a routerLink="/hemmafest/terms" class="underline">Villkor</a>
-      <a [href]="appStoreUrl" target="_blank" rel="noopener" class="underline">App Store</a>
+  <footer class="border-t border-zinc-200 px-6 py-8 text-sm text-zinc-500">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-6">
+      <a routerLink="/hemmafest" class="hover:text-zinc-900">Hemmafest</a>
+      <a routerLink="/hemmafest/privacy" class="hover:text-zinc-900">Integritetspolicy</a>
+      <a routerLink="/hemmafest/terms" class="hover:text-zinc-900">Villkor</a>
+      <a [href]="appStoreUrl" target="_blank" rel="noopener" class="hover:text-zinc-900">App Store</a>
+      <span class="ml-auto text-xs">© Hemmafest! av Catso. 15+.</span>
     </div>
-    <p class="mt-3 text-xs">© Hemmafest! av Catso. 18+.</p>
   </footer>
-</article>
+</div>
