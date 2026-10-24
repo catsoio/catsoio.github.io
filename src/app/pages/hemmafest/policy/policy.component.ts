@@ -10,5 +10,5 @@ import { RouterLink } from '@angular/router';
 	styleUrl: './policy.component.scss',
 })
 export class PolicyComponent {
-	readonly lastUpdated = new Date(2025, 10, 15).toDateString();
+	readonly lastUpdated = '24 oktober 2026';
 }

@@ -27,7 +27,6 @@
     </h2>
     <ul class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
       <li><a class="hover:underline" [routerLink]="[]" fragment="sammanfattning">Sammanfattning</a></li>
-      <li><a class="hover:underline" [routerLink]="[]" fragment="personuppgiftsansvarig">Personuppgiftsansvarig</a></li>
       <li><a class="hover:underline" [routerLink]="[]" fragment="vilka-uppgifter">Vilka uppgifter behandlas?</a></li>
       <li><a class="hover:underline" [routerLink]="[]" fragment="plats-och-synlighet">Plats &amp; synlighet</a></li>
       <li><a class="hover:underline" [routerLink]="[]" fragment="chatt-innehall">Chatt &amp; innehåll</a></li>
@@ -36,7 +35,6 @@
       <li><a class="hover:underline" [routerLink]="[]" fragment="loggar-sakerhet">Loggar &amp; säkerhet</a></li>
       <li><a class="hover:underline" [routerLink]="[]" fragment="lagring">Lagring</a></li>
       <li><a class="hover:underline" [routerLink]="[]" fragment="dina-rattigheter">Dina rättigheter (GDPR)</a></li>
-      <li><a class="hover:underline" [routerLink]="[]" fragment="minderariga">Minderåriga</a></li>
       <li><a class="hover:underline" [routerLink]="[]" fragment="tredje-parter">Tredje parter</a></li>
       <li><a class="hover:underline" [routerLink]="[]" fragment="andringar">Ändringar</a></li>
       <li><a class="hover:underline" [routerLink]="[]" fragment="kontakt">Kontakt</a></li>
@@ -55,39 +53,46 @@
     </ul>
   </section>
 
-  <section id="personuppgiftsansvarig" class="mb-8 scroll-mt-24">
-    <h2 class="mb-3 text-2xl font-semibold">Vem ansvarar för Hemmafest!</h2>
-    <p>
-      Personuppgiftsansvarig: <strong>Catso (Hemmafest!/catso.io)</strong><br />
-      Kontakt: <a href="mailto:support@catso.io" class="underline">support@catso.io</a>
-    </p>
-  </section>
-
   <section id="vilka-uppgifter" class="mb-8 scroll-mt-24">
     <h2 class="mb-3 text-2xl font-semibold">Vilka uppgifter behandlas?</h2>
     <p class="mb-3">För att appen ska fungera behandlar vi bland annat:</p>
     <ul class="list-inside list-disc space-y-1">
-      <li><strong>Kontouppgifter:</strong> namn eller användarnamn, e-post och inloggning.</li>
-      <li><strong>Profil:</strong> profilbild och den info du själv väljer att lägga till.</li>
-      <li><strong>Festinnehåll:</strong> fester du skapar, förfrågningar, deltagande och betyg.</li>
-      <li><strong>Chatt:</strong> meddelanden du skickar i festchatten.</li>
-      <li><strong>Plats:</strong> din position för att visa och matcha fester nära dig.</li>
+      <li><strong>Kontouppgifter:</strong> namn, användarnamn (@), telefonnummer, e-post (om du anger den) och lösenord (sparas bara krypterat).</li>
+      <li><strong>Profil:</strong> profilbild, bio och födelsedatum. Din ålder räknas ut från födelsedatumet och visas för andra, inte själva datumet.</li>
+      <li><strong>Festinnehåll:</strong> fester du skapar, förfrågningar, inbjudningar, deltagande, inlägg, bilder och betyg.</li>
+      <li><strong>Festadress:</strong> om du är värd anger du festens exakta adress. Den visas bara för de som är med i festen.</li>
+      <li><strong>Chatt:</strong> meddelanden du skickar i festchatten och supportchatten.</li>
+      <li><strong>Plats:</strong> din position för att visa fester nära dig och för att kunna checka in på plats.</li>
+      <li><strong>"På plats":</strong> om du checkar in sparar vi bara att du är på plats (ja/nej), aldrig var du befinner dig.</li>
+      <li><strong>Trygghet:</strong> rapporter, blockeringar och varningar.</li>
+      <li><strong>Godkännanden:</strong> vilken version av villkoren du godkänt och när.</li>
       <li><strong>Notistoken:</strong> en enhetsidentifierare för att kunna skicka pushnotiser.</li>
-      <li><strong>Teknisk data:</strong> enhetstyp och loggar för drift och felsökning.</li>
+      <li><strong>Teknisk data:</strong> enhetstyp, IP-adress och loggar för drift, säkerhet och felsökning.</li>
     </ul>
     <p class="mt-3">
       Vi använder uppgifterna för att appen ska funka, för att hålla den säker och för att uppfylla
-      vårt avtal med dig. Köper du Hemmafest+ sköts betalningen av App Store, inte av oss.
+      vårt avtal med dig. Köper du Hemmafest+ sköts betalningen av Apple. Vi får bara veta om du har
+      en aktiv prenumeration, inte dina betaluppgifter.
     </p>
   </section>
 
   <section id="plats-och-synlighet" class="mb-8 scroll-mt-24">
     <h2 class="mb-3 text-2xl font-semibold">Plats &amp; synlighet</h2>
     <p>
-      För att visa och matcha fester i närheten använder appen din position. Du styr platsåtkomst i
-      enhetens inställningar. Fester du skapar kan vara synliga för andra användare, och med
-      Hemmafest+ kan räckvidden utökas till hela Sverige. Lägg inte in känsliga uppgifter (t.ex.
-      fullständigt namn, telefonnummer eller exakt privatadress) i fritextfält.
+      För att visa fester i närheten använder appen din position. Du styr platsåtkomst i enhetens
+      inställningar. Din position visas aldrig exakt för andra användare. Ditt telefonnummer visas
+      aldrig för andra.
+    </p>
+    <p class="mt-3">
+      Fester du skapar kan vara synliga för andra användare, och med Hemmafest+ kan räckvidden
+      utökas till hela Sverige. En fests plats visas bara ungefärligt (avrundad till ett område) för
+      alla utom värden. Kartan över pågående fester visar bara grova områden och antal, aldrig vem
+      eller var exakt.
+    </p>
+    <p class="mt-3">
+      Den <strong>exakta festadressen</strong> anger värden en gång när festen ska äga rum. Den
+      kontrolleras mot en karttjänst (Google), kan inte ändras efteråt och skickas bara till
+      deltagarna i festen, som får en notis. Lägg inte in känsliga uppgifter i fritextfält.
     </p>
   </section>
 
@@ -122,9 +127,9 @@
   <section id="loggar-sakerhet" class="mb-8 scroll-mt-24">
     <h2 class="mb-3 text-2xl font-semibold">Loggar &amp; säkerhet</h2>
     <p>
-      Vi kan behandla <em>minimala, icke-identifierande tekniska loggar</em> (t.ex. felkoder) för
-      att skydda tjänsten och felsöka problem. Dessa loggar kopplas inte till en individ och rensas
-      regelbundet.
+      Vi behandlar tekniska loggar (t.ex. felkoder och IP-adress) för att skydda tjänsten, upptäcka
+      missbruk och felsöka problem. Uppgifter om rapporter, blockeringar och varningar sparas för
+      att kunna hålla användare och fester trygga. Rapporter är anonyma för den som rapporteras.
     </p>
   </section>
 
@@ -132,8 +137,12 @@
     <h2 class="mb-3 text-2xl font-semibold">Lagring</h2>
     <p>
       Vi sparar dina uppgifter så länge du har ett konto och så länge det behövs för att driva
-      tjänsten eller uppfylla rättsliga krav. När du raderar ditt konto tar vi bort eller
-      anonymiserar dina personuppgifter, förutom sådant vi enligt lag måste behålla.
+      tjänsten eller uppfylla rättsliga krav. När du raderar ditt konto anonymiseras det: namn,
+      bild, bio, e-post, födelsedatum, telefonnummer, position och enhetsuppgifter tas bort, och
+      kontot kan inte användas igen. Kommande fester du är värd för ställs in. Sådant som måste
+      finnas kvar för att andra användares historik och vår säkerhet ska fungera (t.ex. chatt,
+      betyg, rapporter och varningar) behålls utan koppling till dig som person, och vi sparar
+      även det vi enligt lag måste behålla.
     </p>
   </section>
 
@@ -147,17 +156,14 @@
     </p>
   </section>
 
-  <section id="minderariga" class="mb-8 scroll-mt-24">
-    <h2 class="mb-3 text-2xl font-semibold">Minderåriga</h2>
-    <p>Hemmafest! är avsedd för <strong>15+</strong>.</p>
-  </section>
-
   <section id="tredje-parter" class="mb-8 scroll-mt-24">
     <h2 class="mb-3 text-2xl font-semibold">Tredje parter</h2>
     <p>
       Distribution och köp av Hemmafest+ sker via Apple App Store. Pushnotiser levereras via Apples
-      notistjänst (APNs). Läs gärna Apples information om integritet. Vi säljer inte dina
-      personuppgifter.
+      notistjänst (APNs). Festadresser kontrolleras med Googles karttjänst. Vi använder även
+      leverantörer för drift, databas, fillagring (bilder) och SMS-koder vid inloggning och
+      återställning av lösenord. De behandlar uppgifter bara för vår räkning. Läs gärna Apples
+      information om integritet. Vi säljer inte dina personuppgifter.
     </p>
   </section>
 
@@ -189,7 +195,7 @@
       <a routerLink="/hemmafest/business" class="hover:text-zinc-900">För företag</a>
       <a routerLink="/hemmafest/privacy" class="hover:text-zinc-900">Integritetspolicy</a>
       <a routerLink="/hemmafest/terms" class="hover:text-zinc-900">Villkor</a>
-      <span class="ml-auto text-xs">© Hemmafest! av Catso. 15+.</span>
+      <span class="ml-auto text-xs">© Hemmafest! av Catso.</span>
     </div>
   </footer>
 </div>

@@ -9,7 +9,7 @@
   <header class="mb-8">
     <h1 class="text-3xl font-bold tracking-tight">Begär radering av konto</h1>
     <p class="mt-2 text-gray-600">
-      Fyll i formuläret nedan så skickar vi din begäran till vårt team. Radering är permanent.
+      Du kan också radera kontot direkt i appen under Inställningar. Eller fyll i formuläret nedan så skickar vi din begäran till vårt team. Radering är permanent.
     </p>
   </header>
 
@@ -33,12 +33,12 @@
     </div>
 
     <div>
-      <label for="userId" class="mb-2 block text-sm font-medium">Användar-ID (valfritt)</label>
+      <label for="userId" class="mb-2 block text-sm font-medium">Användarnamn eller telefonnummer (valfritt)</label>
       <input
         id="userId"
         type="text"
         formControlName="userId"
-        placeholder="t.ex. intern id eller festkod"
+        placeholder="t.ex. @användarnamn"
         class="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 shadow-sm outline-none focus:ring-2 focus:ring-black"
       />
     </div>
@@ -63,8 +63,9 @@
         class="mt-1 h-5 w-5 rounded border-gray-300"
       />
       <label for="consent" class="text-sm">
-        Jag förstår att raderingen av mitt konto är <strong>permanent</strong> och att data inte kan
-        återställas.
+        Jag förstår att raderingen av mitt konto är <strong>permanent</strong> och inte kan ångras.
+        Mitt namn, bild, kontaktuppgifter och position tas bort. Sådant som måste sparas för säkerhet
+        eller enligt lag (t.ex. rapporter och varningar) kan finnas kvar utan koppling till mig.
       </label>
     </div>
     <p
@@ -147,7 +148,7 @@
       <a routerLink="/hemmafest/business" class="hover:text-zinc-900">För företag</a>
       <a routerLink="/hemmafest/privacy" class="hover:text-zinc-900">Integritetspolicy</a>
       <a routerLink="/hemmafest/terms" class="hover:text-zinc-900">Villkor</a>
-      <span class="ml-auto text-xs">© Hemmafest! av Catso. 15+.</span>
+      <span class="ml-auto text-xs">© Hemmafest! av Catso.</span>
     </div>
   </footer>
 </div>

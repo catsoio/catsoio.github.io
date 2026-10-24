@@ -36,8 +36,8 @@ export class HemmafestComponent {
 			a: 'Nej, du kan använda appen gratis. Hemmafest+ ger dig extra, som obegränsat med förfrågningar.',
 		},
 		{
-			q: 'Vilken åldersgräns gäller?',
-			a: '15+. Följ lokal lagstiftning och visa hänsyn till grannar.',
+			q: 'Hur raderar jag mitt konto?',
+			a: 'Under Inställningar i appen, eller via formuläret på sidan "Begär radering av konto".',
 		},
 		{
 			q: 'Behöver jag ett konto?',
