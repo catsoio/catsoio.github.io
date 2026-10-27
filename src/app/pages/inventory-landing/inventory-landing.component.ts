@@ -107,6 +107,15 @@ export class InventoryLandingComponent implements OnInit {
 			image: `${IMG}/desktop-workorder.webp`,
 			alt: 'Arbetsorder med arbete, delar och summa',
 		},
+		{
+			id: 'ekonomi',
+			title: 'Fakturor och ekonomi',
+			headline: 'Du ser vem som inte har betalat',
+			text: 'Faktura och kvitto är två olika dokument. En faktura får förfallodatum, betalningsvillkor och betalningsuppgifter, och ett kvitto är betalt direkt. I fakturalistan ser du vad som är obetalt, vad som har passerat förfallodatum och vad som kommit in den senaste månaden.',
+			points: ['Faktura eller kvitto, du väljer när du bokför', 'Obetalt, förfallet och betalt på ett ögonkast', 'Moms per sats och löpande nummer på varje dokument', 'Moms och bokföring som underlag till redovisaren'],
+			image: `${IMG}/desktop-invoices.webp`,
+			alt: 'Fakturalistan med obetalda, förfallna och betalda fakturor',
+		},
 	];
 
 	readonly mobileShots = [

@@ -1,0 +1,107 @@
+<div
+  class="bay min-h-screen bg-[#0c0c0d] text-neutral-300 antialiased selection:bg-[#ffc400] selection:text-black"
+>
+  <header
+    class="fixed inset-x-0 top-0 z-50 border-b-2 border-neutral-800 bg-[#0c0c0d]/90 backdrop-blur"
+  >
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3" aria-label="Huvudmeny">
+      <a routerLink="/apps/verkstad" class="flex items-center gap-3">
+        <img src="assets/imgs/store-listing/catso-logo.png" alt="Catso" class="h-6 w-auto invert" />
+        <span class="display text-2xl font-extrabold text-white">{{ product }}</span>
+      </a>
+      <a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-yellow !px-5 !py-2 !text-base">Hjälp</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="tread px-4 pt-28 pb-12 md:pt-36">
+      <div class="mx-auto max-w-4xl">
+        <p class="display inline-block bg-[#ffc400] px-3 py-1 text-base font-bold tracking-widest text-black">
+          Manual
+        </p>
+        <h1 class="display mt-6 text-6xl font-extrabold text-white sm:text-7xl">
+          Så <span class="text-[#ffc400]">börjar</span> ni
+        </h1>
+        <p class="mt-6 text-2xl leading-snug text-neutral-200">
+          Åtta steg. Ett steg i taget. Varje steg har en bild.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4 noprint">
+          <a href="#steg-1" class="btn btn-yellow">Börja</a>
+          <button type="button" class="btn btn-ghost" (click)="print()">Skriv ut</button>
+        </div>
+      </div>
+    </section>
+    <div class="hazard"></div>
+
+    <section class="px-4 py-14">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="display text-4xl font-extrabold text-white">Ta fram det här först</h2>
+        <ul class="mt-6 space-y-3 text-2xl">
+          @for (p of prepare; track p) {
+            <li class="flex items-start gap-4">
+              <span class="mt-3 h-3 w-3 shrink-0 bg-[#ffc400]"></span>
+              <span>{{ p }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+
+    @for (s of steps; track s.title; let i = $index) {
+      <div class="hazard"></div>
+      <section [id]="'steg-' + (i + 1)" class="scroll-mt-16 px-4 py-14 print:break-inside-avoid">
+        <div class="mx-auto max-w-4xl">
+          <div class="flex items-center gap-4">
+            <span class="display grid h-14 w-14 shrink-0 place-items-center bg-[#ffc400] text-4xl font-extrabold text-black">{{ i + 1 }}</span>
+            <h2 class="display text-4xl font-extrabold text-white sm:text-5xl">{{ s.title }}</h2>
+          </div>
+          <p class="mt-6 text-2xl leading-snug text-neutral-100">{{ s.intro }}</p>
+
+          <figure class="mt-8 border-2 border-neutral-600 bg-neutral-900 p-1.5 shadow-[8px_8px_0_0_#ffc400]">
+            <img [src]="s.image" [alt]="s.alt" width="1920" height="1200" class="block w-full" loading="lazy" />
+          </figure>
+          <ul class="mt-5 space-y-1 text-xl">
+            @for (m of s.marks; track m; let k = $index) {
+              <li class="flex items-center gap-3">
+                <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#ffc400] text-base font-extrabold text-black">{{ k + 1 }}</span>
+                {{ m }}
+              </li>
+            }
+          </ul>
+
+          <h3 class="display mt-8 text-2xl font-bold tracking-wider text-[#ffc400]">Gör så här</h3>
+          <ol class="mt-3 space-y-3 text-2xl leading-snug">
+            @for (t of s.todo; track t; let k = $index) {
+              <li class="flex items-start gap-4">
+                <span class="display mt-0.5 shrink-0 text-3xl font-extrabold text-neutral-500">{{ k + 1 }}.</span>
+                <span>{{ t }}</span>
+              </li>
+            }
+          </ol>
+        </div>
+      </section>
+    }
+    <div class="hazard"></div>
+
+    <section class="bg-[#111113] px-4 py-16">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="display text-4xl font-extrabold text-white">Behöver ni hjälp?</h2>
+        <p class="mt-4 text-2xl leading-snug">Vi hjälper er. Ni kan ringa eller skriva till oss. Vi gör det tillsammans med er.</p>
+        <div class="mt-8 noprint">
+          <a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-yellow">Kontakta oss</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t-2 border-neutral-800 px-4 py-8 text-neutral-500">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
+      <span>© {{ currentYear }} Catso AI &amp; Robotics</span>
+      <nav class="flex gap-5">
+        <a routerLink="/home" class="hover:text-[#ffc400]">Catso</a>
+        <a routerLink="/privacy" class="hover:text-[#ffc400]">Integritet</a>
+        <a routerLink="/terms" class="hover:text-[#ffc400]">Villkor</a>
+      </nav>
+    </div>
+  </footer>
+</div>

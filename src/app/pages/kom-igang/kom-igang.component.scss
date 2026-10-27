@@ -1,0 +1,210 @@
+:host {
+	display: block;
+}
+
+.bay {
+	font-family: 'Barlow', 'Inter', system-ui, sans-serif;
+}
+
+.display {
+	font-family: 'Barlow Condensed', 'Impact', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+	line-height: 0.95;
+}
+
+.tread {
+	background-color: #0c0c0d;
+	background-image:
+		radial-gradient(ellipse 70% 60% at 75% 30%, rgba(255, 196, 0, 0.16), transparent 70%),
+		linear-gradient(180deg, rgba(12, 12, 13, 0.2) 0%, #0c0c0d 100%),
+		repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0 14px, transparent 14px 34px),
+		repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0 14px, transparent 14px 34px);
+}
+
+.hazard {
+	height: 14px;
+	background: repeating-linear-gradient(-45deg, #ffc400 0 16px, #0c0c0d 16px 32px);
+}
+
+.plate {
+	border: 2px solid #2a2a2e;
+	background: #141416;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.95rem 1.7rem;
+	font-family: 'Barlow Condensed', sans-serif;
+	font-weight: 700;
+	font-size: 1.1rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	transition: transform 0.12s ease, background-color 0.12s ease;
+	cursor: pointer;
+
+	&:active {
+		transform: translateY(1px);
+	}
+}
+
+.btn-yellow {
+	background: #ffc400;
+	color: #0c0c0d;
+	box-shadow: 4px 4px 0 #0c0c0d, 4px 4px 0 2px #ffc400;
+
+	&:hover {
+		background: #ffd633;
+	}
+}
+
+/* Koder som KU-0001: monospace-känsla med gul bakgrund. */
+.code {
+	display: inline-block;
+	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+	font-size: 0.85em;
+	background: #2a2400;
+	color: #ffc400;
+	padding: 1px 7px;
+	white-space: nowrap;
+}
+
+.chip {
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 2px 10px;
+	background: #2a2400;
+	color: #ffc400;
+	font-weight: 600;
+}
+
+.chip-print {
+	background: transparent;
+	border: 1px solid #ffc400;
+}
+
+.chip-soon {
+	background: transparent;
+	border: 1px dashed #ffc400;
+}
+
+/* Tidslinje med numrerade steg. */
+.steps {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	counter-reset: s;
+
+	> li {
+		counter-increment: s;
+		position: relative;
+		padding: 0 0 1.4rem 3.2rem;
+
+		&:last-child {
+			padding-bottom: 0;
+
+			&::after {
+				display: none;
+			}
+		}
+
+		&::before {
+			content: counter(s);
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 2.1rem;
+			height: 2.1rem;
+			display: grid;
+			place-items: center;
+			background: #ffc400;
+			color: #0c0c0d;
+			font-family: 'Barlow Condensed', sans-serif;
+			font-weight: 800;
+			font-size: 1.15rem;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 1rem;
+			top: 2.4rem;
+			bottom: 0.3rem;
+			width: 2px;
+			background: #2a2a2e;
+		}
+	}
+}
+
+.where {
+	font-family: 'Barlow Condensed', sans-serif;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-size: 0.9rem;
+	color: #8a8a92;
+}
+
+
+.check {
+	display: inline-grid;
+	place-items: center;
+	width: 1.6rem;
+	height: 1.6rem;
+	flex: none;
+	border: 2px solid #4a4a52;
+	background: transparent;
+	color: #0c0c0d;
+	cursor: pointer;
+	transition: background-color 0.12s ease, border-color 0.12s ease;
+
+	&.on {
+		background: #ffc400;
+		border-color: #ffc400;
+	}
+}
+
+.time {
+	font-family: 'Barlow Condensed', sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	font-size: 0.95rem;
+	color: #ffc400;
+}
+
+@media print {
+	.bay {
+		background: #fff !important;
+		color: #111 !important;
+	}
+	header,
+	footer,
+	.hazard,
+	.noprint {
+		display: none !important;
+	}
+	.plate {
+		background: #fff !important;
+		border-color: #999 !important;
+	}
+	* {
+		color: #111 !important;
+	}
+	.steps > li::before {
+		background: #111;
+		color: #fff !important;
+	}
+}
+
+.btn-ghost {
+	border: 2px solid #5a5a60;
+	color: #fff;
+
+	&:hover {
+		border-color: #ffc400;
+		color: #ffc400;
+	}
+}

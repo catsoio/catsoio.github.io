@@ -61,6 +61,12 @@ export const POANGJAKTEN_SEO: RouteSEO = {
 };
 
 /** Genomgång av hur systemet hänger ihop, att visa för en kund. Inte för sökmotorer. */
+export const KOM_IGANG_SEO: RouteSEO = {
+	title: 'Manual: så börjar ni med Catso Verkstad',
+	description:
+		'Kort manual med bilder: åtta steg för att komma igång med Catso Verkstad.',
+};
+
 export const VERKSTAD_INFO_SEO: RouteSEO = {
 	title: 'Så hänger verkstaden ihop | Catso Verkstad',
 	description:
