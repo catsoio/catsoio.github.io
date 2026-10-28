@@ -40,7 +40,8 @@ interface Catalog {
 
 type FormState = 'idle' | 'sending' | 'sent' | 'error';
 
-const IMG = '/assets/imgs/dacklager';
+const MANUAL = '/assets/imgs/manual';
+const PHOTO = '/assets/imgs/verkstad';
 
 /** Produktnamnet står på ett ställe så det är lätt att byta. */
 export const PRODUCT_NAME = 'Catso Verkstad';
@@ -59,7 +60,8 @@ export class InventoryLandingComponent implements OnInit {
 	private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
 
 	readonly product = PRODUCT_NAME;
-	readonly img = IMG;
+	readonly manual = MANUAL;
+	readonly photo = PHOTO;
 	/** Länk till själva appen. Tom tills adressen är bestämd, då döljs "Logga in". */
 	readonly appUrl = '';
 	readonly currentYear = new Date().getFullYear();
@@ -80,51 +82,68 @@ export class InventoryLandingComponent implements OnInit {
 			headline: 'Du ser vad du har, och vad som snart är slut',
 			text: 'Varje artikel har saldo, hyllplats och pris. Du söker på dimension eller märke och ser direkt om det finns. När något börjar ta slut hamnar det i listan över vad du behöver beställa, så du slipper upptäcka det när kunden redan är på plats.',
 			points: ['Sök på dimension, märke eller artikelnummer', 'Varning för lågt lager och slut', 'Inköp och leverantörer på samma ställe', 'Se bruttovinst och marginal per period'],
-			image: `${IMG}/desktop-inventory.webp`,
-			alt: 'Artikellistan med däck, fälgar och lagersaldo',
-		},
-		{
-			id: 'dackhotell',
-			title: 'Däckhotell',
-			headline: 'Varje hjulset har en plats och en ägare',
-			text: 'Du lägger in kundens set med regnummer, hyllplats och avgift. Du ser vilka som är betalda, vilka som inte är det och vilka som skulle ha hämtats för länge sedan. Vid säsongsbytet vet du precis var allt står.',
-			points: ['Regnummer, plats och avgift per set', 'Obetalda och försenade hämtningar syns på startsidan', 'Sök fram kunden på sekunder när hen ringer'],
-			image: `${IMG}/desktop-storage.webp`,
-			alt: 'Listan över inlagrade däck i däckhotellet',
+			image: `${MANUAL}/5-artiklar.webp`,
+			alt: 'Artikellistan med däck, märke, modell och hyllplats',
 		},
 		{
 			id: 'bokningar',
 			title: 'Bokningar',
-			headline: 'En kalender där alla mekaniker syns',
-			text: 'Se veckan per mekaniker, flytta en bokning genom att dra den och lägg till en ny på ett par sekunder. När kunden kommer gör du bokningen till en arbetsorder med ett klick, så skriver du inte in samma uppgifter två gånger.',
-			points: ['Vecko-, dag- och månadsvy', 'Filtrera på en enskild mekaniker', 'Bokning blir arbetsorder med kund och bil ifyllda'],
-			image: `${IMG}/desktop-bookings.webp`,
-			alt: 'Veckokalender med bokningar per mekaniker',
+			headline: 'Ny bokning på några sekunder',
+			text: 'Skriv kundens namn eller telefonnummer, välj tid och mekaniker. När kunden kommer gör du bokningen till en arbetsorder med ett klick, så skriver du inte in samma uppgifter två gånger.',
+			points: ['Vecko-, dag- och månadsvy, och en kolumn per mekaniker', 'Sök kunden på namn eller telefonnummer', 'Bokning blir arbetsorder med kund och bil ifyllda'],
+			image: `${MANUAL}/6-bokning.webp`,
+			alt: 'Dialogen Ny bokning med kund, bil, tid och mekaniker',
 		},
 		{
-			id: 'arbetsorder',
-			title: 'Arbetsorder',
-			headline: 'Från inlämnad bil till färdig faktura',
-			text: 'Arbete och delar står på samma order. Mekanikern öppnar den i mobilen, ser bara det som rör hens egna bilar och bockar av raderna när de är gjorda. När ordern är klar tas delarna ur lagret, och du kan skriva ut faktura eller kvitto med moms utan att räkna något för hand.',
-			points: ['Egen mobilvy för mekanikern, utan priser och kunduppgifter', 'Delar tas ur lagret när ordern blir klar', 'Faktura och kvitto med rätt moms och löpande nummer', 'Status: öppen, pågår, väntar på del, klar'],
-			image: `${IMG}/desktop-workorder.webp`,
-			alt: 'Arbetsorder med arbete, delar och summa',
+			id: 'forsaljning',
+			title: 'Försäljning',
+			headline: 'Du väljer själv: faktura eller kvitto',
+			text: 'Allt som säljs går via ett säljkort med kund, bil, rader och rabatt. När du bokför tar delarna slut i lagret och dokumentet får sitt nummer. En faktura får förfallodatum och betalningsvillkor, ett kvitto är betalt direkt.',
+			points: ['Delar tas ur lagret när du bokför', 'Moms per sats och löpande nummer på varje dokument', 'Förhandsgranska utkastet innan du bokför'],
+			image: `${MANUAL}/7-forsaljning.webp`,
+			alt: 'Säljkort där man väljer att bokföra som faktura eller kvitto',
 		},
 		{
 			id: 'ekonomi',
 			title: 'Fakturor och ekonomi',
 			headline: 'Du ser vem som inte har betalat',
-			text: 'Faktura och kvitto är två olika dokument. En faktura får förfallodatum, betalningsvillkor och betalningsuppgifter, och ett kvitto är betalt direkt. I fakturalistan ser du vad som är obetalt, vad som har passerat förfallodatum och vad som kommit in den senaste månaden.',
-			points: ['Faktura eller kvitto, du väljer när du bokför', 'Obetalt, förfallet och betalt på ett ögonkast', 'Moms per sats och löpande nummer på varje dokument', 'Moms och bokföring som underlag till redovisaren'],
-			image: `${IMG}/desktop-invoices.webp`,
+			text: 'I fakturalistan ser du vad som är obetalt, vad som har passerat förfallodatum och vad som kommit in den senaste månaden. Momsrapport och bokföringsunderlag finns för redovisaren.',
+			points: ['Obetalt, förfallet och betalt på ett ögonkast', 'Filtrera på faktura eller kvitto', 'Moms och bokföring som underlag till redovisaren'],
+			image: `${MANUAL}/8-fakturor.webp`,
 			alt: 'Fakturalistan med obetalda, förfallna och betalda fakturor',
 		},
 	];
 
-	readonly mobileShots = [
-		{ src: `${IMG}/mobile-inventory.webp`, alt: 'Lagret i mobilen', label: 'Lager' },
-		{ src: `${IMG}/mobile-bookings.webp`, alt: 'Bokningar i mobilen', label: 'Bokningar' },
-		{ src: `${IMG}/mobile-storage.webp`, alt: 'Däckhotellet i mobilen', label: 'Däckhotell' },
+	readonly trustStrip = [
+		{ title: 'Ingen bindning', text: 'Testa först, bestäm sen.', icon: 'M5 13l4 4L19 7' },
+		{ title: 'Svensk support', text: 'Vi svarar oftast samma dag.', icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' },
+		{ title: 'Inget att installera', text: 'Körs i webbläsaren, överallt.', icon: 'M3 5h18v11H3zM8 21h8M12 16v5' },
+		{ title: 'Rätt moms på dokumenten', text: 'Faktura och kvitto med löpande nummer.', icon: 'M9 12l2 2 4-4M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z' },
+	];
+
+	readonly hotelRows = [
+		{ reg: 'ABC 123', what: 'Vinterhjul, 205/55 R16', shelf: 'Hylla H-12', status: 'Betald', tone: 'ok' },
+		{ reg: 'TAX 101', what: 'Sommarhjul, 225/45 R17', shelf: 'Hylla B-03', status: 'Obetald', tone: 'warn' },
+		{ reg: 'LIN 202', what: 'Vinterhjul, 195/65 R15', shelf: 'Hylla H-14', status: 'Skulle hämtats', tone: 'late' },
+	];
+
+	readonly hotelPoints = [
+		'Regnummer, plats och avgift per set',
+		'Obetalda och försenade hämtningar syns på startsidan',
+		'Kalla in kunderna med SMS när det är dags för byte',
+	];
+
+	readonly trust = [
+		{ title: 'Rätt person ser rätt sak', text: 'Ägaren ser allt. Personalen ser inte inköpspriser eller bokföring, och mekanikern får ett arbetsblad utan priser.' },
+		{ title: 'Inga luckor i numreringen', text: 'Fakturor och kvitton får egna löpande nummer. Ett bokfört dokument går inte att ändra i efterhand.' },
+		{ title: 'Alla ändringar loggas', text: 'Aktivitetsloggen visar vem som gjorde vad och när, så ni kan reda ut vad som hänt.' },
+		{ title: 'Frågor besvaras av människor', text: 'Ni når oss på support@catso.io, och vi hjälper till att lägga in era första artiklar och kunder.' },
+	];
+
+	readonly steps = [
+		{ title: 'Vi sätter upp en testmiljö', text: 'Helst med några av era egna artiklar och kunder, så att det känns som er verkstad.' },
+		{ title: 'Ni klickar runt i lugn och ro', text: 'Du och personalen provar bokning, däckhotell och arbetsorder. Manualen visar steg för steg.' },
+		{ title: 'Ni bestämmer själva', text: 'Det kostar inget att prova och ni förbinder er inte till något.' },
 	];
 
 	readonly overview = [

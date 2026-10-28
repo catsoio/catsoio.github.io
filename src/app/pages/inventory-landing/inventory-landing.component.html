@@ -1,12 +1,11 @@
-<ng-template #laptop let-src="src" let-alt="alt" let-eager="eager">
-  <div
-    class="border-2 border-neutral-600 bg-neutral-900 p-[1.4%] pb-0 shadow-[10px_10px_0_0_#ffc400]"
-  >
+<ng-template #screen let-src="src" let-alt="alt" let-eager="eager" let-w="w" let-h="h">
+  <div class="screen">
+    <div class="screen-bar" aria-hidden="true"><i></i><i></i><i></i></div>
     <img
       [src]="src"
       [alt]="alt"
-      width="2160"
-      height="1350"
+      [attr.width]="w || 1920"
+      [attr.height]="h || 1200"
       class="block w-full"
       [attr.loading]="eager ? 'eager' : 'lazy'"
       decoding="async"
@@ -14,94 +13,60 @@
   </div>
 </ng-template>
 
-<ng-template #phone let-src="src" let-alt="alt">
-  <div class="border-2 border-neutral-600 bg-neutral-900 p-1.5 shadow-[6px_6px_0_0_#ffc400]">
-    <img
-      [src]="src"
-      [alt]="alt"
-      width="1170"
-      height="2532"
-      class="block w-full"
-      loading="lazy"
-      decoding="async"
+<ng-template #check>
+  <svg class="mt-1 h-5 w-5 shrink-0 text-[#00706a]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+    <path
+      fill-rule="evenodd"
+      d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z"
+      clip-rule="evenodd"
     />
-  </div>
+  </svg>
 </ng-template>
 
-<div
-  class="bay min-h-screen bg-[#0c0c0d] text-neutral-300 antialiased selection:bg-[#ffc400] selection:text-black"
->
+<div class="bay min-h-screen bg-white text-[#2b3a3a] antialiased selection:bg-[#ffc400] selection:text-black">
   <!-- NAV -->
-  <header
-    class="fixed inset-x-0 top-0 z-50 border-b-2 border-neutral-800 bg-[#0c0c0d]/90 backdrop-blur"
-  >
-    <nav
-      class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3"
-      aria-label="Huvudmeny"
-    >
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-[#e3eaea] bg-white/90 backdrop-blur">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3" aria-label="Huvudmeny">
       <a routerLink="/" class="flex items-center gap-3">
         <img src="assets/imgs/store-listing/catso-logo.png" alt="Catso" class="h-6 w-auto invert" />
-        <span class="display text-2xl font-extrabold text-white">{{ product }}</span>
+        <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
       </a>
-      <div
-        class="display hidden items-center gap-8 text-lg font-semibold tracking-wider text-neutral-400 md:flex"
-      >
-        <a routerLink="/apps/verkstad" fragment="funktioner" class="hover:text-[#ffc400]"
-          >Funktioner</a
-        >
-        <a routerLink="/apps/verkstad" fragment="fragor" class="hover:text-[#ffc400]">Frågor</a>
-        <a routerLink="/verkstad/kom-igang" class="hover:text-[#ffc400]">Manual</a>
+      <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
+        <a routerLink="/apps/verkstad" fragment="funktioner" class="hover:text-[#00706a]">Funktioner</a>
+        <a routerLink="/apps/verkstad" fragment="trygghet" class="hover:text-[#00706a]">Trygghet</a>
+        <a routerLink="/apps/verkstad" fragment="fragor" class="hover:text-[#00706a]">Frågor</a>
+        <a routerLink="/verkstad/kom-igang" class="hover:text-[#00706a]">Manual</a>
         <!-- TILLFÄLLIGT BORTTAGET (priser):
-				<a routerLink="/apps/verkstad" fragment="priser" class="hover:text-[#ffc400]">Priser</a>
-				-->
+        <a routerLink="/apps/verkstad" fragment="priser" class="hover:text-[#00706a]">Priser</a>
+        -->
       </div>
       <div class="flex items-center gap-2">
         @if (appUrl) {
-          <a
-            [href]="appUrl"
-            class="display hidden px-3 py-2 text-lg font-semibold text-neutral-300 hover:text-[#ffc400] sm:inline-block"
+          <a [href]="appUrl" class="hidden px-3 py-2 text-base font-medium text-[#4a5d5d] hover:text-[#00706a] sm:inline-block"
             >Logga in</a
           >
         }
-        <a
-          routerLink="/apps/verkstad"
-          fragment="kontakt"
-          class="btn btn-yellow !px-5 !py-2 !text-base"
-          >Kontakta oss</a
-        >
+        <a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-primary !px-5 !py-2 !text-sm">Kontakta oss</a>
         <button
           type="button"
-          class="grid h-10 w-10 place-items-center border-2 border-neutral-700 text-white md:hidden"
+          class="grid h-10 w-10 place-items-center rounded-lg border border-[#d5e0e0] text-[#0d1b1b] md:hidden"
           (click)="toggleMenu()"
           [attr.aria-expanded]="menuOpen()"
           aria-label="Meny"
         >
-          <svg
-            class="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </nav>
     @if (menuOpen()) {
-      <div class="display space-y-1 border-t-2 border-neutral-800 px-4 py-3 text-xl md:hidden">
-        <a
-          routerLink="/apps/verkstad"
-          fragment="funktioner"
-          (click)="menuOpen.set(false)"
-          class="block px-3 py-3 hover:bg-neutral-900"
-          >Funktioner</a
-        >
-        <!-- TILLFÄLLIGT BORTTAGET (priser):
-				<a routerLink="/apps/verkstad" fragment="priser" (click)="menuOpen.set(false)" class="block px-3 py-3 hover:bg-neutral-900">Priser</a>
-				-->
+      <div class="space-y-1 border-t border-[#e3eaea] bg-white px-4 py-3 text-lg md:hidden">
+        <a routerLink="/apps/verkstad" fragment="funktioner" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Funktioner</a>
+        <a routerLink="/apps/verkstad" fragment="trygghet" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Trygghet</a>
+        <a routerLink="/verkstad/kom-igang" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Manual</a>
         @if (appUrl) {
-          <a [href]="appUrl" class="block px-3 py-3 hover:bg-neutral-900">Logga in</a>
+          <a [href]="appUrl" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Logga in</a>
         }
       </div>
     }
@@ -109,133 +74,175 @@
 
   <main>
     <!-- HERO -->
-    <section class="tread relative overflow-hidden px-4 pt-28 pb-24 md:pt-36">
-      <div class="relative mx-auto grid max-w-[88rem] items-center gap-12 lg:grid-cols-12">
-        <div class="lg:col-span-4">
-          <p
-            class="display inline-block bg-[#ffc400] px-3 py-1 text-base font-bold tracking-widest text-black"
-          >
-            För däck- och bilverkstäder
-          </p>
-          <h1 class="display mt-6 text-6xl font-extrabold text-white sm:text-7xl">
-            Hela <span class="text-[#ffc400]">verkstaden</span> i ett system
+    <section class="hero relative overflow-hidden px-4 pt-28 pb-16 md:pt-36 md:pb-24">
+      <div class="tyre-ring" aria-hidden="true"></div>
+      <div class="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          
+          <h1 class="mt-6 text-5xl leading-[1.05] font-extrabold tracking-tight text-[#0d1b1b] sm:text-6xl xl:text-7xl">
+            Hela <span class="text-[#00706a]">verkstaden</span> i ett system
           </h1>
-          <p class="mt-6 text-xl text-neutral-300">
-            Lager, däckhotell, bokningar och arbetsorder på ett ställe. Byggt för verkstäder som
-            vill veta var hjulen står och vad som är klart, utan att leta i pärmar.
+          <p class="mt-6 text-xl leading-relaxed text-[#4a5d5d]">
+            Lager, däckhotell, bokningar och arbetsorder på ett ställe. Byggt för verkstäder som vill veta var
+            hjulen står och vad som är klart, utan att leta i pärmar.
           </p>
-          <div class="mt-8 flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">
-            <a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-yellow"
-              >Kontakta oss</a
-            >
-            <a routerLink="/verkstad/kom-igang" class="btn btn-ghost">Se manualen</a>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-primary">Prova gratis</a>
+            <a routerLink="/verkstad/kom-igang" class="btn btn-outline">Se manualen</a>
             <!-- TILLFÄLLIGT BORTTAGET (priser):
-						<a routerLink="/apps/verkstad" fragment="priser" class="btn btn-ghost">Priser</a>
-						-->
+            <a routerLink="/apps/verkstad" fragment="priser" class="btn btn-outline">Priser</a>
+            -->
           </div>
+          <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-[#4a5d5d]">
+            <li class="flex items-center gap-2">
+              <ng-container *ngTemplateOutlet="check"></ng-container> Ingen bindning
+            </li>
+            <li class="flex items-center gap-2">
+              <ng-container *ngTemplateOutlet="check"></ng-container> Testmiljö med era egna artiklar
+            </li>
+            <li class="flex items-center gap-2">
+              <ng-container *ngTemplateOutlet="check"></ng-container> Inget att installera
+            </li>
+          </ul>
         </div>
-        <div class="relative pr-3 pb-10 lg:col-span-8 lg:-mr-24 xl:-mr-40">
-          <ng-container
-            *ngTemplateOutlet="
-              laptop;
-              context: {
-                src: img + '/desktop-dashboard.webp',
-                alt: 'Översikten i ' + product,
-                eager: true,
-              }
-            "
-          ></ng-container>
-          <div class="absolute right-4 -bottom-2 w-[20%] max-w-48 lg:right-28 xl:right-44">
+
+        <div class="relative lg:col-span-7">
+          <div class="photo-frame hero-photo">
+            <img
+              [src]="photo + '/dackstack-vinter.jpg'"
+              alt="Vinterdäck med dubb i travar"
+              width="1600"
+              height="1067"
+              class="h-full w-full object-cover"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="hero-screen">
             <ng-container
               *ngTemplateOutlet="
-                phone;
-                context: { src: img + '/mobile-bookings.webp', alt: 'Bokningar på mobil' }
+                screen;
+                context: { src: photo + '/hem.jpg', alt: 'Startsidan i ' + product + ' med bokningar, arbetsorder och däckhotell', eager: true, w: 1900, h: 1095 }
               "
             ></ng-container>
           </div>
         </div>
       </div>
     </section>
-    <div class="hazard"></div>
 
-    <!-- SÅ HÄR KAN DET VARA -->
-    <section class="px-4 py-20">
+    <!-- TRYGGHETSLISTA -->
+    <section class="border-y border-[#e3eaea] bg-[#f6faf9] px-4 py-8">
+      <div class="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        @for (t of trustStrip; track t.title) {
+          <div class="flex items-start gap-4">
+            <span class="tyre-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path [attr.d]="t.icon" />
+              </svg>
+            </span>
+            <div>
+              <h2 class="text-base font-bold text-[#0d1b1b]">{{ t.title }}</h2>
+              <p class="mt-0.5 text-sm leading-snug text-[#4a5d5d]">{{ t.text }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- LÅTER DET BEKANT -->
+    <section class="px-4 py-20 md:py-24">
       <div class="mx-auto max-w-6xl">
-        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">Låter det bekant?</h2>
-        <p class="mt-4 max-w-2xl text-xl leading-snug text-neutral-300">
-          De flesta verkstäder har inget fel på hantverket. Det som tar tid är allt runt omkring:
-          att hitta, räkna om och skriva samma sak flera gånger.
+        <p class="eyebrow">Vardagen i verkstaden</p>
+        <h2 class="mt-3 text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Låter det bekant?</h2>
+        <p class="mt-4 max-w-2xl text-xl leading-relaxed text-[#4a5d5d]">
+          De flesta verkstäder har inget fel på hantverket. Det som tar tid är allt runt omkring: att hitta, räkna
+          om och skriva samma sak flera gånger.
         </p>
         <div class="mt-12 grid gap-6 md:grid-cols-3">
-          @for (p of pains; track p.title) {
-            <div class="plate p-8">
-              <h3 class="display text-3xl font-extrabold text-white">{{ p.title }}</h3>
-              <p class="mt-3 text-lg leading-snug text-neutral-300">{{ p.text }}</p>
+          @for (p of pains; track p.title; let i = $index) {
+            <div class="card relative overflow-hidden p-8">
+              <span class="pain-no" aria-hidden="true">0{{ i + 1 }}</span>
+              <h3 class="text-2xl font-bold text-[#0d1b1b]">{{ p.title }}</h3>
+              <p class="mt-3 text-lg leading-relaxed text-[#4a5d5d]">{{ p.text }}</p>
             </div>
           }
         </div>
       </div>
     </section>
-    <div class="hazard"></div>
 
-    <!-- MOBIL -->
-    <section class="overflow-hidden px-4 py-20">
-      <div class="mx-auto max-w-7xl">
-        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">
-          Dator, surfplatta och mobil
-        </h2>
-        <div class="mt-12 grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          <figure class="pr-3 pb-3 lg:col-span-7">
-            <ng-container
-              *ngTemplateOutlet="
-                laptop;
-                context: { src: img + '/desktop-workorder.webp', alt: 'Arbetsorder på dator' }
-              "
-            ></ng-container>
-            <figcaption class="display mt-8 text-xl font-semibold tracking-wider text-neutral-300">
-              Arbetsorder
-            </figcaption>
-          </figure>
-          <div class="grid grid-cols-3 gap-4 pr-2 pb-2 sm:gap-6 lg:col-span-5">
-            @for (m of mobileShots; track m.src) {
-              <figure>
-                <ng-container
-                  *ngTemplateOutlet="phone; context: { src: m.src, alt: m.alt }"
-                ></ng-container>
-                <figcaption
-                  class="display mt-6 text-center text-xl font-semibold tracking-wider text-neutral-300"
-                >
-                  {{ m.label }}
-                </figcaption>
-              </figure>
-            }
+    <!-- DÄCKHOTELL (foto) -->
+    <section class="px-4 pb-20 md:pb-24">
+      <div class="mx-auto max-w-6xl">
+        <div class="hotel grid overflow-hidden rounded-3xl lg:grid-cols-2">
+          <div class="relative min-h-[18rem] lg:min-h-[28rem]">
+            <img
+              [src]="photo + '/dack-verkstad.jpg'"
+              alt="Däck och fälgar i travar utanför en verkstad"
+              width="1400"
+              height="1400"
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="bg-[#0f2524] p-8 text-white sm:p-12">
+            <p class="eyebrow !text-[#7fe0d6]">Däckhotell</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Varje hjulset har en plats och en ägare</h2>
+            <p class="mt-4 text-lg leading-relaxed text-[#bcd3d1]">
+              Du lägger in kundens set med regnummer, hyllplats och avgift. Du ser vilka som är betalda, vilka som
+              inte är det och vilka som skulle ha hämtats för länge sedan. Vid säsongsbytet vet du precis var allt
+              står.
+            </p>
+            <div class="mt-8 space-y-3" aria-label="Exempel på inlagrade däckset">
+              @for (d of hotelRows; track d.reg) {
+                <div class="flex items-center justify-between gap-3 rounded-xl bg-white/[0.07] px-4 py-3 ring-1 ring-white/10">
+                  <div class="flex items-center gap-3">
+                    <span class="plate-reg">{{ d.reg }}</span>
+                    <span class="text-sm text-[#bcd3d1]">{{ d.what }}</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="hidden text-sm font-semibold text-white sm:inline">{{ d.shelf }}</span>
+                    <span class="status" [class]="'status-' + d.tone">{{ d.status }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+            <ul class="mt-8 space-y-2 text-[#d6e6e4]">
+              @for (pt of hotelPoints; track pt) {
+                <li class="flex items-start gap-3">
+                  <svg class="mt-1 h-5 w-5 shrink-0 text-[#7fe0d6]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+                  </svg>
+                  <span>{{ pt }}</span>
+                </li>
+              }
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
+    <div class="tread-bar" aria-hidden="true"></div>
+
     <!-- FUNKTIONER -->
-    <section
-      id="funktioner"
-      class="scroll-mt-16 border-t-2 border-neutral-800 bg-[#111113] px-4 py-20"
-    >
+    <section id="funktioner" class="scroll-mt-16 bg-[#f6faf9] px-4 py-20 md:py-24">
       <div class="mx-auto max-w-6xl">
-        <div class="space-y-24">
+        <p class="eyebrow">Funktioner</p>
+        <h2 class="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">
+          Från däcket på hyllan till betald faktura
+        </h2>
+        <div class="mt-16 space-y-24">
           @for (f of features; track f.id; let i = $index) {
             <article class="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
               <div class="lg:col-span-5" [class.lg:order-2]="i % 2 === 1">
-                <span class="display text-xl font-bold tracking-widest text-[#ffc400]"
-                  >0{{ i + 1 }} / {{ f.title }}</span
-                >
-                <h3 class="display mt-2 text-4xl font-extrabold text-white sm:text-5xl">
-                  {{ f.headline }}
-                </h3>
-                <p class="mt-4 text-lg leading-snug text-neutral-300">{{ f.text }}</p>
+                <span class="step-no">{{ i + 1 }}</span>
+                <p class="eyebrow mt-4">{{ f.title }}</p>
+                <h3 class="mt-2 text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">{{ f.headline }}</h3>
+                <p class="mt-4 text-lg leading-relaxed text-[#4a5d5d]">{{ f.text }}</p>
                 @if (f.points.length) {
                   <ul class="mt-5 space-y-2">
                     @for (pt of f.points; track pt) {
-                      <li class="flex items-start gap-3 text-neutral-300">
-                        <span class="mt-2.5 h-2 w-2 shrink-0 bg-[#ffc400]"></span>
+                      <li class="flex items-start gap-3 text-[#2b3a3a]">
+                        <ng-container *ngTemplateOutlet="check"></ng-container>
                         <span>{{ pt }}</span>
                       </li>
                     }
@@ -243,221 +250,242 @@
                 }
               </div>
               <div class="lg:col-span-7" [class.lg:order-1]="i % 2 === 1">
-                <ng-container
-                  *ngTemplateOutlet="laptop; context: { src: f.image, alt: f.alt }"
-                ></ng-container>
+                <ng-container *ngTemplateOutlet="screen; context: { src: f.image, alt: f.alt }"></ng-container>
               </div>
             </article>
           }
         </div>
       </div>
     </section>
-    <div class="hazard"></div>
+
+    <!-- TRYGGHET -->
+    <section id="trygghet" class="scroll-mt-16 px-4 py-20 md:py-24">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid items-center gap-12 lg:grid-cols-12">
+          <div class="lg:col-span-5">
+            <div class="photo-frame aspect-[4/5]">
+              <img
+                [src]="photo + '/dack-monster.jpg'"
+                alt="Närbild på ett däcks mönster"
+                width="1600"
+                height="1067"
+                class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <p class="eyebrow">Trygghet</p>
+            <h2 class="mt-3 text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">
+              Så att ni kan lita på siffrorna
+            </h2>
+            <p class="mt-4 text-xl leading-relaxed text-[#4a5d5d]">
+              Ett däck ska hålla på vägen, och ett system ska hålla när det är fullt i verkstaden. Därför är det här
+              byggt för att vara förutsägbart.
+            </p>
+            <div class="mt-10 grid gap-6 sm:grid-cols-2">
+              @for (t of trust; track t.title) {
+                <div class="card p-6">
+                  <h3 class="text-lg font-bold text-[#0d1b1b]">{{ t.title }}</h3>
+                  <p class="mt-2 leading-relaxed text-[#4a5d5d]">{{ t.text }}</p>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SÅ KOMMER NI IGÅNG -->
+    <section class="bg-[#f6faf9] px-4 py-20 md:py-24">
+      <div class="mx-auto max-w-6xl">
+        <p class="eyebrow">Att komma igång</p>
+        <h2 class="mt-3 text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Tre steg, inget krångel</h2>
+        <ol class="mt-12 grid gap-6 md:grid-cols-3">
+          @for (s of steps; track s.title; let i = $index) {
+            <li class="card p-8">
+              <span class="step-no">{{ i + 1 }}</span>
+              <h3 class="mt-4 text-2xl font-bold text-[#0d1b1b]">{{ s.title }}</h3>
+              <p class="mt-2 text-lg leading-relaxed text-[#4a5d5d]">{{ s.text }}</p>
+            </li>
+          }
+        </ol>
+        <p class="mt-8">
+          <a routerLink="/verkstad/kom-igang" class="link-arrow">Läs hela manualen →</a>
+        </p>
+      </div>
+    </section>
 
     <!-- TILLFÄLLIGT BORTTAGET: prissektionen. Ta bort kommentaren för att visa den igen.
-		PRISER
-		<section id="priser" class="scroll-mt-16 px-4 py-20">
-			<div class="mx-auto max-w-4xl">
-				<h2 class="display text-5xl font-extrabold text-white sm:text-6xl">Priser</h2>
-				<div class="mt-12 grid gap-6 md:grid-cols-2">
-					@for (p of plans(); track p.name) {
-						<div class="plate flex flex-col p-8" [class]="p.highlight ? '!border-[#ffc400]' : ''">
-							@if (p.highlight) {
-								<span class="display -mt-8 mb-5 -ml-8 self-start bg-[#ffc400] px-4 py-1 text-base font-bold tracking-widest text-black">Populärast</span>
-							}
-							<h3 class="display text-4xl font-extrabold text-white">{{ p.name }}</h3>
-							<p class="mt-1 text-neutral-400">{{ p.blurb }}</p>
-							<div class="mt-6 flex items-baseline gap-2">
-								<span class="display text-6xl font-extrabold text-[#ffc400] tabular-nums">{{ p.price }}</span>
-								<span class="display text-xl text-neutral-400">kr/mån exkl. moms</span>
-							</div>
-							<p class="mt-1 text-sm text-neutral-500">{{ p.users }}</p>
-							<ul class="mt-6 mb-8 space-y-3">
-								@for (f of p.features; track f) {
-									<li class="flex items-start gap-3">
-										<span class="mt-2 h-2.5 w-2.5 shrink-0 bg-[#ffc400]"></span>
-										<span>{{ f }}</span>
-									</li>
-								}
-							</ul>
-							<a
-								routerLink="/apps/verkstad"
-								fragment="kontakt"
-								class="btn mt-auto"
-								[class]="p.highlight ? 'btn-yellow' : 'btn-ghost'"
-								(click)="choosePlan(p.name)"
-							>
-								Kontakta oss om {{ p.name }}
-							</a>
-						</div>
-					}
-				</div>
-				<p class="mt-6 text-neutral-500">Extra användare {{ extraUserPrice() }} kr/mån.</p>
-			</div>
-		</section>
-		-->
+    PRISER
+    <section id="priser" class="scroll-mt-16 px-4 py-20">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="text-4xl font-extrabold text-[#0d1b1b]">Priser</h2>
+        <div class="mt-12 grid gap-6 md:grid-cols-2">
+          @for (p of plans(); track p.name) {
+            <div class="card flex flex-col p-8" [class]="p.highlight ? '!border-[#00706a]' : ''">
+              <h3 class="text-3xl font-extrabold text-[#0d1b1b]">{{ p.name }}</h3>
+              <p class="mt-1 text-[#4a5d5d]">{{ p.blurb }}</p>
+              <div class="mt-6 flex items-baseline gap-2">
+                <span class="text-5xl font-extrabold text-[#00706a] tabular-nums">{{ p.price }}</span>
+                <span class="text-lg text-[#4a5d5d]">kr/mån exkl. moms</span>
+              </div>
+              <p class="mt-1 text-sm text-[#6b7f7f]">{{ p.users }}</p>
+              <ul class="mt-6 mb-8 space-y-3">
+                @for (f of p.features; track f) {
+                  <li>{{ f }}</li>
+                }
+              </ul>
+              <a routerLink="/apps/verkstad" fragment="kontakt" class="btn mt-auto" [class]="p.highlight ? 'btn-primary' : 'btn-outline'" (click)="choosePlan(p.name)">
+                Kontakta oss om {{ p.name }}
+              </a>
+            </div>
+          }
+        </div>
+        <p class="mt-6 text-[#6b7f7f]">Extra användare {{ extraUserPrice() }} kr/mån.</p>
+      </div>
+    </section>
+    -->
 
     <!-- OCH RESTEN -->
-    <section class="border-t-2 border-neutral-800 px-4 py-20">
+    <section class="px-4 py-20 md:py-24">
       <div class="mx-auto max-w-6xl">
-        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">
+        <p class="eyebrow">Allt runt omkring</p>
+        <h2 class="mt-3 text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">
           Och det som gör vardagen enklare
         </h2>
         <div class="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
           @for (o of overview; track o.title) {
-            <div class="border-l-4 border-[#ffc400] pl-5">
-              <h3 class="display text-2xl font-bold text-white">{{ o.title }}</h3>
-              <p class="mt-2 leading-snug text-neutral-300">{{ o.text }}</p>
+            <div class="border-l-[3px] border-[#00706a] pl-5">
+              <h3 class="text-xl font-bold text-[#0d1b1b]">{{ o.title }}</h3>
+              <p class="mt-2 leading-relaxed text-[#4a5d5d]">{{ o.text }}</p>
             </div>
           }
         </div>
       </div>
     </section>
-    <div class="hazard"></div>
+
+    <div class="tread-bar" aria-hidden="true"></div>
 
     <!-- FRÅGOR -->
-    <section id="fragor" class="scroll-mt-16 border-t-2 border-neutral-800 px-4 py-20">
+    <section id="fragor" class="scroll-mt-16 px-4 py-20 md:py-24">
       <div class="mx-auto max-w-3xl">
-        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">Vanliga frågor</h2>
-        <div class="mt-10 divide-y-2 divide-neutral-800 border-y-2 border-neutral-800">
+        <p class="eyebrow">Frågor och svar</p>
+        <h2 class="mt-3 text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Vanliga frågor</h2>
+        <div class="mt-10 divide-y divide-[#e3eaea] border-y border-[#e3eaea]">
           @for (f of faqs; track f.q) {
             <details class="group py-5">
-              <summary
-                class="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-white"
-              >
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-[#0d1b1b]">
                 <h3 class="text-xl font-semibold">{{ f.q }}</h3>
-                <span class="display text-3xl text-[#ffc400] group-open:rotate-45" aria-hidden="true"
-                  >+</span
-                >
+                <span class="text-3xl leading-none text-[#00706a] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
               </summary>
-              <p class="mt-3 text-lg leading-snug text-neutral-300">{{ f.a }}</p>
+              <p class="mt-3 text-lg leading-relaxed text-[#4a5d5d]">{{ f.a }}</p>
             </details>
           }
         </div>
       </div>
     </section>
-    <div class="hazard"></div>
 
-    <!-- PROVA -->
-    <section id="prova" class="scroll-mt-16 px-4 py-20">
-      <div class="mx-auto max-w-3xl">
-        <h2 class="display text-5xl font-extrabold text-white sm:text-6xl">Prova det på riktigt</h2>
-        <p class="mt-6 text-xl leading-snug text-neutral-300">
-          Det är svårt att bedöma ett system utifrån bilder. Därför sätter vi upp en testmiljö åt
-          dig, helst med några av dina egna artiklar och kunder i, så att du och personalen kan
-          klicka runt i lugn och ro.
-        </p>
-        <p class="mt-4 text-xl leading-snug text-neutral-300">
-          Det kostar inget och du förbinder dig inte till något. Skriv några rader nedan om hur ni
-          jobbar i dag så hör vi av oss, oftast samma dag.
-        </p>
-      </div>
-    </section>
+    <!-- PROVA + KONTAKT -->
+    <section id="prova" class="cta relative scroll-mt-16 overflow-hidden px-4 py-20 md:py-24">
+      <img
+        [src]="photo + '/dack-monster.jpg'"
+        alt=""
+        aria-hidden="true"
+        width="1600"
+        height="1067"
+        class="absolute inset-0 h-full w-full object-cover opacity-25"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="relative mx-auto max-w-6xl">
+        <div class="grid gap-12 lg:grid-cols-12">
+          <div id="kontakt" class="scroll-mt-20 text-white lg:col-span-5">
+            <p class="eyebrow !text-[#7fe0d6]">Prova det på riktigt</p>
+            <h2 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">Kontakta oss</h2>
+            <p class="mt-6 text-lg leading-relaxed text-[#d6e6e4]">
+              Det är svårt att bedöma ett system utifrån bilder. Därför sätter vi upp en testmiljö åt dig, helst med
+              några av dina egna artiklar och kunder i, så att du och personalen kan klicka runt i lugn och ro.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-[#d6e6e4]">
+              Det kostar inget och du förbinder dig inte till något. Skriv några rader om hur ni jobbar i dag så
+              hör vi av oss, oftast samma dag.
+            </p>
+          </div>
 
-    <div class="hazard"></div>
-
-    <!-- KONTAKT -->
-    <section id="kontakt" class="tread scroll-mt-16 px-4 py-24">
-      <div class="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-12">
-        <div class="lg:col-span-5">
-          <h2 class="display text-6xl font-extrabold text-white sm:text-7xl">
-            Kontakta <span class="text-[#ffc400]">oss</span>
-          </h2>
-          <p class="mt-6 text-xl leading-snug text-neutral-300">Har du frågor?</p>
-        </div>
-
-        <div class="lg:col-span-7">
-          @if (state() === 'sent') {
-            <div class="plate !border-[#ffc400] p-10" role="status">
-              <p class="display text-4xl font-extrabold text-white">Fick det. Tack!</p>
-              <p class="mt-3 text-lg text-neutral-300">
-                Vi hör av oss så fort vi kan. En bekräftelse är på väg till din mejl.
-              </p>
-            </div>
-          } @else {
-            <form
-              [formGroup]="form"
-              (ngSubmit)="submit()"
-              class="plate space-y-5 p-6 sm:p-8"
-              novalidate
-            >
-              <div class="grid gap-5 sm:grid-cols-2">
-                <label class="field">
-                  Namn
-                  <input formControlName="name" autocomplete="name" />
-                  @if (submitted() && form.controls.name.invalid) {
-                    <span class="err">Skriv ditt namn.</span>
-                  }
-                </label>
-                <label class="field">
-                  Verkstad
-                  <input formControlName="workshop" autocomplete="organization" />
-                </label>
-                <label class="field">
-                  E-post
-                  <input type="email" formControlName="email" autocomplete="email" />
-                  @if (submitted() && form.controls.email.invalid) {
-                    <span class="err">Skriv en giltig e-postadress.</span>
-                  }
-                </label>
-                <label class="field">
-                  Telefon
-                  <input type="tel" formControlName="phone" autocomplete="tel" />
-                </label>
-              </div>
-              <label class="field">
-                Vad vill du veta?
-                <textarea
-                  formControlName="message"
-                  rows="5"
-                  placeholder="T.ex. hur många ni är och vad ni använder i dag"
-                ></textarea>
-                @if (submitted() && form.controls.message.invalid) {
-                  <span class="err">Skriv några rader.</span>
-                }
-              </label>
-              <input
-                type="text"
-                formControlName="website"
-                tabindex="-1"
-                autocomplete="off"
-                aria-hidden="true"
-                class="hidden"
-              />
-
-              @if (state() === 'error') {
-                <p
-                  class="border-l-4 border-[#ff6b5e] bg-[#2a1513] px-4 py-3 text-[#ffb3ab]"
-                  role="alert"
-                >
-                  Det blev fel hos oss och meddelandet kom inte fram. Försök igen om en stund, eller
-                  mejla
-                  <a href="mailto:support&#64;catso.io" class="underline">support&#64;catso.io</a>.
+          <div class="lg:col-span-7">
+            @if (state() === 'sent') {
+              <div class="rounded-2xl bg-white p-10 shadow-xl" role="status">
+                <p class="text-3xl font-extrabold text-[#0d1b1b]">Fick det. Tack!</p>
+                <p class="mt-3 text-lg text-[#4a5d5d]">
+                  Vi hör av oss så fort vi kan. En bekräftelse är på väg till din mejl.
                 </p>
-              }
-              <button
-                type="submit"
-                [disabled]="state() === 'sending'"
-                class="btn btn-yellow w-full"
-              >
-                {{ state() === 'sending' ? 'Skickar...' : 'Skicka' }}
-              </button>
-            </form>
-          }
+              </div>
+            } @else {
+              <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-5 rounded-2xl bg-white p-6 shadow-xl sm:p-8" novalidate>
+                <div class="grid gap-5 sm:grid-cols-2">
+                  <label class="field">
+                    Namn
+                    <input formControlName="name" autocomplete="name" />
+                    @if (submitted() && form.controls.name.invalid) {
+                      <span class="err">Skriv ditt namn.</span>
+                    }
+                  </label>
+                  <label class="field">
+                    Verkstad
+                    <input formControlName="workshop" autocomplete="organization" />
+                  </label>
+                  <label class="field">
+                    E-post
+                    <input type="email" formControlName="email" autocomplete="email" />
+                    @if (submitted() && form.controls.email.invalid) {
+                      <span class="err">Skriv en giltig e-postadress.</span>
+                    }
+                  </label>
+                  <label class="field">
+                    Telefon
+                    <input type="tel" formControlName="phone" autocomplete="tel" />
+                  </label>
+                </div>
+                <label class="field">
+                  Vad vill du veta?
+                  <textarea formControlName="message" rows="5" placeholder="T.ex. hur många ni är och vad ni använder i dag"></textarea>
+                  @if (submitted() && form.controls.message.invalid) {
+                    <span class="err">Skriv några rader.</span>
+                  }
+                </label>
+                <input type="text" formControlName="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+
+                @if (state() === 'error') {
+                  <p class="rounded-lg border-l-4 border-[#d64535] bg-[#fdeeec] px-4 py-3 text-[#8a2418]" role="alert">
+                    Det blev fel hos oss och meddelandet kom inte fram. Försök igen om en stund, eller mejla
+                    <a href="mailto:support&#64;catso.io" class="underline">support&#64;catso.io</a>.
+                  </p>
+                }
+                <button type="submit" [disabled]="state() === 'sending'" class="btn btn-primary w-full">
+                  {{ state() === 'sending' ? 'Skickar...' : 'Skicka' }}
+                </button>
+              </form>
+            }
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t-2 border-neutral-800 px-4 py-8 text-neutral-500">
+  <footer class="border-t border-[#e3eaea] px-4 py-8 text-[#6b7f7f]">
     <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
       <span>© {{ currentYear }} Catso AI &amp; Robotics</span>
       <nav class="flex gap-5">
-        <a routerLink="/" class="hover:text-[#ffc400]">Catso</a>
-        <a routerLink="/privacy" class="hover:text-[#ffc400]">Integritet</a>
-        <a routerLink="/terms" class="hover:text-[#ffc400]">Villkor</a>
-        <a href="mailto:support&#64;catso.io" class="hover:text-[#ffc400]">support&#64;catso.io</a>
+        <a routerLink="/" class="hover:text-[#00706a]">Catso</a>
+        <a routerLink="/privacy" class="hover:text-[#00706a]">Integritet</a>
+        <a routerLink="/terms" class="hover:text-[#00706a]">Villkor</a>
+        <a href="mailto:support&#64;catso.io" class="hover:text-[#00706a]">support&#64;catso.io</a>
       </nav>
     </div>
+    <p class="mx-auto mt-4 max-w-6xl text-xs text-[#8a9a9a]">
+      Foton: Unsplash. Skärmbilderna visar exempeldata.
+    </p>
   </footer>
 </div>
