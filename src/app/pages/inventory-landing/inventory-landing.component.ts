@@ -17,11 +17,12 @@ import { VERKSTAD_FAQ } from '../../seo/faq.data';
 interface Feature {
 	id: string;
 	title: string;
-	headline: string;
 	text: string;
 	points: string[];
 	image: string;
 	alt: string;
+	phone?: string;
+	phoneAlt?: string;
 }
 
 interface Plan {
@@ -69,90 +70,58 @@ export class InventoryLandingComponent implements OnInit {
 
 	readonly faqs = VERKSTAD_FAQ;
 
-	readonly pains = [
-		{ title: 'Var är hjulen?', text: 'Kunden ringer och frågar om bilen är klar. Du går ut och letar bland hyllorna efter rätt set, och hoppas att någon ställde tillbaka det på rätt plats.' },
-		{ title: 'Saldot stämmer inte', text: 'Systemet säger fyra däck, hyllan har två. Det märks först när kunden redan står vid disken.' },
-		{ title: 'Papper överallt', text: 'Bokningen på en lapp, arbetsordern i en pärm och underlaget till fakturan i ett Excelark som bara en person förstår.' },
-	];
-
 	readonly features: Feature[] = [
+
+		{
+			id: 'dackhotell',
+			title: 'Däckhotell',
+			text: 'Varje set har regnummer, hylla och avgift. Översikten visar vilka som ska hämtas vecka för vecka, vilka hyllor som är fulla och vilka kunder som har under 4 mm kvar, så du vet vem du ska ringa om nya däck.',
+			points: ['Etikett att sätta på setet', 'Obetalda avgifter och försenade hämtningar'],
+			image: `${PHOTO}/app-hotellov.jpg`,
+			alt: 'Översikten för däckhotellet med hämtningar per vecka, hyllor och mönsterdjup',
+		},
+		{
+			id: 'kalla-in',
+			title: 'Kalla in med SMS',
+			text: 'Inför bytet skickar du ett SMS till alla som har däck hos dig. Namn och regnummer fylls i för varje kund, och de som redan fått ett SMS är inte förvalda.',
+			points: [],
+			image: `${PHOTO}/app-kallain.jpg`,
+			alt: 'Dialogen Kalla in kunder med SMS-text och mottagare',
+		},		{
+			id: 'tidsbokning',
+			title: 'Tidsbokning',
+			text: 'En kolumn per mekaniker och lyft. Klicka i en ledig tid för att boka. Är kunden ny räcker telefonnumret, namnet fyller du i sen.',
+			points: ['Dag, vecka och månad', 'Bokningen blir en arbetsorder när bilen kommer'],
+			image: `${PHOTO}/app-resurser.jpg`,
+			alt: 'Tidsbokningen med en kolumn per mekaniker och lyft',
+		},
+		{
+			id: 'offert',
+			title: 'Offert som kunden godkänner i mobilen',
+			text: 'Skicka offerten som SMS eller mejl. Kunden öppnar en länk, ser vad som ingår och trycker Godkänn. Du ser när kunden öppnat den, och en godkänd offert blir en arbetsorder.',
+			points: [],
+			image: `${PHOTO}/app-offert.jpg`,
+			alt: 'Offerten med status Väntar på svar och när kunden öppnade länken',
+			phone: `${PHOTO}/app-kundsida.jpg`,
+			phoneAlt: 'Kundens sida i mobilen med knappen Godkänn',
+		},
 		{
 			id: 'lager',
 			title: 'Lager',
-			headline: 'Du ser vad du har, och vad som snart är slut',
-			text: 'Varje artikel har saldo, hyllplats och pris. Du söker på dimension eller märke och ser direkt om det finns. När något börjar ta slut hamnar det i listan över vad du behöver beställa, så du slipper upptäcka det när kunden redan är på plats.',
-			points: ['Sök på dimension, märke eller artikelnummer', 'Varning för lågt lager och slut', 'Inköp och leverantörer på samma ställe', 'Se bruttovinst och marginal per period'],
-			image: `${MANUAL}/5-artiklar.webp`,
-			alt: 'Artikellistan med däck, märke, modell och hyllplats',
+			text: 'Däck per fälgstorlek och säsong, märken, lagervärde och vad som ska beställas. Däckens ålder räknas fram från DOT-koden, så de äldsta säljs först.',
+			points: ['Sök på dimension, märke eller artikelnummer', 'Inköp och leverantörer'],
+			image: `${PHOTO}/app-lagerov.jpg`,
+			alt: 'Översikten för lagret med däck per fälgstorlek, märken och lagervärde',
 		},
-		{
-			id: 'bokningar',
-			title: 'Bokningar',
-			headline: 'Ny bokning på några sekunder',
-			text: 'Skriv kundens namn eller telefonnummer, välj tid och mekaniker. När kunden kommer gör du bokningen till en arbetsorder med ett klick, så skriver du inte in samma uppgifter två gånger.',
-			points: ['Vecko-, dag- och månadsvy, och en kolumn per mekaniker', 'Sök kunden på namn eller telefonnummer', 'Bokning blir arbetsorder med kund och bil ifyllda'],
-			image: `${MANUAL}/6-bokning.webp`,
-			alt: 'Dialogen Ny bokning med kund, bil, tid och mekaniker',
-		},
-		{
-			id: 'forsaljning',
-			title: 'Försäljning',
-			headline: 'Du väljer själv: faktura eller kvitto',
-			text: 'Allt som säljs går via ett säljkort med kund, bil, rader och rabatt. När du bokför tar delarna slut i lagret och dokumentet får sitt nummer. En faktura får förfallodatum och betalningsvillkor, ett kvitto är betalt direkt.',
-			points: ['Delar tas ur lagret när du bokför', 'Moms per sats och löpande nummer på varje dokument', 'Förhandsgranska utkastet innan du bokför'],
-			image: `${MANUAL}/7-forsaljning.webp`,
-			alt: 'Säljkort där man väljer att bokföra som faktura eller kvitto',
-		},
-		{
-			id: 'ekonomi',
-			title: 'Fakturor och ekonomi',
-			headline: 'Du ser vem som inte har betalat',
-			text: 'I fakturalistan ser du vad som är obetalt, vad som har passerat förfallodatum och vad som kommit in den senaste månaden. Momsrapport och bokföringsunderlag finns för redovisaren.',
-			points: ['Obetalt, förfallet och betalt på ett ögonkast', 'Filtrera på faktura eller kvitto', 'Moms och bokföring som underlag till redovisaren'],
-			image: `${MANUAL}/8-fakturor.webp`,
-			alt: 'Fakturalistan med obetalda, förfallna och betalda fakturor',
-		},
-	];
-
-	readonly trustStrip = [
-		{ title: 'Ingen bindning', text: 'Testa först, bestäm sen.', icon: 'M5 13l4 4L19 7' },
-		{ title: 'Svensk support', text: 'Vi svarar oftast samma dag.', icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' },
-		{ title: 'Inget att installera', text: 'Körs i webbläsaren, överallt.', icon: 'M3 5h18v11H3zM8 21h8M12 16v5' },
-		{ title: 'Rätt moms på dokumenten', text: 'Faktura och kvitto med löpande nummer.', icon: 'M9 12l2 2 4-4M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z' },
-	];
-
-	readonly hotelRows = [
-		{ reg: 'ABC 123', what: 'Vinterhjul, 205/55 R16', shelf: 'Hylla H-12', status: 'Betald', tone: 'ok' },
-		{ reg: 'TAX 101', what: 'Sommarhjul, 225/45 R17', shelf: 'Hylla B-03', status: 'Obetald', tone: 'warn' },
-		{ reg: 'LIN 202', what: 'Vinterhjul, 195/65 R15', shelf: 'Hylla H-14', status: 'Skulle hämtats', tone: 'late' },
-	];
-
-	readonly hotelPoints = [
-		'Regnummer, plats och avgift per set',
-		'Obetalda och försenade hämtningar syns på startsidan',
-		'Kalla in kunderna med SMS när det är dags för byte',
-	];
-
-	readonly trust = [
-		{ title: 'Rätt person ser rätt sak', text: 'Ägaren ser allt. Personalen ser inte inköpspriser eller bokföring, och mekanikern får ett arbetsblad utan priser.' },
-		{ title: 'Inga luckor i numreringen', text: 'Fakturor och kvitton får egna löpande nummer. Ett bokfört dokument går inte att ändra i efterhand.' },
-		{ title: 'Alla ändringar loggas', text: 'Aktivitetsloggen visar vem som gjorde vad och när, så ni kan reda ut vad som hänt.' },
-		{ title: 'Frågor besvaras av människor', text: 'Ni når oss på support@catso.io, och vi hjälper till att lägga in era första artiklar och kunder.' },
-	];
-
-	readonly steps = [
-		{ title: 'Vi sätter upp en testmiljö', text: 'Helst med några av era egna artiklar och kunder, så att det känns som er verkstad.' },
-		{ title: 'Ni klickar runt i lugn och ro', text: 'Du och personalen provar bokning, däckhotell och arbetsorder. Manualen visar steg för steg.' },
-		{ title: 'Ni bestämmer själva', text: 'Det kostar inget att prova och ni förbinder er inte till något.' },
 	];
 
 	readonly overview = [
-		{ title: 'Kunder och bilar', text: 'Lägg in kunden och bilen en gång. Sedan väljer du dem i bokning, däckhotell och arbetsorder i stället för att skriva om dem. Företagskunder får organisationsnummer och adress på fakturan.' },
-		{ title: 'Leverantörer', text: 'Vem du handlar av och vad du har köpt, så du hittar tillbaka när något ska beställas om.' },
-		{ title: 'Rapporter', text: 'Försäljning, bruttovinst och inköp för vald period. Inga egna sammanställningar i Excel.' },
-		{ title: 'Moms och bokföring', text: 'Momsrapport för utgående moms och ett underlag du kan lämna till redovisaren när månaden är stängd.' },
-		{ title: 'Behörigheter', text: 'Ägaren ser allt. Personalen jobbar i systemet men ser inte inköpspriser eller bokföring, och mekanikerna ser bara sina egna order.' },
-		{ title: 'Dator, surfplatta och mobil', text: 'Det körs i webbläsaren, så det finns inget att installera och ingen uppdatering att komma ihåg. Det funkar lika bra i verkstaden som vid disken.' },
+		{ title: 'Arbetsorder', text: 'Jobb och delar på samma order. Finns inte delen i lager syns det direkt, med en knapp för att beställa. Mekanikern får ett utskrivet arbetsblad utan priser.' },
+		{ title: 'Sök', text: 'Ett sökfält för regnummer, kund, telefonnummer, hylla och däckstorlek.' },
+		{ title: 'Kunder och bilar', text: 'Bilens uppgifter hämtas från regnumret. Kunden och bilen följer med till bokning, däckhotell och arbetsorder.' },
+		{ title: 'I mobilen', text: 'Dagens bokningar, däckhotellet och lagret när du står i verkstaden.' },
+		{ title: 'Behörigheter och logg', text: 'Personalen ser inte inköpspriser eller bokföring. Aktivitetsloggen visar vem som ändrade vad.' },
+		{ title: 'Faktura och kvitto', text: 'Säljkort med rabatt, faktura eller kvitto och momsrapport.' },
 	];
 
 	private readonly defaultPlans: Plan[] = [

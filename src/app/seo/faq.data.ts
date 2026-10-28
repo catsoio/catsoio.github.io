@@ -39,34 +39,34 @@ export const HOME_FAQ: Faq[] = [
 export const VERKSTAD_FAQ: Faq[] = [
 	{
 		q: 'Vad är Catso Verkstad?',
-		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder. Kunder och bilar, lager, däckhotell, bokningar, arbetsorder och fakturor hänger ihop i ett system som du kör i webbläsaren.',
+		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder: tidsbokning, däckhotell, lager, offerter, arbetsorder och försäljning. Det körs i webbläsaren.',
 	},
 	{
 		q: 'Funkar det som däckhotell?',
-		a: 'Ja. Varje hjulset läggs in med regnummer, hyllplats och avgift. Du ser vilka som är betalda, vilka som inte är det och vilka som skulle ha hämtats för länge sedan, och när kunden ringer söker du fram setet på några sekunder.',
+		a: 'Ja. Varje set läggs in med regnummer, hyllplats och avgift. Du ser vilka som inte har betalat och vilka som skulle ha hämtats, och du kan skicka SMS till kunderna inför bytet.',
 	},
 	{
 		q: 'Hur blir en bokning en arbetsorder?',
-		a: 'Du klickar på bokningen när kunden kommer. Då skapas en arbetsorder med kund och bil ifyllda, och delarna tas ur lagret när ordern är klar.',
+		a: 'Du öppnar bokningen när kunden kommer och skapar en arbetsorder. Kund, bil och vad som ska göras följer med.',
 	},
 	{
-		q: 'Kan jag skriva ut faktura och kvitto?',
-		a: 'Ja. En faktura får förfallodatum och betalningsuppgifter, ett kvitto är betalt direkt. Båda får rätt moms och löpande nummer, och i fakturalistan ser du vad som är obetalt eller förfallet.',
+		q: 'Hur godkänner kunden en offert?',
+		a: 'Du skickar offerten som SMS eller mejl. Kunden öppnar länken i mobilen och trycker Godkänn eller Avböj. Du ser svaret på offerten direkt.',
+	},
+	{
+		q: 'Kan jag skicka SMS till kunderna i däckhotellet?',
+		a: 'Ja. Du väljer vilka som ska få det, skriver texten en gång, och namn och regnummer fylls i för varje kund.',
 	},
 	{
 		q: 'Vad ser mekanikerna?',
-		a: 'Mekanikern öppnar arbetsordern i mobilen och ser bara sina egna bilar, utan priser och kunduppgifter. Raderna bockas av när de är gjorda.',
+		a: 'Mekanikern får ett utskrivet arbetsblad med regnummer, vad som ska göras och plats för anteckningar. Inga priser.',
 	},
 	{
 		q: 'Behöver jag installera något?',
-		a: 'Nej. Catso Verkstad körs i webbläsaren på dator, surfplatta och mobil, så det finns inget att installera eller uppdatera.',
+		a: 'Nej. Det körs i webbläsaren på dator, surfplatta och mobil.',
 	},
 	{
-		q: 'Kan jag testa innan jag bestämmer mig?',
-		a: 'Ja. Vi sätter upp en testmiljö åt dig, helst med några av dina egna artiklar och kunder i. Det kostar inget och du förbinder dig inte till något.',
-	},
-	{
-		q: 'Vad kostar Catso Verkstad?',
-		a: 'Hör av dig via formuläret på sidan eller mejla support@catso.io, så berättar vi vad det kostar för er verkstad.',
+		q: 'Vad kostar det?',
+		a: 'Skriv till oss i formuläret eller mejla support@catso.io.',
 	},
 ];

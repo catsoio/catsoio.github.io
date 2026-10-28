@@ -21,91 +21,10 @@ $tread: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width=
 	border-block: 3px solid #11201f;
 }
 
-/* Hero: vit botten med ett stort däck som dekor. */
 .hero {
 	background:
 		radial-gradient(ellipse 60% 55% at 85% 20%, rgba(0, 112, 106, 0.08), transparent 70%),
 		linear-gradient(180deg, #ffffff 0%, #f6faf9 100%);
-}
-
-.tyre-ring {
-	position: absolute;
-	top: -14rem;
-	right: -14rem;
-	width: 42rem;
-	height: 42rem;
-	border-radius: 50%;
-	border: 3.5rem solid #11201f;
-	opacity: 0.045;
-	box-shadow: inset 0 0 0 1.4rem transparent;
-	background: repeating-conic-gradient(from 0deg, transparent 0 5deg, rgba(0, 0, 0, 0.5) 5deg 7deg);
-	pointer-events: none;
-	mask: radial-gradient(circle, transparent 52%, #000 53%);
-	-webkit-mask: radial-gradient(circle, transparent 52%, #000 53%);
-}
-
-.eyebrow {
-	font-family: 'Barlow Condensed', sans-serif;
-	font-weight: 700;
-	font-size: 1rem;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: $teal;
-}
-
-.chip {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.55rem;
-	padding: 0.4rem 0.9rem;
-	border-radius: 999px;
-	background: #e6f3f1;
-	color: #04504b;
-	font-size: 0.9rem;
-	font-weight: 600;
-}
-
-.chip-dot {
-	width: 0.55rem;
-	height: 0.55rem;
-	border-radius: 50%;
-	background: $teal;
-	box-shadow: 0 0 0 4px rgba(0, 112, 106, 0.18);
-}
-
-.photo-frame {
-	overflow: hidden;
-	border-radius: 1.5rem;
-	background: #11201f;
-	box-shadow: 0 30px 60px -30px rgba(13, 27, 27, 0.45);
-}
-
-.hero-photo {
-	aspect-ratio: 4 / 3.1;
-	width: 88%;
-	margin-left: auto;
-}
-
-.hero-screen {
-	position: absolute;
-	left: 0;
-	bottom: -2rem;
-	width: 86%;
-	box-shadow: 0 30px 60px -20px rgba(13, 27, 27, 0.4);
-	border-radius: 0.9rem;
-}
-
-@media (max-width: 1023px) {
-	.hero-screen {
-		position: relative;
-		width: 92%;
-		margin: -3rem 0 0;
-		bottom: 0;
-	}
-
-	.hero-photo {
-		width: 100%;
-	}
 }
 
 /* Skärmbild i ett enkelt fönster. */
@@ -142,100 +61,8 @@ $tread: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width=
 	box-shadow: 0 1px 2px rgba(13, 27, 27, 0.04);
 }
 
-.pain-no {
-	position: absolute;
-	right: 1.2rem;
-	top: 0.4rem;
-	font-family: 'Barlow Condensed', sans-serif;
-	font-size: 5rem;
-	font-weight: 800;
-	line-height: 1;
-	color: #eef3f3;
-}
-
-.tyre-badge {
-	display: grid;
-	place-items: center;
-	flex-shrink: 0;
-	width: 2.6rem;
-	height: 2.6rem;
-	border-radius: 50%;
-	background: #fff;
-	color: $teal;
-	border: 5px solid #11201f;
-	box-sizing: content-box;
-	width: 1.9rem;
-	height: 1.9rem;
-
-	svg {
-		width: 1.1rem;
-		height: 1.1rem;
-	}
-}
-
-.step-no {
-	display: inline-grid;
-	place-items: center;
-	width: 2.6rem;
-	height: 2.6rem;
-	border-radius: 50%;
-	background: $teal;
-	color: #fff;
-	font-family: 'Barlow Condensed', sans-serif;
-	font-weight: 800;
-	font-size: 1.4rem;
-}
-
-.hotel {
-	box-shadow: 0 30px 60px -30px rgba(13, 27, 27, 0.5);
-}
-
-.plate-reg {
-	display: inline-block;
-	padding: 0.15rem 0.6rem;
-	border-radius: 0.3rem;
-	background: #fff;
-	color: #000;
-	border-left: 0.6rem solid #0b4fa8;
-	font-weight: 700;
-	letter-spacing: 0.08em;
-	font-size: 0.95rem;
-}
-
-.status {
-	padding: 0.15rem 0.65rem;
-	border-radius: 999px;
-	font-size: 0.8rem;
-	font-weight: 600;
-	white-space: nowrap;
-}
-
-.status-ok {
-	background: rgba(80, 200, 120, 0.2);
-	color: #9be8b5;
-}
-
-.status-warn {
-	background: rgba(255, 196, 0, 0.2);
-	color: #ffd95c;
-}
-
-.status-late {
-	background: rgba(255, 107, 94, 0.2);
-	color: #ffaaa2;
-}
-
 .cta {
 	background: #0f2524;
-}
-
-.link-arrow {
-	font-weight: 600;
-	color: $teal;
-
-	&:hover {
-		text-decoration: underline;
-	}
 }
 
 .btn {
@@ -319,4 +146,73 @@ $tread: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width=
 		font-size: 0.8rem;
 		font-weight: 500;
 	}
+}
+
+/* Hero: text till vänster, skärmbilden till höger och ut över kanten, på ett band med däckfoto. */
+.hero-band {
+	position: absolute;
+	inset: auto 0 0;
+	height: 30%;
+	background: #0f2524;
+
+
+
+	img {
+		opacity: 0.55;
+	}
+}
+
+/* Dator: fotot ligger bakom skärmbilden och går ut till höger skärmkant. */
+.hero-panel {
+	position: absolute;
+	top: -3.5rem;
+	bottom: -3.5rem;
+	left: 14%;
+	right: -50vw;
+	overflow: hidden;
+	border-radius: 2rem 0 0 2rem;
+	background: #0f2524;
+
+	img {
+		opacity: 0.6;
+	}
+}
+
+@media (min-width: 1024px) {
+	.hero-shot {
+		width: 128%;
+	}
+}
+
+.hero-phone {
+	position: absolute;
+	left: 1rem;
+	bottom: -2rem;
+	width: 19%;
+
+	@media (min-width: 1024px) {
+		left: -2.5rem;
+	}
+}
+
+.feature-phone {
+	position: absolute;
+	right: 0;
+	bottom: -2rem;
+	width: 22%;
+
+	@media (max-width: 767px) {
+		position: relative;
+		width: 55%;
+		margin: -4rem 0 0 auto;
+		bottom: 0;
+	}
+}
+
+.phone {
+	overflow: hidden;
+	border-radius: 1.6rem;
+	border: 6px solid #0d1b1b;
+	background: #0d1b1b;
+	box-shadow: 0 30px 60px -20px rgba(13, 27, 27, 0.5);
 }
