@@ -12,6 +12,7 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { VERKSTAD_FAQ } from '../../seo/faq.data';
 
 interface Feature {
 	id: string;
@@ -63,6 +64,8 @@ export class InventoryLandingComponent implements OnInit {
 	readonly appUrl = '';
 	readonly currentYear = new Date().getFullYear();
 	readonly menuOpen = signal(false);
+
+	readonly faqs = VERKSTAD_FAQ;
 
 	readonly pains = [
 		{ title: 'Var är hjulen?', text: 'Kunden ringer och frågar om bilen är klar. Du går ut och letar bland hyllorna efter rätt set, och hoppas att någon ställde tillbaka det på rätt plats.' },

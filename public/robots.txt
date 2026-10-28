@@ -1,10 +1,9 @@
 User-agent: *
 Allow: /
 
-# Private/app areas
+# Inloggning och adminytor
 Disallow: /login
 Disallow: /signup
-Disallow: /dashboard
 Disallow: /admin
 
 Sitemap: https://catso.io/sitemap.xml

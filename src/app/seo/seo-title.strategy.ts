@@ -20,7 +20,8 @@ export class SeoTitleStrategy extends TitleStrategy {
 	override updateTitle(snapshot: RouterStateSnapshot): void {
 		const pageTitle =
 			this.extractLeafSeoTitle(snapshot.root) ?? this.defaults.siteName;
-		const full = pageTitle.includes(this.defaults.siteName)
+		// Titlar som redan nämner Catso får inget suffix, annars blir de för långa.
+		const full = /catso/i.test(pageTitle)
 			? pageTitle
 			: `${pageTitle} • ${this.defaults.siteName}`;
 		this.title.setTitle(full);

@@ -9,15 +9,11 @@ import {
 	OnInit,
 	PLATFORM_ID,
 } from '@angular/core';
+import { Faq as FAQ, HOME_FAQ } from '../../seo/faq.data';
 
 type NavLink = {
 	label: string;
 	href: string;
-};
-
-type FAQ = {
-	q: string;
-	a: string;
 };
 
 type Sector = {
@@ -87,6 +83,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	sectors: Sector[] = [
 		{
+			title: 'Däck- och bilverkstäder',
+			desc: 'Catso Verkstad samlar lager, däckhotell, bokningar och arbetsorder i ett system, så du slipper leta i pärmar och skriva samma sak flera gånger.',
+			tags: ['Däckhotell', 'Arbetsorder', 'Lager'],
+		},
+		{
 			title: 'Offentlig sektor',
 			desc: 'Kommuner, myndigheter och regioner som vill automatisera handläggning, e-tjänster och intern kommunikation utan att data lämnar den egna miljön.',
 			tags: ['GDPR', 'On-prem', 'Svenska datakällor'],
@@ -103,24 +104,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		},
 	];
 
-	faqs: FAQ[] = [
-		{
-			q: 'Vad är Catso AI & Robotics?',
-			a: 'Vi bygger AI-agenter, appar för e-handel och robotiklösningar för svenska företag och myndigheter. VERA-01 är vår AI-agent för advokatbyråer och Catso AI Sök är vår Shopify-app.',
-		},
-		{
-			q: 'Vad är VERA-01?',
-			a: 'En AI-agent byggd specifikt för svenska advokatbyråer. Den körs lokalt hos er, analyserar ärenden, genererar utkast och söker i svenska rättskällor. Ingen data skickas till externa tjänster.',
-		},
-		{
-			q: 'Bygger ni appar för Shopify?',
-			a: 'Ja, vi är officiell Shopify-partner. Catso AI Sök är vår första app — en sökruta som tolkar kundens fråga och visar produkter som finns i lager. Den installeras direkt i butiken utan ändringar i temat.',
-		},
-		{
-			q: 'Vad kostar det?',
-			a: 'Det beror på produkt, verksamhet och volym. Mejla oss på support@catso.io så pratar vi.',
-		},
-	];
+	faqs: FAQ[] = HOME_FAQ;
 
 	expandedFaq: number | null = null;
 

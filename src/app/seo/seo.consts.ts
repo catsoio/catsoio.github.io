@@ -1,4 +1,58 @@
 import { RouteSEO } from './seo.types';
+import { HOME_FAQ, VERKSTAD_FAQ, faqJsonLd } from './faq.data';
+
+const ORIGIN = 'https://catso.io';
+
+const breadcrumbs = (...items: [name: string, path: string][]) => ({
+	'@type': 'BreadcrumbList',
+	itemListElement: items.map(([name, path], i) => ({
+		'@type': 'ListItem',
+		position: i + 1,
+		name,
+		item: `${ORIGIN}${path}`,
+	})),
+});
+
+/** Startsidan nås på både / och /home. Båda pekar canonical till /. */
+export const HOME_SEO: RouteSEO = {
+	title: 'Catso AI & Robotics | Verkstadssystem, AI-agent och Shopify-appar',
+	description:
+		'Catso bygger Catso Verkstad för däck- och bilverkstäder, VERA-01 för advokatbyråer, AI-sök för Shopify och robotik för industrin. Byggt i Sverige.',
+	canonical: `${ORIGIN}/`,
+	og: { type: 'website', image: `${ORIGIN}/assets/og/catso-og.png` },
+	twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/og/catso-og.png` },
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'WebSite',
+				'@id': `${ORIGIN}/#website`,
+				name: 'Catso AI & Robotics',
+				url: `${ORIGIN}/`,
+				inLanguage: 'sv-SE',
+				publisher: { '@id': `${ORIGIN}/#organization` },
+			},
+			{
+				'@type': 'ItemList',
+				name: 'Catso produkter',
+				itemListElement: [
+					['Catso Verkstad: verkstadssystem för däck- och bilverkstäder', '/apps/verkstad'],
+					['VERA-01: lokal AI-agent för advokatbyråer', '/vera-01'],
+					['Catso AI Sök: AI-sök och shoppingassistent för Shopify', '/shopify/apps/ai-search'],
+					['Hemmafest: skapa och hitta fester', '/hemmafest'],
+					['Poängjakten: nå Sveriges gymnasieelever', '/poangjakten/sponsor'],
+				].map(([name, path], i) => ({
+					'@type': 'ListItem',
+					position: i + 1,
+					name,
+					url: `${ORIGIN}${path}`,
+				})),
+			},
+			faqJsonLd(HOME_FAQ),
+		],
+	},
+};
 
 // seo/hemmafest.seo.ts
 export const HEMMAFEST_SEO: RouteSEO = {
@@ -37,17 +91,35 @@ export const HEMMAFEST_BUSINESS_SEO: RouteSEO = {
 	},
 };
 
+export const HEMMAFEST_PRIVACY_SEO: RouteSEO = {
+	title: 'Integritetspolicy för Hemmafest | Catso',
+	description: 'Så hanterar Hemmafest dina personuppgifter.',
+	robots: 'index,follow',
+};
+
+export const HEMMAFEST_TERMS_SEO: RouteSEO = {
+	title: 'Användarvillkor för Hemmafest | Catso',
+	description: 'Villkoren för att använda Hemmafest.',
+	robots: 'index,follow',
+};
+
+export const HEMMAFEST_DELETE_SEO: RouteSEO = {
+	title: 'Radera ditt Hemmafest-konto | Catso',
+	description: 'Begär att ditt Hemmafest-konto och dina uppgifter raderas.',
+	robots: 'noindex,follow',
+};
+
 export const POANGJAKTEN_SEO: RouteSEO = {
 	title: 'Poängjakten — Tävla och nå studenter | Catso',
 	description:
 		'Poängjakten från Catso: gymnasieelever tävlar om att skapa innehåll åt ert varumärke. Bli partner och nå Sveriges studenter.',
 	og: {
 		type: 'website',
-		image: 'https://catso.io/assets/og/catso-og.jpg',
+		image: 'https://catso.io/assets/og/catso-og.png',
 	},
 	twitter: {
 		card: 'summary_large_image',
-		image: 'https://catso.io/assets/og/catso-og.jpg',
+		image: 'https://catso.io/assets/og/catso-og.png',
 	},
 	jsonLd: {
 		'@context': 'https://schema.org',
@@ -65,6 +137,7 @@ export const KOM_IGANG_SEO: RouteSEO = {
 	title: 'Manual: så börjar ni med Catso Verkstad',
 	description:
 		'Kort manual med bilder: åtta steg för att komma igång med Catso Verkstad.',
+	robots: 'noindex,follow',
 };
 
 export const VERKSTAD_INFO_SEO: RouteSEO = {
@@ -75,28 +148,51 @@ export const VERKSTAD_INFO_SEO: RouteSEO = {
 };
 
 export const INVENTORY_SEO: RouteSEO = {
-	title: 'Catso Verkstad | Lager, däckhotell, bokningar och arbetsorder',
+	title: 'Verkstadssystem för däckfirmor och bilverkstäder | Catso Verkstad',
 	description:
-		'Verksamhetssystem för däckfirmor och verkstäder: lager, däckhotell, bokningar och arbetsorder.',
-	og: { type: 'product', image: 'https://catso.io/assets/og/catso-verkstad-og.jpg' },
+		'Catso Verkstad samlar däckhotell, lager, bokningar, arbetsorder och fakturor i ett system som körs i webbläsaren. Be om en kostnadsfri testmiljö.',
+	canonical: `${ORIGIN}/apps/verkstad`,
+	og: { type: 'product', image: `${ORIGIN}/assets/og/catso-verkstad-og.jpg` },
 	twitter: {
 		card: 'summary_large_image',
-		image: 'https://catso.io/assets/og/catso-verkstad-og.jpg',
+		image: `${ORIGIN}/assets/og/catso-verkstad-og.jpg`,
 	},
 	robots: 'index,follow',
 	jsonLd: {
 		'@context': 'https://schema.org',
-		'@type': 'SoftwareApplication',
-		name: 'Catso Verkstad',
-		applicationCategory: 'BusinessApplication',
-		operatingSystem: 'Web',
-		url: 'https://catso.io/apps/verkstad',
-		// TILLFÄLLIGT BORTTAGET (priser):
-		// offers: {
-		// 	'@type': 'AggregateOffer',
-		// 	lowPrice: '495',
-		// 	highPrice: '1295',
-		// 	priceCurrency: 'SEK',
-		// },
+		'@graph': [
+			{
+				'@type': 'SoftwareApplication',
+				'@id': `${ORIGIN}/apps/verkstad#app`,
+				name: 'Catso Verkstad',
+				alternateName: 'Verkstadssystem för däckfirmor och bilverkstäder',
+				description:
+					'Verkstadssystem med däckhotell, lager, bokningar, arbetsorder, fakturor och kundregister. Körs i webbläsaren på dator, surfplatta och mobil.',
+				applicationCategory: 'BusinessApplication',
+				operatingSystem: 'Web',
+				inLanguage: 'sv-SE',
+				url: `${ORIGIN}/apps/verkstad`,
+				image: `${ORIGIN}/assets/og/catso-verkstad-og.jpg`,
+				screenshot: `${ORIGIN}/assets/imgs/dacklager/desktop-dashboard.webp`,
+				featureList: [
+					'Däckhotell med regnummer, hyllplats och avgift',
+					'Lager med saldo, hyllplats och varning för lågt lager',
+					'Bokningskalender per mekaniker',
+					'Arbetsorder med mobilvy för mekaniker',
+					'Faktura och kvitto med moms och löpande nummer',
+					'Kunder, bilar och leverantörer',
+				],
+				publisher: { '@id': `${ORIGIN}/#organization` },
+				// TILLFÄLLIGT BORTTAGET (priser):
+				// offers: {
+				// 	'@type': 'AggregateOffer',
+				// 	lowPrice: '495',
+				// 	highPrice: '1295',
+				// 	priceCurrency: 'SEK',
+				// },
+			},
+			faqJsonLd(VERKSTAD_FAQ),
+			breadcrumbs(['Catso', '/'], ['Catso Verkstad', '/apps/verkstad']),
+		],
 	},
 };

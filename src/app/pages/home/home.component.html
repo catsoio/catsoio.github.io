@@ -4,12 +4,12 @@
 		class="fixed top-0 left-0 right-0 z-50 w-full border-b border-white/10 bg-black/20 backdrop-blur supports-[backdrop-filter]:bg-black/10"
 	>
 		<nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
-			<div class="flex items-center gap-3 shrink-0">
+			<a href="/" class="flex items-center gap-3 shrink-0">
 				<img src="/assets/imgs/catso-logo-blackwhite.png" class="h-10 w-10 invert" alt="Catso" />
 				<span class="text-base font-semibold tracking-tight hidden sm:inline text-white"
 					>Catso AI & Robotics</span
 				>
-			</div>
+			</a>
 
 			<div class="hidden lg:flex items-center gap-6">
 				<a
@@ -109,8 +109,8 @@
 				</h1>
 
 				<p class="mt-6 max-w-xl text-lg leading-relaxed text-white/55 md:text-xl">
-					Vi bygger AI-agenter för juridik och offentlig sektor, appar för e-handel och
-					robotik för industrin. Byggt i Sverige, med datahantering inom EU.
+					Vi bygger verkstadssystem för däck- och bilverkstäder, AI-agenter för advokatbyråer,
+					appar för Shopify och robotik för industrin. Byggt i Sverige, med datahantering inom EU.
 				</p>
 
 				<div class="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -158,12 +158,47 @@
 			<div class="mb-12">
 				<h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Vad vi bygger</h2>
 				<p class="mt-3 text-black/50 text-lg max-w-2xl">
-					Tre områden. AI-agenter för organisationer med komplexa arbetsflöden, appar för
-					e-handel och robotik för industrin.
+					Fyra områden: system för verkstäder, AI-agenter för organisationer med tung
+					dokumenthantering, appar för e-handel och robotik för industrin.
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+			<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+				<!-- Verkstad -->
+				<div class="rounded-3xl border border-black/10 bg-black/[0.02] p-10 flex flex-col">
+					<span class="inline-flex w-fit items-center rounded-full border border-black/10 bg-black/[0.04] px-3 py-1 text-xs font-medium text-black/55 mb-6">
+						Verkstadssystem
+					</span>
+					<h3 class="text-2xl font-semibold leading-snug">Hela verkstaden i ett system.</h3>
+					<p class="mt-4 text-black/50 leading-relaxed">
+						Catso Verkstad är systemet för däckfirmor och bilverkstäder. Lager, däckhotell,
+						bokningar, arbetsorder och fakturor på ett ställe, så du vet var hjulen står och vad
+						som är klart.
+					</p>
+					<ul class="mt-6 space-y-3 text-sm text-black/55">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Däckhotell med regnummer och hyllplats
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Bokning blir arbetsorder med ett klick
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-black/35 shrink-0"></span>
+							Körs i webbläsaren, inget att installera
+						</li>
+					</ul>
+					<div class="mt-8">
+						<a
+							href="/apps/verkstad"
+							class="inline-flex items-center gap-2 rounded-2xl bg-black text-white hover:bg-black/90 h-11 px-5 text-sm font-medium transition-colors"
+						>
+							Se Catso Verkstad
+						</a>
+					</div>
+				</div>
+
 				<!-- AI-agenter -->
 				<div class="rounded-3xl bg-black text-white p-10 flex flex-col">
 					<span
@@ -172,12 +207,11 @@
 						AI-agenter
 					</span>
 					<h3 class="text-2xl font-semibold leading-snug">
-						Agenter som faktiskt förstår er verksamhet.
+						AI-agenter för tunga arbetsflöden.
 					</h3>
 					<p class="mt-4 text-white/50 leading-relaxed">
-						Vi bygger AI-agenter anpassade för specifika branscher. VERA-01 är vår första, byggd för
-						svenska advokatbyråer. Näst ut är agenter för offentlig sektor och industri. Allt kör
-						lokalt — ingen data till molnet.
+						Vår första är VERA-01, byggd för svenska advokatbyråer. Näst ut är agenter för offentlig
+						sektor och industri. Allt körs lokalt, så ingen data går till molnet.
 					</p>
 					<ul class="mt-6 space-y-3 text-sm text-white/55">
 						<li class="flex items-start gap-2">
@@ -198,7 +232,7 @@
 							href="/vera-01"
 							class="inline-flex items-center gap-2 rounded-2xl bg-white text-black hover:bg-white/90 h-11 px-5 text-sm font-medium transition-colors"
 						>
-							Se VERA-01
+							Se VERA-01 för advokatbyråer
 						</a>
 					</div>
 				</div>
@@ -251,7 +285,7 @@
 					>
 						Robotik
 					</span>
-					<h3 class="text-2xl font-semibold leading-snug">Robotar som vet vad de gör.</h3>
+					<h3 class="text-2xl font-semibold leading-snug">Robotar som testas innan de körs på riktigt.</h3>
 					<p class="mt-4 text-black/50 leading-relaxed">
 						Vi bygger styrningen för autonoma robotflottor. Jobbet börjar med en digital tvilling av
 						er anläggning — testa och validera i simulering innan en enda robot rör sig på golvet.
@@ -291,11 +325,11 @@
 			<div class="mb-12">
 				<h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Vi jobbar med</h2>
 				<p class="mt-3 text-white/45 text-lg max-w-2xl">
-					Tre sektorer där vi ser störst nytta och faktiskt levererar.
+					Fyra branscher där vi gör störst nytta.
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 				<div
 					*ngFor="let sector of sectors"
 					class="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-8"
@@ -413,6 +447,8 @@
 					<button
 						(click)="toggleFaq(i)"
 						class="w-full flex items-center justify-between py-5 text-left gap-4"
+						[attr.aria-expanded]="expandedFaq === i"
+						[attr.aria-controls]="'faq-' + i"
 					>
 						<span class="text-base font-medium">{{ faq.q }}</span>
 						<svg
@@ -426,7 +462,11 @@
 							<path d="M19 9l-7 7-7-7" />
 						</svg>
 					</button>
-					<div *ngIf="expandedFaq === i" class="pb-5 text-sm text-black/55 leading-relaxed">
+					<div
+						[id]="'faq-' + i"
+						[hidden]="expandedFaq !== i"
+						class="pb-5 text-sm text-black/55 leading-relaxed"
+					>
 						{{ faq.a }}
 					</div>
 				</div>
@@ -507,12 +547,15 @@
 						<span class="text-base font-semibold tracking-tight">Catso AI & Robotics</span>
 					</div>
 					<p class="mt-4 max-w-sm text-sm text-black/40">
-						Vi bygger AI-agenter, appar för e-handel och robotik i Sverige.
+						Vi bygger verkstadssystem, AI-agenter, Shopify-appar och robotik i Sverige.
 					</p>
 				</div>
 				<div>
 					<h4 class="text-sm font-semibold text-black">Produkter</h4>
 					<ul class="mt-3 space-y-2 text-sm text-black/45">
+						<li>
+							<a href="/apps/verkstad" class="hover:text-black transition-colors">Catso Verkstad</a>
+						</li>
 						<li><a href="/vera-01" class="hover:text-black transition-colors">VERA-01</a></li>
 						<li>
 							<a href="/shopify/apps/ai-search" class="hover:text-black transition-colors"

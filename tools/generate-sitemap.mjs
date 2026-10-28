@@ -1,32 +1,54 @@
-import { writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
 
-const origin = 'https://catso.io'; 
-const now = new Date().toISOString();
+const origin = 'https://catso.io';
+const out = './dist/catsoio/browser';
 
+// Bara sidor som ska synas i sökresultat. Google ignorerar priority/changefreq,
+// och ett påhittat lastmod skadar mer än det hjälper, så de lämnas bort.
 const routes = [
-	{ path: '/home', priority: '1.0' },
-	{ path: '/apps/verkstad', priority: '0.9' },
-	{ path: '/vera-01', priority: '0.9' },
-	{ path: '/hemmafest', priority: '0.7' },
-	{ path: '/poangjakten/sponsor', priority: '0.7' },
-	{ path: '/privacy', priority: '0.3' },
-	{ path: '/terms', priority: '0.3' },
+	'/',
+	'/apps/verkstad',
+	'/vera-01',
+	'/shopify/apps/ai-search',
+	'/hemmafest',
+	'/hemmafest/business',
+	'/poangjakten/sponsor',
 ];
 
-const urlXml = (loc, lastmod, priority = '0.8', changefreq = 'weekly') => `
-  <url>
-    <loc>${origin}${loc}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>`;
+// GitHub Pages kan inte göra 301. Utan en fil svarar de här adresserna 404,
+// så vi lägger en sida med canonical + meta refresh som sökmotorer följer.
+const redirects = {
+	'/home': '/',
+	'/verkstad': '/apps/verkstad',
+	'/dacklager': '/apps/verkstad',
+	'/inventory': '/apps/verkstad',
+	'/shopify/ai-search': '/shopify/apps/ai-search',
+};
 
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes
-	.map((r) => urlXml(r.path, now, r.priority))
-	.join('')}
-</urlset>`;
-
-await writeFile('./dist/catsoio/browser/sitemap.xml', xml);
-
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${routes.map((r) => `  <url><loc>${origin}${r}</loc></url>`).join('\n')}
+</urlset>
+`;
+await writeFile(join(out, 'sitemap.xml'), sitemap);
 console.log('✔ sitemap.xml written');
+
+const stub = (to) => `<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<title>Omdirigerar till Catso</title>
+<link rel="canonical" href="${origin}${to}">
+<meta http-equiv="refresh" content="0; url=${to}">
+</head>
+<body><a href="${to}">Fortsätt hit</a></body>
+</html>
+`;
+
+for (const [from, to] of Object.entries(redirects)) {
+	const file = join(out, from, 'index.html');
+	await mkdir(dirname(file), { recursive: true });
+	await writeFile(file, stub(to));
+}
+console.log(`✔ ${Object.keys(redirects).length} redirect pages written`);

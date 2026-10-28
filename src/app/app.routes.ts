@@ -3,6 +3,10 @@ import { RouteSEO } from './seo/seo.types';
 import {
   HEMMAFEST_SEO,
   HEMMAFEST_BUSINESS_SEO,
+  HEMMAFEST_DELETE_SEO,
+  HEMMAFEST_PRIVACY_SEO,
+  HEMMAFEST_TERMS_SEO,
+  HOME_SEO,
   INVENTORY_SEO,
   VERKSTAD_INFO_SEO,
   KOM_IGANG_SEO,
@@ -10,29 +14,16 @@ import {
 } from './seo/seo.consts';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-
+  {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
+    data: { seo: HOME_SEO },
+  },
   {
     path: 'home',
     loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
-    data: {
-      seo: {
-        title: 'Catso AI & Robotics — AI-agenter och robotik för svensk verksamhet',
-        description:
-          'Vi bygger AI-agenter för offentlig sektor och juridik, och robotiklösningar för industrin. VERA-01 är vår första produkt.',
-        og: { type: 'website', image: 'https://catso.io/assets/og/catso-og.jpg' },
-        twitter: {
-          card: 'summary_large_image',
-          image: 'https://catso.io/assets/og/catso-og.jpg',
-        },
-        jsonLd: {
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          name: 'Catso AI & Robotics',
-          url: 'https://catso.io',
-        },
-      } as RouteSEO,
-    },
+    data: { seo: HOME_SEO },
   },
   {
     path: 'pricing',
@@ -132,13 +123,13 @@ export const routes: Routes = [
     path: 'hemmafest/privacy',
     loadComponent: () =>
       import('./pages/hemmafest/policy/policy.component').then((m) => m.PolicyComponent),
-    data: { seo: HEMMAFEST_SEO },
+    data: { seo: HEMMAFEST_PRIVACY_SEO },
   },
   {
     path: 'hemmafest/terms',
     loadComponent: () =>
       import('./pages/hemmafest/terms/terms.component').then((m) => m.TermsComponent),
-    data: { seo: HEMMAFEST_SEO },
+    data: { seo: HEMMAFEST_TERMS_SEO },
   },
   {
     path: 'hemmafest/request-delete-account',
@@ -146,7 +137,7 @@ export const routes: Routes = [
       import('./pages/hemmafest/request-delete-account/request-delete-account').then(
         (m) => m.RequestDeleteAccount,
       ),
-    data: { seo: HEMMAFEST_SEO },
+    data: { seo: HEMMAFEST_DELETE_SEO },
   },
   { path: 'dacklager', redirectTo: 'apps/verkstad', pathMatch: 'full' },
   { path: 'inventory', redirectTo: 'apps/verkstad', pathMatch: 'full' },
@@ -222,12 +213,12 @@ export const routes: Routes = [
       seo: {
         title: 'Privacy Policy — Catso',
         description: 'How Catso collects, uses, and protects your data.',
-        og: { type: 'article', image: '/assets/og/catso-legal-1200x630.png' },
+        og: { type: 'article', image: '/assets/og/catso-og.png' },
         twitter: {
           card: 'summary_large_image',
-          image: '/assets/og/catso-legal-1200x630.png',
+          image: '/assets/og/catso-og.png',
         },
-        robots: 'index,follow',
+        robots: 'noindex,follow',
       } as RouteSEO,
     },
   },
@@ -239,12 +230,12 @@ export const routes: Routes = [
       seo: {
         title: 'Terms of Service — Catso',
         description: 'The terms and conditions that govern your use of Catso.',
-        og: { type: 'article', image: '/assets/og/catso-legal-1200x630.png' },
+        og: { type: 'article', image: '/assets/og/catso-og.png' },
         twitter: {
           card: 'summary_large_image',
-          image: '/assets/og/catso-legal-1200x630.png',
+          image: '/assets/og/catso-og.png',
         },
-        robots: 'index,follow',
+        robots: 'noindex,follow',
       } as RouteSEO,
     },
   },
@@ -267,5 +258,5 @@ export const routes: Routes = [
       } as RouteSEO,
     },
   },
-  { path: '**', redirectTo: 'home' },
+  { path: '**', redirectTo: '' },
 ];
