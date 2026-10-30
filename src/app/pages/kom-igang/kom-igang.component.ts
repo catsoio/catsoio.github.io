@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID } from '@angula
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
-const PRODUCT_NAME = 'Catso Verkstad';
+const PRODUCT_NAME = 'Catso Axle';
 const IMG = '/assets/imgs/manual';
 
 interface Step {

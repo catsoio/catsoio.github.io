@@ -1,5 +1,5 @@
 import { RouteSEO } from './seo.types';
-import { HOME_FAQ, VERKSTAD_FAQ, faqJsonLd } from './faq.data';
+import { HOME_FAQ, AXLE_FAQ, faqJsonLd } from './faq.data';
 
 const ORIGIN = 'https://catso.io';
 
@@ -17,7 +17,7 @@ const breadcrumbs = (...items: [name: string, path: string][]) => ({
 export const HOME_SEO: RouteSEO = {
 	title: 'Catso AI & Robotics | Verkstadssystem, AI-agent och Shopify-appar',
 	description:
-		'Catso bygger Catso Verkstad för däck- och bilverkstäder, VERA-01 för advokatbyråer, AI-sök för Shopify och robotik för industrin. Byggt i Sverige.',
+		'Catso bygger Catso Axle för däck- och bilverkstäder, VERA-01 för advokatbyråer, AI-sök för Shopify och robotik för industrin. Byggt i Sverige.',
 	canonical: `${ORIGIN}/`,
 	og: { type: 'website', image: `${ORIGIN}/assets/og/catso-og.png` },
 	twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/og/catso-og.png` },
@@ -37,7 +37,7 @@ export const HOME_SEO: RouteSEO = {
 				'@type': 'ItemList',
 				name: 'Catso produkter',
 				itemListElement: [
-					['Catso Verkstad: verkstadssystem för däck- och bilverkstäder', '/apps/verkstad'],
+					['Catso Axle: verkstadssystem för däck- och bilverkstäder', '/apps/axle'],
 					['VERA-01: lokal AI-agent för advokatbyråer', '/vera-01'],
 					['Catso AI Sök: AI-sök och shoppingassistent för Shopify', '/shopify/apps/ai-search'],
 					['Hemmafest: skapa och hitta fester', '/hemmafest'],
@@ -134,28 +134,28 @@ export const POANGJAKTEN_SEO: RouteSEO = {
 
 /** Genomgång av hur systemet hänger ihop, att visa för en kund. Inte för sökmotorer. */
 export const KOM_IGANG_SEO: RouteSEO = {
-	title: 'Manual: så börjar ni med Catso Verkstad',
+	title: 'Manual: så börjar ni med Catso Axle',
 	description:
-		'Kort manual med bilder: åtta steg för att komma igång med Catso Verkstad.',
+		'Kort manual med bilder: åtta steg för att komma igång med Catso Axle.',
 	robots: 'noindex,follow',
 };
 
-export const VERKSTAD_INFO_SEO: RouteSEO = {
-	title: 'Så hänger verkstaden ihop | Catso Verkstad',
+export const AXLE_INFO_SEO: RouteSEO = {
+	title: 'Så hänger verkstaden ihop | Catso Axle',
 	description:
-		'Så hänger kund, bil, bokning, arbetsorder, säljkort, däckhotell, lager och faktura ihop i Catso Verkstad.',
+		'Så hänger kund, bil, bokning, arbetsorder, säljkort, däckhotell, lager och faktura ihop i Catso Axle.',
 	robots: 'noindex,follow',
 };
 
-export const INVENTORY_SEO: RouteSEO = {
-	title: 'Verkstadssystem för däckfirmor och bilverkstäder | Catso Verkstad',
+export const AXLE_SEO: RouteSEO = {
+	title: 'Verkstadssystem för däckfirmor och bilverkstäder | Catso Axle',
 	description:
-		'Catso Verkstad samlar däckhotell, lager, bokningar, arbetsorder och fakturor i ett system som körs i webbläsaren. Be om en kostnadsfri testmiljö.',
-	canonical: `${ORIGIN}/apps/verkstad`,
-	og: { type: 'product', image: `${ORIGIN}/assets/og/catso-verkstad-og.jpg` },
+		'Catso Axle samlar däckhotell, lager, bokningar, arbetsorder och fakturor i ett system som körs i webbläsaren. Be om en kostnadsfri testmiljö.',
+	canonical: `${ORIGIN}/apps/axle`,
+	og: { type: 'product', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
 	twitter: {
 		card: 'summary_large_image',
-		image: `${ORIGIN}/assets/og/catso-verkstad-og.jpg`,
+		image: `${ORIGIN}/assets/og/catso-axle-og.jpg`,
 	},
 	robots: 'index,follow',
 	jsonLd: {
@@ -163,16 +163,16 @@ export const INVENTORY_SEO: RouteSEO = {
 		'@graph': [
 			{
 				'@type': 'SoftwareApplication',
-				'@id': `${ORIGIN}/apps/verkstad#app`,
-				name: 'Catso Verkstad',
+				'@id': `${ORIGIN}/apps/axle#app`,
+				name: 'Catso Axle',
 				alternateName: 'Verkstadssystem för däckfirmor och bilverkstäder',
 				description:
 					'Verkstadssystem med däckhotell, lager, bokningar, arbetsorder, fakturor och kundregister. Körs i webbläsaren på dator, surfplatta och mobil.',
 				applicationCategory: 'BusinessApplication',
 				operatingSystem: 'Web',
 				inLanguage: 'sv-SE',
-				url: `${ORIGIN}/apps/verkstad`,
-				image: `${ORIGIN}/assets/og/catso-verkstad-og.jpg`,
+				url: `${ORIGIN}/apps/axle`,
+				image: `${ORIGIN}/assets/og/catso-axle-og.jpg`,
 				screenshot: `${ORIGIN}/assets/imgs/dacklager/desktop-dashboard.webp`,
 				featureList: [
 					'Däckhotell med regnummer, hyllplats och avgift',
@@ -191,8 +191,8 @@ export const INVENTORY_SEO: RouteSEO = {
 				// 	priceCurrency: 'SEK',
 				// },
 			},
-			faqJsonLd(VERKSTAD_FAQ),
-			breadcrumbs(['Catso', '/'], ['Catso Verkstad', '/apps/verkstad']),
+			faqJsonLd(AXLE_FAQ),
+			breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle']),
 		],
 	},
 };

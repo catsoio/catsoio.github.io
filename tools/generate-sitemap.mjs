@@ -8,7 +8,7 @@ const out = './dist/catsoio/browser';
 // och ett påhittat lastmod skadar mer än det hjälper, så de lämnas bort.
 const routes = [
 	'/',
-	'/apps/verkstad',
+	'/apps/axle',
 	'/vera-01',
 	'/shopify/apps/ai-search',
 	'/hemmafest',
@@ -20,9 +20,12 @@ const routes = [
 // så vi lägger en sida med canonical + meta refresh som sökmotorer följer.
 const redirects = {
 	'/home': '/',
-	'/verkstad': '/apps/verkstad',
-	'/dacklager': '/apps/verkstad',
-	'/inventory': '/apps/verkstad',
+	'/verkstad': '/apps/axle',
+	'/apps/verkstad': '/apps/axle',
+	'/verkstad/kom-igang': '/axle/kom-igang',
+	'/verkstad/info': '/axle/info',
+	'/dacklager': '/apps/axle',
+	'/inventory': '/apps/axle',
 	'/shopify/ai-search': '/shopify/apps/ai-search',
 };
 

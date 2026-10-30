@@ -12,7 +12,7 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { VERKSTAD_FAQ } from '../../seo/faq.data';
+import { AXLE_FAQ } from '../../seo/faq.data';
 
 interface Feature {
 	id: string;
@@ -42,20 +42,20 @@ interface Catalog {
 type FormState = 'idle' | 'sending' | 'sent' | 'error';
 
 const MANUAL = '/assets/imgs/manual';
-const PHOTO = '/assets/imgs/verkstad';
+const PHOTO = '/assets/imgs/axle';
 
 /** Produktnamnet står på ett ställe så det är lätt att byta. */
-export const PRODUCT_NAME = 'Catso Verkstad';
+export const PRODUCT_NAME = 'Catso Axle';
 
 @Component({
-	selector: 'app-inventory-landing',
+	selector: 'app-axle-landing',
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [CommonModule, RouterLink, ReactiveFormsModule],
-	templateUrl: './inventory-landing.component.html',
-	styleUrl: './inventory-landing.component.scss',
+	templateUrl: './axle-landing.component.html',
+	styleUrl: './axle-landing.component.scss',
 })
-export class InventoryLandingComponent implements OnInit {
+export class AxleLandingComponent implements OnInit {
 	private readonly http = inject(HttpClient);
 	private readonly fb = inject(FormBuilder);
 	private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -68,7 +68,7 @@ export class InventoryLandingComponent implements OnInit {
 	readonly currentYear = new Date().getFullYear();
 	readonly menuOpen = signal(false);
 
-	readonly faqs = VERKSTAD_FAQ;
+	readonly faqs = AXLE_FAQ;
 
 	readonly features: Feature[] = [
 

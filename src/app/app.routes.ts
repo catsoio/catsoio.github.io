@@ -7,8 +7,8 @@ import {
   HEMMAFEST_PRIVACY_SEO,
   HEMMAFEST_TERMS_SEO,
   HOME_SEO,
-  INVENTORY_SEO,
-  VERKSTAD_INFO_SEO,
+  AXLE_SEO,
+  AXLE_INFO_SEO,
   KOM_IGANG_SEO,
   POANGJAKTEN_SEO,
 } from './seo/seo.consts';
@@ -82,25 +82,28 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'apps/verkstad',
+    path: 'apps/axle',
     loadComponent: () =>
-      import('./pages/inventory-landing/inventory-landing.component').then(
-        (m) => m.InventoryLandingComponent,
+      import('./pages/axle-landing/axle-landing.component').then(
+        (m) => m.AxleLandingComponent,
       ),
-    data: { seo: INVENTORY_SEO },
+    data: { seo: AXLE_SEO },
   },
-  { path: 'verkstad', redirectTo: 'apps/verkstad', pathMatch: 'full' },
+  { path: 'verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
+  { path: 'apps/verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
+  { path: 'verkstad/kom-igang', redirectTo: 'axle/kom-igang', pathMatch: 'full' },
+  { path: 'verkstad/info', redirectTo: 'axle/info', pathMatch: 'full' },
   {
-    path: 'verkstad/kom-igang',
+    path: 'axle/kom-igang',
     loadComponent: () =>
       import('./pages/kom-igang/kom-igang.component').then((m) => m.KomIgangComponent),
     data: { seo: KOM_IGANG_SEO },
   },
   {
-    path: 'verkstad/info',
+    path: 'axle/info',
     loadComponent: () =>
-      import('./pages/verkstad-info/verkstad-info.component').then((m) => m.VerkstadInfoComponent),
-    data: { seo: VERKSTAD_INFO_SEO },
+      import('./pages/axle-info/axle-info.component').then((m) => m.AxleInfoComponent),
+    data: { seo: AXLE_INFO_SEO },
   },
   {
     path: 'poangjakten/sponsor',
@@ -139,8 +142,8 @@ export const routes: Routes = [
       ),
     data: { seo: HEMMAFEST_DELETE_SEO },
   },
-  { path: 'dacklager', redirectTo: 'apps/verkstad', pathMatch: 'full' },
-  { path: 'inventory', redirectTo: 'apps/verkstad', pathMatch: 'full' },
+  { path: 'dacklager', redirectTo: 'apps/axle', pathMatch: 'full' },
+  { path: 'inventory', redirectTo: 'apps/axle', pathMatch: 'full' },
   {
     path: 'admin',
     loadComponent: () => import('./pages/admin/admin.component').then((m) => m.AdminComponent),

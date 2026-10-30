@@ -34,15 +34,15 @@
   <header class="fixed inset-x-0 top-0 z-50 border-b border-[#e3eaea] bg-white/90 backdrop-blur">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3" aria-label="Huvudmeny">
       <a routerLink="/" class="flex items-center gap-3">
-        <img src="assets/imgs/store-listing/catso-logo.png" alt="Catso" class="h-6 w-auto invert" />
+        <img src="assets/imgs/axle/axle-logo.svg" alt="Axle" class="h-6 w-auto" />
         <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
       </a>
       <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
-        <a routerLink="/apps/verkstad" fragment="funktioner" class="hover:text-[#00706a]">Funktioner</a>
-        <a routerLink="/apps/verkstad" fragment="fragor" class="hover:text-[#00706a]">Frågor</a>
-        <a routerLink="/verkstad/kom-igang" class="hover:text-[#00706a]">Manual</a>
+        <a routerLink="/apps/axle" fragment="funktioner" class="hover:text-[#00706a]">Funktioner</a>
+        <a routerLink="/apps/axle" fragment="fragor" class="hover:text-[#00706a]">Frågor</a>
+        <a routerLink="/axle/kom-igang" class="hover:text-[#00706a]">Manual</a>
         <!-- TILLFÄLLIGT BORTTAGET (priser):
-        <a routerLink="/apps/verkstad" fragment="priser" class="hover:text-[#00706a]">Priser</a>
+        <a routerLink="/apps/axle" fragment="priser" class="hover:text-[#00706a]">Priser</a>
         -->
       </div>
       <div class="flex items-center gap-2">
@@ -51,7 +51,7 @@
             >Logga in</a
           >
         }
-        <a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-primary !px-5 !py-2 !text-sm">Kontakta oss</a>
+        <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary !px-5 !py-2 !text-sm">Kontakta oss</a>
         <button
           type="button"
           class="grid h-10 w-10 place-items-center rounded-lg border border-[#d5e0e0] text-[#0d1b1b] md:hidden"
@@ -67,8 +67,8 @@
     </nav>
     @if (menuOpen()) {
       <div class="space-y-1 border-t border-[#e3eaea] bg-white px-4 py-3 text-lg md:hidden">
-        <a routerLink="/apps/verkstad" fragment="funktioner" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Funktioner</a>
-        <a routerLink="/verkstad/kom-igang" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Manual</a>
+        <a routerLink="/apps/axle" fragment="funktioner" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Funktioner</a>
+        <a routerLink="/axle/kom-igang" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Manual</a>
         @if (appUrl) {
           <a [href]="appUrl" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Logga in</a>
         }
@@ -91,10 +91,10 @@
             Däckhotell, tidsbokning, lager, offerter och arbetsorder. Körs i webbläsaren på dator och mobil.
           </p>
           <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a routerLink="/apps/verkstad" fragment="kontakt" class="btn btn-primary">Kontakta oss</a>
-            <a routerLink="/verkstad/kom-igang" class="btn btn-outline">Manual</a>
+            <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary">Kontakta oss</a>
+            <a routerLink="/axle/kom-igang" class="btn btn-outline">Manual</a>
             <!-- TILLFÄLLIGT BORTTAGET (priser):
-            <a routerLink="/apps/verkstad" fragment="priser" class="btn btn-outline">Priser</a>
+            <a routerLink="/apps/axle" fragment="priser" class="btn btn-outline">Priser</a>
             -->
           </div>
         </div>
@@ -170,7 +170,7 @@
                   <li>{{ f }}</li>
                 }
               </ul>
-              <a routerLink="/apps/verkstad" fragment="kontakt" class="btn mt-auto" [class]="p.highlight ? 'btn-primary' : 'btn-outline'" (click)="choosePlan(p.name)">
+              <a routerLink="/apps/axle" fragment="kontakt" class="btn mt-auto" [class]="p.highlight ? 'btn-primary' : 'btn-outline'" (click)="choosePlan(p.name)">
                 Kontakta oss om {{ p.name }}
               </a>
             </div>

@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	navLinks: NavLink[] = [
-		{ label: 'Catso Verkstad', href: '/apps/verkstad' },
+		{ label: 'Catso Axle', href: '/apps/axle' },
 		{ label: 'Produkter', href: '#products' },
 		{ label: 'Robotik', href: '#robotics' },
 		{ label: 'Kontakt', href: '#contact' },
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	sectors: Sector[] = [
 		{
 			title: 'Däck- och bilverkstäder',
-			desc: 'Catso Verkstad samlar lager, däckhotell, bokningar och arbetsorder i ett system, så du slipper leta i pärmar och skriva samma sak flera gånger.',
+			desc: 'Catso Axle samlar lager, däckhotell, bokningar och arbetsorder i ett system, så du slipper leta i pärmar och skriva samma sak flera gånger.',
 			tags: ['Däckhotell', 'Arbetsorder', 'Lager'],
 		},
 		{

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-/** Produktnamnet står på samma sätt som på sidan /apps/verkstad. */
-const PRODUCT_NAME = 'Catso Verkstad';
+/** Produktnamnet står på samma sätt som på sidan /apps/axle. */
+const PRODUCT_NAME = 'Catso Axle';
 
 interface Step {
 	where: string;
@@ -17,14 +17,14 @@ interface Step {
  * Samma innehåll som den interna genomgången, för att kunna visas för en kund.
  */
 @Component({
-	selector: 'app-verkstad-info',
+	selector: 'app-axle-info',
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [RouterLink],
-	templateUrl: './verkstad-info.component.html',
-	styleUrl: './verkstad-info.component.scss',
+	templateUrl: './axle-info.component.html',
+	styleUrl: './axle-info.component.scss',
 })
-export class VerkstadInfoComponent {
+export class AxleInfoComponent {
 	readonly product = PRODUCT_NAME;
 	readonly currentYear = new Date().getFullYear();
 

@@ -16,10 +16,10 @@ export const faqJsonLd = (faqs: Faq[]) => ({
 export const HOME_FAQ: Faq[] = [
 	{
 		q: 'Vad är Catso AI & Robotics?',
-		a: 'Vi bygger verkstadssystem, AI-agenter, appar för e-handel och robotik för svenska företag och myndigheter. Catso Verkstad är systemet för däck- och bilverkstäder, VERA-01 är vår AI-agent för advokatbyråer och Catso AI Sök är vår Shopify-app.',
+		a: 'Vi bygger verkstadssystem, AI-agenter, appar för e-handel och robotik för svenska företag och myndigheter. Catso Axle är systemet för däck- och bilverkstäder, VERA-01 är vår AI-agent för advokatbyråer och Catso AI Sök är vår Shopify-app.',
 	},
 	{
-		q: 'Vad är Catso Verkstad?',
+		q: 'Vad är Catso Axle?',
 		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder. Lager, däckhotell, bokningar, arbetsorder och fakturor ligger på ett ställe och körs i webbläsaren, så det finns inget att installera.',
 	},
 	{
@@ -36,9 +36,9 @@ export const HOME_FAQ: Faq[] = [
 	},
 ];
 
-export const VERKSTAD_FAQ: Faq[] = [
+export const AXLE_FAQ: Faq[] = [
 	{
-		q: 'Vad är Catso Verkstad?',
+		q: 'Vad är Catso Axle?',
 		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder: tidsbokning, däckhotell, lager, offerter, arbetsorder och försäljning. Det körs i webbläsaren.',
 	},
 	{
