@@ -37,6 +37,20 @@ export interface LicenseChange {
 	licenseUntil?: string;
 }
 
+export interface SiteVisit {
+	id: string;
+	at: string;
+	site: string | null;
+	path: string;
+	referrer: string | null;
+	ip: string | null;
+	country: string | null;
+	region: string | null;
+	city: string | null;
+	org: string | null;
+	userAgent: string | null;
+}
+
 export interface PlanInfo {
 	id: PlanId;
 	name: string;
@@ -171,6 +185,15 @@ export class AdminService {
 		return this.call(() =>
 			this.http.put<any>(`${this.base}/inventory/garage/${garageId}/license`, change, {
 				headers: this.headers(true),
+			}),
+		);
+	}
+
+	visits(days: number): Promise<SiteVisit[]> {
+		return this.call(() =>
+			this.http.get<any>(`${this.base}/inventory/garage/admin/visits`, {
+				headers: this.headers(true),
+				params: { days },
 			}),
 		);
 	}

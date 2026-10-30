@@ -46,8 +46,26 @@
 		<header class="sticky top-0 z-10 border-b border-white/10 bg-neutral-950/90 backdrop-blur">
 			<div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
 				<h1 class="text-lg font-semibold">Catso Admin</h1>
-				<span class="text-sm text-neutral-500">Axle</span>
+				<nav class="ml-2 flex gap-1 text-sm">
+					<button
+						type="button"
+						(click)="showView('garages')"
+						class="rounded-lg px-3 py-1.5"
+						[class]="view() === 'garages' ? 'bg-white/10 text-white' : 'text-neutral-400 hover:bg-white/5'"
+					>
+						Kunder
+					</button>
+					<button
+						type="button"
+						(click)="showView('visits')"
+						class="rounded-lg px-3 py-1.5"
+						[class]="view() === 'visits' ? 'bg-white/10 text-white' : 'text-neutral-400 hover:bg-white/5'"
+					>
+						Besökare
+					</button>
+				</nav>
 				<span class="flex-1"></span>
+				@if (view() === 'garages') {
 				<button
 					type="button"
 					(click)="showPlans.set(!showPlans())"
@@ -55,12 +73,13 @@
 				>
 					Paket och priser
 				</button>
+				}
 				<button
 					type="button"
-					(click)="load()"
+					(click)="view() === 'visits' ? loadVisits() : load()"
 					class="rounded-lg border border-white/10 px-3 py-1.5 text-sm hover:bg-white/5"
 				>
-					{{ loading() ? 'Hämtar…' : 'Uppdatera' }}
+					{{ loading() || visitsLoading() ? 'Hämtar…' : 'Uppdatera' }}
 				</button>
 				<button
 					type="button"
@@ -72,6 +91,95 @@
 			</div>
 		</header>
 
+		@if (view() === 'visits') {
+		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">
+			@if (error()) {
+				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ error() }}</p>
+			}
+			<div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+				<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+					<div class="text-2xl font-semibold">{{ visitStats().total }}</div>
+					<div class="text-sm text-neutral-400">Besök</div>
+				</div>
+				<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+					<div class="text-2xl font-semibold">{{ visitStats().today }}</div>
+					<div class="text-sm text-neutral-400">Idag</div>
+				</div>
+				<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+					<div class="text-2xl font-semibold">{{ visitStats().ips }}</div>
+					<div class="text-sm text-neutral-400">Unika IP-adresser</div>
+				</div>
+				<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+					<div class="text-2xl font-semibold text-[#d4af37]">{{ visitStats().lulea }}</div>
+					<div class="text-sm text-neutral-400">Från Luleå</div>
+				</div>
+			</div>
+			<div class="grid gap-3 md:grid-cols-3">
+				@for (g of [['Städer', visitStats().cities], ['Sidor', visitStats().pages], ['Kommer från', visitStats().sources]]; track g[0]) {
+					<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+						<h3 class="mb-2 text-sm font-medium text-neutral-300">{{ g[0] }}</h3>
+						@for (row of $any(g[1]); track row[0]) {
+							<div class="flex justify-between gap-3 text-sm">
+								<span class="truncate text-neutral-300">{{ row[0] }}</span>
+								<span class="text-neutral-500">{{ row[1] }}</span>
+							</div>
+						} @empty {
+							<p class="text-sm text-neutral-500">–</p>
+						}
+					</div>
+				}
+			</div>
+			<div class="flex flex-wrap items-center gap-2">
+				<input
+					type="search"
+					placeholder="Sök stad, IP, organisation, sida…"
+					[ngModel]="visitQuery()"
+					(ngModelChange)="visitQuery.set($event)"
+					class="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm outline-none focus:border-[#d4af37]"
+				/>
+				<select
+					[ngModel]="visitDays()"
+					(ngModelChange)="setVisitDays($event)"
+					class="rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm"
+				>
+					@for (d of visitDayOptions; track d) {
+						<option [ngValue]="d">{{ d === 1 ? 'Senaste dygnet' : d === 395 ? 'Allt' : 'Senaste ' + d + ' dagarna' }}</option>
+					}
+				</select>
+			</div>
+			<div class="overflow-x-auto rounded-xl border border-white/10">
+				<table class="w-full min-w-[900px] text-left text-sm">
+					<thead class="bg-white/5 text-neutral-400">
+						<tr>
+							<th class="px-3 py-2 font-medium">Tid</th>
+							<th class="px-3 py-2 font-medium">Plats</th>
+							<th class="px-3 py-2 font-medium">Organisation</th>
+							<th class="px-3 py-2 font-medium">IP</th>
+							<th class="px-3 py-2 font-medium">Sida</th>
+							<th class="px-3 py-2 font-medium">Kom från</th>
+							<th class="px-3 py-2 font-medium">Enhet</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (v of shownVisits(); track v.id) {
+							<tr class="border-t border-white/5" [class]="isLulea(v) ? 'bg-[#d4af37]/10' : ''">
+								<td class="whitespace-nowrap px-3 py-2 text-neutral-300">{{ time(v.at) }}</td>
+								<td class="px-3 py-2">{{ place(v) }}</td>
+								<td class="px-3 py-2 text-neutral-300">{{ v.org || '–' }}</td>
+								<td class="whitespace-nowrap px-3 py-2 font-mono text-xs text-neutral-300">{{ v.ip || '–' }}</td>
+								<td class="px-3 py-2 text-neutral-300">{{ v.site }}{{ v.path }}</td>
+								<td class="px-3 py-2 text-neutral-400">{{ v.referrer ? host(v.referrer) : 'Direkt' }}</td>
+								<td class="whitespace-nowrap px-3 py-2 text-neutral-400">{{ device(v.userAgent) }}</td>
+							</tr>
+						} @empty {
+							<tr><td colspan="7" class="px-3 py-8 text-center text-neutral-500">Inga besök i perioden.</td></tr>
+						}
+					</tbody>
+				</table>
+			</div>
+			<p class="text-xs text-neutral-500">Unika besökare: samma IP räknas en gång per 6 timmar. Bots och dina egna IP-adresser sparas inte. Raderas efter 13 månader.</p>
+		</main>
+		} @else {
 		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">
 			@if (error()) {
 				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ error() }}</p>
@@ -217,6 +325,7 @@
 				</table>
 			</section>
 		</main>
+		}
 
 		@if (selected(); as g) {
 			<div class="fixed inset-0 z-20 flex justify-end bg-black/60" (click)="close()">

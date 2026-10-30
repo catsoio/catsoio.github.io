@@ -9,9 +9,11 @@ import {
 	LicenseChange,
 	PlanCatalog,
 	PlanId,
+	SiteVisit,
 	SubStatus,
 } from './admin.service';
 
+type View = 'garages' | 'visits';
 type Filter = 'all' | 'trial' | 'expiring' | 'paying' | 'blocked';
 
 /** Fallback until the catalog has loaded. The backend catalog is the source of truth for display. */
@@ -49,6 +51,15 @@ export class AdminComponent implements OnInit {
 	readonly password = signal('');
 	readonly error = signal('');
 	readonly busy = signal(false);
+
+	readonly view = signal<View>('garages');
+
+	// Besökare
+	readonly visits = signal<SiteVisit[]>([]);
+	readonly visitDays = signal(30);
+	readonly visitQuery = signal('');
+	readonly visitsLoading = signal(false);
+	readonly visitDayOptions = [1, 7, 30, 90, 395];
 
 	readonly garages = signal<AdminGarage[]>([]);
 	readonly loading = signal(false);
@@ -90,6 +101,36 @@ export class AdminComponent implements OnInit {
 		{ id: 'past_due', label: 'Betalning saknas' },
 		{ id: 'canceled', label: 'Avslutad' },
 	];
+
+	readonly shownVisits = computed(() => {
+		const q = this.visitQuery().trim().toLowerCase();
+		if (!q) return this.visits();
+		return this.visits().filter((v) =>
+			`${v.city} ${v.region} ${v.country} ${v.org} ${v.ip} ${v.site} ${v.path} ${v.referrer}`.toLowerCase().includes(q),
+		);
+	});
+
+	readonly visitStats = computed(() => {
+		const all = this.visits();
+		const day = new Date().toDateString();
+		const top = (pick: (v: SiteVisit) => string | null) => {
+			const n = new Map<string, number>();
+			for (const v of all) {
+				const k = pick(v);
+				if (k) n.set(k, (n.get(k) ?? 0) + 1);
+			}
+			return [...n].sort((a, b) => b[1] - a[1]).slice(0, 5);
+		};
+		return {
+			total: all.length,
+			today: all.filter((v) => new Date(v.at).toDateString() === day).length,
+			ips: new Set(all.map((v) => v.ip)).size,
+			lulea: all.filter((v) => this.isLulea(v)).length,
+			cities: top((v) => v.city),
+			pages: top((v) => `${v.site ?? ''}${v.path}`),
+			sources: top((v) => (v.referrer ? this.host(v.referrer) : null)),
+		};
+	});
 
 	readonly stats = computed(() => {
 		const all = this.garages();
@@ -137,6 +178,57 @@ export class AdminComponent implements OnInit {
 
 	ngOnInit() {
 		if (this.loggedIn()) void this.load();
+	}
+
+	async showView(v: View) {
+		this.view.set(v);
+		if (v === 'visits') await this.loadVisits();
+	}
+
+	async loadVisits() {
+		this.visitsLoading.set(true);
+		this.error.set('');
+		try {
+			this.visits.set(await this.api.visits(this.visitDays()));
+		} catch {
+			this.error.set('Kunde inte hämta besökarna.');
+		} finally {
+			this.visitsLoading.set(false);
+		}
+	}
+
+	setVisitDays(days: number) {
+		this.visitDays.set(Number(days));
+		void this.loadVisits();
+	}
+
+	isLulea(v: SiteVisit): boolean {
+		return /lule/i.test(v.city ?? '');
+	}
+
+	place(v: SiteVisit): string {
+		return [v.city, v.region, v.country].filter(Boolean).join(', ') || '–';
+	}
+
+	host(url: string): string {
+		try {
+			return new URL(url).hostname.replace(/^www\./, '');
+		} catch {
+			return url;
+		}
+	}
+
+	/** "Safari · macOS" ur user agent, tillräckligt för att skilja besökare åt. */
+	device(ua: string | null): string {
+		if (!ua) return '–';
+		const browser = /Edg\//.test(ua) ? 'Edge' : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox' : /Safari\//.test(ua) ? 'Safari' : 'Annan';
+		const os = /iPhone|iPad/.test(ua) ? 'iOS' : /Android/.test(ua) ? 'Android' : /Mac OS X/.test(ua) ? 'macOS' : /Windows/.test(ua) ? 'Windows' : /Linux/.test(ua) ? 'Linux' : '';
+		return os ? `${browser} · ${os}` : browser;
+	}
+
+	time(iso: string): string {
+		const d = new Date(iso);
+		return `${d.toLocaleDateString('sv-SE')} ${d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}`;
 	}
 
 	expiring(g: AdminGarage): boolean {
