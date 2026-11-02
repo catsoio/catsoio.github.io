@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	sectors: Sector[] = [
 		{
 			title: 'Däck- och bilverkstäder',
-			desc: 'Catso Axle samlar lager, däckhotell, bokningar och arbetsorder i ett system, så du slipper leta i pärmar och skriva samma sak flera gånger.',
+			desc: 'Catso Axle samlar lager, däckhotell, bokningar och arbetsorder i ett system.',
 			tags: ['Däckhotell', 'Arbetsorder', 'Lager'],
 		},
 		{

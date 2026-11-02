@@ -177,8 +177,10 @@ export const AXLE_SEO: RouteSEO = {
 				featureList: [
 					'Däckhotell med regnummer, hyllplats och avgift',
 					'Lager med saldo, hyllplats och varning för lågt lager',
+					'SMS-inkallning till kunder med däck i hotellet',
 					'Bokningskalender per mekaniker',
-					'Arbetsorder med mobilvy för mekaniker',
+					'Offert som kunden godkänner via länk i mobilen',
+					'Arbetsorder',
 					'Faktura och kvitto med moms och löpande nummer',
 					'Kunder, bilar och leverantörer',
 				],

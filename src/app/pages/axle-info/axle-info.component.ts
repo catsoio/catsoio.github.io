@@ -49,9 +49,9 @@ export class AxleInfoComponent {
 		{
 			where: 'Arbetsorder',
 			title: 'Arbetsordern listar vad som ska göras',
-			text: 'En rad per sak. Saknas en del markerar du raden, se händelsen "En del saknas" nedan. Mekanikern ser inga priser.',
+			text: 'En rad per sak. Saknas en del markerar du raden, se händelsen "En del saknas" nedan.',
 			chips: ['AO-00002'],
-			prints: ['Arbetsblad utan pris'],
+			prints: ['Arbetsblad'],
 		},
 		{
 			where: 'Verkstadsgolvet',
@@ -130,7 +130,7 @@ export class AxleInfoComponent {
 			name: 'Arbetsblad',
 			code: 'AO-…',
 			who: 'Mekanikern',
-			what: 'Regnumret störst, kund och telefon, datum, checklista med instruktioner, markering för del som saknas, ruta för anteckningar och signatur. Inga priser.',
+			what: 'Regnumret störst, kund och telefon, datum, checklista med instruktioner, markering för del som saknas, ruta för anteckningar och signatur.',
 		},
 		{
 			name: 'Kvitto eller faktura',
@@ -153,12 +153,12 @@ export class AxleInfoComponent {
 	];
 
 	readonly exists = [
-		'Kunder, bilar och bokningar, med kopplingar till varandra',
-		'Arbetsorder med utskrivbart, prisfritt arbetsblad',
+		'Kunder, bilar och bokningar',
+		'Arbetsorder med utskrivbart arbetsblad',
 		'Säljkort med rader, rabatt på rad och på hela kortet, bokföring, kvitto, faktura och betalning',
 		'Däckhotell som läggs på säljkort, också flera bilar åt gången',
 		'Lager som minskar när ett kort bokförs',
-		'Priser inklusive moms, moms per sats och momsrapport',
+		'Moms per sats och momsrapport',
 		'Inköp som sida: leverantör, artiklar, lagret ökar',
 	];
 

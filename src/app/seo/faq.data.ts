@@ -20,7 +20,7 @@ export const HOME_FAQ: Faq[] = [
 	},
 	{
 		q: 'Vad är Catso Axle?',
-		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder. Lager, däckhotell, bokningar, arbetsorder och fakturor ligger på ett ställe och körs i webbläsaren, så det finns inget att installera.',
+		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder. Lager, däckhotell, bokningar, arbetsorder och fakturor ligger på ett ställe.',
 	},
 	{
 		q: 'Vad är VERA-01?',
@@ -39,7 +39,7 @@ export const HOME_FAQ: Faq[] = [
 export const AXLE_FAQ: Faq[] = [
 	{
 		q: 'Vad är Catso Axle?',
-		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder: tidsbokning, däckhotell, lager, offerter, arbetsorder och försäljning. Det körs i webbläsaren.',
+		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder: tidsbokning, däckhotell, lager, offerter, arbetsorder och försäljning.',
 	},
 	{
 		q: 'Funkar det som däckhotell?',
@@ -47,7 +47,7 @@ export const AXLE_FAQ: Faq[] = [
 	},
 	{
 		q: 'Hur blir en bokning en arbetsorder?',
-		a: 'Du öppnar bokningen när kunden kommer och skapar en arbetsorder. Kund, bil och vad som ska göras följer med.',
+		a: 'Du kan skapa arbetsordern direkt när du sparar bokningen, eller öppna bokningen när kunden kommer.',
 	},
 	{
 		q: 'Hur godkänner kunden en offert?',
@@ -59,7 +59,7 @@ export const AXLE_FAQ: Faq[] = [
 	},
 	{
 		q: 'Vad ser mekanikerna?',
-		a: 'Mekanikern får ett utskrivet arbetsblad med regnummer, vad som ska göras och plats för anteckningar. Inga priser.',
+		a: 'Ett utskrivet arbetsblad med regnummer, vad som ska göras och plats för anteckningar.',
 	},
 	{
 		q: 'Behöver jag installera något?',

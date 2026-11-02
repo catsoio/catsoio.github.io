@@ -91,7 +91,7 @@ export class AxleLandingComponent implements OnInit {
 			id: 'tidsbokning',
 			title: 'Tidsbokning',
 			text: 'En kolumn per mekaniker och lyft. Klicka i en ledig tid för att boka. Är kunden ny räcker telefonnumret, namnet fyller du i sen.',
-			points: ['Dag, vecka och månad', 'Bokningen blir en arbetsorder när bilen kommer'],
+			points: ['Bokningen blir en arbetsorder när bilen kommer'],
 			image: `${PHOTO}/app-resurser.jpg`,
 			alt: 'Tidsbokningen med en kolumn per mekaniker och lyft',
 		},
@@ -109,18 +109,18 @@ export class AxleLandingComponent implements OnInit {
 			id: 'lager',
 			title: 'Lager',
 			text: 'Däck per fälgstorlek och säsong, märken, lagervärde och vad som ska beställas. Däckens ålder räknas fram från DOT-koden, så de äldsta säljs först.',
-			points: ['Sök på dimension, märke eller artikelnummer', 'Inköp och leverantörer'],
+			points: ['Sök på dimension, märke eller artikelnummer'],
 			image: `${PHOTO}/app-lagerov.jpg`,
 			alt: 'Översikten för lagret med däck per fälgstorlek, märken och lagervärde',
 		},
 	];
 
 	readonly overview = [
-		{ title: 'Arbetsorder', text: 'Jobb och delar på samma order. Finns inte delen i lager syns det direkt, med en knapp för att beställa. Mekanikern får ett utskrivet arbetsblad utan priser.' },
+		{ title: 'Arbetsorder', text: 'Jobb och delar på samma order. Finns inte delen i lager syns det direkt, med en knapp för att beställa. Mekanikern får ett utskrivet arbetsblad.' },
 		{ title: 'Sök', text: 'Ett sökfält för regnummer, kund, telefonnummer, hylla och däckstorlek.' },
-		{ title: 'Kunder och bilar', text: 'Bilens uppgifter hämtas från regnumret. Kunden och bilen följer med till bokning, däckhotell och arbetsorder.' },
+		{ title: 'Kunder och bilar', text: 'Bilens uppgifter hämtas från regnumret.' },
 		{ title: 'I mobilen', text: 'Dagens bokningar, däckhotellet och lagret när du står i verkstaden.' },
-		{ title: 'Behörigheter och logg', text: 'Personalen ser inte inköpspriser eller bokföring. Aktivitetsloggen visar vem som ändrade vad.' },
+		{ title: 'Startsidan', text: 'Dagens bokningar och en lista över det som väntar: försenade däckset, artiklar som är slut och obetalda fakturor.' },
 		{ title: 'Faktura och kvitto', text: 'Säljkort med rabatt, faktura eller kvitto och momsrapport.' },
 	];
 
