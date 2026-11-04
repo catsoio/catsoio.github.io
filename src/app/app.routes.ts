@@ -94,6 +94,13 @@ export const routes: Routes = [
   { path: 'verkstad/kom-igang', redirectTo: 'axle/kom-igang', pathMatch: 'full' },
   { path: 'verkstad/info', redirectTo: 'axle/info', pathMatch: 'full' },
   {
+    // Verkstadens egen bokningssida: den snygga länken som skickar kunden vidare till appen.
+    path: 'verkstad/:slug/bokning',
+    loadComponent: () =>
+      import('./pages/boka-redirect/boka-redirect.component').then((m) => m.BokaRedirectComponent),
+    data: { seo: { title: 'Boka tid', robots: 'noindex,nofollow' } as RouteSEO },
+  },
+  {
     path: 'axle/kom-igang',
     loadComponent: () =>
       import('./pages/kom-igang/kom-igang.component').then((m) => m.KomIgangComponent),
