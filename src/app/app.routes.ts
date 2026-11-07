@@ -9,6 +9,7 @@ import {
   HOME_SEO,
   AXLE_SEO,
   AXLE_INFO_SEO,
+  AXLE_PRISER_SEO,
   KOM_IGANG_SEO,
   POANGJAKTEN_SEO,
 } from './seo/seo.consts';
@@ -111,6 +112,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/axle-info/axle-info.component').then((m) => m.AxleInfoComponent),
     data: { seo: AXLE_INFO_SEO },
+  },
+  {
+    // Prissidan med prisräknaren är dold: ingen länk, inte i sitemap och noindex.
+    path: 'axle/priser',
+    loadComponent: () =>
+      import('./pages/axle-priser/axle-priser.component').then((m) => m.AxlePriserComponent),
+    data: { seo: AXLE_PRISER_SEO },
   },
   {
     path: 'poangjakten/sponsor',

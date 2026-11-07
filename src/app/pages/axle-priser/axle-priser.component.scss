@@ -1,0 +1,266 @@
+:host {
+	display: block;
+}
+
+$teal: #00706a;
+$ink: #0d1b1b;
+$line: #e3eaea;
+$border: #d5e0e0;
+
+.bay {
+	font-family: 'Barlow', 'Inter', system-ui, sans-serif;
+}
+
+.hero {
+	background:
+		radial-gradient(ellipse 60% 55% at 85% 20%, rgba(0, 112, 106, 0.08), transparent 70%),
+		linear-gradient(180deg, #ffffff 0%, #f6faf9 100%);
+}
+
+.card {
+	border: 1px solid $line;
+	border-radius: 1.1rem;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(13, 27, 27, 0.04);
+}
+
+.cta {
+	background: #0f2524;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.9rem 1.6rem;
+	border-radius: 0.7rem;
+	font-weight: 600;
+	font-size: 1.05rem;
+	transition:
+		transform 0.12s ease,
+		background-color 0.12s ease;
+	cursor: pointer;
+
+	&:active {
+		transform: translateY(1px);
+	}
+}
+
+.btn-primary {
+	background: $teal;
+	color: #fff;
+	box-shadow: 0 8px 18px -8px rgba(0, 112, 106, 0.6);
+
+	&:hover {
+		background: #00605a;
+	}
+}
+
+.btn-light {
+	background: #fff;
+	color: $ink;
+
+	&:hover {
+		background: #e8f1f0;
+	}
+}
+
+.group-title {
+	font-size: 1.3rem;
+	font-weight: 800;
+	color: $ink;
+}
+
+/* Ett val som är ett helt kort: paket och tillägg. Själva rutan är dold, kortet visar valet. */
+.choice {
+	display: block;
+	cursor: pointer;
+	padding: 1.25rem 1.4rem;
+	border: 1.5px solid $border;
+	border-radius: 1rem;
+	background: #fff;
+	transition:
+		border-color 0.12s ease,
+		background-color 0.12s ease;
+
+	&:hover {
+		border-color: $teal;
+	}
+
+	&:focus-within {
+		box-shadow: 0 0 0 3px rgba(0, 112, 106, 0.22);
+	}
+}
+
+.choice-on {
+	border-color: $teal;
+	background: #f1f8f7;
+	box-shadow: inset 0 0 0 1px $teal;
+
+	&:focus-within {
+		box-shadow:
+			inset 0 0 0 1px $teal,
+			0 0 0 3px rgba(0, 112, 106, 0.22);
+	}
+}
+
+.stepper {
+	display: inline-flex;
+	align-items: center;
+	overflow: hidden;
+	border: 1.5px solid $border;
+	border-radius: 0.7rem;
+	background: #fff;
+
+	button {
+		width: 3rem;
+		height: 3rem;
+		font-size: 1.5rem;
+		line-height: 1;
+		color: $ink;
+		cursor: pointer;
+
+		&:hover:not(:disabled) {
+			background: #f2f7f7;
+		}
+
+		&:disabled {
+			color: #b7c4c4;
+			cursor: not-allowed;
+		}
+	}
+
+	output {
+		min-width: 3.5rem;
+		text-align: center;
+		font-size: 1.2rem;
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+		color: $ink;
+	}
+}
+
+.seg {
+	display: inline-flex;
+	gap: 0.25rem;
+	padding: 0.25rem;
+	border-radius: 0.8rem;
+	background: #eef3f3;
+
+	button {
+		padding: 0.55rem 1.2rem;
+		border-radius: 0.6rem;
+		font-weight: 600;
+		color: #4a5d5d;
+		cursor: pointer;
+
+		&.on {
+			background: #fff;
+			color: $ink;
+			box-shadow: 0 1px 3px rgba(13, 27, 27, 0.15);
+		}
+
+		small {
+			display: block;
+			font-size: 0.75rem;
+			font-weight: 500;
+			color: $teal;
+		}
+	}
+}
+
+.field {
+	display: block;
+	font-weight: 600;
+	font-size: 0.9rem;
+	color: #3a4d4d;
+
+	input {
+		display: block;
+		width: 100%;
+		margin-top: 0.4rem;
+		padding: 0.75rem 1rem;
+		background: #fff;
+		border: 1.5px solid $border;
+		border-radius: 0.6rem;
+		color: $ink;
+		font-family: 'Barlow', sans-serif;
+		font-size: 1rem;
+		font-weight: 400;
+		outline: none;
+
+		&:focus {
+			border-color: $teal;
+			box-shadow: 0 0 0 3px rgba(0, 112, 106, 0.15);
+		}
+	}
+
+	.hint {
+		display: block;
+		margin-top: 0.35rem;
+		font-size: 0.8rem;
+		font-weight: 400;
+		color: #6b7f7f;
+	}
+}
+
+.soon {
+	margin-left: 0.4rem;
+	padding: 0.1rem 0.5rem;
+	border-radius: 999px;
+	background: #fff3cc;
+	color: #6b5200;
+	font-size: 0.72rem;
+	font-weight: 700;
+	vertical-align: middle;
+}
+
+/* Resultatet: en rad per post, belopp till höger. */
+.row {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.65rem 0;
+	border-bottom: 1px solid $line;
+
+	dt {
+		color: #3a4d4d;
+
+		small {
+			display: block;
+			font-size: 0.8rem;
+			color: #6b7f7f;
+		}
+	}
+
+	dd {
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+		color: $ink;
+	}
+}
+
+.row-sum {
+	dt,
+	dd {
+		font-weight: 700;
+	}
+}
+
+.row-total {
+	margin-top: 0.5rem;
+	border-top: 2px solid $ink;
+	border-bottom: 0;
+
+	dt,
+	dd {
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: $ink;
+	}
+
+	dd {
+		color: $teal;
+	}
+}

@@ -147,6 +147,13 @@ export const AXLE_INFO_SEO: RouteSEO = {
 	robots: 'noindex,follow',
 };
 
+/** Dold prissida: inte länkad och inte i sitemap. Ta bort robots när den ska visas. */
+export const AXLE_PRISER_SEO: RouteSEO = {
+	title: 'Priser och prisräknare | Catso Axle',
+	description: 'Priser för Catso Axle och en räknare som visar månadskostnaden för just er verkstad.',
+	robots: 'noindex,nofollow',
+};
+
 export const AXLE_SEO: RouteSEO = {
 	title: 'Verkstadssystem för däckfirmor och bilverkstäder | Catso Axle',
 	description:
