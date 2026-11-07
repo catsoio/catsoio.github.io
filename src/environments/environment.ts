@@ -3,7 +3,7 @@ export const environment = {
 	//
 	apiBaseUrl: 'https://api.catso.io',
 	// Axle-appen, dit verkstädernas bokningssidor (catso.io/verkstad/<adress>/bokning) pekar.
-	axleAppUrl: 'https://inventory.catso.io',
+	axleAppUrl: 'https://axle.catso.io',
 	//
 	hemmafestProd: 'https://hf24.fly.dev',
 	hemmafestDev: 'http://localhost:3000',
