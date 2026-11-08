@@ -17,6 +17,9 @@ export interface AdminSubscription {
 	cancelAtPeriodEnd: boolean;
 	extraSeats: number;
 	hasStripe: boolean;
+	stripeCustomerId: string | null;
+	/** Listpris per månad exkl. moms för det kunden köpt, 0 under provperiod. */
+	monthlyMinor: number;
 }
 
 export interface AdminGarage {
@@ -51,23 +54,38 @@ export interface SiteVisit {
 	userAgent: string | null;
 }
 
-export interface PlanInfo {
-	id: PlanId;
-	name: string;
-	blurb: string;
-	features: string[];
-	priceMinor: number;
-	includedUsers: number;
+export interface StripeSubscription {
+	id: string;
+	garageId: string | null;
+	customerId: string;
+	status: SubStatus;
+	monthlyMinor: number;
+	interval: 'month' | 'year';
+	cancelAtPeriodEnd: boolean;
+	currentPeriodEnd: string | null;
+	dashboardUrl: string;
 }
 
-export interface PlanCatalog {
-	extraUserPriceMinor: number;
-	plans: PlanInfo[];
+export interface StripeInvoice {
+	id: string;
+	number: string | null;
+	garageId: string | null;
+	customerName: string | null;
+	status: string;
+	totalMinor: number;
+	amountPaidMinor: number;
+	createdAt: string;
+	paidAt: string | null;
+	dueAt: string | null;
+	hostedUrl: string | null;
+	dashboardUrl: string;
 }
 
-export interface PlanCatalogChange {
-	extraUserPriceMinor?: number;
-	plans?: Partial<Record<PlanId, { name?: string; blurb?: string; priceMinor?: number; features?: string[] }>>;
+export interface StripePayments {
+	connected: boolean;
+	livemode: boolean;
+	subscriptions: StripeSubscription[];
+	invoices: StripeInvoice[];
 }
 
 interface Tokens {
@@ -198,13 +216,9 @@ export class AdminService {
 		);
 	}
 
-	plans(): Promise<PlanCatalog> {
-		return this.call(() => this.http.get<any>(`${this.base}/inventory/plans`, { headers: this.headers(true) }));
-	}
-
-	savePlans(change: PlanCatalogChange): Promise<PlanCatalog> {
+	payments(): Promise<StripePayments> {
 		return this.call(() =>
-			this.http.put<any>(`${this.base}/inventory/plans`, change, { headers: this.headers(true) }),
+			this.http.get<any>(`${this.base}/inventory/garage/admin/payments`, { headers: this.headers(true) }),
 		);
 	}
 }

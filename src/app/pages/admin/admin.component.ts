@@ -7,17 +7,16 @@ import {
 	AdminGarage,
 	AdminService,
 	LicenseChange,
-	PlanCatalog,
 	PlanId,
 	SiteVisit,
+	StripeInvoice,
+	StripePayments,
 	SubStatus,
 } from './admin.service';
 
-type View = 'garages' | 'visits';
+type View = 'garages' | 'payments' | 'visits';
 type Filter = 'all' | 'trial' | 'expiring' | 'paying' | 'blocked';
 
-/** Fallback until the catalog has loaded. The backend catalog is the source of truth for display. */
-const DEFAULT_PRICE: Record<PlanId, number> = { dack: 495, verkstad: 1295 };
 const DAY = 86_400_000;
 
 const STATE_LABEL: Record<AccessState, string> = {
@@ -76,16 +75,10 @@ export class AdminComponent implements OnInit {
 	readonly saving = signal(false);
 	readonly saveError = signal('');
 
-	// Plan catalog editor
-	readonly catalog = signal<PlanCatalog | null>(null);
-	readonly showPlans = signal(false);
-	readonly planSaving = signal(false);
-	readonly planMsg = signal('');
-	planForms: Record<PlanId, { name: string; blurb: string; price: number; features: string }> = {
-		dack: { name: '', blurb: '', price: 0, features: '' },
-		verkstad: { name: '', blurb: '', price: 0, features: '' },
-	};
-	extraUserPrice = 0;
+	// Betalningar (Stripe)
+	readonly payments = signal<StripePayments | null>(null);
+	readonly paymentsLoading = signal(false);
+	readonly paymentsError = signal('');
 
 	readonly filters: { id: Filter; label: string }[] = [
 		{ id: 'all', label: 'Alla' },
@@ -132,16 +125,26 @@ export class AdminComponent implements OnInit {
 		};
 	});
 
+	readonly paymentStats = computed(() => {
+		const p = this.payments();
+		const since = Date.now() - 30 * DAY;
+		const invoices = p?.invoices ?? [];
+		const unpaid = invoices.filter((i) => i.status === 'open' || i.status === 'uncollectible');
+		return {
+			active: (p?.subscriptions ?? []).filter((s) => s.status === 'active' || s.status === 'past_due').length,
+			paid30: invoices
+				.filter((i) => i.paidAt && new Date(i.paidAt).getTime() >= since)
+				.reduce((sum, i) => sum + i.amountPaidMinor, 0),
+			unpaidCount: unpaid.length,
+			unpaidSum: unpaid.reduce((sum, i) => sum + i.totalMinor, 0),
+		};
+	});
+
 	readonly stats = computed(() => {
 		const all = this.garages();
 		const sub = (g: AdminGarage) => g.subscription;
 		const paying = all.filter((g) => sub(g)?.state === 'subscribed' || sub(g)?.state === 'past_due');
-		const mrr = paying.reduce((sum, g) => {
-			const s = sub(g)!;
-			const price = this.catalog()?.plans.find((p) => p.id === s.plan)?.priceMinor;
-			const extra = this.catalog()?.extraUserPriceMinor ?? 9900;
-			return sum + (price !== undefined ? price / 100 : DEFAULT_PRICE[s.plan]) + (s.extraSeats * extra) / 100;
-		}, 0);
+		const mrr = all.reduce((sum, g) => sum + (sub(g)?.monthlyMinor ?? 0), 0) / 100;
 		return {
 			total: all.length,
 			trial: all.filter((g) => sub(g)?.state === 'trial').length,
@@ -183,6 +186,67 @@ export class AdminComponent implements OnInit {
 	async showView(v: View) {
 		this.view.set(v);
 		if (v === 'visits') await this.loadVisits();
+		if (v === 'payments') await this.loadPayments();
+	}
+
+	async loadPayments() {
+		this.paymentsLoading.set(true);
+		this.paymentsError.set('');
+		try {
+			this.payments.set(await this.api.payments());
+		} catch (e) {
+			this.paymentsError.set(
+				(e as HttpErrorResponse).status === 404
+					? 'Servern saknar betalningsvyn än. Den kommer när backend har uppdaterats.'
+					: 'Kunde inte hämta betalningarna från Stripe.',
+			);
+		} finally {
+			this.paymentsLoading.set(false);
+		}
+	}
+
+	/** Kundens namn för en rad från Stripe: garagets namn när vi känner igen det. */
+	garageName(id: string | null, fallback: string | null = null): string {
+		return (id && this.garages().find((g) => g.id === id)?.name) || fallback || '–';
+	}
+
+	/** Hela kronor med tusentalsavgränsare, ören tas inte med. */
+	money(minor: number): string {
+		return `${new Intl.NumberFormat('sv-SE').format(Math.round(minor / 100))} kr`;
+	}
+
+	invoiceLabel(i: StripeInvoice): string {
+		switch (i.status) {
+			case 'paid':
+				return 'Betald';
+			case 'open':
+				return i.dueAt && new Date(i.dueAt).getTime() < Date.now() ? 'Förfallen' : 'Obetald';
+			case 'uncollectible':
+				return 'Förlorad';
+			case 'void':
+				return 'Annullerad';
+			default:
+				return 'Utkast';
+		}
+	}
+
+	invoiceClass(i: StripeInvoice): string {
+		switch (i.status) {
+			case 'paid':
+				return 'bg-emerald-500/15 text-emerald-300';
+			case 'open':
+				return 'bg-amber-500/15 text-amber-300';
+			case 'uncollectible':
+				return 'bg-red-500/15 text-red-300';
+			default:
+				return 'bg-neutral-500/20 text-neutral-300';
+		}
+	}
+
+	/** Länk till kunden i Stripe-panelen (testläge när nyckeln är en testnyckel). */
+	stripeCustomerUrl(id: string): string {
+		const test = this.payments()?.livemode === false ? 'test/' : '';
+		return `https://dashboard.stripe.com/${test}customers/${id}`;
 	}
 
 	async loadVisits() {
@@ -297,7 +361,7 @@ export class AdminComponent implements OnInit {
 				return;
 			}
 			this.garages.set(await this.api.garages());
-			this.applyCatalog(await this.api.plans());
+				void this.loadPayments(); // Stripe-länkarna behöver veta om det är test eller skarpt läge
 			const sel = this.selected();
 			if (sel) this.selected.set(this.garages().find((g) => g.id === sel.id) ?? null);
 		} catch (e) {
@@ -358,46 +422,6 @@ export class AdminComponent implements OnInit {
 			this.saveError.set('Kunde inte spara. Kontrollera uppgifterna och försök igen.');
 		} finally {
 			this.saving.set(false);
-		}
-	}
-
-	private applyCatalog(c: PlanCatalog) {
-		this.catalog.set(c);
-		for (const p of c.plans) {
-			this.planForms[p.id] = {
-				name: p.name,
-				blurb: p.blurb,
-				price: p.priceMinor / 100,
-				features: p.features.join('\n'),
-			};
-		}
-		this.extraUserPrice = c.extraUserPriceMinor / 100;
-	}
-
-	async savePlans() {
-		this.planSaving.set(true);
-		this.planMsg.set('');
-		try {
-			const plans: Record<string, unknown> = {};
-			for (const id of this.plans) {
-				const f = this.planForms[id];
-				plans[id] = {
-					name: f.name.trim(),
-					blurb: f.blurb.trim(),
-					priceMinor: Math.round(Number(f.price) * 100),
-					features: f.features.split('\n').map((l) => l.trim()).filter(Boolean),
-				};
-			}
-			const res = await this.api.savePlans({
-				extraUserPriceMinor: Math.round(Number(this.extraUserPrice) * 100),
-				plans: plans as never,
-			});
-			this.applyCatalog(res);
-			this.planMsg.set('Sparat. Landingpagen visar de nya uppgifterna direkt.');
-		} catch {
-			this.planMsg.set('Kunde inte spara. Kontrollera uppgifterna.');
-		} finally {
-			this.planSaving.set(false);
 		}
 	}
 }

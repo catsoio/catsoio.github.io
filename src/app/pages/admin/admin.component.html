@@ -57,6 +57,14 @@
 					</button>
 					<button
 						type="button"
+						(click)="showView('payments')"
+						class="rounded-lg px-3 py-1.5"
+						[class]="view() === 'payments' ? 'bg-white/10 text-white' : 'text-neutral-400 hover:bg-white/5'"
+					>
+						Betalningar
+					</button>
+					<button
+						type="button"
 						(click)="showView('visits')"
 						class="rounded-lg px-3 py-1.5"
 						[class]="view() === 'visits' ? 'bg-white/10 text-white' : 'text-neutral-400 hover:bg-white/5'"
@@ -65,21 +73,12 @@
 					</button>
 				</nav>
 				<span class="flex-1"></span>
-				@if (view() === 'garages') {
 				<button
 					type="button"
-					(click)="showPlans.set(!showPlans())"
+					(click)="view() === 'visits' ? loadVisits() : view() === 'payments' ? loadPayments() : load()"
 					class="rounded-lg border border-white/10 px-3 py-1.5 text-sm hover:bg-white/5"
 				>
-					Paket och priser
-				</button>
-				}
-				<button
-					type="button"
-					(click)="view() === 'visits' ? loadVisits() : load()"
-					class="rounded-lg border border-white/10 px-3 py-1.5 text-sm hover:bg-white/5"
-				>
-					{{ loading() || visitsLoading() ? 'Hämtar…' : 'Uppdatera' }}
+					{{ loading() || visitsLoading() || paymentsLoading() ? 'Hämtar…' : 'Uppdatera' }}
 				</button>
 				<button
 					type="button"
@@ -91,7 +90,116 @@
 			</div>
 		</header>
 
-		@if (view() === 'visits') {
+		@if (view() === 'payments') {
+		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">
+			@if (paymentsError()) {
+				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ paymentsError() }}</p>
+			}
+			@if (payments(); as p) {
+				@if (!p.connected) {
+					<p class="rounded-lg bg-white/5 px-4 py-3 text-sm text-neutral-300">Servern är inte kopplad till Stripe (PAYMENTS_PROVIDER), så här finns inget att visa.</p>
+				}
+				<section class="grid grid-cols-2 gap-3 md:grid-cols-4">
+					<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+						<div class="text-xs tracking-wide text-neutral-400 uppercase">Aktiva prenumerationer</div>
+						<div class="mt-1 text-2xl font-semibold tabular-nums">{{ paymentStats().active }}</div>
+					</div>
+					<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+						<div class="text-xs tracking-wide text-neutral-400 uppercase">Betalt senaste 30 dagarna</div>
+						<div class="mt-1 text-2xl font-semibold tabular-nums">{{ money(paymentStats().paid30) }}</div>
+						<div class="text-xs text-neutral-500">inkl. moms</div>
+					</div>
+					<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+						<div class="text-xs tracking-wide text-neutral-400 uppercase">Obetalt</div>
+						<div class="mt-1 text-2xl font-semibold tabular-nums">{{ money(paymentStats().unpaidSum) }}</div>
+						<div class="text-xs text-neutral-500">{{ paymentStats().unpaidCount }} fakturor</div>
+					</div>
+					<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+						<div class="text-xs tracking-wide text-neutral-400 uppercase">Stripe</div>
+						<div class="mt-1 text-2xl font-semibold" [class]="p.livemode ? '' : 'text-amber-300'">{{ p.livemode ? 'Skarpt läge' : 'Testläge' }}</div>
+						@if (!p.livemode) {
+							<div class="text-xs text-neutral-500">sandlådan, inga riktiga pengar</div>
+						}
+					</div>
+				</section>
+
+				<section class="space-y-2">
+					<h2 class="text-sm font-medium text-neutral-300">Prenumerationer</h2>
+					<div class="overflow-x-auto rounded-xl border border-white/10">
+						<table class="w-full min-w-[40rem] text-left text-sm">
+							<thead class="bg-white/5 text-xs tracking-wide text-neutral-400 uppercase">
+								<tr>
+									<th class="px-4 py-3">Kund</th>
+									<th class="px-4 py-3">Per månad exkl. moms</th>
+									<th class="px-4 py-3">Status</th>
+									<th class="px-4 py-3">Nästa dragning</th>
+									<th class="px-4 py-3"></th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-white/5">
+								@for (s of p.subscriptions; track s.id) {
+									<tr class="hover:bg-white/[0.03]">
+										<td class="px-4 py-3 font-medium">{{ garageName(s.garageId) }}</td>
+										<td class="px-4 py-3 tabular-nums">{{ money(s.monthlyMinor) }}{{ s.interval === 'year' ? ' (årsvis)' : '' }}</td>
+										<td class="px-4 py-3">{{ s.cancelAtPeriodEnd ? 'Avslutas vid periodens slut' : s.status === 'active' ? 'Aktiv' : s.status === 'trialing' ? 'Provperiod' : s.status === 'past_due' ? 'Betalning saknas' : 'Avslutad' }}</td>
+										<td class="px-4 py-3 text-neutral-300">{{ s.status === 'canceled' ? '–' : date(s.currentPeriodEnd) }}</td>
+										<td class="px-4 py-3 text-right"><a [href]="s.dashboardUrl" target="_blank" rel="noopener" class="rounded-lg border border-white/10 px-3 py-1 hover:bg-white/10">Öppna i Stripe</a></td>
+									</tr>
+								} @empty {
+									<tr><td colspan="5" class="px-4 py-8 text-center text-neutral-500">Ingen kund har startat en prenumeration än.</td></tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section class="space-y-2">
+					<h2 class="text-sm font-medium text-neutral-300">Fakturor</h2>
+					<div class="overflow-x-auto rounded-xl border border-white/10">
+						<table class="w-full min-w-[48rem] text-left text-sm">
+							<thead class="bg-white/5 text-xs tracking-wide text-neutral-400 uppercase">
+								<tr>
+									<th class="px-4 py-3">Datum</th>
+									<th class="px-4 py-3">Kund</th>
+									<th class="px-4 py-3">Faktura</th>
+									<th class="px-4 py-3">Belopp inkl. moms</th>
+									<th class="px-4 py-3">Status</th>
+									<th class="px-4 py-3"></th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-white/5">
+								@for (i of p.invoices; track i.id) {
+									<tr class="hover:bg-white/[0.03]">
+										<td class="whitespace-nowrap px-4 py-3 text-neutral-300">{{ date(i.createdAt) }}</td>
+										<td class="px-4 py-3 font-medium">{{ garageName(i.garageId, i.customerName) }}</td>
+										<td class="px-4 py-3 text-neutral-400">{{ i.number || '–' }}</td>
+										<td class="px-4 py-3 tabular-nums">{{ money(i.totalMinor) }}</td>
+										<td class="px-4 py-3">
+											<span class="rounded-full px-2.5 py-0.5 text-xs" [class]="invoiceClass(i)">{{ invoiceLabel(i) }}</span>
+											@if (i.paidAt) {
+												<span class="ml-2 text-xs text-neutral-500">{{ date(i.paidAt) }}</span>
+											}
+										</td>
+										<td class="space-x-2 whitespace-nowrap px-4 py-3 text-right">
+											@if (i.hostedUrl) {
+												<a [href]="i.hostedUrl" target="_blank" rel="noopener" class="rounded-lg border border-white/10 px-3 py-1 hover:bg-white/10">Faktura</a>
+											}
+											<a [href]="i.dashboardUrl" target="_blank" rel="noopener" class="rounded-lg border border-white/10 px-3 py-1 hover:bg-white/10">Stripe</a>
+										</td>
+									</tr>
+								} @empty {
+									<tr><td colspan="6" class="px-4 py-8 text-center text-neutral-500">Inga fakturor än.</td></tr>
+								}
+							</tbody>
+						</table>
+					</div>
+					<p class="text-xs text-neutral-500">De 100 senaste fakturorna. Kunder som faktureras utanför Stripe syns inte här.</p>
+				</section>
+			} @else if (paymentsLoading()) {
+				<p class="py-10 text-center text-neutral-500">Hämtar från Stripe…</p>
+			}
+		</main>
+		} @else if (view() === 'visits') {
 		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">
 			@if (error()) {
 				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ error() }}</p>
@@ -183,53 +291,6 @@
 		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">
 			@if (error()) {
 				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ error() }}</p>
-			}
-
-			@if (showPlans()) {
-				<section class="space-y-4 rounded-xl border border-white/10 bg-white/5 p-5">
-					<div>
-						<h2 class="text-lg font-semibold">Paket och priser</h2>
-						<p class="mt-1 text-sm text-neutral-400">
-							Priser anges i kr per månad exklusive moms. Ändringarna visas på landingpagen och i appen.
-							Antal inkluderade användare och vilka funktioner ett paket låser upp ändras i koden. Priset i Stripe
-							ändras i Stripe.
-						</p>
-					</div>
-					<div class="grid gap-4 md:grid-cols-2">
-						@for (id of plans; track id) {
-							<div class="space-y-3 rounded-lg border border-white/10 bg-black/20 p-4">
-								<label class="block text-sm">
-									<span class="text-neutral-300">Namn</span>
-									<input [(ngModel)]="planForms[id].name" name="pn-{{ id }}" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]" />
-								</label>
-								<label class="block text-sm">
-									<span class="text-neutral-300">Pris (kr / månad)</span>
-									<input type="number" min="0" [(ngModel)]="planForms[id].price" name="pp-{{ id }}" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]" />
-								</label>
-								<label class="block text-sm">
-									<span class="text-neutral-300">Beskrivning</span>
-									<input [(ngModel)]="planForms[id].blurb" name="pb-{{ id }}" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]" />
-								</label>
-								<label class="block text-sm">
-									<span class="text-neutral-300">Funktioner (en per rad)</span>
-									<textarea rows="5" [(ngModel)]="planForms[id].features" name="pf-{{ id }}" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]"></textarea>
-								</label>
-							</div>
-						}
-					</div>
-					<label class="block max-w-xs text-sm">
-						<span class="text-neutral-300">Extra användare (kr / månad)</span>
-						<input type="number" min="0" [(ngModel)]="extraUserPrice" name="extra-user" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 outline-none focus:border-[#d4af37]" />
-					</label>
-					<div class="flex items-center gap-3">
-						<button type="button" (click)="savePlans()" [disabled]="planSaving()" class="rounded-lg bg-[#d4af37] px-5 py-2 font-medium text-black disabled:opacity-60">
-							{{ planSaving() ? 'Sparar…' : 'Spara paket' }}
-						</button>
-						@if (planMsg()) {
-							<span class="text-sm text-neutral-300">{{ planMsg() }}</span>
-						}
-					</div>
-				</section>
 			}
 
 			<section class="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
@@ -349,7 +410,11 @@
 						</p>
 					}
 
-					<form class="mt-5 space-y-4" (ngSubmit)="save()">
+					@if (g.subscription?.stripeCustomerId; as cus) {
+							<a [href]="stripeCustomerUrl(cus)" target="_blank" rel="noopener" class="mt-4 inline-block rounded-lg border border-white/10 px-3 py-1.5 text-sm hover:bg-white/10">Öppna kunden i Stripe</a>
+						}
+
+						<form class="mt-5 space-y-4" (ngSubmit)="save()">
 						<label class="block text-sm">
 							<span class="text-neutral-300">Plan</span>
 							<select name="plan" [(ngModel)]="plan" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2">
