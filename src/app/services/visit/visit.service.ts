@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 
 /**
  * Berättar för backend att någon besöker sidan (en gång per flik och session).
- * Backend sparar plats och sida, aldrig IP, och mejlar ägaren. Skickas inte vid
+ * Backend sparar IP-adress, ungefärlig plats och sida (se /integritet) och mejlar ägaren. Skickas inte vid
  * utveckling eller serverrendering.
  */
 @Injectable({ providedIn: 'root' })
@@ -28,7 +28,7 @@ export class VisitService {
 				take(1)
 			)
 			.subscribe((e) => {
-				fetch(`${environment.apiBaseUrl}/contact/visit`, {
+				fetch(`${environment.apiBaseUrl}/api/contact/visit`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({

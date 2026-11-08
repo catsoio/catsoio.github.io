@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
 const origin = 'https://catso.io';
@@ -8,18 +8,27 @@ const out = './dist/catsoio/browser';
 // och ett påhittat lastmod skadar mer än det hjälper, så de lämnas bort.
 const routes = [
 	'/',
+	'/produkter',
 	'/apps/axle',
 	'/vera-01',
 	'/shopify/apps/ai-search',
 	'/hemmafest',
 	'/hemmafest/business',
 	'/poangjakten/sponsor',
+	'/om-oss',
+	'/kontakt',
+	'/integritet',
 ];
 
 // GitHub Pages kan inte göra 301. Utan en fil svarar de här adresserna 404,
 // så vi lägger en sida med canonical + meta refresh som sökmotorer följer.
 const redirects = {
 	'/home': '/',
+	'/about': '/om-oss',
+	'/contact': '/kontakt',
+	'/pricing': '/produkter',
+	'/privacy': '/integritet',
+	'/terms': '/integritet',
 	'/verkstad': '/apps/axle',
 	'/apps/verkstad': '/apps/axle',
 	'/verkstad/kom-igang': '/axle/kom-igang',
@@ -55,3 +64,8 @@ for (const [from, to] of Object.entries(redirects)) {
 	await writeFile(file, stub(to));
 }
 console.log(`✔ ${Object.keys(redirects).length} redirect pages written`);
+
+// GitHub Pages svarar 404 på okända adresser och serverar då 404.html: den förrenderade
+// 404-sidan (noindex, med länkar till riktiga sidor), inte en tom app som hamnar på startsidan.
+await copyFile(join(out, '404', 'index.html'), join(out, '404.html'));
+console.log('✔ 404.html written');

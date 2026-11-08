@@ -3,7 +3,7 @@ import { HOME_FAQ, AXLE_FAQ, faqJsonLd } from './faq.data';
 
 const ORIGIN = 'https://catso.io';
 
-const breadcrumbs = (...items: [name: string, path: string][]) => ({
+export const breadcrumbs = (...items: [name: string, path: string][]) => ({
 	'@type': 'BreadcrumbList',
 	itemListElement: items.map(([name, path], i) => ({
 		'@type': 'ListItem',
@@ -12,6 +12,14 @@ const breadcrumbs = (...items: [name: string, path: string][]) => ({
 		item: `${ORIGIN}${path}`,
 	})),
 });
+
+const PRODUCT_LIST: [name: string, path: string][] = [
+	['Catso Axle: verkstadssystem för däck- och bilverkstäder', '/apps/axle'],
+	['VERA-01: lokal AI-agent för advokatbyråer', '/vera-01'],
+	['Catso AI Sök: AI-sök och shoppingassistent för Shopify', '/shopify/apps/ai-search'],
+	['Hemmafest: skapa och hitta fester', '/hemmafest'],
+	['Poängjakten: nå Sveriges gymnasieelever', '/poangjakten/sponsor'],
+];
 
 /** Startsidan nås på både / och /home. Båda pekar canonical till /. */
 export const HOME_SEO: RouteSEO = {
@@ -28,7 +36,9 @@ export const HOME_SEO: RouteSEO = {
 			{
 				'@type': 'WebSite',
 				'@id': `${ORIGIN}/#website`,
-				name: 'Catso AI & Robotics',
+				// Googles webbplatsnamn läses härifrån: kortnamnet först, hela namnet som alternativ.
+				name: 'Catso',
+				alternateName: ['Catso AI & Robotics', 'catso.io'],
 				url: `${ORIGIN}/`,
 				inLanguage: 'sv-SE',
 				publisher: { '@id': `${ORIGIN}/#organization` },
@@ -36,13 +46,7 @@ export const HOME_SEO: RouteSEO = {
 			{
 				'@type': 'ItemList',
 				name: 'Catso produkter',
-				itemListElement: [
-					['Catso Axle: verkstadssystem för däck- och bilverkstäder', '/apps/axle'],
-					['VERA-01: lokal AI-agent för advokatbyråer', '/vera-01'],
-					['Catso AI Sök: AI-sök och shoppingassistent för Shopify', '/shopify/apps/ai-search'],
-					['Hemmafest: skapa och hitta fester', '/hemmafest'],
-					['Poängjakten: nå Sveriges gymnasieelever', '/poangjakten/sponsor'],
-				].map(([name, path], i) => ({
+				itemListElement: PRODUCT_LIST.map(([name, path], i) => ({
 					'@type': 'ListItem',
 					position: i + 1,
 					name,
@@ -127,7 +131,7 @@ export const POANGJAKTEN_SEO: RouteSEO = {
 		name: 'Poängjakten',
 		applicationCategory: 'SocialNetworkingApplication',
 		operatingSystem: 'Web, iOS, Android',
-		url: 'https://catso.io/poangjakten',
+		url: 'https://catso.io/poangjakten/sponsor',
 		offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
 	},
 };
@@ -201,7 +205,156 @@ export const AXLE_SEO: RouteSEO = {
 				// },
 			},
 			faqJsonLd(AXLE_FAQ),
-			breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle']),
+			breadcrumbs(['Catso', '/'], ['Produkter', '/produkter'], ['Catso Axle', '/apps/axle']),
+		],
+	},
+};
+
+const PAGE_IMAGE = `${ORIGIN}/assets/og/catso-og.png`;
+
+export const PRODUCTS_SEO: RouteSEO = {
+	title: 'Produkter | Catso AI & Robotics',
+	description:
+		'Catso Axle för verkstäder, VERA-01 för advokatbyråer, Catso AI Sök för Shopify, Hemmafest och Poängjakten. Alla produkter från Catso på ett ställe.',
+	canonical: `${ORIGIN}/produkter`,
+	og: { type: 'website', image: PAGE_IMAGE },
+	twitter: { card: 'summary_large_image', image: PAGE_IMAGE },
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'CollectionPage',
+				'@id': `${ORIGIN}/produkter#page`,
+				name: 'Produkter från Catso',
+				url: `${ORIGIN}/produkter`,
+				isPartOf: { '@id': `${ORIGIN}/#website` },
+				about: { '@id': `${ORIGIN}/#organization` },
+				mainEntity: {
+					'@type': 'ItemList',
+					itemListElement: PRODUCT_LIST.map(([name, path], i) => ({
+						'@type': 'ListItem',
+						position: i + 1,
+						name,
+						url: `${ORIGIN}${path}`,
+					})),
+				},
+			},
+			breadcrumbs(['Catso', '/'], ['Produkter', '/produkter']),
+		],
+	},
+};
+
+export const ABOUT_SEO: RouteSEO = {
+	title: 'Om Catso AI & Robotics',
+	description:
+		'Catso AI & Robotics bygger verkstadssystem, AI-agenter, Shopify-appar och robotik i Sverige. Läs vad vi gör och hur vi arbetar.',
+	canonical: `${ORIGIN}/om-oss`,
+	og: { type: 'website', image: PAGE_IMAGE },
+	twitter: { card: 'summary_large_image', image: PAGE_IMAGE },
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'AboutPage',
+				'@id': `${ORIGIN}/om-oss#page`,
+				name: 'Om Catso AI & Robotics',
+				url: `${ORIGIN}/om-oss`,
+				isPartOf: { '@id': `${ORIGIN}/#website` },
+				about: { '@id': `${ORIGIN}/#organization` },
+			},
+			breadcrumbs(['Catso', '/'], ['Om oss', '/om-oss']),
+		],
+	},
+};
+
+export const KONTAKT_SEO: RouteSEO = {
+	title: 'Kontakta Catso | Catso AI & Robotics',
+	description:
+		'Hör av dig till Catso om verkstadssystemet Catso Axle, AI-agenten VERA-01, Shopify-appen Catso AI Sök eller robotik. Mejla support@catso.io eller använd formuläret.',
+	canonical: `${ORIGIN}/kontakt`,
+	og: { type: 'website', image: PAGE_IMAGE },
+	twitter: { card: 'summary_large_image', image: PAGE_IMAGE },
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'ContactPage',
+				'@id': `${ORIGIN}/kontakt#page`,
+				name: 'Kontakta Catso',
+				url: `${ORIGIN}/kontakt`,
+				isPartOf: { '@id': `${ORIGIN}/#website` },
+				about: { '@id': `${ORIGIN}/#organization` },
+			},
+			breadcrumbs(['Catso', '/'], ['Kontakt', '/kontakt']),
+		],
+	},
+};
+
+export const INTEGRITET_SEO: RouteSEO = {
+	title: 'Integritetspolicy | Catso AI & Robotics',
+	description: 'Så hanterar Catso personuppgifter när du besöker catso.io eller skickar ett meddelande.',
+	canonical: `${ORIGIN}/integritet`,
+	robots: 'index,follow',
+};
+
+/** Visas som 404.html på GitHub Pages. Ska aldrig indexeras. */
+export const NOT_FOUND_SEO: RouteSEO = {
+	title: 'Sidan finns inte | Catso',
+	description: 'Sidan du söker finns inte.',
+	robots: 'noindex,follow',
+};
+
+export const VERA_SEO: RouteSEO = {
+	title: 'VERA-01 | AI-agent för svenska advokatbyråer',
+	description:
+		'VERA-01 är en AI-agent byggd för svenska advokatbyråer. Körs lokalt, tränad på svensk lag. Ingen data lämnar er miljö.',
+	canonical: `${ORIGIN}/vera-01`,
+	og: { type: 'product', image: `${ORIGIN}/assets/imgs/vera-01/vera01banner00.png` },
+	twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/imgs/vera-01/vera01banner00.png` },
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'SoftwareApplication',
+				'@id': `${ORIGIN}/vera-01#app`,
+				name: 'VERA-01',
+				applicationCategory: 'BusinessApplication',
+				operatingSystem: 'Web',
+				url: `${ORIGIN}/vera-01`,
+				publisher: { '@id': `${ORIGIN}/#organization` },
+				offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
+			},
+			breadcrumbs(['Catso', '/'], ['Produkter', '/produkter'], ['VERA-01', '/vera-01']),
+		],
+	},
+};
+
+export const SHOPIFY_SEO: RouteSEO = {
+	title: 'Catso AI Sök — AI-sök & shoppingassistent för Shopify',
+	description:
+		'Byt ut butikens sökruta mot en AI-sökning som förstår vad kunden menar, plus en shoppingassistent som bara rekommenderar produkter du har. Svenska & engelska.',
+	canonical: `${ORIGIN}/shopify/apps/ai-search`,
+	og: { type: 'website', image: `${ORIGIN}/assets/og/catso-ai-search-og.png` },
+	twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/og/catso-ai-search-og.png` },
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'SoftwareApplication',
+				'@id': `${ORIGIN}/shopify/apps/ai-search#app`,
+				name: 'Catso AI Sök',
+				applicationCategory: 'BusinessApplication',
+				operatingSystem: 'Shopify',
+				url: `${ORIGIN}/shopify/apps/ai-search`,
+				publisher: { '@id': `${ORIGIN}/#organization` },
+				offers: { '@type': 'Offer', price: '19', priceCurrency: 'USD' },
+			},
+			breadcrumbs(['Catso', '/'], ['Produkter', '/produkter'], ['Catso AI Sök', '/shopify/apps/ai-search']),
 		],
 	},
 };

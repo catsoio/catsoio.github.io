@@ -24,8 +24,7 @@
 
 			<div class="flex items-center gap-2 shrink-0">
 				<a
-					href="#contact"
-					(click)="scrollTo($event, '#contact')"
+					href="/kontakt"
 					class="hidden sm:inline-flex items-center justify-center rounded-2xl bg-white text-black hover:bg-white/90 shadow-sm h-11 px-5 text-sm font-medium transition-colors"
 				>
 					Kontakta oss
@@ -73,8 +72,7 @@
 				{{ link.label }}
 			</a>
 			<a
-				href="#contact"
-				(click)="scrollTo($event, '#contact')"
+				href="/kontakt"
 				class="block px-4 py-3 text-sm font-medium text-black bg-white text-center rounded-2xl mt-2"
 			>
 				Kontakta oss
@@ -573,8 +571,11 @@
 					</ul>
 				</div>
 				<div>
-					<h4 class="text-sm font-semibold text-black">Kontakt</h4>
+					<h4 class="text-sm font-semibold text-black">Företaget</h4>
 					<ul class="mt-3 space-y-2 text-sm text-black/45">
+						<li><a href="/produkter" class="hover:text-black transition-colors">Alla produkter</a></li>
+						<li><a href="/om-oss" class="hover:text-black transition-colors">Om oss</a></li>
+						<li><a href="/kontakt" class="hover:text-black transition-colors">Kontakt</a></li>
 						<li>
 							<a href="mailto:support@catso.io" class="hover:text-black transition-colors"
 								>support&#64;catso.io</a
@@ -588,8 +589,7 @@
 			>
 				<p>© {{ currentYear }} Catso AI & Robotics. Alla rättigheter förbehållna.</p>
 				<div class="flex items-center gap-4">
-					<a href="/terms" class="hover:text-black transition-colors">Villkor</a>
-					<a href="/privacy" class="hover:text-black transition-colors">Integritetspolicy</a>
+					<a href="/integritet" class="hover:text-black transition-colors">Integritetspolicy</a>
 				</div>
 			</div>
 		</div>

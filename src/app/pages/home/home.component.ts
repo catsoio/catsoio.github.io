@@ -64,10 +64,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	navLinks: NavLink[] = [
+		{ label: 'Produkter', href: '/produkter' },
 		{ label: 'Catso Axle', href: '/apps/axle' },
-		{ label: 'Produkter', href: '#products' },
-		{ label: 'Robotik', href: '#robotics' },
-		{ label: 'Kontakt', href: '#contact' },
+		{ label: 'VERA-01', href: '/vera-01' },
+		{ label: 'Om oss', href: '/om-oss' },
+		{ label: 'Kontakt', href: '/kontakt' },
 	];
 
 	scrollTo(event: Event, fragment: string) {

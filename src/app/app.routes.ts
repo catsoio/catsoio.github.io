@@ -12,6 +12,13 @@ import {
   AXLE_PRISER_SEO,
   KOM_IGANG_SEO,
   POANGJAKTEN_SEO,
+  PRODUCTS_SEO,
+  ABOUT_SEO,
+  KONTAKT_SEO,
+  INTEGRITET_SEO,
+  NOT_FOUND_SEO,
+  VERA_SEO,
+  SHOPIFY_SEO,
 } from './seo/seo.consts';
 
 export const routes: Routes = [
@@ -22,17 +29,27 @@ export const routes: Routes = [
     data: { seo: HOME_SEO },
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
-    data: { seo: HOME_SEO },
+    path: 'produkter',
+    loadComponent: () =>
+      import('./pages/products/products.component').then((m) => m.ProductsComponent),
+    data: { seo: PRODUCTS_SEO },
   },
   {
-    path: 'pricing',
+    path: 'om-oss',
+    loadComponent: () => import('./pages/company/about.component').then((m) => m.AboutComponent),
+    data: { seo: ABOUT_SEO },
+  },
+  {
+    path: 'kontakt',
     loadComponent: () =>
-      import('./pages/pricing/pricing.component').then((m) => m.PricingComponent),
-    data: {
-      seo: { title: 'Priser — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO,
-    },
+      import('./pages/kontakt/kontakt.component').then((m) => m.KontaktComponent),
+    data: { seo: KONTAKT_SEO },
+  },
+  {
+    path: 'integritet',
+    loadComponent: () =>
+      import('./pages/integritet/integritet.component').then((m) => m.IntegritetComponent),
+    data: { seo: INTEGRITET_SEO },
   },
   {
     path: 'docs',
@@ -60,27 +77,7 @@ export const routes: Routes = [
   {
     path: 'vera-01',
     loadComponent: () => import('./pages/vera-01/vera-01').then((m) => m.Vera01),
-    data: {
-      seo: {
-        title: 'VERA-01 | AI-agent för svenska advokatbyråer',
-        description:
-          'VERA-01 är en AI-agent byggd för svenska advokatbyråer. Körs lokalt, tränad på svensk lag. Ingen data lämnar er miljö.',
-        og: { type: 'product', image: 'https://catso.io/assets/imgs/vera-01/vera01banner00.png' },
-        twitter: {
-          card: 'summary_large_image',
-          image: 'https://catso.io/assets/imgs/vera-01/vera01banner00.png',
-        },
-        jsonLd: {
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareApplication',
-          name: 'VERA-01',
-          applicationCategory: 'BusinessApplication',
-          operatingSystem: 'Web',
-          url: 'https://catso.io/vera-01',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
-        },
-      } as RouteSEO,
-    },
+    data: { seo: VERA_SEO, footer: true },
   },
   {
     path: 'apps/axle',
@@ -88,7 +85,7 @@ export const routes: Routes = [
       import('./pages/axle-landing/axle-landing.component').then(
         (m) => m.AxleLandingComponent,
       ),
-    data: { seo: AXLE_SEO },
+    data: { seo: AXLE_SEO, footer: true },
   },
   { path: 'verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
   { path: 'apps/verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
@@ -116,13 +113,13 @@ export const routes: Routes = [
   {
     path: 'poangjakten/sponsor',
     loadComponent: () => import('./pages/poangjakten/poangjakten').then((m) => m.Poangjakten),
-    data: { seo: POANGJAKTEN_SEO },
+    data: { seo: POANGJAKTEN_SEO, footer: true },
   },
   {
     path: 'hemmafest',
     loadComponent: () =>
       import('./pages/hemmafest/hemmafest.component').then((m) => m.HemmafestComponent),
-    data: { seo: HEMMAFEST_SEO },
+    data: { seo: HEMMAFEST_SEO, footer: true },
   },
   {
     path: 'hemmafest/business',
@@ -160,13 +157,6 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'about',
-    loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
-    data: {
-      seo: { title: 'Om oss — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO,
-    },
-  },
-  {
     path: 'shopify/ai-search',
     redirectTo: 'shopify/apps/ai-search',
     pathMatch: 'full',
@@ -177,36 +167,7 @@ export const routes: Routes = [
       import('./pages/shopify-ai-search/shopify-ai-search.component').then(
         (m) => m.ShopifyAiSearchComponent,
       ),
-    data: {
-      seo: {
-        title: 'Catso AI Sök — AI-sök & shoppingassistent för Shopify',
-        description:
-          'Byt ut butikens sökruta mot en AI-sökning som förstår vad kunden menar, plus en shoppingassistent som bara rekommenderar produkter du har. Svenska & engelska.',
-        og: { type: 'website', image: 'https://catso.io/assets/og/catso-ai-search-og.png' },
-        twitter: {
-          card: 'summary_large_image',
-          image: 'https://catso.io/assets/og/catso-ai-search-og.png',
-        },
-        robots: 'index,follow',
-        jsonLd: {
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareApplication',
-          name: 'Catso AI Sök',
-          applicationCategory: 'BusinessApplication',
-          operatingSystem: 'Shopify',
-          url: 'https://catso.io/shopify/apps/ai-search',
-          offers: { '@type': 'Offer', price: '19', priceCurrency: 'USD' },
-        },
-      } as RouteSEO,
-    },
-  },
-  {
-    path: 'contact',
-    loadComponent: () =>
-      import('./pages/contact/contact.component').then((m) => m.ContactComponent),
-    data: {
-      seo: { title: 'Kontakt — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO,
-    },
+    data: { seo: SHOPIFY_SEO, footer: true },
   },
   {
     path: 'careers',
@@ -214,40 +175,6 @@ export const routes: Routes = [
       import('./pages/careers/careers.component').then((m) => m.CareersComponent),
     data: {
       seo: { title: 'Karriär — Catso AI & Robotics', robots: 'noindex,nofollow' } as RouteSEO,
-    },
-  },
-  {
-    path: 'privacy',
-    loadComponent: () =>
-      import('./pages/legal/privacy/privacy.component').then((m) => m.PrivacyComponent),
-    data: {
-      seo: {
-        title: 'Privacy Policy — Catso',
-        description: 'How Catso collects, uses, and protects your data.',
-        og: { type: 'article', image: '/assets/og/catso-og.png' },
-        twitter: {
-          card: 'summary_large_image',
-          image: '/assets/og/catso-og.png',
-        },
-        robots: 'noindex,follow',
-      } as RouteSEO,
-    },
-  },
-  {
-    path: 'terms',
-    loadComponent: () =>
-      import('./pages/legal/terms/terms.component').then((m) => m.TermsComponent),
-    data: {
-      seo: {
-        title: 'Terms of Service — Catso',
-        description: 'The terms and conditions that govern your use of Catso.',
-        og: { type: 'article', image: '/assets/og/catso-og.png' },
-        twitter: {
-          card: 'summary_large_image',
-          image: '/assets/og/catso-og.png',
-        },
-        robots: 'noindex,follow',
-      } as RouteSEO,
     },
   },
   // Auth / app areas (noindex)
@@ -269,5 +196,16 @@ export const routes: Routes = [
       } as RouteSEO,
     },
   },
-  { path: '**', redirectTo: '' },
+  {
+    path: '404',
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),
+    data: { seo: NOT_FOUND_SEO },
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),
+    data: { seo: NOT_FOUND_SEO },
+  },
 ];
