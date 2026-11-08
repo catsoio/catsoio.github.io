@@ -174,3 +174,75 @@ export function quote(c: Config): Quote {
 		yearlyInvoice,
 	};
 }
+
+const MAX_USERS_SAVED = 50;
+const MAX_SCREENS_SAVED = 10;
+const MAX_NUMBER = 10_000_000;
+
+const clamp = (n: unknown, min: number, max: number, fallback: number): number => {
+	const v = Math.floor(Number(n));
+	return Number.isFinite(v) ? Math.min(Math.max(v, min), max) : fallback;
+};
+
+/**
+ * Gör ett sparat eller på annat sätt okänt värde till en giltig konfiguration, eller null om det inte
+ * liknar en. Sparade val kommer från webbläsaren och får aldrig kunna ge en trasig sida.
+ */
+export function sanitizeConfig(raw: unknown): Config | null {
+	if (!raw || typeof raw !== 'object') return null;
+	const r = raw as Record<string, unknown>;
+	if (r['plan'] !== 'dack' && r['plan'] !== 'verkstad') return null;
+	const plan = r['plan'] as PlanId;
+	const hall = r['hall'] === true;
+	return {
+		plan,
+		users: clamp(r['users'], PLANS[plan].users, MAX_USERS_SAVED, PLANS[plan].users),
+		hall,
+		screens: plan === 'verkstad' ? clamp(r['screens'], 0, MAX_SCREENS_SAVED, 0) : 0,
+		domain: hall && r['domain'] === true,
+		period: r['period'] === 'year' ? 'year' : 'month',
+		smsPerMonth: clamp(r['smsPerMonth'], 0, MAX_NUMBER, 0),
+		cardVolume: clamp(r['cardVolume'], 0, MAX_NUMBER, 0),
+		avgPayment: clamp(r['avgPayment'], 1, MAX_NUMBER, 2500),
+	};
+}
+
+const number = new Intl.NumberFormat('sv-SE', { maximumFractionDigits: 0 });
+/** Tusentalsavgränsare med vanligt mellanslag, så texten klarar mejl och urklipp. */
+const n = (v: number): string => number.format(Math.round(v)).replace(/\u00a0|\u202f/g, ' ');
+
+/**
+ * Det besökaren valt i räknaren som läsbara rader, för mejlet till oss. Texten ska gå att läsa
+ * utan att öppna sidan: vad som valts och vad det kostar.
+ */
+export function describeSelection(c: Config, q: Quote): string[] {
+	const plan = PLANS[c.plan];
+	const extraUsers = Math.max(c.users, plan.users) - plan.users;
+	const lines = [
+		`Paket: Axle ${plan.name} (${n(plan.price)} kr/mån)`,
+		`Användare: ${Math.max(c.users, plan.users)}${extraUsers > 0 ? ` (${extraUsers} utöver de ${plan.users} som ingår)` : ` (${plan.users} ingår)`}`,
+	];
+	if (c.hall) {
+		lines.push(
+			`Bilhandel (Hall): ja${c.plan === 'verkstad' ? ', som tillägg till Verkstad' : ', fristående'}`,
+		);
+		if (c.domain) lines.push('Egen domän till webbplatsen: ja');
+	}
+	if (c.plan === 'verkstad' && c.screens > 0) lines.push(`Extra verkstadsskärmar: ${c.screens}`);
+	lines.push(
+		`Betalning av abonnemanget: ${c.period === 'year' ? `årsvis (${12 - YEAR_PAID_MONTHS} månader gratis)` : 'månadsvis'}`,
+	);
+	if (c.smsPerMonth > 0) lines.push(`SMS per månad: ${n(c.smsPerMonth)} (${plan.sms} ingår)`);
+	if (c.cardVolume > 0) {
+		lines.push(
+			`Kort och Swish via Axle: ${n(c.cardVolume)} kr/mån, snitt ${n(c.avgPayment)} kr per betalning`,
+		);
+	}
+	lines.push(
+		`Beräknat: ${n(q.totalMonthly)} kr/mån exkl. moms (${n(q.totalInclVat)} kr inkl. moms)`,
+	);
+	if (q.yearlyInvoice > 0) {
+		lines.push(`Abonnemanget faktureras ${n(q.yearlyInvoice)} kr per år exkl. moms`);
+	}
+	return lines;
+}

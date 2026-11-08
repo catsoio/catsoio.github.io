@@ -10,6 +10,7 @@ const routes = [
 	'/',
 	'/produkter',
 	'/apps/axle',
+	'/axle/priser',
 	'/vera-01',
 	'/shopify/apps/ai-search',
 	'/hemmafest',

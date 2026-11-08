@@ -151,11 +151,27 @@ export const AXLE_INFO_SEO: RouteSEO = {
 	robots: 'noindex,follow',
 };
 
-/** Dold prissida: inte länkad och inte i sitemap. Ta bort robots när den ska visas. */
 export const AXLE_PRISER_SEO: RouteSEO = {
 	title: 'Priser och prisräknare | Catso Axle',
-	description: 'Priser för Catso Axle och en räknare som visar månadskostnaden för just er verkstad.',
-	robots: 'noindex,nofollow',
+	description: 'Priser för Catso Axle från 795 kr i månaden, och en räknare som visar månadskostnaden för just er verkstad.',
+	canonical: `${ORIGIN}/axle/priser`,
+	og: { type: 'product', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
+	twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'WebPage',
+				'@id': `${ORIGIN}/axle/priser#page`,
+				name: 'Priser för Catso Axle',
+				url: `${ORIGIN}/axle/priser`,
+				isPartOf: { '@id': `${ORIGIN}/#website` },
+				about: { '@id': `${ORIGIN}/apps/axle#app` },
+			},
+			breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle'], ['Priser', '/axle/priser']),
+		],
+	},
 };
 
 export const AXLE_SEO: RouteSEO = {
@@ -196,13 +212,14 @@ export const AXLE_SEO: RouteSEO = {
 					'Kunder, bilar och leverantörer',
 				],
 				publisher: { '@id': `${ORIGIN}/#organization` },
-				// TILLFÄLLIGT BORTTAGET (priser):
-				// offers: {
-				// 	'@type': 'AggregateOffer',
-				// 	lowPrice: '495',
-				// 	highPrice: '1295',
-				// 	priceCurrency: 'SEK',
-				// },
+				// Priserna är exklusive moms och ska stå lika med axle-priser.pricing.ts.
+				offers: {
+					'@type': 'AggregateOffer',
+					lowPrice: '795',
+					highPrice: '2495',
+					priceCurrency: 'SEK',
+					offerCount: 2,
+				},
 			},
 			faqJsonLd(AXLE_FAQ),
 			breadcrumbs(['Catso', '/'], ['Produkter', '/produkter'], ['Catso Axle', '/apps/axle']),

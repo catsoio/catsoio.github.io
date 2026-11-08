@@ -104,7 +104,6 @@ export const routes: Routes = [
     data: { seo: AXLE_INFO_SEO },
   },
   {
-    // Prissidan med prisräknaren är dold: ingen länk, inte i sitemap och noindex.
     path: 'axle/priser',
     loadComponent: () =>
       import('./pages/axle-priser/axle-priser.component').then((m) => m.AxlePriserComponent),

@@ -41,9 +41,7 @@
         <a routerLink="/apps/axle" fragment="funktioner" class="hover:text-[#00706a]">Funktioner</a>
         <a routerLink="/apps/axle" fragment="fragor" class="hover:text-[#00706a]">Frågor</a>
         <a routerLink="/axle/kom-igang" class="hover:text-[#00706a]">Manual</a>
-        <!-- TILLFÄLLIGT BORTTAGET (priser):
-        <a routerLink="/apps/axle" fragment="priser" class="hover:text-[#00706a]">Priser</a>
-        -->
+        <a routerLink="/axle/priser" class="hover:text-[#00706a]">Priser</a>
       </div>
       <div class="flex items-center gap-2">
         @if (appUrl) {
@@ -93,9 +91,7 @@
           <div class="mt-8 flex flex-col gap-3 sm:flex-row">
             <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary">Kontakta oss</a>
             <a routerLink="/axle/kom-igang" class="btn btn-outline">Manual</a>
-            <!-- TILLFÄLLIGT BORTTAGET (priser):
-            <a routerLink="/apps/axle" fragment="priser" class="btn btn-outline">Priser</a>
-            -->
+            <a routerLink="/axle/priser" class="btn btn-outline">Se priser</a>
           </div>
         </div>
 
@@ -300,8 +296,8 @@
       <span>© {{ currentYear }} Catso AI &amp; Robotics</span>
       <nav class="flex gap-5">
         <a routerLink="/" class="hover:text-[#00706a]">Catso</a>
-        <a routerLink="/privacy" class="hover:text-[#00706a]">Integritet</a>
-        <a routerLink="/terms" class="hover:text-[#00706a]">Villkor</a>
+        <a routerLink="/axle/priser" class="hover:text-[#00706a]">Priser</a>
+        <a routerLink="/integritet" class="hover:text-[#00706a]">Integritet</a>
         <a href="mailto:support&#64;catso.io" class="hover:text-[#00706a]">support&#64;catso.io</a>
       </nav>
     </div>

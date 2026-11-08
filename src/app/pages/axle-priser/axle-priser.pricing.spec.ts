@@ -1,4 +1,4 @@
-import { quote, type Config } from './axle-priser.pricing';
+import { describeSelection, quote, sanitizeConfig, type Config } from './axle-priser.pricing';
 
 const base: Config = {
 	plan: 'verkstad',
@@ -76,5 +76,62 @@ describe('quote', () => {
 
 	it('does not divide by zero when the average payment is missing', () => {
 		expect(quote({ ...base, cardVolume: 1000, avgPayment: 0 }).usageMonthly).toBe(5);
+	});
+});
+
+describe('sanitizeConfig', () => {
+	it('accepts a saved configuration as it is', () => {
+		const saved = { ...base, users: 8, hall: true, domain: true, period: 'year' as const };
+		expect(sanitizeConfig(saved)).toEqual(saved);
+	});
+
+	it('rejects values that are not a configuration', () => {
+		expect(sanitizeConfig(null)).toBeNull();
+		expect(sanitizeConfig('verkstad')).toBeNull();
+		expect(sanitizeConfig({ ...base, plan: 'gratis' })).toBeNull();
+	});
+
+	it('clamps and repairs what a stale or edited value can get wrong', () => {
+		const c = sanitizeConfig({
+			...base,
+			users: -3,
+			screens: 99,
+			smsPerMonth: 'många',
+			avgPayment: 0,
+			domain: true,
+		})!;
+		expect(c.users).toBe(5);
+		expect(c.screens).toBe(10);
+		expect(c.smsPerMonth).toBe(0);
+		expect(c.avgPayment).toBe(1);
+		// Egen domän kräver bilhandel.
+		expect(c.domain).toBe(false);
+	});
+
+	it('gives Däck no screens and no fewer users than the plan includes', () => {
+		const c = sanitizeConfig({ ...base, plan: 'dack', users: 1, screens: 3 })!;
+		expect(c.users).toBe(2);
+		expect(c.screens).toBe(0);
+	});
+});
+
+describe('describeSelection', () => {
+	it('lists only what was chosen, with the total', () => {
+		const c: Config = { ...base, users: 8, hall: true, period: 'year', smsPerMonth: 450 };
+		const text = describeSelection(c, quote(c)).join('\n');
+		expect(text).toContain('Paket: Axle Verkstad (2 495 kr/mån)');
+		expect(text).toContain('Användare: 8 (3 utöver de 5 som ingår)');
+		expect(text).toContain('Bilhandel (Hall): ja, som tillägg till Verkstad');
+		expect(text).toContain('årsvis');
+		expect(text).toContain('SMS per månad: 450 (300 ingår)');
+		expect(text).toContain('kr/mån exkl. moms');
+		expect(text).toContain('faktureras');
+		expect(text).not.toContain('skärmar');
+		expect(text).not.toContain('Egen domän');
+	});
+
+	it('uses plain spaces in numbers', () => {
+		const text = describeSelection(base, quote(base)).join('\n');
+		expect(text).not.toMatch(/[\u00a0\u202f]/);
 	});
 });

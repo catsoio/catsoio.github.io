@@ -1,6 +1,19 @@
-import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	PLATFORM_ID,
+	afterNextRender,
+	computed,
+	effect,
+	inject,
+	signal,
+} from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import {
 	DOMAIN_YEAR_PRICE,
 	EXTRA_SCREEN_PRICE,
@@ -11,13 +24,19 @@ import {
 	SMS_OVER_PRICE,
 	VAT_RATE,
 	YEAR_PAID_MONTHS,
+	describeSelection,
 	quote,
+	sanitizeConfig,
+	type Config,
 	type Period,
 	type PlanId,
 } from './axle-priser.pricing';
 
 /** Produktnamnet står på samma sätt som på sidan /apps/axle. */
 const PRODUCT_NAME = 'Catso Axle';
+
+/** Valet i räknaren sparas här i besökarens webbläsare, så det finns kvar när hen kommer tillbaka. */
+const SAVED_KEY = 'catso.axle.priser.v1';
 
 const MAX_USERS = 50;
 const MAX_SCREENS = 10;
@@ -48,15 +67,16 @@ interface Rule {
 }
 
 /**
- * Prissida med prisräknare. Den är inte länkad från menyn, inte med i sitemap.xml och har noindex,
- * så den syns bara för den som har adressen. Visa den genom att länka den från axle-landing och
- * ta bort `robots` i AXLE_PRISER_SEO. Priserna och räkningen finns i axle-priser.pricing.ts.
+ * Prissida med prisräknare och kontakt. Besökarens val sparas i webbläsaren och följer med i
+ * meddelandet som skickas härifrån, så vi ser vad hen räknat på. Kontaktformuläret ligger på
+ * sidan (#kontakt) så att besökaren aldrig behöver lämna räknaren. Priserna och räkningen finns
+ * i axle-priser.pricing.ts.
  */
 @Component({
 	selector: 'app-axle-priser',
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [NgTemplateOutlet, RouterLink],
+	imports: [NgTemplateOutlet, RouterLink, ReactiveFormsModule],
 	templateUrl: './axle-priser.component.html',
 	styleUrl: './axle-priser.component.scss',
 })
@@ -106,6 +126,103 @@ export class AxlePriserComponent {
 			avgPayment: this.avgPayment(),
 		}),
 	);
+
+	/** Allt besökaren valt, i samma form som räkningen och det sparade värdet. */
+	readonly config = computed<Config>(() => ({
+		plan: this.plan(),
+		users: this.users(),
+		hall: this.hall(),
+		screens: this.screens(),
+		domain: this.domain(),
+		period: this.period(),
+		smsPerMonth: this.sms(),
+		cardVolume: this.cardVolume(),
+		avgPayment: this.avgPayment(),
+	}));
+	/** Valet som läsbara rader, både på sidan och i mejlet. */
+	readonly selection = computed(() => describeSelection(this.config(), this.q()));
+
+	private readonly http = inject(HttpClient);
+	private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
+	private readonly fb = inject(FormBuilder);
+	/** Sparar först när det sparade valet lästs, annars skriver standardvärdena över det. */
+	private readonly restored = signal(false);
+
+	readonly form = this.fb.nonNullable.group({
+		name: ['', [Validators.required, Validators.maxLength(120)]],
+		workshop: ['', [Validators.maxLength(160)]],
+		email: ['', [Validators.required, Validators.email, Validators.maxLength(200)]],
+		phone: ['', [Validators.maxLength(40)]],
+		message: ['', [Validators.maxLength(3000)]],
+		website: [''], // honeypot, ska förbli tom
+	});
+	readonly state = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
+	readonly submitted = signal(false);
+
+	constructor() {
+		// Läses efter hydreringen: den förrenderade sidan har standardvalen, och ett annat värde
+		// i första renderingen skulle inte stämma med den.
+		afterNextRender(() => {
+			const saved = this.readSaved();
+			if (saved) this.apply(saved);
+			this.restored.set(true);
+		});
+		effect(() => {
+			const config = this.config();
+			if (!this.browser || !this.restored()) return;
+			try {
+				localStorage.setItem(SAVED_KEY, JSON.stringify(config));
+			} catch {
+				// Utan lagring fungerar räknaren som vanligt, valet sparas bara inte.
+			}
+		});
+	}
+
+	private readSaved(): Config | null {
+		try {
+			return sanitizeConfig(JSON.parse(localStorage.getItem(SAVED_KEY) ?? 'null'));
+		} catch {
+			return null;
+		}
+	}
+
+	private apply(c: Config): void {
+		this.plan.set(c.plan);
+		this.users.set(c.users);
+		this.hall.set(c.hall);
+		this.screens.set(c.screens);
+		this.domain.set(c.domain);
+		this.period.set(c.period);
+		this.sms.set(c.smsPerMonth);
+		this.cardVolume.set(c.cardVolume);
+		this.avgPayment.set(c.avgPayment);
+	}
+
+	/** Skickar förfrågan och lägger valet i räknaren sist i meddelandet. */
+	async submit(): Promise<void> {
+		this.submitted.set(true);
+		if (this.form.invalid || this.state() === 'sending' || !this.browser) return;
+		this.state.set('sending');
+		const { message, ...rest } = this.form.getRawValue();
+		const text = [
+			message.trim() || 'Förfrågan från prissidan, se valet nedan.',
+			'',
+			'Valt i prisräknaren på /axle/priser:',
+			...this.selection().map((l) => `- ${l}`),
+		].join('\n');
+		try {
+			await firstValueFrom(
+				this.http.post(`${environment.apiBaseUrl}/api/contact`, {
+					...rest,
+					message: text,
+					product: 'Catso Axle, priser',
+				}),
+			);
+			this.state.set('sent');
+		} catch {
+			this.state.set('error');
+		}
+	}
 
 	readonly packages: Package[] = [
 		{

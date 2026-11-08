@@ -175,7 +175,8 @@ $border: #d5e0e0;
 	font-size: 0.9rem;
 	color: #3a4d4d;
 
-	input {
+	input,
+	textarea {
 		display: block;
 		width: 100%;
 		margin-top: 0.4rem;
@@ -193,6 +194,14 @@ $border: #d5e0e0;
 			border-color: $teal;
 			box-shadow: 0 0 0 3px rgba(0, 112, 106, 0.15);
 		}
+	}
+
+	.err {
+		display: block;
+		margin-top: 0.3rem;
+		color: #c0392b;
+		font-size: 0.8rem;
+		font-weight: 500;
 	}
 
 	.hint {
