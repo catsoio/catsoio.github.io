@@ -17,8 +17,7 @@ import { COMPANY_LINKS, PRODUCTS } from './site-nav';
 							<span class="text-base font-semibold text-white">Catso AI &amp; Robotics</span>
 						</a>
 						<p class="mt-4 max-w-sm text-sm">
-							Verkstadssystem, AI-agenter, Shopify-appar och robotik. Byggt i Sverige, med datahantering inom
-							EU.
+							AI-agenter och robotik för svenska företag och myndigheter. Byggt i Sverige, med datahantering inom EU.
 						</p>
 					</div>
 					<nav aria-label="Produkter">

@@ -65,8 +65,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	navLinks: NavLink[] = [
 		{ label: 'Produkter', href: '/produkter' },
-		{ label: 'Catso Axle', href: '/apps/axle' },
 		{ label: 'VERA-01', href: '/vera-01' },
+		{ label: 'Robotik', href: '/#robotics' },
 		{ label: 'Om oss', href: '/om-oss' },
 		{ label: 'Kontakt', href: '/kontakt' },
 	];
@@ -84,9 +84,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	sectors: Sector[] = [
 		{
-			title: 'Däck- och bilverkstäder',
-			desc: 'Catso Axle samlar lager, däckhotell, bokningar och arbetsorder i ett system.',
-			tags: ['Däckhotell', 'Arbetsorder', 'Lager'],
+			title: 'Advokatbyråer',
+			desc: 'VERA-01 är vår första agent, byggd för svenska advokatbyråer. Ärendeanalys, dokumentgenerering och sökning i rättskällor, tränad på svensk lag.',
+			tags: ['VERA-01', 'Lokalt', 'Rättskällor'],
 		},
 		{
 			title: 'Offentlig sektor',
@@ -94,14 +94,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 			tags: ['GDPR', 'On-prem', 'Svenska datakällor'],
 		},
 		{
-			title: 'Advokatbyråer',
-			desc: 'VERA-01 är vår första agent, byggd för svenska advokatbyråer. Ärendeanalys, dokumentgenerering och sökning i rättskällor — tränad på svensk lag.',
-			tags: ['VERA-01', 'Lokalt', 'Rättskällor'],
-		},
-		{
-			title: 'Industri',
+			title: 'Industri och lager',
 			desc: 'Lager, gruvor och produktionsanläggningar som vill ha autonoma robotar i drift. Vi tar projektet från digital tvilling till faktisk produktion.',
 			tags: ['Digital tvilling', 'Sim-to-Real', 'Fleet'],
+		},
+		{
+			title: 'E-handel',
+			desc: 'Webbutiker som vill att kunderna hittar rätt produkt med en vanlig mening. Catso AI Sök är en app för Shopify som tolkar vad kunden menar.',
+			tags: ['Shopify', 'AI-sök', 'Svenska och engelska'],
 		},
 	];
 

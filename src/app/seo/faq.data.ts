@@ -16,19 +16,27 @@ export const faqJsonLd = (faqs: Faq[]) => ({
 export const HOME_FAQ: Faq[] = [
 	{
 		q: 'Vad är Catso AI & Robotics?',
-		a: 'Vi bygger verkstadssystem, AI-agenter, appar för e-handel och robotik för svenska företag och myndigheter. Catso Axle är systemet för däck- och bilverkstäder, VERA-01 är vår AI-agent för advokatbyråer och Catso AI Sök är vår Shopify-app.',
-	},
-	{
-		q: 'Vad är Catso Axle?',
-		a: 'Ett verkstadssystem för däckfirmor och bilverkstäder. Lager, däckhotell, bokningar, arbetsorder och fakturor ligger på ett ställe.',
+		a: 'Vi bygger AI-agenter och robotik för svenska företag och myndigheter. Vår första AI-agent är VERA-01 för advokatbyråer, och vi har Catso AI Sök, en AI-sökning för Shopify-butiker. Inom robotik bygger vi styrningen för autonoma robotflottor.',
 	},
 	{
 		q: 'Vad är VERA-01?',
 		a: 'En AI-agent byggd för svenska advokatbyråer. Den körs lokalt hos er, analyserar ärenden, tar fram utkast och söker i svenska rättskällor. Ingen data skickas till externa tjänster.',
 	},
 	{
+		q: 'Vad gör ni inom robotik?',
+		a: 'Vi bygger styrningen för autonoma robotflottor. Projektet börjar med en digital tvilling av er anläggning, där robotarna testas och valideras i simulering innan de körs på riktigt. Sedan driftsätter vi i verkligheten.',
+	},
+	{
+		q: 'Vart tar vår data vägen?',
+		a: 'Våra AI-agenter körs on-prem eller i en svensk molnregion, så er data stannar i er miljö. Vi är byggda i Sverige och hanterar data inom EU.',
+	},
+	{
 		q: 'Bygger ni appar för Shopify?',
-		a: 'Ja, vi är officiell Shopify-partner. Catso AI Sök är vår första app: en sökruta som tolkar vad kunden menar och visar produkter som finns i lager. Den installeras direkt i butiken utan ändringar i temat.',
+		a: 'Ja, vi är officiell Shopify-partner. Catso AI Sök är en sökruta som tolkar vad kunden menar och visar produkter som finns i lager. Den installeras direkt i butiken utan ändringar i temat.',
+	},
+	{
+		q: 'Bygger ni något annat än AI och robotik?',
+		a: 'Ja. Vi har också verkstadssystemet Catso Axle för däckfirmor och bilverkstäder, och apparna Hemmafest och Poängjakten. De är egna produkter som vi driftar själva.',
 	},
 	{
 		q: 'Vad kostar det?',

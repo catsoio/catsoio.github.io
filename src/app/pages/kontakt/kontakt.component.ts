@@ -22,8 +22,8 @@ import { SiteHeaderComponent } from '../../shared/site-header.component';
 					</nav>
 					<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">Kontakta Catso</h1>
 					<p class="mt-5 text-lg text-black/65">
-						Berätta vad ni vill lösa, så svarar vi på mejlet. Frågar du om priser, säg vilken produkt och hur stor
-						verksamheten är.
+						Berätta vad ni vill automatisera eller lösa, så svarar vi på mejlet. Frågar du om priser, säg vilken
+						produkt och hur stor verksamheten är.
 					</p>
 					<dl class="mt-8 space-y-4 text-sm">
 						<div>
@@ -35,9 +35,9 @@ import { SiteHeaderComponent } from '../../shared/site-header.component';
 						<div>
 							<dt class="font-semibold">Produkter</dt>
 							<dd class="mt-1 text-black/65">
-								<a routerLink="/apps/axle" class="underline">Catso Axle</a>,
 								<a routerLink="/vera-01" class="underline">VERA-01</a>,
-								<a routerLink="/shopify/apps/ai-search" class="underline">Catso AI Sök</a>
+								<a routerLink="/shopify/apps/ai-search" class="underline">Catso AI Sök</a>,
+								<a routerLink="/apps/axle" class="underline">Catso Axle</a>
 							</dd>
 						</div>
 					</dl>

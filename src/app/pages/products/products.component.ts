@@ -17,17 +17,18 @@ import { PRODUCTS } from '../../shared/site-nav';
 				</nav>
 				<h1 class="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">Produkter från Catso</h1>
 				<p class="mt-5 max-w-2xl text-lg text-black/60">
-					Egna produkter som vi bygger, driftar och vidareutvecklar själva: ett verkstadssystem, en AI-agent för
-					advokatbyråer, en app för Shopify och två appar för unga.
+					Det vi bygger är AI-agenter och robotik. Här är produkterna vi driftar själva, och de system och appar vi
+					också har byggt.
 				</p>
 
-				<ul class="mt-12 grid gap-6 md:grid-cols-2">
-					@for (p of products; track p.path) {
+				<h2 class="mt-14 text-2xl font-semibold">AI-agenter och AI för e-handel</h2>
+				<ul class="mt-6 grid gap-6 md:grid-cols-2">
+					@for (p of ai; track p.path) {
 						<li class="flex flex-col rounded-3xl border border-black/10 bg-black/[0.02] p-8">
 							<span class="text-xs font-medium uppercase tracking-wide text-black/45">{{ p.audience }}</span>
-							<h2 class="mt-2 text-2xl font-semibold">
+							<h3 class="mt-2 text-2xl font-semibold">
 								<a [routerLink]="p.path" class="hover:underline">{{ p.name }}</a>
-							</h2>
+							</h3>
 							<p class="mt-3 flex-1 text-black/65">{{ p.text }}</p>
 							<a
 								[routerLink]="p.path"
@@ -38,11 +39,12 @@ import { PRODUCTS } from '../../shared/site-nav';
 					}
 				</ul>
 
-				<section class="mt-16 rounded-3xl bg-black p-8 text-white md:p-12">
+				<section class="mt-12 rounded-3xl bg-black p-8 text-white md:p-12">
 					<h2 class="text-2xl font-semibold">Robotik och specialbyggda agenter</h2>
 					<p class="mt-3 max-w-2xl text-white/65">
-						Vi bygger också styrning för autonoma robotflottor, med en digital tvilling av anläggningen som testas
-						i simulering innan robotarna körs på riktigt, och AI-agenter för offentlig sektor och industri.
+						Vi bygger styrningen för autonoma robotflottor, med en digital tvilling av anläggningen som testas i
+						simulering innan robotarna körs på riktigt. Vi bygger också AI-agenter för offentlig sektor och
+						industri. Det här gör vi som projekt tillsammans med er.
 					</p>
 					<a
 						routerLink="/kontakt"
@@ -50,11 +52,30 @@ import { PRODUCTS } from '../../shared/site-nav';
 						>Berätta vad ni behöver</a
 					>
 				</section>
+
+				<h2 class="mt-14 text-2xl font-semibold">System och appar vi också bygger</h2>
+				<ul class="mt-6 grid gap-6 md:grid-cols-2">
+					@for (p of other; track p.path) {
+						<li class="flex flex-col rounded-3xl border border-black/10 bg-black/[0.02] p-8">
+							<span class="text-xs font-medium uppercase tracking-wide text-black/45">{{ p.audience }}</span>
+							<h3 class="mt-2 text-2xl font-semibold">
+								<a [routerLink]="p.path" class="hover:underline">{{ p.name }}</a>
+							</h3>
+							<p class="mt-3 flex-1 text-black/65">{{ p.text }}</p>
+							<a
+								[routerLink]="p.path"
+								class="mt-6 inline-flex h-11 w-fit items-center rounded-2xl bg-black px-5 text-sm font-medium text-white hover:bg-black/85"
+								>Läs mer om {{ p.name }}</a
+							>
+						</li>
+					}
+				</ul>
 			</main>
 			<app-site-footer />
 		</div>
 	`,
 })
 export class ProductsComponent {
-	readonly products = PRODUCTS;
+	readonly ai = PRODUCTS.filter((p) => p.group === 'ai');
+	readonly other = PRODUCTS.filter((p) => p.group === 'other');
 }

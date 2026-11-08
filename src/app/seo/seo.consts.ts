@@ -14,18 +14,18 @@ export const breadcrumbs = (...items: [name: string, path: string][]) => ({
 });
 
 const PRODUCT_LIST: [name: string, path: string][] = [
-	['Catso Axle: verkstadssystem för däck- och bilverkstäder', '/apps/axle'],
 	['VERA-01: lokal AI-agent för advokatbyråer', '/vera-01'],
 	['Catso AI Sök: AI-sök och shoppingassistent för Shopify', '/shopify/apps/ai-search'],
+	['Catso Axle: verkstadssystem för däck- och bilverkstäder', '/apps/axle'],
 	['Hemmafest: skapa och hitta fester', '/hemmafest'],
 	['Poängjakten: nå Sveriges gymnasieelever', '/poangjakten/sponsor'],
 ];
 
 /** Startsidan nås på både / och /home. Båda pekar canonical till /. */
 export const HOME_SEO: RouteSEO = {
-	title: 'Catso AI & Robotics | Verkstadssystem, AI-agent och Shopify-appar',
+	title: 'Catso AI & Robotics | AI-agenter och robotik för svensk verksamhet',
 	description:
-		'Catso bygger Catso Axle för däck- och bilverkstäder, VERA-01 för advokatbyråer, AI-sök för Shopify och robotik för industrin. Byggt i Sverige.',
+		'Catso AI & Robotics bygger AI-agenter och robotiklösningar för svenska företag och myndigheter: VERA-01 för advokatbyråer, AI-sök för Shopify och robotik för industrin.',
 	canonical: `${ORIGIN}/`,
 	og: { type: 'website', image: `${ORIGIN}/assets/og/catso-og.png` },
 	twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/og/catso-og.png` },
@@ -232,7 +232,7 @@ const PAGE_IMAGE = `${ORIGIN}/assets/og/catso-og.png`;
 export const PRODUCTS_SEO: RouteSEO = {
 	title: 'Produkter | Catso AI & Robotics',
 	description:
-		'Catso Axle för verkstäder, VERA-01 för advokatbyråer, Catso AI Sök för Shopify, Hemmafest och Poängjakten. Alla produkter från Catso på ett ställe.',
+		'VERA-01 och Catso AI Sök från Catso AI & Robotics, plus verkstadssystemet Catso Axle och apparna Hemmafest och Poängjakten. Alla våra produkter på ett ställe.',
 	canonical: `${ORIGIN}/produkter`,
 	og: { type: 'website', image: PAGE_IMAGE },
 	twitter: { card: 'summary_large_image', image: PAGE_IMAGE },
@@ -265,7 +265,7 @@ export const PRODUCTS_SEO: RouteSEO = {
 export const ABOUT_SEO: RouteSEO = {
 	title: 'Om Catso AI & Robotics',
 	description:
-		'Catso AI & Robotics bygger verkstadssystem, AI-agenter, Shopify-appar och robotik i Sverige. Läs vad vi gör och hur vi arbetar.',
+		'Catso AI & Robotics bygger AI-agenter och robotik för svenska företag och myndigheter. Läs vad vi gör och hur vi arbetar.',
 	canonical: `${ORIGIN}/om-oss`,
 	og: { type: 'website', image: PAGE_IMAGE },
 	twitter: { card: 'summary_large_image', image: PAGE_IMAGE },
@@ -289,7 +289,7 @@ export const ABOUT_SEO: RouteSEO = {
 export const KONTAKT_SEO: RouteSEO = {
 	title: 'Kontakta Catso | Catso AI & Robotics',
 	description:
-		'Hör av dig till Catso om verkstadssystemet Catso Axle, AI-agenten VERA-01, Shopify-appen Catso AI Sök eller robotik. Mejla support@catso.io eller använd formuläret.',
+		'Hör av dig till Catso AI & Robotics om AI-agenten VERA-01, AI-sök för Shopify, robotik eller våra andra system. Mejla support@catso.io eller använd formuläret.',
 	canonical: `${ORIGIN}/kontakt`,
 	og: { type: 'website', image: PAGE_IMAGE },
 	twitter: { card: 'summary_large_image', image: PAGE_IMAGE },
