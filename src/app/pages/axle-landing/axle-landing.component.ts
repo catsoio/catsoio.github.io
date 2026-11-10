@@ -1,8 +1,11 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
+	AfterViewInit,
 	ChangeDetectionStrategy,
 	Component,
+	ElementRef,
+	OnDestroy,
 	OnInit,
 	PLATFORM_ID,
 	inject,
@@ -59,7 +62,9 @@ export const PRODUCT_NAME = 'Catso Axle';
 	templateUrl: './axle-landing.component.html',
 	styleUrl: './axle-landing.component.scss',
 })
-export class AxleLandingComponent implements OnInit {
+export class AxleLandingComponent implements OnInit, AfterViewInit, OnDestroy {
+	private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+	private cleanup?: () => void;
 	private readonly http = inject(HttpClient);
 	private readonly fb = inject(FormBuilder);
 	private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -197,6 +202,66 @@ export class AxleLandingComponent implements OnInit {
 		} catch {
 			// Behåller standardpriserna om katalogen inte kan hämtas.
 		}
+	}
+
+	/** Parallax och inglidning vid scroll, bara på dator och om användaren inte valt minskad rörelse. */
+	ngAfterViewInit(): void {
+		if (!this.browser) return;
+		const root = this.host.nativeElement;
+		const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const desktop = matchMedia('(min-width: 1024px)');
+		if (reduce) return;
+
+		const reveals = Array.from(root.querySelectorAll<HTMLElement>('[data-reveal]'));
+		reveals.forEach((el) => el.classList.add('reveal'));
+		const io = new IntersectionObserver(
+			(entries) => {
+				for (const e of entries) {
+					if (e.isIntersecting) {
+						e.target.classList.add('reveal-in');
+						io.unobserve(e.target);
+					}
+				}
+			},
+			{ threshold: 0.12 },
+		);
+		reveals.forEach((el) => io.observe(el));
+
+		const items = Array.from(root.querySelectorAll<HTMLElement>('[data-parallax]'));
+		let ticking = false;
+		const update = () => {
+			ticking = false;
+			const vh = innerHeight;
+			for (const el of items) {
+				if (!desktop.matches) {
+					el.style.transform = '';
+					continue;
+				}
+				const speed = parseFloat(el.dataset['parallax'] ?? '0');
+				const r = el.parentElement!.getBoundingClientRect();
+				if (r.bottom < -200 || r.top > vh + 200) continue;
+				const offset = (r.top + r.height / 2 - vh / 2) * speed * -1;
+				el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+			}
+		};
+		const onScroll = () => {
+			if (!ticking) {
+				ticking = true;
+				requestAnimationFrame(update);
+			}
+		};
+		addEventListener('scroll', onScroll, { passive: true });
+		addEventListener('resize', onScroll, { passive: true });
+		update();
+		this.cleanup = () => {
+			io.disconnect();
+			removeEventListener('scroll', onScroll);
+			removeEventListener('resize', onScroll);
+		};
+	}
+
+	ngOnDestroy(): void {
+		this.cleanup?.();
 	}
 
 	/** Förifyller meddelandet när någon klickar på en plan i prislistan. */

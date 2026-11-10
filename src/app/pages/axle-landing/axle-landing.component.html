@@ -38,21 +38,9 @@
         <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
       </a>
       <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
-        <a routerLink="/apps/axle" fragment="funktioner" class="hover:text-[#00706a]">Funktioner</a>
-        <div class="group relative">
-          <button type="button" class="flex items-center gap-1 hover:text-[#00706a]" aria-haspopup="true">
-            Delar
-            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.2 7.7a1 1 0 0 1 1.4 0L10 11l3.4-3.3a1 1 0 1 1 1.4 1.4l-4.1 4a1 1 0 0 1-1.4 0l-4.1-4a1 1 0 0 1 0-1.4Z" clip-rule="evenodd"/></svg>
-          </button>
-          <div class="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-            <div class="rounded-xl border border-[#e3eaea] bg-white p-2 shadow-lg">
-              @for (m of moduler; track m.slug) {
-                <a [routerLink]="['/axle', m.slug]" class="block rounded-lg px-3 py-2 text-[#2b3a3a] hover:bg-[#f2f7f7] hover:text-[#00706a]">{{ m.name }}</a>
-              }
-            </div>
-          </div>
-        </div>
-        <a routerLink="/apps/axle" fragment="fragor" class="hover:text-[#00706a]">Frågor</a>
+        @for (m of moduler; track m.slug) {
+          <a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a>
+        }
       </div>
       <div class="flex items-center gap-2">
         @if (appUrl) {
@@ -76,9 +64,8 @@
     </nav>
     @if (menuOpen()) {
       <div class="space-y-1 border-t border-[#e3eaea] bg-white px-4 py-3 text-lg md:hidden">
-        <a routerLink="/apps/axle" fragment="funktioner" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Funktioner</a>
         @for (m of moduler; track m.slug) {
-          <a [routerLink]="['/axle', m.slug]" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 pl-6 text-base text-[#4a5d5d] hover:bg-[#f2f7f7]">{{ m.name }}</a>
+          <a [routerLink]="['/axle', m.slug]" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">{{ m.name }}</a>
         }
         @if (appUrl) {
           <a [href]="appUrl" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Logga in</a>
@@ -107,7 +94,7 @@
         </div>
 
         <div class="relative lg:col-span-7">
-          <div class="hero-panel hidden lg:block" aria-hidden="true">
+          <div class="hero-panel hidden lg:block" aria-hidden="true" data-parallax="0.1">
             <img [src]="photo + '/dackstack-vinter.jpg'" alt="" width="1600" height="1067" class="h-full w-full object-cover" />
           </div>
           <div class="hero-shot relative hidden md:block">
@@ -118,7 +105,7 @@
           <div class="mx-auto w-[72%] md:hidden">
             <ng-container *ngTemplateOutlet="phone; context: { src: photo + '/app-mhem.jpg', alt: 'Startsidan i mobilen' }"></ng-container>
           </div>
-          <div class="hero-phone hidden md:block">
+          <div class="hero-phone hidden md:block" data-parallax="-0.1">
             <ng-container *ngTemplateOutlet="phone; context: { src: photo + '/app-mhem.jpg', alt: 'Startsidan i mobilen' }"></ng-container>
           </div>
         </div>
@@ -126,15 +113,15 @@
     </section>
 
     <!-- FUNKTIONER -->
-    <section id="funktioner" class="scroll-mt-16 px-4 py-20 md:py-28">
-      <div class="mx-auto max-w-7xl space-y-28 md:space-y-36">
-        @for (f of features; track f.id) {
-          <article>
-            <div class="max-w-3xl">
+    <section id="funktioner" class="scroll-mt-16 px-4 py-14 md:py-20">
+      <div class="mx-auto max-w-7xl space-y-16 md:space-y-24">
+        @for (f of features; track f.id; let i = $index) {
+          <article class="feature grid items-center gap-8 lg:grid-cols-12 lg:gap-14" data-reveal>
+            <div class="lg:col-span-5" [class.lg:order-2]="i % 2 === 1">
               <h2 class="text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">{{ f.title }}</h2>
               <p class="mt-4 text-xl leading-relaxed text-[#4a5d5d]">{{ f.text }}</p>
               @if (f.points.length) {
-                <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+                <ul class="mt-5 grid gap-2">
                   @for (pt of f.points; track pt) {
                     <li class="flex items-start gap-3 text-[#2b3a3a]">
                       <ng-container *ngTemplateOutlet="check"></ng-container>
@@ -143,14 +130,19 @@
                   }
                 </ul>
               }
-              @if (f.to) {
-                <a [routerLink]="['/axle', f.to]" class="mt-6 inline-block font-semibold text-[#00706a] hover:underline">{{ f.more }}</a>
-              }
+              <div class="mt-7 flex flex-wrap gap-3">
+                @if (f.to) {
+                  <a [routerLink]="['/axle', f.to]" class="btn btn-primary">{{ f.more }}</a>
+                }
+                <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-outline">Kontakta oss</a>
+              </div>
             </div>
-            <div class="relative mt-10" [class.md:pr-[14%]]="!!f.phone">
-              <ng-container *ngTemplateOutlet="screen; context: { src: f.image, alt: f.alt, w: 2400, h: 1500 }"></ng-container>
+            <div class="relative lg:col-span-7" [class.lg:order-1]="i % 2 === 1" [class.md:pr-[14%]]="!!f.phone">
+              <div data-parallax="0.04">
+                <ng-container *ngTemplateOutlet="screen; context: { src: f.image, alt: f.alt, w: 2400, h: 1500 }"></ng-container>
+              </div>
               @if (f.phone) {
-                <div class="feature-phone">
+                <div class="feature-phone" data-parallax="-0.08">
                   <ng-container *ngTemplateOutlet="phone; context: { src: f.phone, alt: f.phoneAlt }"></ng-container>
                 </div>
               }
@@ -192,16 +184,16 @@
     -->
 
     <!-- OCH RESTEN -->
-    <section class="bg-[#f6faf9] px-4 py-20 md:py-24">
+    <section class="bg-[#f6faf9] px-4 py-14 md:py-20">
       <div class="mx-auto max-w-7xl">
         <h2 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Det finns också</h2>
         <div class="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
           @for (o of overview; track o.title) {
-            <div class="border-l-[3px] border-[#00706a] pl-5">
+            <div class="border-l-[3px] border-[#00706a] pl-5" data-reveal>
               <h3 class="text-xl font-bold text-[#0d1b1b]">{{ o.title }}</h3>
               <p class="mt-2 leading-relaxed text-[#4a5d5d]">{{ o.text }}</p>
               @if (o.to) {
-                <a [routerLink]="['/axle', o.to]" class="mt-2 inline-block font-semibold text-[#00706a] hover:underline">{{ o.more }}</a>
+                <a [routerLink]="['/axle', o.to]" class="btn btn-outline mt-4 !px-4 !py-2 !text-base">{{ o.more }}</a>
               }
             </div>
           }
@@ -212,7 +204,7 @@
     <div class="tread-bar" aria-hidden="true"></div>
 
     <!-- FRÅGOR -->
-    <section id="fragor" class="scroll-mt-16 px-4 py-20 md:py-24">
+    <section id="fragor" class="scroll-mt-16 px-4 py-14 md:py-20">
       <div class="mx-auto max-w-3xl">
         <h2 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Vanliga frågor</h2>
         <div class="mt-10 divide-y divide-[#e3eaea] border-y border-[#e3eaea]">
@@ -230,14 +222,14 @@
     </section>
 
     <!-- PROVA + KONTAKT -->
-    <section id="prova" class="cta relative scroll-mt-16 overflow-hidden px-4 py-20 md:py-24">
+    <section id="prova" class="cta relative scroll-mt-16 overflow-hidden px-4 py-16 md:py-24">
       <img
         [src]="photo + '/dack-monster.jpg'"
         alt=""
         aria-hidden="true"
         width="1600"
         height="1067"
-        class="absolute inset-0 h-full w-full object-cover opacity-25"
+        class="absolute inset-x-0 -top-[10%] h-[120%] w-full object-cover opacity-25" data-parallax="0.12"
         loading="lazy"
         decoding="async"
       />
