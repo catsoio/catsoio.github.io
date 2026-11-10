@@ -18,20 +18,9 @@
         <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
       </a>
       <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
-        <a routerLink="/apps/axle" fragment="funktioner" class="hover:text-[#00706a]">Funktioner</a>
-        <div class="group relative">
-          <button type="button" class="flex items-center gap-1 hover:text-[#00706a]" aria-haspopup="true">
-            Delar
-            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.2 7.7a1 1 0 0 1 1.4 0L10 11l3.4-3.3a1 1 0 1 1 1.4 1.4l-4.1 4a1 1 0 0 1-1.4 0l-4.1-4a1 1 0 0 1 0-1.4Z" clip-rule="evenodd"/></svg>
-          </button>
-          <div class="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-            <div class="rounded-xl border border-[#e3eaea] bg-white p-2 shadow-lg">
-              @for (m of moduler; track m.slug) {
-                <a [routerLink]="['/axle', m.slug]" class="block rounded-lg px-3 py-2 text-[#2b3a3a] hover:bg-[#f2f7f7] hover:text-[#00706a]">{{ m.name }}</a>
-              }
-            </div>
-          </div>
-        </div>
+        @for (m of moduler; track m.slug) {
+          <a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a>
+        }
         <a routerLink="/axle/priser" aria-current="page" class="text-[#00706a]">Priser</a>
         <a routerLink="/axle/kom-igang" class="hover:text-[#00706a]">Manual</a>
       </div>

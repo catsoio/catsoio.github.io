@@ -81,7 +81,7 @@
         <img [src]="photo + '/dackstack-vinter.jpg'" alt="" width="1600" height="1067" class="h-full w-full object-cover" fetchpriority="high" />
       </div>
       <div class="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-12 lg:gap-10">
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5" data-parallax="0.06">
           <h1 class="text-5xl leading-[1.05] font-extrabold tracking-tight text-[#0d1b1b] sm:text-6xl lg:text-5xl xl:text-6xl">
             Verkstadssystem för <span class="text-[#00706a]">däck- och bilverkstäder</span>
           </h1>
@@ -97,7 +97,7 @@
           <div class="hero-panel hidden lg:block" aria-hidden="true" data-parallax="0.1">
             <img [src]="photo + '/dackstack-vinter.jpg'" alt="" width="1600" height="1067" class="h-full w-full object-cover" />
           </div>
-          <div class="hero-shot relative hidden md:block">
+          <div class="hero-shot relative hidden md:block" data-parallax="-0.04">
             <ng-container
               *ngTemplateOutlet="screen; context: { src: photo + '/app-hem.jpg', alt: 'Startsidan i ' + product, eager: true, w: 2400, h: 1500 }"
             ></ng-container>
@@ -117,7 +117,7 @@
       <div class="mx-auto max-w-7xl space-y-16 md:space-y-24">
         @for (f of features; track f.id; let i = $index) {
           <article class="feature grid items-center gap-8 lg:grid-cols-12 lg:gap-14" data-reveal>
-            <div class="lg:col-span-5" [class.lg:order-2]="i % 2 === 1">
+            <div class="lg:col-span-5" data-parallax="0.05" [class.lg:order-2]="i % 2 === 1">
               <h2 class="text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">{{ f.title }}</h2>
               <p class="mt-4 text-xl leading-relaxed text-[#4a5d5d]">{{ f.text }}</p>
               @if (f.points.length) {
@@ -138,11 +138,11 @@
               </div>
             </div>
             <div class="relative lg:col-span-7" [class.lg:order-1]="i % 2 === 1" [class.md:pr-[14%]]="!!f.phone">
-              <div data-parallax="0.04">
+              <div data-parallax="0.09">
                 <ng-container *ngTemplateOutlet="screen; context: { src: f.image, alt: f.alt, w: 2400, h: 1500 }"></ng-container>
               </div>
               @if (f.phone) {
-                <div class="feature-phone" data-parallax="-0.08">
+                <div class="feature-phone" data-parallax="-0.18">
                   <ng-container *ngTemplateOutlet="phone; context: { src: f.phone, alt: f.phoneAlt }"></ng-container>
                 </div>
               }
@@ -186,7 +186,7 @@
     <!-- OCH RESTEN -->
     <section class="bg-[#f6faf9] px-4 py-14 md:py-20">
       <div class="mx-auto max-w-7xl">
-        <h2 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Det finns också</h2>
+        <h2 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl" data-parallax="0.05">Det finns också</h2>
         <div class="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
           @for (o of overview; track o.title) {
             <div class="border-l-[3px] border-[#00706a] pl-5" data-reveal>
@@ -235,7 +235,7 @@
       />
       <div class="relative mx-auto max-w-7xl">
         <div class="grid gap-12 lg:grid-cols-12">
-          <div id="kontakt" class="scroll-mt-20 text-white lg:col-span-5">
+          <div id="kontakt" class="scroll-mt-20 text-white lg:col-span-5" data-parallax="0.08">
             <h2 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Kontakta oss</h2>
             <p class="mt-6 text-lg leading-relaxed text-[#d6e6e4]">
               Skriv några rader om er verkstad så hör vi av oss och visar systemet.

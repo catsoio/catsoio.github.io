@@ -89,6 +89,14 @@ export const routes: Routes = [
       ),
     data: { seo: AXLE_SEO, footer: true },
   },
+  {
+    path: 'axle',
+    loadComponent: () =>
+      import('./pages/axle-landing/axle-landing.component').then(
+        (m) => m.AxleLandingComponent,
+      ),
+    data: { seo: AXLE_SEO, footer: true },
+  },
   { path: 'verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
   { path: 'apps/verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
   { path: 'verkstad/kom-igang', redirectTo: 'axle/kom-igang', pathMatch: 'full' },
