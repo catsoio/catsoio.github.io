@@ -35,6 +35,7 @@ const redirects = {
 	'/pricing': '/produkter',
 	'/privacy': '/integritet',
 	'/terms': '/integritet',
+	'/axle': '/apps/axle',
 	'/verkstad': '/apps/axle',
 	'/apps/verkstad': '/apps/axle',
 	'/verkstad/kom-igang': '/axle/kom-igang',
