@@ -10,6 +10,7 @@ import {
   AXLE_SEO,
   AXLE_INFO_SEO,
   AXLE_PRISER_SEO,
+  axleModulSeo,
   KOM_IGANG_SEO,
   POANGJAKTEN_SEO,
   PRODUCTS_SEO,
@@ -20,6 +21,7 @@ import {
   VERA_SEO,
   SHOPIFY_SEO,
 } from './seo/seo.consts';
+import { MODULER } from './pages/axle-modul/axle-moduler.data';
 
 export const routes: Routes = [
   {
@@ -103,6 +105,13 @@ export const routes: Routes = [
       import('./pages/axle-info/axle-info.component').then((m) => m.AxleInfoComponent),
     data: { seo: AXLE_INFO_SEO },
   },
+  // /axle/dackhotell, /axle/tidsbokning, /axle/offert, /axle/lager och /axle/arbetsorder
+  ...MODULER.map((m) => ({
+    path: `axle/${m.slug}`,
+    loadComponent: () =>
+      import('./pages/axle-modul/axle-modul.component').then((c) => c.AxleModulComponent),
+    data: { seo: axleModulSeo(m), modul: m.slug },
+  })),
   {
     path: 'axle/priser',
     loadComponent: () =>

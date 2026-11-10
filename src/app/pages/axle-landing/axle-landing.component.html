@@ -127,6 +127,9 @@
                   }
                 </ul>
               }
+              @if (f.to) {
+                <a [routerLink]="['/axle', f.to]" class="mt-6 inline-block font-semibold text-[#00706a] hover:underline">{{ f.more }}</a>
+              }
             </div>
             <div class="relative mt-10" [class.md:pr-[14%]]="!!f.phone">
               <ng-container *ngTemplateOutlet="screen; context: { src: f.image, alt: f.alt, w: 2400, h: 1500 }"></ng-container>
@@ -181,6 +184,9 @@
             <div class="border-l-[3px] border-[#00706a] pl-5">
               <h3 class="text-xl font-bold text-[#0d1b1b]">{{ o.title }}</h3>
               <p class="mt-2 leading-relaxed text-[#4a5d5d]">{{ o.text }}</p>
+              @if (o.to) {
+                <a [routerLink]="['/axle', o.to]" class="mt-2 inline-block font-semibold text-[#00706a] hover:underline">{{ o.more }}</a>
+              }
             </div>
           }
         </div>

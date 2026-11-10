@@ -23,6 +23,9 @@ interface Feature {
 	alt: string;
 	phone?: string;
 	phoneAlt?: string;
+	/** Sidan med mer om delen: /axle/<to>. */
+	to?: string;
+	more?: string;
 }
 
 interface Plan {
@@ -79,6 +82,8 @@ export class AxleLandingComponent implements OnInit {
 			points: ['Etikett att sätta på setet', 'Obetalda avgifter och försenade hämtningar'],
 			image: `${PHOTO}/app-hotellov.jpg`,
 			alt: 'Översikten för däckhotellet med hämtningar per vecka, hyllor och mönsterdjup',
+			to: 'dackhotell',
+			more: 'Mer om däckhotellet',
 		},
 		{
 			id: 'kalla-in',
@@ -94,6 +99,8 @@ export class AxleLandingComponent implements OnInit {
 			points: ['Bokningen blir en arbetsorder när bilen kommer'],
 			image: `${PHOTO}/app-resurser.jpg`,
 			alt: 'Tidsbokningen med en kolumn per mekaniker och lyft',
+			to: 'tidsbokning',
+			more: 'Mer om tidsbokningen',
 		},
 		{
 			id: 'offert',
@@ -104,6 +111,8 @@ export class AxleLandingComponent implements OnInit {
 			alt: 'Offerten med status Väntar på svar och när kunden öppnade länken',
 			phone: `${PHOTO}/app-kundsida.jpg`,
 			phoneAlt: 'Kundens sida i mobilen med knappen Godkänn',
+			to: 'offert',
+			more: 'Mer om offerten',
 		},
 		{
 			id: 'lager',
@@ -112,11 +121,13 @@ export class AxleLandingComponent implements OnInit {
 			points: ['Sök på dimension, märke eller artikelnummer'],
 			image: `${PHOTO}/app-lagerov.jpg`,
 			alt: 'Översikten för lagret med däck per fälgstorlek, märken och lagervärde',
+			to: 'lager',
+			more: 'Mer om lagret',
 		},
 	];
 
-	readonly overview = [
-		{ title: 'Arbetsorder', text: 'Jobb och delar på samma order. Finns inte delen i lager syns det direkt, med en knapp för att beställa. Mekanikern får ett utskrivet arbetsblad.' },
+	readonly overview: { title: string; text: string; to?: string; more?: string }[] = [
+		{ title: 'Arbetsorder', text: 'Jobb och delar på samma order. Finns inte delen i lager syns det direkt, med en knapp för att beställa. Mekanikern får ett utskrivet arbetsblad.', to: 'arbetsorder', more: 'Mer om arbetsordern' },
 		{ title: 'Sök', text: 'Ett sökfält för regnummer, kund, telefonnummer, hylla och däckstorlek.' },
 		{ title: 'Kunder och bilar', text: 'Bilens uppgifter hämtas från regnumret.' },
 		{ title: 'I mobilen', text: 'Dagens bokningar, däckhotellet och lagret när du står i verkstaden.' },

@@ -1,5 +1,6 @@
 import { RouteSEO } from './seo.types';
 import { HOME_FAQ, AXLE_FAQ, faqJsonLd } from './faq.data';
+import type { Modul } from '../pages/axle-modul/axle-moduler.data';
 
 const ORIGIN = 'https://catso.io';
 
@@ -149,6 +150,34 @@ export const AXLE_INFO_SEO: RouteSEO = {
 	description:
 		'Så hänger kund, bil, bokning, arbetsorder, säljkort, däckhotell, lager och faktura ihop i Catso Axle.',
 	robots: 'noindex,follow',
+};
+
+/** En sida per del av Axle, /axle/<slug>. Innehållet kommer från pages/axle-modul/axle-moduler.data.ts. */
+export const axleModulSeo = (m: Modul): RouteSEO => {
+	const path = `/axle/${m.slug}`;
+	return {
+		title: m.seoTitle,
+		description: m.seoDescription,
+		canonical: `${ORIGIN}${path}`,
+		og: { type: 'website', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
+		twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
+		robots: 'index,follow',
+		jsonLd: {
+			'@context': 'https://schema.org',
+			'@graph': [
+				{
+					'@type': 'WebPage',
+					'@id': `${ORIGIN}${path}#page`,
+					name: m.seoTitle,
+					url: `${ORIGIN}${path}`,
+					isPartOf: { '@id': `${ORIGIN}/#website` },
+					about: { '@id': `${ORIGIN}/apps/axle#app` },
+				},
+				faqJsonLd(m.faqs),
+				breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle'], [m.name, path]),
+			],
+		},
+	};
 };
 
 export const AXLE_PRISER_SEO: RouteSEO = {
