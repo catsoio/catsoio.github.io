@@ -212,14 +212,6 @@ export const AXLE_SEO: RouteSEO = {
 					'Kunder, bilar och leverantörer',
 				],
 				publisher: { '@id': `${ORIGIN}/#organization` },
-				// Priserna är exklusive moms och ska stå lika med axle-priser.pricing.ts.
-				offers: {
-					'@type': 'AggregateOffer',
-					lowPrice: '795',
-					highPrice: '2495',
-					priceCurrency: 'SEK',
-					offerCount: 2,
-				},
 			},
 			faqJsonLd(AXLE_FAQ),
 			breadcrumbs(['Catso', '/'], ['Produkter', '/produkter'], ['Catso Axle', '/apps/axle']),
