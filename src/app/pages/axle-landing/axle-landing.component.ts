@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { MODULER } from '../axle-modul/axle-moduler.data';
 import { firstValueFrom } from 'rxjs';
 import { AXLE_FAQ } from '../../seo/faq.data';
 
@@ -64,6 +65,7 @@ export class AxleLandingComponent implements OnInit {
 	private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
 
 	readonly product = PRODUCT_NAME;
+	readonly moduler = MODULER;
 	readonly manual = MANUAL;
 	readonly photo = PHOTO;
 	/** Länk till själva appen. Tom tills adressen är bestämd, då döljs "Logga in". */

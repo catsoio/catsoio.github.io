@@ -22,6 +22,7 @@ export class AxleModulComponent {
 	private readonly route = inject(ActivatedRoute);
 
 	readonly product = PRODUCT_NAME;
+	readonly moduler = MODULER;
 	readonly currentYear = new Date().getFullYear();
 	readonly modul: Modul = modulBySlug(this.route.snapshot.data['modul']) ?? MODULER[0];
 	readonly related: Modul[] = this.modul.related

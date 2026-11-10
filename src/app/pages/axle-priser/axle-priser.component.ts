@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { MODULER } from '../axle-modul/axle-moduler.data';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
@@ -82,6 +83,7 @@ interface Rule {
 })
 export class AxlePriserComponent {
 	readonly product = PRODUCT_NAME;
+	readonly moduler = MODULER;
 	readonly currentYear = new Date().getFullYear();
 
 	readonly fmt = fmt;
