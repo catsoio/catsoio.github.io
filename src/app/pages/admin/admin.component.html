@@ -204,7 +204,11 @@
 			@if (error()) {
 				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ error() }}</p>
 			}
-			<div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+			<div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
+				<div class="rounded-xl border border-white/10 bg-white/5 p-4">
+					<div class="text-2xl font-semibold">{{ visitStats().axle }}</div>
+					<div class="text-sm text-neutral-400">Axle ({{ visitStats().axleToday }} idag)</div>
+				</div>
 				<div class="rounded-xl border border-white/10 bg-white/5 p-4">
 					<div class="text-2xl font-semibold">{{ visitStats().total }}</div>
 					<div class="text-sm text-neutral-400">Besök</div>
@@ -246,6 +250,15 @@
 					class="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm outline-none focus:border-[#d4af37]"
 				/>
 				<select
+					[ngModel]="visitScope()"
+					(ngModelChange)="visitScope.set($event)"
+					class="rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm"
+				>
+					<option value="all">Alla sidor</option>
+					<option value="axle">Bara Axle</option>
+					<option value="other">Utom Axle</option>
+				</select>
+				<select
 					[ngModel]="visitDays()"
 					(ngModelChange)="setVisitDays($event)"
 					class="rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm"
@@ -285,7 +298,7 @@
 					</tbody>
 				</table>
 			</div>
-			<p class="text-xs text-neutral-500">Unika besökare: samma IP räknas en gång per 6 timmar. Bots och dina egna IP-adresser sparas inte. Raderas efter 13 månader.</p>
+			<p class="text-xs text-neutral-500">Unika besökare: samma IP räknas en gång per sida och 6 timmar. Bots och dina egna IP-adresser sparas inte. Raderas efter 13 månader.</p>
 		</main>
 		} @else {
 		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">

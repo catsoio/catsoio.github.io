@@ -2,12 +2,33 @@
 <html lang="sv">
   <head>
     <meta charset="utf-8" />
-    <title>Omdirigerar...</title>
-    <meta http-equiv="refresh" content="0; url=/inventory-frontend/" />
-    <link rel="canonical" href="https://catso.io/inventory-frontend/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Axle</title>
     <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://catso.io/inventory-frontend/" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #0b0b0f;
+      }
+      @media (prefers-color-scheme: light) {
+        html,
+        body {
+          background: #fff;
+        }
+      }
+    </style>
+    <script>
+      // Körs innan något renderas, så ingen länktext hinner synas.
+      location.replace('/inventory-frontend/' + location.search + location.hash);
+    </script>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/inventory-frontend/" />
+    </noscript>
   </head>
   <body>
-    <a href="/inventory-frontend/">Fortsätt till appen</a>
+    <noscript><a href="/inventory-frontend/">Fortsätt till appen</a></noscript>
   </body>
 </html>

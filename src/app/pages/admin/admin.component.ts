@@ -57,6 +57,7 @@ export class AdminComponent implements OnInit {
 	readonly visits = signal<SiteVisit[]>([]);
 	readonly visitDays = signal(30);
 	readonly visitQuery = signal('');
+	readonly visitScope = signal<'all' | 'axle' | 'other'>('all');
 	readonly visitsLoading = signal(false);
 	readonly visitDayOptions = [1, 7, 30, 90, 395];
 
@@ -95,10 +96,17 @@ export class AdminComponent implements OnInit {
 		{ id: 'canceled', label: 'Avslutad' },
 	];
 
+	/** Axle = appen (inventory.*) och Axles sidor på landningssidan. */
+	isAxle(v: SiteVisit): boolean {
+		return /inventory|axle/i.test(v.site ?? '') || /^\/(apps\/)?(axle|verkstad|inventory-frontend|inv)(\/|$)/.test(v.path);
+	}
+
 	readonly shownVisits = computed(() => {
 		const q = this.visitQuery().trim().toLowerCase();
-		if (!q) return this.visits();
-		return this.visits().filter((v) =>
+		const scope = this.visitScope();
+		const rows = this.visits().filter((v) => scope === 'all' || (scope === 'axle') === this.isAxle(v));
+		if (!q) return rows;
+		return rows.filter((v) =>
 			`${v.city} ${v.region} ${v.country} ${v.org} ${v.ip} ${v.site} ${v.path} ${v.referrer}`.toLowerCase().includes(q),
 		);
 	});
@@ -119,6 +127,8 @@ export class AdminComponent implements OnInit {
 			today: all.filter((v) => new Date(v.at).toDateString() === day).length,
 			ips: new Set(all.map((v) => v.ip)).size,
 			lulea: all.filter((v) => this.isLulea(v)).length,
+			axle: all.filter((v) => this.isAxle(v)).length,
+			axleToday: all.filter((v) => this.isAxle(v) && new Date(v.at).toDateString() === day).length,
 			cities: top((v) => v.city),
 			pages: top((v) => `${v.site ?? ''}${v.path}`),
 			sources: top((v) => (v.referrer ? this.host(v.referrer) : null)),
