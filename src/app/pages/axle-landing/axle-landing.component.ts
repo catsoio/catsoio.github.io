@@ -9,6 +9,7 @@ import {
 	OnInit,
 	PLATFORM_ID,
 	inject,
+	computed,
 	isDevMode,
 	signal,
 } from '@angular/core';
@@ -17,6 +18,7 @@ import { RouterLink } from '@angular/router';
 import { MODULER } from '../axle-modul/axle-moduler.data';
 import { firstValueFrom } from 'rxjs';
 import { AXLE_FAQ } from '../../seo/faq.data';
+import { KUNDER, type Kund } from '../axle-kund/axle-kunder.data';
 
 interface Feature {
 	id: string;
@@ -80,66 +82,68 @@ export class AxleLandingComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	readonly faqs = AXLE_FAQ;
 
-	readonly features: Feature[] = [
+	/** Lägg officiella logotyper i public/assets/imgs/axle/ och sätt `src`, annars visas namnet som text. */
+	readonly partners: { name: string; src: string; h: string }[] = [
+		{ name: 'Blocket', src: `${PHOTO}/partners/blocket.svg`, h: 'h-7' },
+		{ name: 'Gummigrossen', src: `${PHOTO}/partners/gummigrossen.png`, h: 'h-10 logo-dark' },
+	];
 
+	readonly hours = ['08', '09', '10', '11', '12', '13', '14', '15', '16'];
+	/** Schemat i kortet: kolumn 2 = 08:00, varje kolumn är en timme. */
+	readonly schedule = [
+		{ name: 'Ali', tone: 'a', blocks: [{ s: 3, e: 5, l: 'NOR 330 · Service' }, { s: 7, e: 9, l: 'LIN 202 · Bromsar' }] },
+		{ name: 'Jonas', tone: 'b', blocks: [{ s: 2, e: 4, l: 'YEL 125 · Däckbyte' }, { s: 8, e: 10, l: 'LSG 84Z · Hjulinställning' }] },
+		{ name: 'Samir', tone: 'c', blocks: [{ s: 2, e: 5, l: 'HDP 18W · Oljebyte' }, { s: 6, e: 8, l: 'NEX 51C · AC-service' }] },
+		{ name: 'Lyft 1', tone: 'd', blocks: [{ s: 4, e: 7, l: 'SBH 90L · Däckbyte' }] },
+	];
+
+	readonly sms = [
+		{ namn: 'Andreas', regnr: 'CDR 24A' },
+		{ namn: 'Anna', regnr: 'ZGU 55P' },
+		{ namn: 'Annika', regnr: 'FPR 67N' },
+	];
+
+	readonly audience = [
+		{ title: 'För däckfirmor', text: 'Se alla däckset, hyllor och hämtdatum på ett ställe, direkt på skärmen.', cta: 'Se däckhotellet', photo: `${PHOTO}/photos/hjul.jpg`, pos: 'center 40%', link: '/axle/dackhotell', fragment: undefined as string | undefined },
+		{ title: 'För bilverkstäder', text: 'Boka in bilen, skicka offert till kunden och skriv arbetsordern.', cta: 'Se arbetsordern', photo: `${PHOTO}/photos/bilverkstad.jpg`, pos: 'center 40%', link: '/axle/arbetsorder', fragment: undefined as string | undefined },
+		{ title: 'Säljer ni bilar också?', text: 'Lägg till bilhandeln direkt i samma system. Ni delar kunder och fakturor med verkstaden.', cta: 'Läs mer', photo: `${PHOTO}/photos/bilhandel.jpg`, pos: 'center 30%', link: '/hall', fragment: undefined as string | undefined },
+	];
+
+	/** Kundberättelser: publicerade (och i utvecklingsläge även utkast), se pages/axle-kund/axle-kunder.data.ts. */
+	readonly kunder: Kund[] = KUNDER.filter((k) => k.published || isDevMode());
+	/** Kundsektionen visas bara i dev-läget (med exempeltexter) tills det finns riktiga, godkända citat. Då: sätt till true. */
+	readonly showKunder = false;
+	/** Betyg under hjälten. Visas bara i dev-läget tills det finns ett riktigt betyg från riktiga omdömen. */
+	readonly showRating = isDevMode();
+	readonly rating = '4.9';
+	readonly stars = [1, 2, 3, 4, 5];
+	readonly kundIndex = signal(0);
+	readonly current = computed(() => this.kunder[this.kundIndex()] ?? this.kunder[0]);
+
+	step(d: number): void {
+		const n = this.kunder.length;
+		this.kundIndex.update((i) => (i + d + n) % n);
+	}
+
+	readonly features: Feature[] = [
 		{
-			id: 'dackhotell',
-			title: 'Däckhotell',
-			text: 'Varje set har regnummer, hylla och avgift. Översikten visar vilka som ska hämtas vecka för vecka, vilka hyllor som är fulla och vilka kunder som har under 4 mm kvar, så du vet vem du ska ringa om nya däck.',
-			points: ['Etikett att sätta på setet', 'Obetalda avgifter och försenade hämtningar'],
-			image: `${PHOTO}/app-hotellov.jpg`,
-			alt: 'Översikten för däckhotellet med hämtningar per vecka, hyllor och mönsterdjup',
-			to: 'dackhotell',
-			more: 'Mer om däckhotellet',
-		},
-		{
-			id: 'kalla-in',
-			title: 'Kalla in med SMS',
-			text: 'Inför bytet skickar du ett SMS till alla som har däck hos dig. Namn och regnummer fylls i för varje kund, och de som redan fått ett SMS är inte förvalda.',
-			points: [],
-			image: `${PHOTO}/app-kallain.jpg`,
-			alt: 'Dialogen Kalla in kunder med SMS-text och mottagare',
-		},		{
 			id: 'tidsbokning',
-			title: 'Tidsbokning',
-			text: 'En kolumn per mekaniker och lyft. Klicka i en ledig tid för att boka. Är kunden ny räcker telefonnumret, namnet fyller du i sen.',
-			points: ['Bokningen blir en arbetsorder när bilen kommer'],
+			title: 'Boka in bilar med ett klick',
+			text: 'Se alla mekaniker och lyft i samma vy, och klicka på en ledig tid.',
+			points: [],
 			image: `${PHOTO}/app-resurser.jpg`,
 			alt: 'Tidsbokningen med en kolumn per mekaniker och lyft',
 			to: 'tidsbokning',
-			more: 'Mer om tidsbokningen',
+			more: 'Läs mer om tidsbokningen',
 		},
 		{
-			id: 'offert',
-			title: 'Offert som kunden godkänner i mobilen',
-			text: 'Skicka offerten som SMS eller mejl. Kunden öppnar en länk, ser vad som ingår och trycker Godkänn. Du ser när kunden öppnat den, och en godkänd offert blir en arbetsorder.',
+			id: 'kalla-in',
+			title: 'Kalla in kunder med SMS',
+			text: 'Välj vilka som ska kallas in och skriv meddelandet en gång. Namn och registreringsnummer fylls i för varje kund, och SMS:et skickas till alla på en gång.',
 			points: [],
-			image: `${PHOTO}/app-offert.jpg`,
-			alt: 'Offerten med status Väntar på svar och när kunden öppnade länken',
-			phone: `${PHOTO}/app-kundsida.jpg`,
-			phoneAlt: 'Kundens sida i mobilen med knappen Godkänn',
-			to: 'offert',
-			more: 'Mer om offerten',
+			image: `${PHOTO}/app-kallain.jpg`,
+			alt: 'Dialogen Kalla in kunder med SMS-text och mottagare',
 		},
-		{
-			id: 'lager',
-			title: 'Lager',
-			text: 'Däck per fälgstorlek och säsong, märken, lagervärde och vad som ska beställas. Däckens ålder räknas fram från DOT-koden, så de äldsta säljs först.',
-			points: ['Sök på dimension, märke eller artikelnummer'],
-			image: `${PHOTO}/app-lagerov.jpg`,
-			alt: 'Översikten för lagret med däck per fälgstorlek, märken och lagervärde',
-			to: 'lager',
-			more: 'Mer om lagret',
-		},
-	];
-
-	readonly overview: { title: string; text: string; to?: string; more?: string }[] = [
-		{ title: 'Arbetsorder', text: 'Jobb och delar på samma order. Finns inte delen i lager syns det direkt, med en knapp för att beställa. Mekanikern får ett utskrivet arbetsblad.', to: 'arbetsorder', more: 'Mer om arbetsordern' },
-		{ title: 'Sök', text: 'Ett sökfält för regnummer, kund, telefonnummer, hylla och däckstorlek.' },
-		{ title: 'Kunder och bilar', text: 'Bilens uppgifter hämtas från regnumret.' },
-		{ title: 'I mobilen', text: 'Dagens bokningar, däckhotellet och lagret när du står i verkstaden.' },
-		{ title: 'Startsidan', text: 'Dagens bokningar och en lista över det som väntar: försenade däckset, artiklar som är slut och obetalda fakturor.' },
-		{ title: 'Faktura och kvitto', text: 'Säljkort med rabatt, faktura eller kvitto och momsrapport.' },
 	];
 
 	private readonly defaultPlans: Plan[] = [
@@ -169,7 +173,6 @@ export class AxleLandingComponent implements OnInit, AfterViewInit, OnDestroy {
 		workshop: ['', [Validators.maxLength(160)]],
 		email: ['', [Validators.required, Validators.email, Validators.maxLength(200)]],
 		phone: ['', [Validators.maxLength(40)]],
-		message: ['', [Validators.required, Validators.maxLength(4000)]],
 		website: [''], // honeypot, ska förbli tom
 	});
 	readonly state = signal<FormState>('idle');
@@ -265,9 +268,10 @@ export class AxleLandingComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	/** Förifyller meddelandet när någon klickar på en plan i prislistan. */
+	private chosenPlan = '';
+
 	choosePlan(name: string): void {
-		const msg = this.form.controls.message;
-		if (!msg.value) msg.setValue(`Hej! Jag är intresserad av planen ${name}. `);
+		this.chosenPlan = name;
 	}
 
 	toggleMenu(): void {

@@ -1,54 +1,56 @@
-<ng-template #check>
-  <svg class="mt-1 h-5 w-5 shrink-0 text-[#00706a]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-    <path
-      fill-rule="evenodd"
-      d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z"
-      clip-rule="evenodd"
-    />
-  </svg>
-</ng-template>
-
 <div class="bay min-h-screen bg-white text-[#2b3a3a] antialiased selection:bg-[#ffc400] selection:text-black">
   <header class="fixed inset-x-0 top-0 z-50 border-b border-[#e3eaea] bg-white/90 backdrop-blur">
+    <a routerLink="/apps/axle" fragment="kontakt" class="block bg-[#0d4f4a] px-4 py-1.5 text-center text-xs font-medium text-white sm:text-sm">
+      <span class="font-semibold">Testa gratis i 2 månader</span>
+      <span class="hidden text-white/75 sm:inline"> · Ingen bindningstid, inget avtal, inget kreditkort</span>
+      <span class="text-white/75 sm:hidden"> · Inget kreditkort</span>
+      <span aria-hidden="true">→</span>
+    </a>
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3" aria-label="Huvudmeny">
       <a routerLink="/apps/axle" class="flex items-center gap-3">
         <img src="assets/imgs/axle/axle-logo.svg" alt="Axle" class="h-6 w-auto" />
         <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
       </a>
       <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
+        <a routerLink="/apps/axle" class="hover:text-[#00706a]">Hem</a>
         @for (m of moduler; track m.slug) {
-          <a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a>
+          <a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]" [class]="m.slug === modul.slug ? 'font-bold text-[#00706a] underline decoration-2 underline-offset-8' : ''" [attr.aria-current]="m.slug === modul.slug ? 'page' : null">{{ m.name }}</a>
         }
       </div>
-      <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary !px-5 !py-2 !text-sm">Kontakta oss</a>
+      <div class="flex items-center gap-2">
+        <a href="tel:+46703300987" class="inline-flex h-10 items-center rounded-lg bg-[#00706a] px-3 text-sm font-semibold text-white">070-330 09 87</a>
+        <a routerLink="/apps/axle" fragment="kontakt" class="inline-flex h-10 items-center gap-2 rounded-lg border border-[#d5e0e0] px-2.5 text-sm font-semibold text-[#0d1b1b] md:px-3"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg><span>Frågor?</span></a>
+      </div>
     </nav>
   </header>
 
   <main>
-    <!-- RUBRIK -->
-    <section class="hero px-4 pt-28 pb-14 md:pt-36 md:pb-20">
-      <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-12">
-        <div [class]="modul.image ? 'lg:col-span-5' : 'lg:col-span-8'">
-          <p class="text-base font-semibold text-[#00706a]">
-            <a routerLink="/apps/axle" class="hover:underline">{{ product }}</a>
-            <span aria-hidden="true"> / </span>{{ modul.name }}
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-[#0f2524] text-white">
+      <div class="hero-bg" aria-hidden="true">
+        <img [src]="modul.photo" alt="" width="1920" height="1280" class="h-full w-full object-cover" [style.object-position]="modul.pos" fetchpriority="high" />
+      </div>
+      <div class="relative mx-auto grid max-w-7xl gap-10 px-4 pt-[19rem] pb-14 lg:min-h-[640px] lg:grid-cols-12 lg:pt-44 lg:pb-16">
+        <div class="lg:col-span-5 lg:self-center">
+          <p class="text-base font-semibold text-[#7fdcd2]">
+            <a routerLink="/apps/axle" class="hover:underline">{{ product }}</a><span aria-hidden="true"> / </span>{{ modul.name }}
           </p>
-          <h1 class="mt-3 text-4xl leading-[1.08] font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">
-            {{ modul.h1 }}
-          </h1>
-          <p class="mt-6 text-xl leading-relaxed text-[#4a5d5d]">{{ modul.lead }}</p>
-          <div class="mt-8">
-            <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary">Kontakta oss</a>
+          <h1 class="mt-3 text-5xl leading-[1.05] font-extrabold tracking-tight sm:text-6xl lg:text-5xl xl:text-6xl">{{ modul.h1 }}</h1>
+          <p class="mt-6 text-xl leading-relaxed text-[#d6e6e4]">{{ modul.lead }}</p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-light">Testa gratis i 2 månader</a>
+            <a href="tel:+46703300987" class="btn btn-ghost">Ring 070-330 09 87</a>
           </div>
         </div>
         @if (modul.image; as img) {
-          <div class="relative lg:col-span-7" [class.md:pr-[14%]]="!!img.phone">
-            <div class="screen">
-              <div class="screen-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-              <img [src]="img.src" [alt]="img.alt" width="2400" height="1500" class="block w-full" fetchpriority="high" />
+          <div class="relative lg:col-span-7 lg:self-end">
+            <div class="ipad">
+              <div class="ipad-screen">
+                <img [src]="img.src" [alt]="img.alt" width="2400" height="1500" class="h-full w-full object-cover object-left-top" fetchpriority="high" />
+              </div>
             </div>
             @if (img.phone; as phone) {
-              <div class="phone">
+              <div class="hero-phone">
                 <img [src]="phone.src" [alt]="phone.alt" width="780" height="1688" class="block w-full" loading="lazy" decoding="async" />
               </div>
             }
@@ -57,43 +59,23 @@
       </div>
     </section>
 
-    <!-- DETTA INGÅR -->
-    <section class="bg-[#f6faf9] px-4 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl">
-        <h2 class="text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">Detta ingår i {{ modul.name.toLowerCase() }}</h2>
-        <div class="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2">
-          @for (b of modul.blocks; track b.title) {
-            <div class="border-l-[3px] border-[#00706a] pl-5">
-              <h3 class="text-xl font-bold text-[#0d1b1b]">{{ b.title }}</h3>
-              <p class="mt-2 leading-relaxed text-[#4a5d5d]">{{ b.text }}</p>
-            </div>
-          }
-        </div>
+    <!-- BLOCK -->
+    <section class="bg-[#f2f7f7] px-4 py-10 lg:py-12">
+      <div class="mx-auto grid max-w-[1600px] gap-4 md:grid-cols-2 lg:grid-cols-6">
+        @for (b of modul.blocks; track b.title; let i = $index) {
+          <article class="rounded-2xl border border-[#dbe6e5] bg-white p-8 lg:p-10" [class]="modul.blocks.length === 5 && i >= 2 ? 'lg:col-span-2' : 'lg:col-span-3'">
+            <h2 class="text-2xl font-extrabold tracking-tight text-[#0d1b1b]">{{ b.title }}</h2>
+            <p class="mt-3 text-lg leading-relaxed text-[#4a5d5d]">{{ b.text }}</p>
+          </article>
+        }
       </div>
     </section>
-
-    <!-- FUNKTIONER -->
-    <section class="px-4 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl">
-        <h2 class="text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">Funktioner</h2>
-        <ul class="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
-          @for (p of modul.points; track p) {
-            <li class="flex items-start gap-3 text-[#2b3a3a]">
-              <ng-container *ngTemplateOutlet="check"></ng-container>
-              <span>{{ p }}</span>
-            </li>
-          }
-        </ul>
-      </div>
-    </section>
-
-    <div class="tread-bar" aria-hidden="true"></div>
 
     <!-- FRÅGOR -->
-    <section class="px-4 py-20 md:py-24">
-      <div class="mx-auto max-w-3xl">
-        <h2 class="text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">Vanliga frågor om {{ modul.name.toLowerCase() }}</h2>
-        <div class="mt-10 divide-y divide-[#e3eaea] border-y border-[#e3eaea]">
+    <section class="border-b border-[#e3eaea]">
+      <div class="mx-auto grid max-w-7xl gap-8 px-4 py-14 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:py-16">
+        <h2 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] lg:col-span-4">Vanliga frågor</h2>
+        <div class="divide-y divide-[#e3eaea] border-y border-[#e3eaea] lg:col-span-8">
           @for (f of modul.faqs; track f.q) {
             <details class="group py-5">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-[#0d1b1b]">
@@ -108,15 +90,16 @@
     </section>
 
     <!-- MER I AXLE -->
-    <section class="bg-[#f6faf9] px-4 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl">
-        <h2 class="text-2xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-3xl">Mer i {{ product }}</h2>
-        <ul class="mt-8 grid gap-4 md:grid-cols-3">
+    <section class="bg-[#f2f7f7] px-4 py-10 lg:py-12">
+      <div class="mx-auto max-w-[1600px]">
+        <h2 class="text-2xl font-extrabold tracking-tight text-[#0d1b1b]">Mer i {{ product }}</h2>
+        <ul class="mt-5 grid gap-4 md:grid-cols-3">
           @for (r of related; track r.slug) {
             <li>
-              <a [routerLink]="['/axle', r.slug]" class="card block h-full p-6 hover:border-[#00706a]">
-                <span class="text-xl font-bold text-[#0d1b1b]">{{ r.name }}</span>
-                <span class="mt-2 block leading-relaxed text-[#4a5d5d]">{{ r.lead }}</span>
+              <a [routerLink]="['/axle', r.slug]" class="group relative block h-full overflow-hidden rounded-2xl bg-[#0f2524] p-8 text-white">
+                <span class="text-2xl font-extrabold">{{ r.name }}</span>
+                <span class="mt-2 block text-lg leading-snug text-white/80">{{ r.h1 }}</span>
+                <span class="mt-4 block font-semibold text-[#7fdcd2] group-hover:underline">Läs mer →</span>
               </a>
             </li>
           }
@@ -125,26 +108,51 @@
     </section>
 
     <!-- KONTAKT -->
-    <section class="cta px-4 py-16 md:py-20">
+    <section class="bg-[#0f2524] px-4 py-14 md:py-20">
       <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
         <div class="text-white">
-          <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Vill ni se hur det fungerar hos er?</h2>
-          <p class="mt-3 text-lg text-[#d6e6e4]">Skriv några rader om verkstaden så hör vi av oss och visar systemet.</p>
+          <h2 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Boka en demo</h2>
+          <p class="mt-3 text-lg text-[#d6e6e4]">Ni testar gratis i 2 månader, utan bindningstid.</p>
         </div>
-        <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary">Kontakta oss</a>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-light">Boka en demo</a>
+          <a href="tel:+46703300987" class="btn btn-ghost">Ring 070-330 09 87</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-[#e3eaea] px-4 py-8 text-[#6b7f7f]">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
-      <span>© {{ currentYear }} Catso AI &amp; Robotics</span>
-      <nav class="flex gap-5">
-        <a routerLink="/" class="hover:text-[#00706a]">Catso</a>
-        <a routerLink="/integritet" class="hover:text-[#00706a]">Integritet</a>
-        <a href="mailto:support&#64;catso.io" class="hover:text-[#00706a]">support&#64;catso.io</a>
-      </nav>
+  <footer class="border-t border-[#e3eaea] px-4 pt-14 pb-8 text-[#4a5d5d]">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <a routerLink="/apps/axle" class="flex items-center gap-3">
+          <img src="assets/imgs/axle/axle-logo.svg" alt="" class="h-6 w-auto" />
+          <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
+        </a>
+        <nav aria-label="Axle">
+          <p class="font-bold text-[#0d1b1b]">Axle</p>
+          <ul class="mt-3 space-y-2">
+            @for (m of moduler; track m.slug) {
+              <li><a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a></li>
+            }
+          </ul>
+        </nav>
+        <nav aria-label="Företag">
+          <p class="font-bold text-[#0d1b1b]">Catso</p>
+          <ul class="mt-3 space-y-2">
+            <li><a routerLink="/" class="hover:text-[#00706a]">Om Catso</a></li>
+            <li><a routerLink="/integritet" class="hover:text-[#00706a]">Integritet</a></li>
+          </ul>
+        </nav>
+        <div>
+          <p class="font-bold text-[#0d1b1b]">Kontakt</p>
+          <ul class="mt-3 space-y-2">
+            <li><a href="tel:+46703300987" class="hover:text-[#00706a]">070-330 09 87</a></li>
+            <li><a href="mailto:support&#64;catso.io" class="hover:text-[#00706a]">support&#64;catso.io</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-12 border-t border-[#e3eaea] pt-6 text-sm text-[#6b7f7f]">© {{ currentYear }} Catso AI &amp; Robotics · Skärmbilderna visar exempeldata.</p>
     </div>
-    <p class="mx-auto mt-4 max-w-7xl text-xs text-[#8a9a9a]">Skärmbilderna visar exempeldata.</p>
   </footer>
 </div>

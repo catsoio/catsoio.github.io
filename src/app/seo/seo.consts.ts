@@ -1,3 +1,4 @@
+import type { Kund } from '../pages/axle-kund/axle-kunder.data';
 import { RouteSEO } from './seo.types';
 import { HOME_FAQ, AXLE_FAQ, faqJsonLd } from './faq.data';
 import type { Modul } from '../pages/axle-modul/axle-moduler.data';
@@ -180,6 +181,34 @@ export const axleModulSeo = (m: Modul): RouteSEO => {
 	};
 };
 
+/** En kundberättelse, /axle/kunder/<slug>. Innehållet kommer från pages/axle-kund/axle-kunder.data.ts. */
+export const axleKundSeo = (k: Kund): RouteSEO => {
+	const path = `/axle/kunder/${k.slug}`;
+	const title = `${k.name}: kundberättelse | Catso Axle`;
+	return {
+		title,
+		description: k.headline,
+		canonical: `${ORIGIN}${path}`,
+		og: { type: 'article', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
+		twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
+		robots: k.published ? 'index,follow' : 'noindex,nofollow',
+		jsonLd: {
+			'@context': 'https://schema.org',
+			'@graph': [
+				{
+					'@type': 'WebPage',
+					'@id': `${ORIGIN}${path}#page`,
+					name: title,
+					url: `${ORIGIN}${path}`,
+					isPartOf: { '@id': `${ORIGIN}/#website` },
+					about: { '@id': `${ORIGIN}/apps/axle#app` },
+				},
+				breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle'], [k.name, path]),
+			],
+		},
+	};
+};
+
 export const AXLE_PRISER_SEO: RouteSEO = {
 	title: 'Priser och prisräknare | Catso Axle',
 	description: 'Priser för Catso Axle från 795 kr i månaden, och en räknare som visar månadskostnaden för just er verkstad.',
@@ -199,6 +228,30 @@ export const AXLE_PRISER_SEO: RouteSEO = {
 				about: { '@id': `${ORIGIN}/apps/axle#app` },
 			},
 			breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle'], ['Priser', '/axle/priser']),
+		],
+	},
+};
+
+export const HALL_SEO: RouteSEO = {
+	title: 'System för bilhandlare | Catso Hall',
+	description:
+		'Catso Hall är bilhandeln i samma system som verkstaden: koll på varje bil, affären på ett kort och en egen webbplats för bilarna. Testa gratis i 2 månader.',
+	canonical: `${ORIGIN}/hall`,
+	og: { type: 'website', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
+	twitter: { card: 'summary_large_image', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
+	robots: 'index,follow',
+	jsonLd: {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'WebPage',
+				'@id': `${ORIGIN}/hall#page`,
+				name: 'Catso Hall',
+				url: `${ORIGIN}/hall`,
+				isPartOf: { '@id': `${ORIGIN}/#website` },
+				about: { '@id': `${ORIGIN}/apps/axle#app` },
+			},
+			breadcrumbs(['Catso', '/'], ['Catso Hall', '/hall']),
 		],
 	},
 };

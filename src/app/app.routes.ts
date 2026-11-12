@@ -1,3 +1,4 @@
+import { isDevMode } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RouteSEO } from './seo/seo.types';
 import {
@@ -8,9 +9,11 @@ import {
   HEMMAFEST_TERMS_SEO,
   HOME_SEO,
   AXLE_SEO,
+  HALL_SEO,
   AXLE_INFO_SEO,
   AXLE_PRISER_SEO,
   axleModulSeo,
+  axleKundSeo,
   KOM_IGANG_SEO,
   POANGJAKTEN_SEO,
   PRODUCTS_SEO,
@@ -22,6 +25,7 @@ import {
   SHOPIFY_SEO,
 } from './seo/seo.consts';
 import { MODULER } from './pages/axle-modul/axle-moduler.data';
+import { KUNDER } from './pages/axle-kund/axle-kunder.data';
 
 export const routes: Routes = [
   {
@@ -97,6 +101,12 @@ export const routes: Routes = [
       ),
     data: { seo: AXLE_SEO, footer: true },
   },
+  {
+    path: 'hall',
+    loadComponent: () =>
+      import('./pages/hall-landing/hall-landing.component').then((m) => m.HallLandingComponent),
+    data: { seo: HALL_SEO },
+  },
   { path: 'verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
   { path: 'apps/verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
   { path: 'verkstad/kom-igang', redirectTo: 'axle/kom-igang', pathMatch: 'full' },
@@ -119,6 +129,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/axle-modul/axle-modul.component').then((c) => c.AxleModulComponent),
     data: { seo: axleModulSeo(m), modul: m.slug },
+  })),
+  // /axle/kunder/<slug>: bara publicerade berättelser (utkast finns bara i utvecklingsläge)
+  ...KUNDER.filter((k) => k.published || isDevMode()).map((k) => ({
+    path: `axle/kunder/${k.slug}`,
+    loadComponent: () =>
+      import('./pages/axle-kund/axle-kund.component').then((c) => c.AxleKundComponent),
+    data: { seo: axleKundSeo(k), kund: k.slug },
   })),
   {
     path: 'axle/priser',

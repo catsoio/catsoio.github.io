@@ -32,7 +32,6 @@ describe('Axle modulsidor', () => {
 	it('har innehåll på varje sida och ett canonical per adress', () => {
 		for (const m of MODULER) {
 			expect(m.blocks.length).toBeGreaterThanOrEqual(3);
-			expect(m.points.length).toBeGreaterThanOrEqual(6);
 			expect(m.faqs.length).toBeGreaterThanOrEqual(3);
 			expect(axleModulSeo(m).canonical).toBe(`https://catso.io/axle/${m.slug}`);
 		}

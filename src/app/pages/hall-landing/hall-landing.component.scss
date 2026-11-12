@@ -1,0 +1,104 @@
+:host {
+	display: block;
+}
+
+$teal: #00706a;
+$ink: #0d1b1b;
+
+.bay {
+	font-family: 'Barlow', 'Inter', system-ui, sans-serif;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.9rem 1.6rem;
+	border-radius: 0.7rem;
+	font-weight: 600;
+	font-size: 1.05rem;
+	cursor: pointer;
+	transition: background-color 0.12s ease;
+}
+
+.btn-primary {
+	background: $teal;
+	color: #fff;
+
+	&:hover {
+		background: #00605a;
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: wait;
+	}
+}
+
+.btn-light {
+	background: #fff;
+	color: $ink;
+
+	&:hover {
+		background: #e8f3f1;
+	}
+}
+
+.btn-ghost {
+	border: 1.5px solid rgba(255, 255, 255, 0.45);
+	color: #fff;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.1);
+	}
+}
+
+.hero-bg {
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: 22rem;
+	mask-image: linear-gradient(to bottom, #000 55%, transparent);
+
+	@media (min-width: 1024px) {
+		inset: 0 0 0 auto;
+		height: auto;
+		width: 66%;
+		mask-image: linear-gradient(to right, transparent, #000 38%);
+	}
+}
+
+.field {
+	display: block;
+	font-weight: 600;
+	font-size: 0.9rem;
+	color: #3a4d4d;
+
+	input {
+		display: block;
+		width: 100%;
+		margin-top: 0.4rem;
+		padding: 0.75rem 1rem;
+		background: #f6faf9;
+		border: 1.5px solid #d5e0e0;
+		border-radius: 0.6rem;
+		color: $ink;
+		font-family: 'Barlow', sans-serif;
+		font-size: 1rem;
+		font-weight: 400;
+		outline: none;
+
+		&:focus {
+			border-color: $teal;
+			background: #fff;
+			box-shadow: 0 0 0 3px rgba(0, 112, 106, 0.15);
+		}
+	}
+
+	.err {
+		display: block;
+		margin-top: 0.3rem;
+		color: #c0392b;
+		font-size: 0.8rem;
+		font-weight: 500;
+	}
+}

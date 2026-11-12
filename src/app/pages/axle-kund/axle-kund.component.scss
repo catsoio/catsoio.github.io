@@ -1,0 +1,26 @@
+:host {
+	display: block;
+}
+
+.bay {
+	font-family: 'Barlow', 'Inter', system-ui, sans-serif;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.9rem 1.6rem;
+	border-radius: 0.7rem;
+	font-weight: 600;
+	font-size: 1.05rem;
+}
+
+.btn-primary {
+	background: #00706a;
+	color: #fff;
+
+	&:hover {
+		background: #00605a;
+	}
+}

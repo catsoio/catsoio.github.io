@@ -1,0 +1,92 @@
+@if (kund; as k) {
+  <div class="bay min-h-screen bg-white text-[#2b3a3a] antialiased selection:bg-[#ffc400] selection:text-black">
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-[#e3eaea] bg-white/90 backdrop-blur">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3" aria-label="Huvudmeny">
+        <a routerLink="/apps/axle" class="flex items-center gap-3">
+          <img src="assets/imgs/axle/axle-logo.svg" alt="Axle" class="h-6 w-auto" />
+          <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
+        </a>
+        <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
+          @for (m of moduler; track m.slug) {
+            <a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a>
+          }
+        </div>
+        <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary !px-5 !py-2 !text-sm">Kontakta oss</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="px-4 pt-28 pb-12 md:pt-36 md:pb-16">
+        <div class="mx-auto max-w-4xl">
+          <p class="text-base font-semibold text-[#00706a]">
+            <a routerLink="/apps/axle" fragment="kunder" class="hover:underline">Kundberättelser</a>
+          </p>
+          <h1 class="mt-3 text-4xl leading-[1.08] font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">
+            {{ k.headline }}
+          </h1>
+          <p class="mt-5 text-lg text-[#4a5d5d]">{{ k.name }} · {{ k.place }}</p>
+        </div>
+      </section>
+
+      <section class="border-y border-[#e3eaea]">
+        <div class="mx-auto grid max-w-7xl border-x border-[#e3eaea] lg:grid-cols-12">
+          <div class="p-8 md:p-14 lg:col-span-8">
+            <blockquote class="text-2xl leading-snug font-medium text-[#0d1b1b] md:text-3xl">“{{ k.quote }}”</blockquote>
+            <p class="mt-8 text-base">
+              <span class="font-semibold text-[#0d1b1b]">{{ k.person.name }}</span><br />
+              <span class="text-[#4a5d5d]">{{ k.person.role }}</span>
+            </p>
+          </div>
+          <dl class="grid border-t border-[#e3eaea] lg:col-span-4 lg:border-t-0 lg:border-l">
+            @for (s of k.stats; track s.label) {
+              <div class="border-b border-[#e3eaea] p-8 last:border-b-0 md:p-10">
+                <dt class="font-mono text-5xl text-[#00706a]">{{ s.value }}</dt>
+                <dd class="mt-3 text-[#4a5d5d]">{{ s.label }}</dd>
+              </div>
+            }
+          </dl>
+        </div>
+      </section>
+
+      <section class="px-4 py-14 md:py-20">
+        <div class="mx-auto max-w-3xl space-y-12">
+          @for (s of k.sections; track s.title) {
+            <div>
+              <h2 class="text-2xl font-extrabold text-[#0d1b1b]">{{ s.title }}</h2>
+              <p class="mt-3 text-lg leading-relaxed text-[#4a5d5d]">{{ s.text }}</p>
+            </div>
+          }
+        </div>
+      </section>
+
+      @if (fler.length) {
+        <section class="border-t border-[#e3eaea] px-4 py-14">
+          <div class="mx-auto max-w-7xl">
+            <h2 class="text-2xl font-extrabold text-[#0d1b1b]">Fler kundberättelser</h2>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+              @for (f of fler; track f.slug) {
+                <a [routerLink]="['/axle/kunder', f.slug]" class="block rounded-xl border border-[#e3eaea] p-6 hover:border-[#00706a]">
+                  <p class="font-bold text-[#0d1b1b]">{{ f.name }}</p>
+                  <p class="mt-1 text-[#4a5d5d]">{{ f.headline }}</p>
+                </a>
+              }
+            </div>
+          </div>
+        </section>
+      }
+
+      <section class="bg-[#0f2524] px-4 py-16 text-center text-white">
+        <h2 class="text-3xl font-extrabold md:text-4xl">Testa Axle i er verkstad</h2>
+        <p class="mt-3 text-[#d6e6e4]">Gratis i 2 månader. Ingen bindningstid, inget kreditkort.</p>
+        <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary mt-8">Kontakta oss</a>
+      </section>
+    </main>
+
+    <footer class="border-t border-[#e3eaea] px-4 py-8 text-[#6b7f7f]">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
+        <span>© {{ currentYear }} Catso AI &amp; Robotics</span>
+        <a href="mailto:support&#64;catso.io" class="hover:text-[#00706a]">support&#64;catso.io</a>
+      </div>
+    </footer>
+  </div>
+}

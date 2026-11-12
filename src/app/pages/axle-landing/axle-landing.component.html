@@ -15,12 +15,31 @@
 
 <ng-template #phone let-src="src" let-alt="alt">
   <div class="phone">
-    <img [src]="src" [alt]="alt" width="780" height="1688" class="block w-full" loading="lazy" decoding="async" />
+    <img
+      [src]="src"
+      [alt]="alt"
+      width="780"
+      height="1688"
+      class="block w-full"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 </ng-template>
 
+<ng-template #checkLight>
+  <svg class="mt-1 h-5 w-5 shrink-0 text-[#7fdcd2]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+    <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+  </svg>
+</ng-template>
+
 <ng-template #check>
-  <svg class="mt-1 h-5 w-5 shrink-0 text-[#00706a]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+  <svg
+    class="mt-1 h-5 w-5 shrink-0 text-[#00706a]"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    aria-hidden="true"
+  >
     <path
       fill-rule="evenodd"
       d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z"
@@ -29,34 +48,89 @@
   </svg>
 </ng-template>
 
-<div class="bay min-h-screen bg-white text-[#2b3a3a] antialiased selection:bg-[#ffc400] selection:text-black">
+<div
+  class="bay min-h-screen bg-white text-[#2b3a3a] antialiased selection:bg-[#ffc400] selection:text-black"
+>
   <!-- NAV -->
   <header class="fixed inset-x-0 top-0 z-50 border-b border-[#e3eaea] bg-white/90 backdrop-blur">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3" aria-label="Huvudmeny">
+    <a routerLink="/apps/axle" fragment="kontakt" class="block bg-[#0d4f4a] px-4 py-1.5 text-center text-xs font-medium text-white sm:text-sm">
+      <span class="font-semibold">Testa gratis i 2 månader</span>
+      <span class="hidden text-white/75 sm:inline"> · Ingen bindningstid, inget avtal, inget kreditkort</span>
+      <span class="text-white/75 sm:hidden"> · Inget kreditkort</span>
+      <span aria-hidden="true">→</span>
+    </a>
+    <nav
+      class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3"
+      aria-label="Huvudmeny"
+    >
       <a routerLink="/" class="flex items-center gap-3">
         <img src="assets/imgs/axle/axle-logo.svg" alt="Axle" class="h-6 w-auto" />
         <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
       </a>
       <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
+        <a routerLink="/apps/axle" class="font-bold text-[#00706a] underline decoration-2 underline-offset-8" aria-current="page">Hem</a>
         @for (m of moduler; track m.slug) {
           <a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a>
         }
       </div>
       <div class="flex items-center gap-2">
         @if (appUrl) {
-          <a [href]="appUrl" class="hidden px-3 py-2 text-base font-medium text-[#4a5d5d] hover:text-[#00706a] sm:inline-block"
+          <a
+            [href]="appUrl"
+            class="hidden px-3 py-2 text-base font-medium text-[#4a5d5d] hover:text-[#00706a] sm:inline-block"
             >Logga in</a
           >
         }
-        <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary !px-5 !py-2 !text-sm hidden sm:inline-flex">Kontakta oss</a>
+        <a
+          href="tel:+46703300987"
+          class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-lg bg-[#00706a] px-3 text-sm font-semibold text-white"
+          aria-label="Ring oss"
+          ><svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"
+            /></svg
+          >070-330 09 87</a
+        >
+        <a
+          routerLink="/apps/axle"
+          fragment="kontakt"
+          class="inline-flex h-10 items-center gap-2 rounded-lg border border-[#d5e0e0] px-2.5 text-sm font-semibold text-[#0d1b1b] md:px-3"
+          aria-label="Frågor? Kontakta oss"
+          ><svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg
+        ><span>Frågor?</span></a>
         <button
           type="button"
-          class="grid h-10 w-10 place-items-center rounded-lg border border-[#d5e0e0] text-[#0d1b1b] md:hidden"
+          class="ml-2 grid h-10 w-10 place-items-center rounded-lg border border-[#d5e0e0] text-[#0d1b1b] md:hidden"
           (click)="toggleMenu()"
           [attr.aria-expanded]="menuOpen()"
           aria-label="Meny"
         >
-          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.2"
+          >
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
@@ -65,7 +139,12 @@
     @if (menuOpen()) {
       <div class="space-y-1 border-t border-[#e3eaea] bg-white px-4 py-3 text-lg md:hidden">
         @for (m of moduler; track m.slug) {
-          <a [routerLink]="['/axle', m.slug]" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">{{ m.name }}</a>
+          <a
+            [routerLink]="['/axle', m.slug]"
+            (click)="menuOpen.set(false)"
+            class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]"
+            >{{ m.name }}</a
+          >
         }
         @if (appUrl) {
           <a [href]="appUrl" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Logga in</a>
@@ -76,89 +155,226 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero relative overflow-hidden px-4 pt-28 pb-16 md:pt-36 md:pb-24">
-      <div class="hero-band lg:hidden" aria-hidden="true">
-        <img [src]="photo + '/dackstack-vinter.jpg'" alt="" width="1600" height="1067" class="h-full w-full object-cover" fetchpriority="high" />
+    <section class="hero-photo relative overflow-hidden bg-[#0f2524] text-white">
+      <div class="hero-bg" aria-hidden="true">
+        <img
+          [src]="photo + '/photos/hero-mekaniker.jpg'"
+          alt=""
+          width="1920"
+          height="1280"
+          class="h-full w-full object-cover"
+          fetchpriority="high"
+        />
       </div>
-      <div class="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-12 lg:gap-10">
-        <div class="lg:col-span-5" data-parallax="0.06">
-          <h1 class="text-5xl leading-[1.05] font-extrabold tracking-tight text-[#0d1b1b] sm:text-6xl lg:text-5xl xl:text-6xl">
-            Verkstadssystem för <span class="text-[#00706a]">däck- och bilverkstäder</span>
+      <div class="relative mx-auto grid max-w-7xl gap-10 px-4 pt-[19rem] pb-14 lg:min-h-[760px] lg:grid-cols-12 lg:pt-44 lg:pb-16">
+        <div class="lg:col-span-5 lg:self-center">
+          <h1 class="text-5xl leading-[1.05] font-extrabold tracking-tight sm:text-6xl lg:text-5xl xl:text-6xl">
+            Verkstadssystemet <span class="text-[#7fdcd2]">för däckfirmor och bilverkstäder</span>
           </h1>
-          <p class="mt-6 text-xl leading-relaxed text-[#4a5d5d]">
-            Däckhotell, tidsbokning, lager, offerter och arbetsorder.
+          @if (showRating) {
+            <p class="mt-5 flex items-center gap-3" [attr.aria-label]="'Betyg ' + rating + ' av 5'">
+              <span class="flex gap-0.5 text-[#ffc400]">
+                @for (n of stars; track n) {
+                  <svg class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9 4.8 17.7l1-5.9L1.5 7.7l5.9-.8L10 1.5z" /></svg>
+                }
+              </span>
+              <span class="text-xl font-bold">{{ rating }}</span>
+            </p>
+          }
+          <p class="mt-6 text-xl leading-relaxed text-[#d6e6e4]">
+            Boka tider, hantera däckhotell, lager och arbetsorder, och skicka offert och faktura. Allt på ett ställe.
           </p>
           <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-primary hidden sm:inline-flex">Kontakta oss</a>
-            <div class="flex gap-3 sm:hidden">
-              <a href="tel:+46703300987" class="btn btn-primary flex-1 !gap-2"><svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>070-330 09 87</a>
-              <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-outline !px-4" aria-label="Kontakta oss"><svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
-            </div>
+            <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-light">Testa gratis i 2 månader</a>
+            <a href="#funktioner" class="btn btn-ghost">Se funktionerna</a>
           </div>
+          <p class="mt-4 text-sm text-[#a9c4c1]">Ingen bindningstid · Inget avtal · Inget kreditkort behövs</p>
         </div>
 
-        <div class="relative lg:col-span-7">
-          <div class="hero-panel hidden lg:block" aria-hidden="true" data-parallax="0.1">
-            <img [src]="photo + '/dackstack-vinter.jpg'" alt="" width="1600" height="1067" class="h-full w-full object-cover" />
-          </div>
-          <div class="hero-shot relative hidden md:block" data-parallax="-0.04">
-            <ng-container
-              *ngTemplateOutlet="screen; context: { src: photo + '/app-hem.jpg', alt: 'Startsidan i ' + product, eager: true, w: 2400, h: 1500 }"
-            ></ng-container>
-          </div>
-          <div class="mx-auto w-[72%] md:hidden">
-            <ng-container *ngTemplateOutlet="phone; context: { src: photo + '/app-mhem.jpg', alt: 'Startsidan i mobilen' }"></ng-container>
-          </div>
-          <div class="hero-phone hidden md:block" data-parallax="-0.1">
-            <ng-container *ngTemplateOutlet="phone; context: { src: photo + '/app-mhem.jpg', alt: 'Startsidan i mobilen' }"></ng-container>
+        <div class="lg:col-span-7 lg:self-end">
+          <div class="ipad">
+            <div class="ipad-screen">
+              <img
+                [src]="photo + '/app-hem.jpg'"
+                [alt]="'Startsidan i ' + product"
+                width="2400"
+                height="1500"
+                class="h-full w-full object-cover object-left-top"
+                fetchpriority="high"
+              />
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FUNKTIONER -->
-    <section id="funktioner" class="scroll-mt-16 px-4 py-14 md:py-20">
-      <div class="mx-auto max-w-7xl space-y-16 md:space-y-24">
-        @for (f of features; track f.id; let i = $index) {
-          <article class="feature grid items-center gap-8 lg:grid-cols-12 lg:gap-14" data-reveal>
-            <div class="lg:col-span-5" data-parallax="0.05" [class.lg:order-2]="i % 2 === 1">
-              <h2 class="text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">{{ f.title }}</h2>
-              <p class="mt-4 text-xl leading-relaxed text-[#4a5d5d]">{{ f.text }}</p>
+    <!-- PARTNERS -->
+    <section class="border-b border-[#e3eaea] bg-white px-4 py-9 text-center" aria-label="Partners">
+      <p class="text-lg font-semibold text-[#0d1b1b]">Stolta partners med</p>
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-x-14 gap-y-5">
+        @for (p of partners; track p.name) {
+          <img [src]="p.src" [alt]="p.name" class="w-auto" [class]="p.h" loading="lazy" />
+        }
+      </div>
+    </section>
+
+    <!-- FÖR VEM: tre foton kant i kant under partnerlistan -->
+    <section class="bg-[#f2f7f7] px-4 pt-10" aria-label="För vem">
+      <div class="mx-auto grid max-w-[1600px] gap-4 md:grid-cols-3">
+        @for (a of audience; track a.title) {
+          <a
+            [routerLink]="a.link"
+            [fragment]="a.fragment"
+            class="group relative block h-[340px] overflow-hidden rounded-2xl text-white md:h-[480px]"
+          >
+            <img [src]="a.photo" alt="" width="900" height="900" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" [style.object-position]="a.pos" loading="lazy" decoding="async" />
+            <span class="absolute inset-0 bg-gradient-to-t from-[#0a1716]/85 via-[#0a1716]/15 to-transparent"></span>
+            <span class="absolute inset-x-0 bottom-0 block p-7">
+              <h2 class="text-3xl font-extrabold">{{ a.title }}</h2>
+              <p class="mt-2 min-h-[3.4rem] max-w-sm text-lg leading-snug text-white/85">{{ a.text }}</p>
+              <p class="mt-3 font-semibold text-[#7fdcd2] group-hover:underline">{{ a.cta }} →</p>
+            </span>
+          </a>
+        }
+      </div>
+    </section>
+
+    <!-- FUNKTIONER: tre likadana kort -->
+    <section id="funktioner" class="scroll-mt-24 bg-[#f2f7f7] px-4 pt-4 pb-10 lg:pb-12" aria-label="Funktioner">
+      <div class="mx-auto grid max-w-[1600px] gap-4 lg:grid-cols-3">
+        @for (f of features; track f.id) {
+          <article class="flex flex-col overflow-hidden rounded-2xl bg-[#0f2524] text-white" [class.lg:col-span-2]="f.id === 'tidsbokning'">
+            <div class="p-7 lg:p-8">
+              <h2 class="text-2xl font-extrabold tracking-tight">{{ f.title }}</h2>
+              <p class="mt-3 text-lg leading-relaxed text-white/80">{{ f.text }}</p>
               @if (f.points.length) {
-                <ul class="mt-5 grid gap-2">
+                <ul class="mt-4 grid gap-2">
                   @for (pt of f.points; track pt) {
-                    <li class="flex items-start gap-3 text-[#2b3a3a]">
-                      <ng-container *ngTemplateOutlet="check"></ng-container>
+                    <li class="flex items-start gap-3 text-white/90">
+                      <ng-container *ngTemplateOutlet="checkLight"></ng-container>
                       <span>{{ pt }}</span>
                     </li>
                   }
                 </ul>
               }
-              <div class="mt-7 flex flex-wrap gap-3">
-                @if (f.to) {
-                  <a [routerLink]="['/axle', f.to]" class="btn btn-primary">{{ f.more }}</a>
-                }
-                <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-outline">Kontakta oss</a>
-              </div>
             </div>
-            <div class="relative lg:col-span-7" [class.lg:order-1]="i % 2 === 1" [class.md:pr-[14%]]="!!f.phone">
-              <div data-parallax="0.09">
-                <ng-container *ngTemplateOutlet="screen; context: { src: f.image, alt: f.alt, w: 2400, h: 1500 }"></ng-container>
-              </div>
-              @if (f.phone) {
-                <div class="feature-phone" data-parallax="-0.18">
-                  <ng-container *ngTemplateOutlet="phone; context: { src: f.phone, alt: f.phoneAlt }"></ng-container>
+            @if (f.id === 'kalla-in') {
+              <div class="mt-auto flex h-[380px] justify-center overflow-hidden px-7" aria-hidden="true">
+                <div class="sms-phone">
+                  <p class="sms-head">Exempelverkstan AB</p>
+                  @for (m of sms; track m.regnr; let i = $index) {
+                    <div class="sms-bubble" [style.animation-delay.s]="i * 3">
+                      Hej {{ m.namn }}! Dina däck för {{ m.regnr }} står hos oss och det är dags för säsongsbyte. Ring eller boka tid.
+                    </div>
+                  }
                 </div>
-              }
+              </div>
+            } @else if (f.id === 'tidsbokning') {
+              <div class="mt-auto h-[470px] overflow-hidden px-6 lg:px-10" aria-hidden="true">
+                <div class="sched">
+                  <div class="sched-row sched-hours">
+                    <span></span>
+                    @for (h of hours; track h) {
+                      <span>{{ h }}</span>
+                    }
+                  </div>
+                  @for (r of schedule; track r.name) {
+                    <div class="sched-row">
+                      <span class="sched-name">{{ r.name }}</span>
+                      @for (b of r.blocks; track b.l) {
+                        <span class="sched-block" [class]="'tone-' + r.tone" [style.grid-column]="b.s + ' / ' + b.e">{{ b.l }}</span>
+                      }
+                      @if (r.name === 'Jonas') {
+                        <span class="sched-free" style="grid-column: 4 / 8"></span>
+                        <span class="sched-new" style="grid-column: 4 / 8">ABC 123 · Däckbyte</span>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+            } @else {
+            <div class="mt-auto h-[240px] overflow-hidden pl-7 lg:pl-8">
+              <img [src]="f.image" [alt]="f.alt" width="2400" height="1500" [class]="f.id === 'tidsbokning' ? 'w-[80%]' : 'w-[135%]'" class="block max-w-none rounded-tl-xl border border-white/20 object-cover object-left-top" loading="lazy" decoding="async" />
             </div>
+            }
           </article>
         }
       </div>
     </section>
 
+    @if (showKunder && kunder.length) {
+      <!-- KUNDER -->
+      <section id="kunder" class="scroll-mt-24 border-y border-[#e3eaea]" aria-label="Kunder">
+        <div class="mx-auto max-w-7xl">
+          <div class="grid lg:grid-cols-12">
+            <div class="flex flex-col p-8 md:p-14 lg:col-span-8 lg:h-[520px]">
+              <span class="grid h-14 w-14 place-items-center rounded-xl bg-[#e8f3f1] font-serif text-5xl leading-none text-[#00706a]" aria-hidden="true">“</span>
+              <blockquote class="mt-8 flex-1 overflow-hidden text-2xl leading-snug font-medium text-[#0d1b1b] md:text-3xl md:leading-snug">
+                {{ current().quote }}
+              </blockquote>
+              <p class="mt-8">
+                <span class="block font-semibold text-[#0d1b1b]">{{ current().person.name }}</span>
+                <span class="text-[#4a5d5d]">{{ current().person.role }}</span>
+              </p>
+              <div class="mt-8 flex flex-wrap items-center gap-6">
+                <a [routerLink]="['/axle/kunder', current().slug]" class="font-semibold text-[#00706a] hover:underline">Läs hela kundberättelsen →</a>
+                @if (kunder.length > 1) {
+                  <div class="ml-auto flex items-center gap-1 rounded-full bg-[#f2f5f5] p-1.5">
+                    <button type="button" class="grid h-10 w-10 place-items-center rounded-full border border-[#9fb3b3] bg-white text-[#0d1b1b] hover:bg-[#e8f3f1]" (click)="step(-1)" aria-label="Föregående"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+                    <span class="flex items-center gap-2 px-3">
+                      @for (k of kunder; track k.slug; let i = $index) {
+                        <button type="button" (click)="kundIndex.set(i)" [attr.aria-label]="k.name" class="h-2 rounded-full transition-all" [class]="i === kundIndex() ? 'w-6 bg-[#4a5d5d]' : 'w-2 bg-[#a9b8b8]'"></button>
+                      }
+                    </span>
+                    <button type="button" class="grid h-10 w-10 place-items-center rounded-full border border-[#9fb3b3] bg-white text-[#0d1b1b] hover:bg-[#e8f3f1]" (click)="step(1)" aria-label="Nästa"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+                  </div>
+                }
+              </div>
+            </div>
+            <dl class="grid border-t border-[#e3eaea] lg:col-span-4 lg:border-t-0 lg:border-l">
+              @for (st of current().stats; track st.label) {
+                <div class="flex flex-col justify-center border-b border-[#e3eaea] p-8 last:border-b-0 md:p-12">
+                  <dt class="font-mono text-5xl text-[#00706a] md:text-6xl">{{ st.value }}</dt>
+                  <dd class="mt-4 text-lg text-[#4a5d5d]">{{ st.label }}</dd>
+                </div>
+              }
+            </dl>
+          </div>
+          <div class="border-t border-[#e3eaea] px-8 py-10">
+            <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-5">
+              @for (k of kunder; track k.slug) {
+                <a [routerLink]="['/axle/kunder', k.slug]" class="opacity-70 hover:opacity-100">
+                  @if (k.logo) {
+                    <img [src]="k.logo" [alt]="k.name" class="h-8 w-auto" loading="lazy" />
+                  } @else {
+                    <span class="text-2xl font-extrabold tracking-tight text-[#0d1b1b]">{{ k.name }}</span>
+                  }
+                </a>
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-4 py-14 md:py-20" aria-labelledby="kundlista">
+        <div class="mx-auto max-w-7xl">
+          <h2 id="kundlista" class="text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">Vad våra kunder säger</h2>
+          <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            @for (k of kunder; track k.slug) {
+              <a [routerLink]="['/axle/kunder', k.slug]" class="story group flex flex-col rounded-2xl border border-[#e3eaea] p-7 hover:border-[#00706a]">
+                <span class="text-sm font-semibold text-[#6b7f7f]">{{ k.name }} · {{ k.place }}</span>
+                <span class="mt-4 text-xl leading-snug font-bold text-[#0d1b1b]">{{ k.headline }}</span>
+                <span class="mt-6 pt-2 font-semibold text-[#00706a] group-hover:underline">Läs kundberättelsen →</span>
+              </a>
+            }
+          </div>
+        </div>
+      </section>
+    }
+
     <!-- TILLFÄLLIGT BORTTAGET: prissektionen. Ta bort kommentaren för att visa den igen.
     PRISER
-    <section id="priser" class="scroll-mt-16 px-4 py-20">
+    <section id="priser" class="scroll-mt-24 px-4 py-20">
       <div class="mx-auto max-w-4xl">
         <h2 class="text-4xl font-extrabold text-[#0d1b1b]">Priser</h2>
         <div class="mt-12 grid gap-6 md:grid-cols-2">
@@ -187,31 +403,11 @@
     </section>
     -->
 
-    <!-- OCH RESTEN -->
-    <section class="bg-[#f6faf9] px-4 py-14 md:py-20">
-      <div class="mx-auto max-w-7xl">
-        <h2 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl" data-parallax="0.05">Det finns också</h2>
-        <div class="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-          @for (o of overview; track o.title) {
-            <div class="border-l-[3px] border-[#00706a] pl-5" data-reveal>
-              <h3 class="text-xl font-bold text-[#0d1b1b]">{{ o.title }}</h3>
-              <p class="mt-2 leading-relaxed text-[#4a5d5d]">{{ o.text }}</p>
-              @if (o.to) {
-                <a [routerLink]="['/axle', o.to]" class="btn btn-outline mt-4 !px-4 !py-2 !text-base">{{ o.more }}</a>
-              }
-            </div>
-          }
-        </div>
-      </div>
-    </section>
-
-    <div class="tread-bar" aria-hidden="true"></div>
-
     <!-- FRÅGOR -->
-    <section id="fragor" class="scroll-mt-16 px-4 py-14 md:py-20">
-      <div class="mx-auto max-w-3xl">
-        <h2 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Vanliga frågor</h2>
-        <div class="mt-10 divide-y divide-[#e3eaea] border-y border-[#e3eaea]">
+    <section id="fragor" class="scroll-mt-24 border-b border-[#e3eaea]">
+      <div class="mx-auto grid max-w-7xl gap-8 px-4 py-14 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:py-16">
+        <h2 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] lg:col-span-4">Vanliga frågor</h2>
+        <div class="divide-y divide-[#e3eaea] border-y border-[#e3eaea] lg:col-span-8">
           @for (f of faqs; track f.q) {
             <details class="group py-5">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-[#0d1b1b]">
@@ -225,32 +421,39 @@
       </div>
     </section>
 
-    <!-- PROVA + KONTAKT -->
-    <section id="prova" class="cta relative scroll-mt-16 overflow-hidden px-4 py-16 md:py-24">
+    <!-- KONTAKT -->
+    <section id="prova" class="cta relative scroll-mt-24 overflow-hidden px-4 py-14 md:py-20">
       <img
         [src]="photo + '/dack-monster.jpg'"
         alt=""
         aria-hidden="true"
         width="1600"
         height="1067"
-        class="absolute inset-x-0 -top-[10%] h-[120%] w-full object-cover opacity-25" data-parallax="0.12"
+        class="absolute inset-0 h-full w-full object-cover opacity-20"
         loading="lazy"
         decoding="async"
       />
       <div class="relative mx-auto max-w-7xl">
-        <div class="grid gap-12 lg:grid-cols-12">
-          <div id="kontakt" class="scroll-mt-20 text-white lg:col-span-5" data-parallax="0.08">
-            <h2 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Kontakta oss</h2>
-            <p class="mt-6 text-lg leading-relaxed text-[#d6e6e4]">
-              Skriv några rader om er verkstad så hör vi av oss och visar systemet.
-            </p>
+        <div class="grid items-start gap-10 lg:grid-cols-12">
+          <div id="kontakt" class="scroll-mt-28 text-white lg:col-span-5">
+            <h2 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Boka en demo</h2>
+            <p class="mt-4 text-lg text-[#d6e6e4]">Fyll i uppgifterna så hör vi av oss. Ni testar gratis i 2 månader, utan bindningstid.</p>
+            <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              <a href="tel:+46703300987" class="rounded-xl border border-white/20 p-5 hover:bg-white/10">
+                <span class="block text-sm text-[#a9c4c1]">Ring oss</span>
+                <span class="mt-1 block text-xl font-bold">070-330 09 87</span>
+              </a>
+              <a href="mailto:support&#64;catso.io" class="rounded-xl border border-white/20 p-5 hover:bg-white/10">
+                <span class="block text-sm text-[#a9c4c1]">Mejla oss</span>
+                <span class="mt-1 block text-xl font-bold">support&#64;catso.io</span>
+              </a>
+            </div>
           </div>
 
           <div class="lg:col-span-7">
             @if (state() === 'sent') {
               <div class="rounded-2xl bg-white p-10 shadow-xl" role="status">
-                <p class="text-3xl font-extrabold text-[#0d1b1b]">Tack, vi har fått det.</p>
-                <p class="mt-3 text-lg text-[#4a5d5d]">Vi hör av oss. Du får en bekräftelse på mejlen.</p>
+                <p class="text-3xl font-extrabold text-[#0d1b1b]">Tack. Vi hör av oss så fort vi kan.</p>
               </div>
             } @else {
               <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-5 rounded-2xl bg-white p-6 shadow-xl sm:p-8" novalidate>
@@ -267,34 +470,25 @@
                     <input formControlName="workshop" autocomplete="organization" />
                   </label>
                   <label class="field">
+                    Telefon
+                    <input type="tel" formControlName="phone" autocomplete="tel" />
+                  </label>
+                  <label class="field">
                     E-post
                     <input type="email" formControlName="email" autocomplete="email" />
                     @if (submitted() && form.controls.email.invalid) {
                       <span class="err">Skriv en giltig e-postadress.</span>
                     }
                   </label>
-                  <label class="field">
-                    Telefon
-                    <input type="tel" formControlName="phone" autocomplete="tel" />
-                  </label>
                 </div>
-                <label class="field">
-                  Vad vill du veta?
-                  <textarea formControlName="message" rows="5" placeholder="T.ex. hur många ni är och vilket system ni har idag"></textarea>
-                  @if (submitted() && form.controls.message.invalid) {
-                    <span class="err">Skriv några rader.</span>
-                  }
-                </label>
                 <input type="text" formControlName="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
-
                 @if (state() === 'error') {
                   <p class="rounded-lg border-l-4 border-[#d64535] bg-[#fdeeec] px-4 py-3 text-[#8a2418]" role="alert">
-                    Meddelandet kom inte fram. Försök igen om en stund eller mejla
-                    <a href="mailto:support&#64;catso.io" class="underline">support&#64;catso.io</a>.
+                    Det gick inte att skicka. Försök igen eller ring oss på 070-330 09 87.
                   </p>
                 }
                 <button type="submit" [disabled]="state() === 'sending'" class="btn btn-primary w-full">
-                  {{ state() === 'sending' ? 'Skickar...' : 'Skicka' }}
+                  {{ state() === 'sending' ? 'Skickar...' : 'Boka en demo' }}
                 </button>
               </form>
             }
@@ -304,17 +498,39 @@
     </section>
   </main>
 
-  <footer class="border-t border-[#e3eaea] px-4 py-8 text-[#6b7f7f]">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
-      <span>© {{ currentYear }} Catso AI &amp; Robotics</span>
-      <nav class="flex gap-5">
-        <a routerLink="/" class="hover:text-[#00706a]">Catso</a>
-        <a routerLink="/integritet" class="hover:text-[#00706a]">Integritet</a>
-        <a href="mailto:support&#64;catso.io" class="hover:text-[#00706a]">support&#64;catso.io</a>
-      </nav>
+  <footer class="border-t border-[#e3eaea] px-4 pt-14 pb-8 text-[#4a5d5d]">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <a routerLink="/" class="flex items-center gap-3">
+            <img src="assets/imgs/axle/axle-logo.svg" alt="" class="h-6 w-auto" />
+            <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
+          </a>
+        </div>
+        <nav aria-label="Axle">
+          <p class="font-bold text-[#0d1b1b]">Axle</p>
+          <ul class="mt-3 space-y-2">
+            @for (m of moduler; track m.slug) {
+              <li><a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a></li>
+            }
+          </ul>
+        </nav>
+        <nav aria-label="Företag">
+          <p class="font-bold text-[#0d1b1b]">Catso</p>
+          <ul class="mt-3 space-y-2">
+            <li><a routerLink="/" class="hover:text-[#00706a]">Om Catso</a></li>
+            <li><a routerLink="/integritet" class="hover:text-[#00706a]">Integritet</a></li>
+          </ul>
+        </nav>
+        <div>
+          <p class="font-bold text-[#0d1b1b]">Kontakt</p>
+          <ul class="mt-3 space-y-2">
+            <li><a href="tel:+46703300987" class="hover:text-[#00706a]">070-330 09 87</a></li>
+            <li><a href="mailto:support&#64;catso.io" class="hover:text-[#00706a]">support&#64;catso.io</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-12 border-t border-[#e3eaea] pt-6 text-sm text-[#6b7f7f]">© {{ currentYear }} Catso AI &amp; Robotics</p>
     </div>
-    <p class="mx-auto mt-4 max-w-7xl text-xs text-[#8a9a9a]">
-      Foton: Unsplash. Skärmbilderna visar exempeldata.
-    </p>
   </footer>
 </div>

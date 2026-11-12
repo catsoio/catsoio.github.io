@@ -148,50 +148,61 @@ $tread: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width=
 	}
 }
 
-/* Hero: text till vänster, skärmbilden till höger och ut över kanten, på ett band med däckfoto. */
-.hero-band {
+/* Hero: foto av mekaniker bakom, iPad med systemet ovanpå. */
+.hero-bg {
 	position: absolute;
-	inset: auto 0 0;
-	height: 30%;
-	background: #0f2524;
-
-
-
-	img {
-		opacity: 0.55;
-	}
-}
-
-/* Dator: fotot ligger bakom skärmbilden och går ut till höger skärmkant. */
-.hero-panel {
-	position: absolute;
-	top: -3.5rem;
-	bottom: -3.5rem;
-	left: 14%;
-	right: -50vw;
-	overflow: hidden;
-	border-radius: 2rem 0 0 2rem;
-	background: #0f2524;
-
-	img {
-		opacity: 0.6;
-	}
-}
-
-@media (min-width: 1024px) {
-	.hero-shot {
-		width: 128%;
-	}
-}
-
-.hero-phone {
-	position: absolute;
-	left: 1rem;
-	bottom: -2rem;
-	width: 19%;
+	inset: 0 0 auto 0;
+	height: 22rem;
+	mask-image: linear-gradient(to bottom, #000 55%, transparent);
 
 	@media (min-width: 1024px) {
-		left: -2.5rem;
+		inset: 0 0 0 auto;
+		height: auto;
+		width: 66%;
+		mask-image: linear-gradient(to right, transparent, #000 38%);
+	}
+}
+
+.ipad {
+	position: relative;
+	width: 100%;
+	max-width: 640px;
+	margin-inline: auto;
+	padding: 14px;
+	border-radius: 2rem;
+	background: #0a0d0d;
+	box-shadow:
+		0 0 0 2px #262c2c,
+		0 40px 80px -20px rgba(0, 0, 0, 0.65);
+
+	@media (min-width: 1024px) {
+		margin-right: 0;
+		transform: rotate(-1.5deg);
+	}
+}
+
+.ipad-screen {
+	overflow: hidden;
+	border-radius: 1.3rem;
+	background: #fff;
+	aspect-ratio: 4 / 3;
+}
+
+.btn-light {
+	background: #fff;
+	color: $ink;
+
+	&:hover {
+		background: #e8f3f1;
+	}
+}
+
+.btn-ghost {
+	border: 1.5px solid rgba(255, 255, 255, 0.45);
+	color: #fff;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.1);
 	}
 }
 
@@ -232,4 +243,195 @@ $tread: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width=
 
 [data-parallax] {
 	will-change: transform;
+}
+
+/* Gummigrossens logga är vit; den görs mörk så att den syns på vit bakgrund. */
+.logo-dark {
+	filter: brightness(0);
+	opacity: 0.85;
+}
+
+/* SMS-kortet: en mobil där samma meddelande kommer in till en kund i taget. */
+.sms-phone {
+	position: relative;
+	width: 420px;
+	max-width: 100%;
+	height: 100%;
+	padding: 1.4rem 1.3rem 0;
+	border: 6px solid #0a0d0d;
+	border-bottom: 0;
+	border-radius: 2rem 2rem 0 0;
+	background: #f4f4f5;
+}
+
+.sms-head {
+	margin: 0 0 0.8rem;
+	text-align: center;
+	font-size: 1rem;
+	font-weight: 600;
+	color: #6b7280;
+}
+
+/* Ett meddelande i taget, samma plats; de tre byter av varandra. */
+.sms-bubble {
+	position: absolute;
+	left: 1.3rem;
+	right: 1.3rem;
+	top: 3.6rem;
+	padding: 1.1rem 1.3rem;
+	border-radius: 1.4rem 1.4rem 1.4rem 0.4rem;
+	background: #e4e4e7;
+	color: #18181b;
+	font-size: 1.4rem;
+	line-height: 1.4;
+	opacity: 0;
+	animation: sms-in 9s ease infinite;
+}
+
+@keyframes sms-in {
+	0% {
+		opacity: 0;
+		transform: translateY(18px) scale(0.95);
+	}
+	4%,
+	29% {
+		opacity: 1;
+		transform: none;
+	}
+	33%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sms-bubble {
+		animation: none;
+	}
+	.sms-bubble:first-of-type {
+		opacity: 1;
+	}
+}
+
+/* Schemakortet: mekanikernas dag, en ledig tid markeras och en ny bokning landar i den. */
+.sched {
+	height: 100%;
+	padding: 0.9rem 1rem 0;
+	border-radius: 1rem 1rem 0 0;
+	background: #fff;
+	color: #18181b;
+}
+
+.sched-row {
+	display: grid;
+	grid-template-columns: 6rem repeat(9, 1fr);
+	align-items: center;
+	height: 5.6rem;
+	border-bottom: 1px solid #e5e7eb;
+	font-size: 1.15rem;
+	row-gap: 0;
+
+	> * {
+		grid-row: 1;
+	}
+}
+
+.sched-hours {
+	height: 2.4rem;
+	font-size: 0.95rem;
+	color: #6b7280;
+}
+
+.sched-name {
+	grid-column: 1;
+	font-weight: 700;
+}
+
+.sched-block,
+.sched-new {
+	margin: 0 2px;
+	padding: 0.8rem 0.9rem;
+	overflow: hidden;
+	border-radius: 0.7rem;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.2;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.tone-a {
+	background: #fde6dc;
+	color: #9a3412;
+}
+.tone-b {
+	background: #dbe7ff;
+	color: #1e40af;
+}
+.tone-c {
+	background: #d5efe9;
+	color: #0f766e;
+}
+.tone-d {
+	background: #fdf0c8;
+	color: #854d0e;
+}
+
+.sched-free {
+	margin: 0 2px;
+	height: 3.6rem;
+	border: 2px dashed #00706a;
+	border-radius: 0.6rem;
+	background: rgba(0, 112, 106, 0.08);
+	opacity: 0;
+	animation: sched-free 8s ease infinite;
+}
+
+.sched-new {
+	background: #00706a;
+	color: #fff;
+	opacity: 0;
+	animation: sched-new 8s ease infinite;
+}
+
+@keyframes sched-free {
+	0%,
+	6% {
+		opacity: 0;
+	}
+	12%,
+	34% {
+		opacity: 1;
+	}
+	40%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes sched-new {
+	0%,
+	38% {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+	44%,
+	90% {
+		opacity: 1;
+		transform: none;
+	}
+	97%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sched-free {
+		display: none;
+	}
+	.sched-new {
+		animation: none;
+		opacity: 1;
+	}
 }

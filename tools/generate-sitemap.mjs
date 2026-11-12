@@ -10,6 +10,7 @@ const routes = [
 	'/',
 	'/produkter',
 	'/apps/axle',
+	'/hall',
 	'/axle/priser',
 	'/axle/dackhotell',
 	'/axle/tidsbokning',

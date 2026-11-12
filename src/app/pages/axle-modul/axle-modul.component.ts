@@ -1,4 +1,3 @@
-import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MODULER, modulBySlug, type Modul } from './axle-moduler.data';
@@ -14,7 +13,7 @@ const PRODUCT_NAME = 'Catso Axle';
 	selector: 'app-axle-modul',
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [RouterLink, NgTemplateOutlet],
+	imports: [RouterLink],
 	templateUrl: './axle-modul.component.html',
 	styleUrl: './axle-modul.component.scss',
 })
