@@ -70,6 +70,12 @@ $border: #d5e0e0;
 	&.invalid {
 		border-color: #d64535;
 	}
+
+	&:disabled {
+		background: #f1f6f5;
+		color: #4a5d5d;
+		cursor: not-allowed;
+	}
 }
 
 .label {
@@ -117,4 +123,74 @@ $border: #d5e0e0;
 		font-weight: 700;
 		font-variant-numeric: tabular-nums;
 	}
+}
+
+.chip {
+	border: 1.5px solid $border;
+	border-radius: 999px;
+	padding: 0.4rem 1rem;
+	font-weight: 600;
+	color: #4a5d5d;
+	background: #fff;
+	cursor: pointer;
+
+	&:hover {
+		background: #f6faf9;
+	}
+
+	&.on {
+		background: $teal;
+		border-color: $teal;
+		color: #fff;
+	}
+}
+
+.product {
+	border: 1px solid $line;
+	border-radius: 1.1rem;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(13, 27, 27, 0.04);
+	transition:
+		box-shadow 0.15s ease,
+		transform 0.15s ease;
+
+	&:hover {
+		box-shadow: 0 10px 28px -12px rgba(13, 27, 27, 0.25);
+		transform: translateY(-2px);
+	}
+}
+
+.offer {
+	background:
+		radial-gradient(ellipse 70% 90% at 85% 10%, rgba(255, 196, 0, 0.16), transparent 60%),
+		linear-gradient(135deg, #0f2524 0%, #00504b 100%);
+	box-shadow: 0 20px 40px -24px rgba(0, 48, 44, 0.6);
+}
+
+/* "Passar Catso Axle": varan är vald för att fungera med Axle (etikettformat, QR-läsning). */
+.badge-fit {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	width: fit-content;
+	border-radius: 999px;
+	background: #e3f4ee;
+	color: #006a4e;
+	padding: 0.2rem 0.65rem 0.2rem 0.45rem;
+	font-size: 0.8rem;
+	font-weight: 700;
+
+	svg {
+		width: 1rem;
+		height: 1rem;
+	}
+}
+
+.save {
+	border-radius: 999px;
+	background: #fde8e4;
+	color: #b3261e;
+	padding: 0.1rem 0.6rem;
+	font-size: 0.8rem;
+	font-weight: 800;
 }

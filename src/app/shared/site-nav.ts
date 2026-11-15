@@ -26,7 +26,7 @@ export const PRODUCTS: Product[] = [
 	},
 	{
 		name: 'Catso Axle',
-		path: '/apps/axle',
+		path: '/axle',
 		audience: 'Däckfirmor och bilverkstäder',
 		group: 'other',
 		text: 'Verkstadssystem med lager, däckhotell, bokningar, arbetsorder, offert, fakturor och kvitton på ett ställe.',

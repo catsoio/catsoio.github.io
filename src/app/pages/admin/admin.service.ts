@@ -48,6 +48,7 @@ export interface AdminShopProduct {
 	category: 'printer' | 'supplies' | 'scanner' | 'terminal' | 'other';
 	image: string | null;
 	priceMinor: number;
+	compareAtMinor: number | null;
 	shippingMinor: number;
 	vatRate: number;
 	maxQuantity: number;
@@ -309,5 +310,15 @@ export class AdminService {
 		return this.call(() =>
 			this.http.post<any>(`${this.base}/inventory/shop/admin/orders/${id}/cancel`, { refund }, { headers: this.headers(true) }),
 		);
+	}
+
+	/** Laddar upp en produktbild (JPEG, PNG eller WebP, högst 5 MB). Svaret har den publika adressen. */
+	async uploadShopImage(file: File): Promise<string> {
+		const body = new FormData();
+		body.append('file', file);
+		const res = await this.call<{ image: string; path: string }>(() =>
+			this.http.post<any>(`${this.base}/inventory/shop/admin/images`, body, { headers: this.headers(true) }),
+		);
+		return `${this.base}${res.path}`;
 	}
 }

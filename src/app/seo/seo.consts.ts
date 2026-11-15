@@ -18,7 +18,7 @@ export const breadcrumbs = (...items: [name: string, path: string][]) => ({
 const PRODUCT_LIST: [name: string, path: string][] = [
 	['VERA-01: lokal AI-agent för advokatbyråer', '/vera-01'],
 	['Catso AI Sök: AI-sök och shoppingassistent för Shopify', '/shopify/apps/ai-search'],
-	['Catso Axle: verkstadssystem för däck- och bilverkstäder', '/apps/axle'],
+	['Catso Axle: verkstadssystem för däck- och bilverkstäder', '/axle'],
 	['Hemmafest: skapa och hitta fester', '/hemmafest'],
 	['Poängjakten: nå Sveriges gymnasieelever', '/poangjakten/sponsor'],
 ];
@@ -172,10 +172,10 @@ export const axleModulSeo = (m: Modul): RouteSEO => {
 					name: m.seoTitle,
 					url: `${ORIGIN}${path}`,
 					isPartOf: { '@id': `${ORIGIN}/#website` },
-					about: { '@id': `${ORIGIN}/apps/axle#app` },
+					about: { '@id': `${ORIGIN}/axle#app` },
 				},
 				faqJsonLd(m.faqs),
-				breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle'], [m.name, path]),
+				breadcrumbs(['Catso', '/'], ['Catso Axle', '/axle'], [m.name, path]),
 			],
 		},
 	};
@@ -201,9 +201,9 @@ export const axleKundSeo = (k: Kund): RouteSEO => {
 					name: title,
 					url: `${ORIGIN}${path}`,
 					isPartOf: { '@id': `${ORIGIN}/#website` },
-					about: { '@id': `${ORIGIN}/apps/axle#app` },
+					about: { '@id': `${ORIGIN}/axle#app` },
 				},
-				breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle'], [k.name, path]),
+				breadcrumbs(['Catso', '/'], ['Catso Axle', '/axle'], [k.name, path]),
 			],
 		},
 	};
@@ -216,9 +216,9 @@ export const axleKundSeo = (k: Kund): RouteSEO => {
  */
 export const AXLE_BUTIK_SEO: RouteSEO = {
 	title: 'Butik | Catso Axle',
-	description: 'Etikettskrivare, etiketter och annan hårdvara till verkstaden.',
+	description: 'Etikettskrivare, etiketter och streckkodsläsare som är kompatibla med Catso Axle direkt. Beställ till verkstaden.',
 	canonical: `${ORIGIN}/axle/butik`,
-	robots: 'noindex,follow',
+	robots: 'index,follow',
 };
 
 export const AXLE_BUTIK_TACK_SEO: RouteSEO = {
@@ -243,9 +243,9 @@ export const AXLE_PRISER_SEO: RouteSEO = {
 				name: 'Priser för Catso Axle',
 				url: `${ORIGIN}/axle/priser`,
 				isPartOf: { '@id': `${ORIGIN}/#website` },
-				about: { '@id': `${ORIGIN}/apps/axle#app` },
+				about: { '@id': `${ORIGIN}/axle#app` },
 			},
-			breadcrumbs(['Catso', '/'], ['Catso Axle', '/apps/axle'], ['Priser', '/axle/priser']),
+			breadcrumbs(['Catso', '/'], ['Catso Axle', '/axle'], ['Priser', '/axle/priser']),
 		],
 	},
 };
@@ -267,7 +267,7 @@ export const HALL_SEO: RouteSEO = {
 				name: 'Catso Hall',
 				url: `${ORIGIN}/hall`,
 				isPartOf: { '@id': `${ORIGIN}/#website` },
-				about: { '@id': `${ORIGIN}/apps/axle#app` },
+				about: { '@id': `${ORIGIN}/axle#app` },
 			},
 			breadcrumbs(['Catso', '/'], ['Catso Hall', '/hall']),
 		],
@@ -278,7 +278,7 @@ export const AXLE_SEO: RouteSEO = {
 	title: 'Verkstadssystem för däckfirmor och bilverkstäder | Catso Axle',
 	description:
 		'Catso Axle samlar däckhotell, lager, bokningar, arbetsorder och fakturor i ett system som körs i webbläsaren. Be om en kostnadsfri testmiljö.',
-	canonical: `${ORIGIN}/apps/axle`,
+	canonical: `${ORIGIN}/axle`,
 	og: { type: 'product', image: `${ORIGIN}/assets/og/catso-axle-og.jpg` },
 	twitter: {
 		card: 'summary_large_image',
@@ -290,7 +290,7 @@ export const AXLE_SEO: RouteSEO = {
 		'@graph': [
 			{
 				'@type': 'SoftwareApplication',
-				'@id': `${ORIGIN}/apps/axle#app`,
+				'@id': `${ORIGIN}/axle#app`,
 				name: 'Catso Axle',
 				alternateName: 'Verkstadssystem för däckfirmor och bilverkstäder',
 				description:
@@ -298,7 +298,7 @@ export const AXLE_SEO: RouteSEO = {
 				applicationCategory: 'BusinessApplication',
 				operatingSystem: 'Web',
 				inLanguage: 'sv-SE',
-				url: `${ORIGIN}/apps/axle`,
+				url: `${ORIGIN}/axle`,
 				image: `${ORIGIN}/assets/og/catso-axle-og.jpg`,
 				screenshot: `${ORIGIN}/assets/imgs/dacklager/desktop-dashboard.webp`,
 				featureList: [
@@ -314,7 +314,7 @@ export const AXLE_SEO: RouteSEO = {
 				publisher: { '@id': `${ORIGIN}/#organization` },
 			},
 			faqJsonLd(AXLE_FAQ),
-			breadcrumbs(['Catso', '/'], ['Produkter', '/produkter'], ['Catso Axle', '/apps/axle']),
+			breadcrumbs(['Catso', '/'], ['Produkter', '/produkter'], ['Catso Axle', '/axle']),
 		],
 	},
 };

@@ -37,7 +37,7 @@ import { SiteHeaderComponent } from '../../shared/site-header.component';
 							<dd class="mt-1 text-black/65">
 								<a routerLink="/vera-01" class="underline">VERA-01</a>,
 								<a routerLink="/shopify/apps/ai-search" class="underline">Catso AI Sök</a>,
-								<a routerLink="/apps/axle" class="underline">Catso Axle</a>
+								<a routerLink="/axle" class="underline">Catso Axle</a>
 							</dd>
 						</div>
 					</dl>

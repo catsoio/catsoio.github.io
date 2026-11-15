@@ -12,6 +12,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ShopApi, type ShopOrderStatus, type ShopOrderView } from './axle-butik.api';
 import { kr } from './axle-butik.logic';
 import { ButikFrameComponent } from './butik-frame.component';
+import { ButikStore } from './butik.store';
 
 /** Så länge väntar sidan på att Stripes besked kommit fram: 20 försök med 3 sekunder emellan. */
 const POLL_MS = 3000;
@@ -97,6 +98,7 @@ const TEXT: Record<ShopOrderStatus, string> = {
 })
 export class AxleButikTackComponent {
 	private readonly api = inject(ShopApi);
+	private readonly store = inject(ButikStore);
 	private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
 	private readonly token = inject(ActivatedRoute).snapshot.queryParamMap.get('order') ?? '';
 	private timer: ReturnType<typeof setTimeout> | undefined;
@@ -119,6 +121,8 @@ export class AxleButikTackComponent {
 		try {
 			const o = await this.api.order(this.token);
 			this.order.set(o);
+			// Betald order: varukorgen är köpt och ska inte ligga kvar.
+			if (o.status !== 'awaiting_payment' && o.status !== 'canceled' && o.status !== 'expired') this.store.clear();
 			if (o.status === 'awaiting_payment' && ++this.tries < POLL_TRIES) {
 				this.timer = setTimeout(() => void this.poll(), POLL_MS);
 			}

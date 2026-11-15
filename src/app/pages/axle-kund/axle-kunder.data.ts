@@ -1,5 +1,5 @@
 /**
- * Kundberättelser för /apps/axle och /axle/kunder/<slug>.
+ * Kundberättelser för /axle och /axle/kunder/<slug>.
  *
  * `published: false` visas bara i utvecklingsläge (så designen går att granska) och aldrig i det publicerade bygget.
  * Utkasten nedan är HITTEPÅ: påhittade personer, verkstäder och citat, bara för att visa hur sidan ser ut. De får aldrig

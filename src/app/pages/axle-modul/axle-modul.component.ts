@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MODULER, modulBySlug, type Modul } from './axle-moduler.data';
 
-/** Produktnamnet står på samma sätt som på sidan /apps/axle. */
+/** Produktnamnet står på samma sätt som på sidan /axle. */
 const PRODUCT_NAME = 'Catso Axle';
 
 /**

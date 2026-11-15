@@ -25,7 +25,7 @@ export class AxleKundComponent {
 	private pick(): Kund | undefined {
 		const k = kundBySlug(this.route.snapshot.data['kund']);
 		if (!k || (!k.published && !isDevMode())) {
-			void this.router.navigateByUrl('/apps/axle');
+			void this.router.navigateByUrl('/axle');
 			return undefined;
 		}
 		return k;

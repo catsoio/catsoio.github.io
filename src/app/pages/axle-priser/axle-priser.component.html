@@ -13,7 +13,7 @@
   <!-- NAV -->
   <header class="fixed inset-x-0 top-0 z-50 border-b border-[#e3eaea] bg-white/90 backdrop-blur">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3" aria-label="Huvudmeny">
-      <a routerLink="/apps/axle" class="flex items-center gap-3">
+      <a routerLink="/axle" class="flex items-center gap-3">
         <img src="assets/imgs/axle/axle-logo.svg" alt="Axle" class="h-6 w-auto" />
         <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
       </a>
@@ -22,6 +22,7 @@
           <a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a>
         }
         <a routerLink="/axle/priser" aria-current="page" class="text-[#00706a]">Priser</a>
+        <a routerLink="/axle/butik" class="hover:text-[#00706a]">Butik</a>
         <a routerLink="/axle/kom-igang" class="hover:text-[#00706a]">Manual</a>
       </div>
       <a routerLink="/axle/priser" fragment="kontakt" class="btn btn-primary !px-5 !py-2 !text-sm">Kontakta oss</a>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-/** Produktnamnet står på samma sätt som på sidan /apps/axle. */
+/** Produktnamnet står på samma sätt som på sidan /axle. */
 const PRODUCT_NAME = 'Catso Axle';
 
 interface Step {

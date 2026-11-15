@@ -51,7 +51,7 @@ import { SiteHeaderComponent } from '../../shared/site-header.component';
 				<h2 class="mt-12 text-2xl font-semibold">Vi bygger också egna system och appar</h2>
 				<p class="mt-3 text-black/65">
 					Vid sidan av AI och robotik har vi byggt och driftar verkstadssystemet
-					<a routerLink="/apps/axle" class="font-medium text-black underline">Catso Axle</a> samt apparna
+					<a routerLink="/axle" class="font-medium text-black underline">Catso Axle</a> samt apparna
 					<a routerLink="/hemmafest" class="font-medium text-black underline">Hemmafest</a> och
 					<a routerLink="/poangjakten/sponsor" class="font-medium text-black underline">Poängjakten</a>. Se alla på
 					<a routerLink="/produkter" class="font-medium text-black underline">produktsidan</a>.

@@ -53,7 +53,7 @@
 >
   <!-- NAV -->
   <header class="fixed inset-x-0 top-0 z-50 border-b border-[#e3eaea] bg-white/90 backdrop-blur">
-    <a routerLink="/apps/axle" fragment="kontakt" class="block bg-[#0d4f4a] px-4 py-1.5 text-center text-xs font-medium text-white sm:text-sm">
+    <a routerLink="/axle" fragment="kontakt" class="block bg-[#0d4f4a] px-4 py-1.5 text-center text-xs font-medium text-white sm:text-sm">
       <span class="font-semibold">Testa gratis i 2 månader</span>
       <span class="hidden text-white/75 sm:inline"> · Ingen bindningstid, inget avtal, inget kreditkort</span>
       <span class="text-white/75 sm:hidden"> · Inget kreditkort</span>
@@ -65,15 +65,16 @@
     >
       <a routerLink="/" class="flex items-center gap-3">
         <img src="assets/imgs/axle/axle-logo.svg" alt="Axle" class="h-6 w-auto" />
-        <span class="text-xl font-bold text-[#0d1b1b]">{{ product }}</span>
+        <span class="text-lg font-bold whitespace-nowrap text-[#0d1b1b] sm:text-xl">{{ product }}</span>
       </a>
       <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
-        <a routerLink="/apps/axle" class="font-bold text-[#00706a] underline decoration-2 underline-offset-8" aria-current="page">Hem</a>
+        <a routerLink="/axle" class="font-bold text-[#00706a] underline decoration-2 underline-offset-8" aria-current="page">Hem</a>
         @for (m of moduler; track m.slug) {
           <a [routerLink]="['/axle', m.slug]" class="hover:text-[#00706a]">{{ m.name }}</a>
         }
+        <a routerLink="/axle/butik" class="hover:text-[#00706a]">Butik</a>
       </div>
-      <div class="flex items-center gap-2">
+      <div class="flex shrink-0 items-center gap-2">
         @if (appUrl) {
           <a
             [href]="appUrl"
@@ -98,10 +99,10 @@
             <path
               d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"
             /></svg
-          >070-330 09 87</a
+          ><span class="hidden sm:inline">070-330 09 87</span></a
         >
         <a
-          routerLink="/apps/axle"
+          routerLink="/axle"
           fragment="kontakt"
           class="inline-flex h-10 items-center gap-2 rounded-lg border border-[#d5e0e0] px-2.5 text-sm font-semibold text-[#0d1b1b] md:px-3"
           aria-label="Frågor? Kontakta oss"
@@ -116,7 +117,7 @@
             aria-hidden="true"
           >
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg
-        ><span>Frågor?</span></a>
+        ><span class="hidden sm:inline">Frågor?</span></a>
         <button
           type="button"
           class="ml-2 grid h-10 w-10 place-items-center rounded-lg border border-[#d5e0e0] text-[#0d1b1b] md:hidden"
@@ -146,6 +147,7 @@
             >{{ m.name }}</a
           >
         }
+        <a routerLink="/axle/butik" (click)="menuOpen.set(false)" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Butik</a>
         @if (appUrl) {
           <a [href]="appUrl" class="block rounded-lg px-3 py-3 hover:bg-[#f2f7f7]">Logga in</a>
         }
@@ -185,7 +187,7 @@
             Boka tider, hantera däckhotell, lager och arbetsorder, och skicka offert och faktura. Allt på ett ställe.
           </p>
           <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a routerLink="/apps/axle" fragment="kontakt" class="btn btn-light">Testa gratis i 2 månader</a>
+            <a routerLink="/axle" fragment="kontakt" class="btn btn-light">Testa gratis i 2 månader</a>
             <a href="#funktioner" class="btn btn-ghost">Se funktionerna</a>
           </div>
           <p class="mt-4 text-sm text-[#a9c4c1]">Ingen bindningstid · Inget avtal · Inget kreditkort behövs</p>
@@ -392,7 +394,7 @@
                   <li>{{ f }}</li>
                 }
               </ul>
-              <a routerLink="/apps/axle" fragment="kontakt" class="btn mt-auto" [class]="p.highlight ? 'btn-primary' : 'btn-outline'" (click)="choosePlan(p.name)">
+              <a routerLink="/axle" fragment="kontakt" class="btn mt-auto" [class]="p.highlight ? 'btn-primary' : 'btn-outline'" (click)="choosePlan(p.name)">
                 Kontakta oss om {{ p.name }}
               </a>
             </div>

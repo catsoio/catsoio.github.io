@@ -88,14 +88,6 @@ export const routes: Routes = [
     data: { seo: VERA_SEO, footer: true },
   },
   {
-    path: 'apps/axle',
-    loadComponent: () =>
-      import('./pages/axle-landing/axle-landing.component').then(
-        (m) => m.AxleLandingComponent,
-      ),
-    data: { seo: AXLE_SEO, footer: true },
-  },
-  {
     path: 'axle',
     loadComponent: () =>
       import('./pages/axle-landing/axle-landing.component').then(
@@ -109,8 +101,6 @@ export const routes: Routes = [
       import('./pages/hall-landing/hall-landing.component').then((m) => m.HallLandingComponent),
     data: { seo: HALL_SEO },
   },
-  { path: 'verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
-  { path: 'apps/verkstad', redirectTo: 'apps/axle', pathMatch: 'full' },
   { path: 'verkstad/kom-igang', redirectTo: 'axle/kom-igang', pathMatch: 'full' },
   { path: 'verkstad/info', redirectTo: 'axle/info', pathMatch: 'full' },
   {
@@ -144,6 +134,18 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/axle-butik/axle-butik.component').then((m) => m.AxleButikComponent),
     data: { seo: AXLE_BUTIK_SEO },
+  },
+  {
+    path: 'axle/butik/vara/:id',
+    loadComponent: () =>
+      import('./pages/axle-butik/butik-product.component').then((m) => m.ButikProductComponent),
+    data: { seo: AXLE_BUTIK_SEO },
+  },
+  {
+    path: 'axle/butik/kassa',
+    loadComponent: () =>
+      import('./pages/axle-butik/butik-checkout.component').then((m) => m.ButikCheckoutComponent),
+    data: { seo: AXLE_BUTIK_TACK_SEO },
   },
   {
     path: 'axle/butik/tack',
@@ -194,8 +196,6 @@ export const routes: Routes = [
       ),
     data: { seo: HEMMAFEST_DELETE_SEO },
   },
-  { path: 'dacklager', redirectTo: 'apps/axle', pathMatch: 'full' },
-  { path: 'inventory', redirectTo: 'apps/axle', pathMatch: 'full' },
   {
     path: 'admin',
     loadComponent: () => import('./pages/admin/admin.component').then((m) => m.AdminComponent),

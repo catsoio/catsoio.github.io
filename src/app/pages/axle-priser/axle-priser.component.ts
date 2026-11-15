@@ -33,7 +33,7 @@ import {
 	type PlanId,
 } from './axle-priser.pricing';
 
-/** Produktnamnet står på samma sätt som på sidan /apps/axle. */
+/** Produktnamnet står på samma sätt som på sidan /axle. */
 const PRODUCT_NAME = 'Catso Axle';
 
 /** Valet i räknaren sparas här i besökarens webbläsare, så det finns kvar när hen kommer tillbaka. */

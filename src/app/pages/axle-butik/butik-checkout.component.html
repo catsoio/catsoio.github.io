@@ -1,0 +1,145 @@
+<app-butik-frame>
+  <div class="bay min-h-screen bg-white text-[#2b3a3a] antialiased">
+    <main class="mx-auto max-w-7xl px-4 pt-24 pb-20">
+      <h1 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Varukorg</h1>
+
+      @if (store.loading()) {
+        <p class="mt-8 text-[#6b7f7f]">Hämtar…</p>
+      } @else if (store.lines().length === 0) {
+        <div class="card mt-8 p-8 text-center">
+          <p class="text-xl text-[#4a5d5d]">Varukorgen är tom.</p>
+          <a routerLink="/axle/butik" class="btn btn-primary mt-5">Se varorna</a>
+        </div>
+      } @else {
+        <form class="mt-8 grid gap-8 lg:grid-cols-12" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <!-- UPPGIFTER -->
+          <div class="space-y-6 lg:col-span-7">
+            @if (store.user()) {
+              <p class="rounded-lg border-l-4 border-[#00706a] bg-[#eef7f6] px-4 py-3 text-[#0d3d3a]">
+                @if (locked().size > 0) {
+                  Verkstadens uppgifter och leveransadress hämtas från ert Axle-konto. Ändra dem i Axle under
+                  Inställningar → Företaget.
+                } @else {
+                  Inloggad. Fyll i verkstadens uppgifter nedan.
+                }
+              </p>
+            } @else {
+              <div class="card flex flex-wrap items-center justify-between gap-3 p-4">
+                <span class="text-[#4a5d5d]">Har ni ett Axle-konto? Logga in så fylls företagsuppgifter och leveransadress i åt er.</span>
+                <button type="button" class="btn btn-primary !px-5 !py-2" (click)="store.loginOpen.set(true)">Logga in</button>
+              </div>
+            }
+
+            <section class="card space-y-4 p-6">
+              <h2 class="group-title">Företaget</h2>
+              <label class="block">
+                <span class="label">Verkstadens namn</span>
+                <input class="field" [class.invalid]="invalid('workshop')" type="text" formControlName="workshop" autocomplete="organization" />
+              </label>
+              <label class="block">
+                <span class="label">Organisationsnummer</span>
+                <input class="field" [class.invalid]="invalid('orgNo')" type="text" formControlName="orgNo" inputmode="numeric" placeholder="556012-5790" />
+                @if (invalid('orgNo')) {
+                  <span class="mt-1 block text-sm text-[#d64535]">Skriv ett giltigt organisationsnummer.</span>
+                }
+              </label>
+              <label class="block">
+                <span class="label">Kontaktperson</span>
+                <input class="field" [class.invalid]="invalid('contactName')" type="text" formControlName="contactName" autocomplete="name" />
+              </label>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="block">
+                  <span class="label">E-post</span>
+                  <input class="field" [class.invalid]="invalid('email')" type="email" formControlName="email" autocomplete="email" />
+                </label>
+                <label class="block">
+                  <span class="label">Telefon</span>
+                  <input class="field" [class.invalid]="invalid('phone')" type="tel" formControlName="phone" autocomplete="tel" />
+                </label>
+              </div>
+            </section>
+
+            <section class="card space-y-4 p-6">
+              <h2 class="group-title">Leverans</h2>
+              <label class="block">
+                <span class="label">Adress</span>
+                <input class="field" [class.invalid]="invalid('addressLine1')" type="text" formControlName="addressLine1" autocomplete="address-line1" />
+              </label>
+              <label class="block">
+                <span class="label">Adress, rad 2 (valfri)</span>
+                <input class="field" type="text" formControlName="addressLine2" autocomplete="address-line2" />
+              </label>
+              <div class="grid grid-cols-3 gap-4">
+                <label class="col-span-1 block">
+                  <span class="label">Postnr</span>
+                  <input class="field" [class.invalid]="invalid('postalCode')" type="text" formControlName="postalCode" inputmode="numeric" autocomplete="postal-code" />
+                </label>
+                <label class="col-span-2 block">
+                  <span class="label">Ort</span>
+                  <input class="field" [class.invalid]="invalid('city')" type="text" formControlName="city" autocomplete="address-level2" />
+                </label>
+              </div>
+              <label class="block">
+                <span class="label">Meddelande (valfritt)</span>
+                <textarea class="field" rows="3" formControlName="note"></textarea>
+              </label>
+            </section>
+            <input type="text" formControlName="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+          </div>
+
+          <!-- SAMMANFATTNING -->
+          <aside class="lg:col-span-5">
+            <div class="card space-y-5 p-6 lg:sticky lg:top-24">
+              <h2 class="group-title">Er beställning</h2>
+              <ul class="divide-y divide-[#e3eaea]">
+                @for (l of store.lines(); track l.product.id) {
+                  <li class="flex gap-3 py-3">
+                    <a [routerLink]="['/axle/butik/vara', l.product.id]" class="h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+                      <app-butik-visual [image]="l.product.image" [category]="l.product.category" [name]="l.product.name" />
+                    </a>
+                    <div class="min-w-0 flex-1">
+                      <div class="font-semibold text-[#0d1b1b]">{{ l.product.name }}</div>
+                      <div class="text-sm text-[#6b7f7f]">{{ kr(l.product.priceMinor) }} st</div>
+                      <div class="mt-2 flex items-center gap-3">
+                        <div class="stepper" role="group" [attr.aria-label]="'Antal ' + l.product.name">
+                          <button type="button" (click)="store.set(l.product, l.quantity - 1)" aria-label="Färre">−</button>
+                          <span>{{ l.quantity }}</span>
+                          <button type="button" (click)="store.set(l.product, l.quantity + 1)" [disabled]="l.quantity >= l.product.maxQuantity" aria-label="Fler">+</button>
+                        </div>
+                        <button type="button" class="text-sm text-[#6b7f7f] underline hover:text-[#d64535]" (click)="store.set(l.product, 0)">Ta bort</button>
+                      </div>
+                    </div>
+                    <div class="font-semibold tabular-nums">{{ kr(l.product.priceMinor * l.quantity) }}</div>
+                  </li>
+                }
+              </ul>
+              <dl class="space-y-1 border-t border-[#e3eaea] pt-3 text-[#4a5d5d]">
+                @if (store.totals().shippingMinor > 0) {
+                  <div class="flex justify-between"><dt>Frakt</dt><dd class="tabular-nums">{{ kr(store.totals().shippingMinor) }}</dd></div>
+                }
+                <div class="flex justify-between"><dt>Summa exkl. moms</dt><dd class="tabular-nums">{{ kr(store.totals().netMinor) }}</dd></div>
+                <div class="flex justify-between"><dt>Moms</dt><dd class="tabular-nums">{{ kr(store.totals().vatMinor) }}</dd></div>
+                <div class="flex justify-between text-xl font-extrabold text-[#0d1b1b]"><dt>Att betala</dt><dd class="tabular-nums">{{ kr(store.totals().totalMinor) }}</dd></div>
+              </dl>
+
+              <label class="flex items-start gap-3 text-[#4a5d5d]">
+                <input type="checkbox" formControlName="acceptedTerms" class="mt-1 h-5 w-5 accent-[#00706a]" />
+                <span>Vi beställer som företag.</span>
+              </label>
+              @if (invalid('acceptedTerms')) {
+                <p class="-mt-3 text-sm text-[#d64535]">Bekräfta för att gå vidare.</p>
+              }
+              @if (error()) {
+                <p class="rounded-lg border-l-4 border-[#d64535] bg-[#fdeeec] px-4 py-3 text-[#8a2418]" role="alert">{{ error() }}</p>
+              }
+              <button type="submit" class="btn btn-primary w-full" [disabled]="sending()">
+                {{ sending() ? 'Går till betalning…' : 'Betala ' + kr(store.totals().totalMinor) }}
+              </button>
+              <p class="text-xs text-[#6b7f7f]"><a routerLink="/integritet" class="underline">Integritetspolicy</a></p>
+            </div>
+          </aside>
+        </form>
+      }
+    </main>
+  </div>
+</app-butik-frame>

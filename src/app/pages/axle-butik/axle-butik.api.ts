@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -11,6 +11,8 @@ export interface ShopProduct {
 	category: 'printer' | 'supplies' | 'scanner' | 'terminal' | 'other';
 	image: string | null;
 	priceMinor: number;
+	/** Ordinarie pris att visa överstruket, eller null. */
+	compareAtMinor: number | null;
 	shippingMinor: number;
 	vatRate: number;
 	priceInclVatMinor: number;
@@ -87,5 +89,84 @@ export class ShopApi {
 		return firstValueFrom(
 			this.http.get<{ data: ShopOrderView }>(`${this.base}/orders/${encodeURIComponent(token)}`).pipe(map((r) => r.data)),
 		);
+	}
+}
+
+/** Uppgifter som butiken fyller i åt en inloggad verkstad (Inställningar → Företaget i Axle). */
+export interface ShopAccount {
+	workshop: string;
+	orgNo: string;
+	email: string;
+	phone: string;
+	addressLine1: string;
+	postalCode: string;
+	city: string;
+}
+
+export interface ShopUser {
+	name: string | null;
+	email: string | null;
+	phone: string | null;
+}
+
+export interface ShopTokens {
+	accessToken: string;
+	refreshToken: string;
+}
+
+const APP_ID = 'garagestock';
+
+/** Inloggning med ett vanligt Axle-konto. Butiken sparar bara tokens, aldrig lösenordet. */
+@Injectable({ providedIn: 'root' })
+export class ShopAuthApi {
+	private readonly http = inject(HttpClient);
+	private readonly base = `${environment.apiBaseUrl}/api`;
+
+	private headers(token?: string): HttpHeaders {
+		let h = new HttpHeaders({ 'X-App-Id': APP_ID });
+		if (token) h = h.set('Authorization', `Bearer ${token}`);
+		return h;
+	}
+
+	/** E-post eller mobilnummer plus lösenord, som i Axle-appen. */
+	async login(identifier: string, password: string): Promise<{ tokens: ShopTokens; user: ShopUser }> {
+		const isEmail = identifier.includes('@');
+		const body = isEmail ? { email: identifier.trim(), password } : { phone: identifier.trim(), password };
+		const res = await firstValueFrom(
+			this.http.post<{ data: { tokens: ShopTokens; user: ShopUser } }>(
+				`${this.base}/auth/${isEmail ? 'email/login' : 'login'}`,
+				body,
+				{ headers: this.headers() },
+			),
+		);
+		return res.data;
+	}
+
+	async refresh(refreshToken: string): Promise<ShopTokens> {
+		const res = await firstValueFrom(
+			this.http.post<{ data: { tokens: ShopTokens } }>(
+				`${this.base}/auth/refresh`,
+				{ refreshToken },
+				{ headers: this.headers() },
+			),
+		);
+		return res.data.tokens;
+	}
+
+	async me(token: string): Promise<ShopUser> {
+		const res = await firstValueFrom(
+			this.http.get<{ data: ShopUser }>(`${this.base}/auth/me`, { headers: this.headers(token) }),
+		);
+		return res.data;
+	}
+
+	/** 403 när kontot saknar garage eller är mekaniker: då fylls bara kontaktuppgifterna i. */
+	async account(token: string): Promise<ShopAccount> {
+		const res = await firstValueFrom(
+			this.http.get<{ data: ShopAccount }>(`${this.base}/inventory/shop/account`, {
+				headers: this.headers(token),
+			}),
+		);
+		return res.data;
 	}
 }

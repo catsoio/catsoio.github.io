@@ -9,9 +9,10 @@ const out = './dist/catsoio/browser';
 const routes = [
 	'/',
 	'/produkter',
-	'/apps/axle',
+	'/axle',
 	'/hall',
 	'/axle/priser',
+	'/axle/butik',
 	'/axle/dackhotell',
 	'/axle/tidsbokning',
 	'/axle/offert',
@@ -36,13 +37,8 @@ const redirects = {
 	'/pricing': '/produkter',
 	'/privacy': '/integritet',
 	'/terms': '/integritet',
-	'/axle': '/apps/axle',
-	'/verkstad': '/apps/axle',
-	'/apps/verkstad': '/apps/axle',
 	'/verkstad/kom-igang': '/axle/kom-igang',
 	'/verkstad/info': '/axle/info',
-	'/dacklager': '/apps/axle',
-	'/inventory': '/apps/axle',
 	'/shopify/ai-search': '/shopify/apps/ai-search',
 };
 

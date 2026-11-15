@@ -80,6 +80,7 @@ interface ProductForm {
 	category: AdminShopProduct['category'];
 	image: string;
 	price: string;
+	compareAt: string;
 	shipping: string;
 	vatRate: number;
 	maxQuantity: number;
@@ -96,6 +97,7 @@ const emptyForm = (): ProductForm => ({
 	category: 'printer',
 	image: '',
 	price: '',
+	compareAt: '',
 	shipping: '0',
 	vatRate: 25,
 	maxQuantity: 10,
@@ -257,8 +259,20 @@ const emptyForm = (): ProductForm => ({
 									@for (v of [25, 12, 6, 0]; track v) { <option [value]="v">{{ v }} %</option> }
 								</select></label>
 						</div>
-						<label class="block text-sm"><span class="text-neutral-300">Bild (https-adress)</span>
-							<input name="image" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2" [ngModel]="form().image" (ngModelChange)="patch({ image: $event })" placeholder="https://…" /></label>
+						<div class="text-sm">
+							<span class="text-neutral-300">Bild</span>
+							<div class="mt-1 flex items-center gap-3">
+								@if (form().image) { <img [src]="form().image" alt="" class="h-16 w-16 rounded-lg bg-white object-contain" /> }
+								<label class="cursor-pointer rounded-lg border border-white/10 px-3 py-2 hover:bg-white/5">
+									{{ uploading() ? 'Laddar upp…' : form().image ? 'Byt bild' : 'Ladda upp bild' }}
+									<input type="file" accept="image/jpeg,image/png,image/webp" class="hidden" (change)="upload($event)" />
+								</label>
+								@if (form().image) { <button type="button" class="text-neutral-400 underline" (click)="patch({ image: '' })">Ta bort</button> }
+							</div>
+							<input name="image" class="mt-2 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-xs" [ngModel]="form().image" (ngModelChange)="patch({ image: $event })" placeholder="eller en https-adress" />
+						</div>
+						<label class="block text-sm"><span class="text-neutral-300">Ordinarie pris, kr exkl. moms (visas överstruket som rabatt, tomt = ingen rabatt)</span>
+							<input name="compareAt" inputmode="decimal" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2" [ngModel]="form().compareAt" (ngModelChange)="patch({ compareAt: $event })" /></label>
 						<div class="grid grid-cols-3 gap-3">
 							<label class="block text-sm"><span class="text-neutral-300">Pris, kr exkl. moms</span>
 								<input name="price" inputmode="decimal" class="mt-1 w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2" [ngModel]="form().price" (ngModelChange)="patch({ price: $event })" required /></label>
@@ -328,6 +342,7 @@ export class AdminShopComponent implements OnInit {
 	readonly products = signal<AdminShopProduct[]>([]);
 	readonly open = signal<string | null>(null);
 	readonly form = signal<ProductForm>(emptyForm());
+	readonly uploading = signal(false);
 
 	/** Det som skrivits i en orders fält men inte sparats än, per order. */
 	private readonly drafts = new Map<string, { supplierRef: string; trackingNo: string; internalNote: string }>();
@@ -410,6 +425,7 @@ export class AdminShopComponent implements OnInit {
 			category: p.category,
 			image: p.image ?? '',
 			price: fromMinor(p.priceMinor),
+			compareAt: fromMinor(p.compareAtMinor),
 			shipping: fromMinor(p.shippingMinor),
 			vatRate: p.vatRate,
 			maxQuantity: p.maxQuantity,
@@ -418,6 +434,22 @@ export class AdminShopComponent implements OnInit {
 			supplier: p.supplier,
 			cost: fromMinor(p.costMinor),
 		});
+	}
+
+	async upload(event: Event): Promise<void> {
+		const input = event.target as HTMLInputElement;
+		const file = input.files?.[0];
+		input.value = '';
+		if (!file) return;
+		this.uploading.set(true);
+		this.error.set('');
+		try {
+			this.patch({ image: await this.api.uploadShopImage(file) });
+		} catch (e) {
+			this.error.set(this.message(e, 'Bilden kunde inte laddas upp. Den ska vara JPEG, PNG eller WebP, högst 5 MB.'));
+		} finally {
+			this.uploading.set(false);
+		}
 	}
 
 	patch(change: Partial<ProductForm>): void {
@@ -429,6 +461,11 @@ export class AdminShopComponent implements OnInit {
 		const price = toMinor(f.price);
 		const shipping = toMinor(f.shipping || '0');
 		const cost = f.cost.trim() === '' ? null : toMinor(f.cost);
+		const compareAt = f.compareAt.trim() === '' ? null : toMinor(f.compareAt);
+		if (f.compareAt.trim() !== '' && (compareAt == null || (price != null && compareAt <= price))) {
+			this.error.set('Ordinarie pris ska vara ett belopp i kronor som är högre än priset. Lämna tomt för ingen rabatt.');
+			return;
+		}
 		if (!f.name.trim() || price == null || price < 100 || shipping == null || (f.cost.trim() !== '' && cost == null)) {
 			this.error.set('Fyll i namn och ett pris (minst 1 kr). Frakt och inköpspris ska vara belopp i kronor.');
 			return;
@@ -439,6 +476,7 @@ export class AdminShopComponent implements OnInit {
 			category: f.category,
 			image: f.image.trim() || null,
 			priceMinor: price,
+			compareAtMinor: compareAt,
 			shippingMinor: shipping,
 			vatRate: f.vatRate,
 			maxQuantity: f.maxQuantity,
