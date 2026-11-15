@@ -7,11 +7,13 @@
         </p>
       }
 
+      <h1 class="text-4xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-5xl">Butik för din verkstad</h1>
+
       @if (featured(); as f) {
-        <section class="offer grid overflow-hidden rounded-3xl text-white md:grid-cols-2" aria-label="Erbjudande">
+        <section class="offer mt-8 grid overflow-hidden rounded-3xl text-white md:grid-cols-2" aria-label="Erbjudande">
           <div class="flex flex-col justify-center gap-4 p-8 sm:p-10">
             <span class="w-fit rounded-full bg-[#ffc400] px-3 py-1 text-sm font-bold text-black">Startpaket</span>
-            <h1 class="text-3xl leading-tight font-extrabold sm:text-4xl">{{ f.name }}</h1>
+            <h2 class="text-3xl leading-tight font-extrabold sm:text-4xl">{{ f.name }}</h2>
             @if (f.description) {
               <p class="text-lg text-white/80">{{ f.description.split('\n').slice(0, 2).join(' ') }}</p>
             }
@@ -36,8 +38,12 @@
         </section>
       }
 
-      <div class="flex flex-wrap items-end justify-between gap-4" [class.mt-10]="featured()">
-        <h2 class="text-3xl font-extrabold tracking-tight text-[#0d1b1b] sm:text-4xl">{{ featured() ? 'Alla varor' : 'Butik för din verkstad' }}</h2>
+      <div class="mt-10 flex flex-wrap items-end justify-between gap-4">
+        @if (featured()) {
+          <h2 class="text-3xl font-extrabold tracking-tight text-[#0d1b1b]">Alla varor</h2>
+        } @else {
+          <span></span>
+        }
         @if (categories().length > 1) {
           <div class="flex flex-wrap gap-2" role="group" aria-label="Kategori">
             <button type="button" class="chip" [class.on]="category() === 'all'" (click)="category.set('all')">Alla</button>
