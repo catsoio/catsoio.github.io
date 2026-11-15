@@ -13,8 +13,9 @@ import {
 	StripePayments,
 	SubStatus,
 } from './admin.service';
+import { AdminShopComponent } from './admin-shop.component';
 
-type View = 'garages' | 'payments' | 'visits';
+type View = 'garages' | 'payments' | 'visits' | 'shop';
 type Filter = 'all' | 'trial' | 'expiring' | 'paying' | 'blocked';
 
 const DAY = 86_400_000;
@@ -39,7 +40,7 @@ const isoDay = (d: Date) => d.toISOString().slice(0, 10);
 @Component({
 	selector: 'app-admin',
 	standalone: true,
-	imports: [CommonModule, FormsModule],
+	imports: [CommonModule, FormsModule, AdminShopComponent],
 	templateUrl: './admin.component.html',
 })
 export class AdminComponent implements OnInit {

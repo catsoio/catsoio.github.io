@@ -1,7 +1,7 @@
 export const environment = {
 	production: false,
 	//
-	apiBaseUrl: 'https://api.catso.io',
+	apiBaseUrl: 'http://localhost:3000', // TILLFÄLLIGT för lokal test av butiken: återställ till https://api.catso.io före commit
 	//
 	hemmafestProd: 'https://hf24.fly.dev',
 	hemmafestDev: 'http://localhost:3000',

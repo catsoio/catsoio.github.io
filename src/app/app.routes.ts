@@ -12,6 +12,8 @@ import {
   HALL_SEO,
   AXLE_INFO_SEO,
   AXLE_PRISER_SEO,
+  AXLE_BUTIK_SEO,
+  AXLE_BUTIK_TACK_SEO,
   axleModulSeo,
   axleKundSeo,
   KOM_IGANG_SEO,
@@ -137,6 +139,18 @@ export const routes: Routes = [
       import('./pages/axle-kund/axle-kund.component').then((c) => c.AxleKundComponent),
     data: { seo: axleKundSeo(k), kund: k.slug },
   })),
+  {
+    path: 'axle/butik',
+    loadComponent: () =>
+      import('./pages/axle-butik/axle-butik.component').then((m) => m.AxleButikComponent),
+    data: { seo: AXLE_BUTIK_SEO },
+  },
+  {
+    path: 'axle/butik/tack',
+    loadComponent: () =>
+      import('./pages/axle-butik/axle-butik-tack.component').then((m) => m.AxleButikTackComponent),
+    data: { seo: AXLE_BUTIK_TACK_SEO },
+  },
   {
     path: 'axle/priser',
     loadComponent: () =>

@@ -71,8 +71,17 @@
 					>
 						Besökare
 					</button>
+					<button
+						type="button"
+						(click)="showView('shop')"
+						class="rounded-lg px-3 py-1.5"
+						[class]="view() === 'shop' ? 'bg-white/10 text-white' : 'text-neutral-400 hover:bg-white/5'"
+					>
+						Butik
+					</button>
 				</nav>
 				<span class="flex-1"></span>
+				@if (view() !== 'shop') {
 				<button
 					type="button"
 					(click)="view() === 'visits' ? loadVisits() : view() === 'payments' ? loadPayments() : load()"
@@ -80,6 +89,7 @@
 				>
 					{{ loading() || visitsLoading() || paymentsLoading() ? 'Hämtar…' : 'Uppdatera' }}
 				</button>
+				}
 				<button
 					type="button"
 					(click)="signOut()"
@@ -90,7 +100,9 @@
 			</div>
 		</header>
 
-		@if (view() === 'payments') {
+		@if (view() === 'shop') {
+		<app-admin-shop />
+		} @else if (view() === 'payments') {
 		<main class="mx-auto max-w-7xl space-y-5 px-4 py-6">
 			@if (paymentsError()) {
 				<p class="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">{{ paymentsError() }}</p>

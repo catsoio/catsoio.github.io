@@ -1,0 +1,120 @@
+// Gemensamt för butikens sidor: samma ton som prissidan.
+$teal: #00706a;
+$ink: #0d1b1b;
+$line: #e3eaea;
+$border: #d5e0e0;
+
+.bay {
+	font-family: 'Barlow', 'Inter', system-ui, sans-serif;
+}
+
+.hero {
+	background:
+		radial-gradient(ellipse 60% 55% at 85% 20%, rgba(0, 112, 106, 0.08), transparent 70%),
+		linear-gradient(180deg, #ffffff 0%, #f6faf9 100%);
+}
+
+.card {
+	border: 1px solid $line;
+	border-radius: 1.1rem;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(13, 27, 27, 0.04);
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.9rem 1.6rem;
+	border-radius: 0.7rem;
+	font-weight: 600;
+	font-size: 1.05rem;
+	transition:
+		transform 0.12s ease,
+		background-color 0.12s ease;
+	cursor: pointer;
+
+	&:active {
+		transform: translateY(1px);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
+.btn-primary {
+	background: $teal;
+	color: #fff;
+	box-shadow: 0 8px 18px -8px rgba(0, 112, 106, 0.6);
+
+	&:hover:not(:disabled) {
+		background: #00605a;
+	}
+}
+
+.field {
+	width: 100%;
+	border: 1.5px solid $border;
+	border-radius: 0.7rem;
+	background: #fff;
+	padding: 0.65rem 0.85rem;
+	color: $ink;
+
+	&:focus {
+		border-color: $teal;
+		outline: none;
+	}
+
+	&.invalid {
+		border-color: #d64535;
+	}
+}
+
+.label {
+	display: block;
+	font-weight: 600;
+	color: $ink;
+	margin-bottom: 0.25rem;
+}
+
+.group-title {
+	font-size: 1.3rem;
+	font-weight: 800;
+	color: $ink;
+}
+
+.stepper {
+	display: inline-flex;
+	align-items: center;
+	border: 1.5px solid $border;
+	border-radius: 0.7rem;
+	overflow: hidden;
+
+	button {
+		width: 2.5rem;
+		height: 2.5rem;
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: $teal;
+		background: #fff;
+		cursor: pointer;
+
+		&:hover:not(:disabled) {
+			background: #e8f1f0;
+		}
+
+		&:disabled {
+			color: #b5c4c4;
+			cursor: not-allowed;
+		}
+	}
+
+	span {
+		min-width: 2.5rem;
+		text-align: center;
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+	}
+}

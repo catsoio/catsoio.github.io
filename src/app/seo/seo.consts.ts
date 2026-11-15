@@ -209,6 +209,24 @@ export const axleKundSeo = (k: Kund): RouteSEO => {
 	};
 };
 
+/**
+ * Butiken för verkstäder. Inte indexerad än: den delas med verkstäder vi redan pratat med, och en
+ * tom butik ska inte synas i sökresultat. Byt till `index,follow` och lägg sidan i
+ * tools/generate-sitemap.mjs när varorna är på plats.
+ */
+export const AXLE_BUTIK_SEO: RouteSEO = {
+	title: 'Butik | Catso Axle',
+	description: 'Etikettskrivare, etiketter och annan hårdvara till verkstaden.',
+	canonical: `${ORIGIN}/axle/butik`,
+	robots: 'noindex,follow',
+};
+
+export const AXLE_BUTIK_TACK_SEO: RouteSEO = {
+	title: 'Din beställning | Catso Axle',
+	description: 'Status för din beställning i Catsos butik.',
+	robots: 'noindex,nofollow',
+};
+
 export const AXLE_PRISER_SEO: RouteSEO = {
 	title: 'Priser och prisräknare | Catso Axle',
 	description: 'Priser för Catso Axle från 795 kr i månaden, och en räknare som visar månadskostnaden för just er verkstad.',

@@ -40,6 +40,57 @@ export interface LicenseChange {
 	licenseUntil?: string;
 }
 
+/** Butikens vara i admin: allt, också det interna. Belopp är hela öre exkl. moms. */
+export interface AdminShopProduct {
+	id: string;
+	name: string;
+	description: string;
+	category: 'printer' | 'supplies' | 'scanner' | 'terminal' | 'other';
+	image: string | null;
+	priceMinor: number;
+	shippingMinor: number;
+	vatRate: number;
+	maxQuantity: number;
+	active: boolean;
+	sort: number;
+	supplier: string;
+	costMinor: number | null;
+}
+
+export type AdminShopProductInput = Omit<AdminShopProduct, 'id'>;
+
+export type AdminShopStatus = 'awaiting_payment' | 'paid' | 'ordered' | 'shipped' | 'delivered' | 'canceled' | 'expired';
+
+export interface AdminShopOrder {
+	id: string;
+	number: string;
+	status: AdminShopStatus;
+	buyer: { workshop: string; orgNo: string; contactName: string; email: string; phone: string };
+	address: { line1: string; line2: string | null; postalCode: string; city: string };
+	note: string;
+	lines: { productId: string; name: string; quantity: number; unitMinor: number; shippingMinor: number; vatRate: number; costMinor: number | null }[];
+	totals: { goodsMinor: number; shippingMinor: number; netMinor: number; vatMinor: number; totalMinor: number };
+	paymentIntentId: string | null;
+	paidAt: string | null;
+	orderedAt: string | null;
+	supplierRef: string;
+	shippedAt: string | null;
+	trackingNo: string;
+	deliveredAt: string | null;
+	canceledAt: string | null;
+	refundId: string | null;
+	internalNote: string;
+	createdAt: string;
+	marginMinor: number | null;
+}
+
+export interface AdminShopOrderPatch {
+	status?: 'paid' | 'ordered' | 'shipped' | 'delivered';
+	supplierRef?: string;
+	trackingNo?: string;
+	internalNote?: string;
+}
+
 export interface SiteVisit {
 	id: string;
 	at: string;
@@ -219,6 +270,44 @@ export class AdminService {
 	payments(): Promise<StripePayments> {
 		return this.call(() =>
 			this.http.get<any>(`${this.base}/inventory/garage/admin/payments`, { headers: this.headers(true) }),
+		);
+	}
+
+	shopProducts(): Promise<AdminShopProduct[]> {
+		return this.call(() =>
+			this.http.get<any>(`${this.base}/inventory/shop/admin/products`, { headers: this.headers(true) }),
+		);
+	}
+
+	saveShopProduct(id: string | null, body: AdminShopProductInput): Promise<AdminShopProduct> {
+		return this.call(() =>
+			id
+				? this.http.put<any>(`${this.base}/inventory/shop/admin/products/${id}`, body, { headers: this.headers(true) })
+				: this.http.post<any>(`${this.base}/inventory/shop/admin/products`, body, { headers: this.headers(true) }),
+		);
+	}
+
+	deleteShopProduct(id: string): Promise<unknown> {
+		return this.call(() =>
+			this.http.delete<any>(`${this.base}/inventory/shop/admin/products/${id}`, { headers: this.headers(true) }),
+		);
+	}
+
+	shopOrders(): Promise<AdminShopOrder[]> {
+		return this.call(() =>
+			this.http.get<any>(`${this.base}/inventory/shop/admin/orders`, { headers: this.headers(true) }),
+		);
+	}
+
+	updateShopOrder(id: string, patch: AdminShopOrderPatch): Promise<AdminShopOrder> {
+		return this.call(() =>
+			this.http.patch<any>(`${this.base}/inventory/shop/admin/orders/${id}`, patch, { headers: this.headers(true) }),
+		);
+	}
+
+	cancelShopOrder(id: string, refund: boolean): Promise<AdminShopOrder> {
+		return this.call(() =>
+			this.http.post<any>(`${this.base}/inventory/shop/admin/orders/${id}/cancel`, { refund }, { headers: this.headers(true) }),
 		);
 	}
 }
