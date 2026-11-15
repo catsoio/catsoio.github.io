@@ -94,7 +94,7 @@
               <ul class="divide-y divide-[#e3eaea]">
                 @for (l of store.lines(); track l.product.id) {
                   <li class="flex gap-3 py-3">
-                    <a [routerLink]="['/axle/butik/vara', l.product.id]" class="h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+                    <a [routerLink]="['/axle/butik/vara', l.product.id]" class="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
                       <app-butik-visual [image]="l.product.image" [category]="l.product.category" [name]="l.product.name" />
                     </a>
                     <div class="min-w-0 flex-1">

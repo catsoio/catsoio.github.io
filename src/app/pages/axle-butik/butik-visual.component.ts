@@ -6,9 +6,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div class="grid h-full w-full place-items-center overflow-hidden bg-gradient-to-br from-[#f6faf9] to-[#e3efee]">
+		<div class="absolute inset-0 grid place-items-center overflow-hidden bg-gradient-to-br from-[#f6faf9] to-[#e3efee]">
 			@if (image()) {
-				<img [src]="image()" [alt]="name()" loading="lazy" class="h-full w-full object-contain p-4" />
+				<img [src]="image()" [alt]="name()" loading="lazy" class="absolute inset-0 h-full w-full object-contain p-4" />
 			} @else {
 				<svg viewBox="0 0 120 120" class="h-1/2 w-1/2 text-[#00706a]" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
 					@switch (category()) {
