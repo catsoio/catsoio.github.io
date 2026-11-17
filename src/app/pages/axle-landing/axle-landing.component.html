@@ -63,9 +63,12 @@
       class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3"
       aria-label="Huvudmeny"
     >
-      <a routerLink="/" class="flex items-center gap-3">
-        <img src="assets/imgs/axle/axle-logo.svg" alt="Axle" class="h-6 w-auto" />
-        <span class="text-lg font-bold whitespace-nowrap text-[#0d1b1b] sm:text-xl">{{ product }}</span>
+      <a routerLink="/" class="flex items-center gap-3" [attr.aria-label]="product">
+        <img src="assets/imgs/axle/axle-logo.svg" alt="" class="h-6 w-auto" />
+        <span class="flex flex-col leading-none whitespace-nowrap sm:block">
+          <span class="text-lg font-bold text-[#0d1b1b] sm:text-xl"><span class="sm:hidden">Axle</span><span class="hidden sm:inline">{{ product }}</span></span>
+          <span class="mt-1 text-[10px] font-medium tracking-wide text-[#6b7f7f] sm:hidden">by Catso</span>
+        </span>
       </a>
       <div class="hidden items-center gap-8 text-base font-medium text-[#4a5d5d] md:flex">
         <a routerLink="/axle" class="font-bold text-[#00706a] underline decoration-2 underline-offset-8" aria-current="page">Hem</a>
@@ -87,7 +90,7 @@
           class="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-lg bg-[#00706a] px-3 text-sm font-semibold text-white"
           aria-label="Ring oss"
           ><svg
-            class="h-5 w-5"
+            class="hidden h-5 w-5 sm:block"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -99,7 +102,7 @@
             <path
               d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"
             /></svg
-          ><span class="hidden sm:inline">070-330 09 87</span></a
+          ><span>070-330 09 87</span></a
         >
         <a
           routerLink="/axle"
@@ -213,9 +216,19 @@
     <!-- PARTNERS -->
     <section class="border-b border-[#e3eaea] bg-white px-4 py-9 text-center" aria-label="Partners">
       <p class="text-lg font-semibold text-[#0d1b1b]">Stolta partners med</p>
-      <div class="mt-5 flex flex-wrap items-center justify-center gap-x-14 gap-y-5">
-        @for (p of partners; track p.name) {
-          <img [src]="p.src" [alt]="p.name" class="w-auto" [class]="p.h" loading="lazy" />
+      <!-- Fler än två partners: raden bläddrar av sig själv på mobil (se .partners i scss). -->
+      <div class="partners mt-5" [class.partners-scroll]="partners.length > 2">
+        <div class="partners-track">
+          @for (p of partners; track p.name) {
+            <img [src]="p.src" [alt]="p.name" class="w-auto" [class]="p.h" loading="lazy" />
+          }
+        </div>
+        @if (partners.length > 2) {
+          <div class="partners-track partners-dup" aria-hidden="true">
+            @for (p of partners; track p.name) {
+              <img [src]="p.src" alt="" class="w-auto" [class]="p.h" loading="lazy" />
+            }
+          </div>
         }
       </div>
     </section>

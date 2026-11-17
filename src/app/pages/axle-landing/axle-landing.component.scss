@@ -245,6 +245,66 @@ $tread: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width=
 	will-change: transform;
 }
 
+/* Partnerlogotyper: en rad som bryts och centreras. Med fler än två (.partners-scroll) går raden
+   i en oändlig slinga på mobil; kopian (.partners-dup) behövs bara för slingan. */
+.partners-track {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 1.25rem 3.5rem;
+}
+
+.partners-dup {
+	display: none;
+}
+
+@media (max-width: 639px) {
+	.partners-scroll {
+		display: flex;
+		overflow: hidden;
+		mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+	}
+
+	.partners-scroll .partners-track {
+		flex: none;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		gap: 3rem;
+		padding-right: 3rem;
+		animation: partners-slide 20s linear infinite;
+	}
+
+	.partners-scroll .partners-dup {
+		display: flex;
+	}
+}
+
+@keyframes partners-slide {
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+/* Utan rörelse: ingen slinga, raden bryts som på dator. */
+@media (max-width: 639px) and (prefers-reduced-motion: reduce) {
+	.partners-scroll {
+		display: block;
+		mask-image: none;
+	}
+
+	.partners-scroll .partners-track {
+		flex-wrap: wrap;
+		justify-content: center;
+		padding-right: 0;
+		animation: none;
+	}
+
+	.partners-scroll .partners-dup {
+		display: none;
+	}
+}
+
 /* Gummigrossens logga är vit; den görs mörk så att den syns på vit bakgrund. */
 .logo-dark {
 	filter: brightness(0);
