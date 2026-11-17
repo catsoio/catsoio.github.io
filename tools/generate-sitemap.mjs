@@ -18,6 +18,7 @@ const routes = [
 	'/axle/offert',
 	'/axle/lager',
 	'/axle/arbetsorder',
+	'/axle/faktura',
 	'/vera-01',
 	'/shopify/apps/ai-search',
 	'/hemmafest',

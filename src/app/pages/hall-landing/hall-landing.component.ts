@@ -34,8 +34,20 @@ export class HallLandingComponent {
 			text: 'Inköpspris, kostnader och vinst på varje bil. Se hur länge den har stått och vad ni har bundet i lager.',
 		},
 		{
+			title: 'Se vad som behöver göras',
+			text: 'Bilar som saknar säljare, väntar på besiktning, inte är utlagda eller har stått länge lyfts fram på startsidan.',
+		},
+		{
+			title: 'Inköpet på bilen',
+			text: 'Spara vad ni betalade, vem ni köpte av och köpebrevet. Handlingarna är aldrig synliga för besökare.',
+		},
+		{
 			title: 'Affären på ett kort',
-			text: 'Köpare, bil, tillägg och rabatt samlas på ett kort. Bokför affären och skicka fakturan till kunden.',
+			text: 'Köpare, bil, tillägg och rabatt samlas på ett kort. Bokför affären och skicka fakturan till kunden. Bilar kan säljas med vinstmarginalbeskattning.',
+		},
+		{
+			title: 'Annonsera på Blocket',
+			text: 'Lägg ut bilen från bilkortet. Den skickas först som utkast, så ni kontrollerar annonsen innan den publiceras. Bilar som redan ligger ute kan läsas in.',
 		},
 		{
 			title: 'Egen webbplats för bilarna',

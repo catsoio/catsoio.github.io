@@ -58,6 +58,18 @@ export const AXLE_FAQ: Faq[] = [
 		a: 'Ja. Ni väljer mottagare och skriver texten en gång. Namn och registreringsnummer fylls i för varje kund.',
 	},
 	{
+		q: 'Hämtar Axle uppgifter om bilen?',
+		a: 'Ja. Skriv regnumret så fylls märke, modell, däckmått och besiktning i från fordonsregistret.',
+	},
+	{
+		q: 'Kan vi skicka fakturor och offerter till kunderna?',
+		a: 'Ja. Offerter går som SMS eller mejl, fakturor som mejl. Kunden öppnar en länk i mobilen och behöver inget konto.',
+	},
+	{
+		q: 'Kan vi sälja bilar också?',
+		a: 'Ja. Catso Hall är bilhandeln i samma system, med gemensamma kunder och fakturor.',
+	},
+	{
 		q: 'Vad kostar det?',
 		a: 'Ring 070-330 09 87 eller mejla support@catso.io, så går vi igenom vad som passar er verkstad.',
 	},

@@ -63,7 +63,7 @@ export const MODULER: Modul[] = [
 			},
 			{
 				title: 'Etikett till varje set',
-				text: 'Skriv ut en etikett med QR-kod och sätt på hjulen.',
+				text: 'Skriv ut en etikett med QR-kod och sätt på hjulen. Skanna den så öppnas setet, och skanna hyllan för att placera det.',
 			},
 			{
 				title: 'Se vad som väntar',
@@ -89,7 +89,11 @@ export const MODULER: Modul[] = [
 			},
 			{
 				q: 'Hur hittar vi ett set?',
-				a: 'Sök på regnummer, namn, telefonnummer eller hylla.',
+				a: 'Sök på regnummer, namn, telefonnummer eller hylla, eller skanna etiketten.',
+			},
+			{
+				q: 'Kan vi räkna hotellet?',
+				a: 'Ja. Skanna setens etiketter hylla för hylla. Ni ser vilka som står på fel hylla och vilka som inte hittades.',
 			},
 		],
 		related: ['tidsbokning', 'lager', 'arbetsorder'],
@@ -115,7 +119,7 @@ export const MODULER: Modul[] = [
 			},
 			{
 				title: 'Boka direkt i telefon',
-				text: 'Skriv telefonnumret så hittas kunden.',
+				text: 'Skriv telefonnumret så hittas kunden, och regnumret fyller i bilen.',
 			},
 			{
 				title: 'Dra och släpp',
@@ -126,8 +130,8 @@ export const MODULER: Modul[] = [
 				text: 'Ändrar ni tiden följer ordern med.',
 			},
 			{
-				title: 'Kunden skickar en förfrågan',
-				text: 'Från er webbplats. Ni bekräftar tiden.',
+				title: 'Kunden ser priset för sin bil',
+				text: 'På er bokningssida skriver kunden regnumret och ser vad åtgärden kostar för just den bilen. Kunden skickar en förfrågan och ni bekräftar tiden.',
 			},
 		],
 		faqs: [
@@ -222,8 +226,8 @@ export const MODULER: Modul[] = [
 				text: 'Se saldo och lagervärde, och allt som hänt med varje artikel.',
 			},
 			{
-				title: 'Räkna om',
-				text: 'Ändra saldot efter en inventering. Kasserade varor tas ut med ett klick.',
+				title: 'Inventera med skanner',
+				text: 'Skanna artiklarna med en streckkodsläsare så räknas saldot. Ni ser skillnaderna innan något bokförs.',
 			},
 			{
 				title: 'Beställ det som tar slut',
@@ -237,7 +241,7 @@ export const MODULER: Modul[] = [
 		faqs: [
 			{
 				q: 'Kan vi räkna om lagret?',
-				a: 'Ja. Ändra saldot, så sparas det som en inventering.',
+				a: 'Ja. Skanna eller skriv in antalen, granska skillnaderna och bokför, så sparas det som en inventering.',
 			},
 			{
 				q: 'Kan vi skriva ut etiketter för däck?',
@@ -279,7 +283,7 @@ export const MODULER: Modul[] = [
 			},
 			{
 				title: 'Fakturera direkt',
-				text: 'En klar order blir en faktura eller ett kvitto.',
+				text: 'En klar order blir en faktura eller ett kvitto, och flera order för samma kund kan gå på en samlingsfaktura.',
 			},
 		],
 		faqs: [
@@ -289,7 +293,11 @@ export const MODULER: Modul[] = [
 			},
 			{
 				q: 'Vad får mekanikern?',
-				a: 'Ett utskrivet arbetsblad.',
+				a: 'Ett utskrivet arbetsblad, utan priser.',
+			},
+			{
+				q: 'Kan vi lämna en följesedel med bilen?',
+				a: 'Ja, när ordern är klar. Den visar arbetet och delarna, och att det faktureras senare.',
 			},
 			{
 				q: 'Går en klar order att öppna igen?',
@@ -300,7 +308,59 @@ export const MODULER: Modul[] = [
 				a: 'Ja. Ägaren ser en efterkalkyl.',
 			},
 		],
-		related: ['tidsbokning', 'offert', 'lager'],
+		related: ['tidsbokning', 'offert', 'faktura'],
+	},
+	{
+		slug: 'faktura',
+		name: 'Faktura',
+		h1: 'Från klar order till betald faktura',
+		lead: 'Allt ni säljer går på ett säljkort. Bokför det som faktura och skicka den som länk till kunden.',
+		seoTitle: 'Faktura och moms för verkstäder | Catso Axle',
+		seoDescription:
+			'Faktura i Catso Axle: säljkort från arbetsorder, samlingsfaktura, faktura som länk till kunden, kreditfaktura och momsrapport för perioden.',
+		photo: `${IMG}/photos/bilverkstad.jpg`,
+		pos: 'center 40%',
+		blocks: [
+			{
+				title: 'Ett kort för all försäljning',
+				text: 'Kund, bil, rader, rabatt och summa på samma kort. Från en klar arbetsorder fylls det i åt er.',
+			},
+			{
+				title: 'Skicka fakturan som länk',
+				text: 'Kunden får ett mejl med en länk, öppnar fakturan och skriver ut den eller sparar den som PDF. Ni ser när den öppnats.',
+			},
+			{
+				title: 'En faktura i månaden',
+				text: 'Kunder som faktureras en gång i månaden får en följesedel med bilen. Klara order samlas under Att fakturera och blir en samlingsfaktura.',
+			},
+			{
+				title: 'Rätta med kreditfaktura',
+				text: 'Ett fel går att rätta utan att något raderas. Kreditfakturan får eget nummer och delarna läggs tillbaka i lagret.',
+			},
+			{
+				title: 'Moms och förfallna fakturor',
+				text: 'Se vad som är obetalt och förfallet, och ta ut momsrapporten för perioden. Alla priser visas inklusive moms.',
+			},
+		],
+		faqs: [
+			{
+				q: 'Kan kunden betala fakturan direkt i länken?',
+				a: 'Inte än. Ni markerar fakturan som betald när pengarna kommit in.',
+			},
+			{
+				q: 'Kan vi ändra en faktura som redan är bokförd?',
+				a: 'Ja, om den inte är skickad eller betald. Annars rättar ni med en kreditfaktura.',
+			},
+			{
+				q: 'Kan vi skicka till vårt bokföringsprogram?',
+				a: 'Inte än. Momsrapporten visar vad som ska redovisas för perioden.',
+			},
+			{
+				q: 'Kan vi ge rabatt?',
+				a: 'Ja, på en rad eller på hela kortet. Det loggas vem som gav rabatten.',
+			},
+		],
+		related: ['arbetsorder', 'offert', 'lager'],
 	},
 ];
 
